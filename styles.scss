@@ -319,7 +319,7 @@ body {
     padding: 10px 22px;
     border-radius: 5px;
     background: #fff;
-    max-width: 200px;
+    width: 177px;
     transition: transform 100ms ease-in-out;
   }
 
@@ -403,6 +403,10 @@ body {
     font-size: 12px;
   }
 
+  .products-list__item-raiting {
+    margin-bottom: 10px;
+  }
+
   .products-list__item-sextype {
     margin-right: 5px;
   }
@@ -413,11 +417,25 @@ body {
   }
 
   .products-list__item-desc {
-    visibility: hidden;
+    display: none;
+  }
+
+  .products-list__item-desc span {
+    border-top: 2px solid #f5f5f5;
+    display: block;
+    position: relative;
+    left: -22px;
+    padding: 13px 21px;
+    background-color: #fff;
+    width: 179px;
+    font-size: 10px;
+    font-weight: 400;
+    border-radius: 0 0 5px 5px;
   }
 
   .products-list__item:hover .products-list__item-desc {
-    visibility: visible;
+    display: block;
+    position: absolute;
   }
 
   .sticker-wrap {
