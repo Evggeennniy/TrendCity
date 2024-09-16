@@ -21,6 +21,13 @@
               />
               <h5 class="nav__catalog-title">Каталог</h5>
             </div>
+            <div class="header__mob-panel">
+              <button class="mob-panel__button">
+                <div class="mob-panel__button-line"></div>
+                <div class="mob-panel__button-line"></div>
+                <div class="mob-panel__button-line"></div>
+              </button>
+            </div>
             <div class="nav__search">
               <input
                 type="text"
@@ -319,9 +326,27 @@
                 <img
                   src="./slider-1.png"
                   alt="slider-photo"
-                  class="content__slider-img"
+                  class="content__slider-img slider-img__1"
+                />
+                <img
+                  src="./slider-2.png"
+                  alt="slider-photo"
+                  class="content__slider-img slider-img__2"
+                />
+                <img
+                  src="./slider-3.png"
+                  alt="slider-photo"
+                  class="content__slider-img slider-img__3"
                 />
               </div>
+              <a href="" class="content__link-categories">
+                <img
+                  src="menu-icon.svg"
+                  alt="menu-icon"
+                  class="content__link-categories__icon"
+                />
+                ВСІ КАТЕГОРІЇ</a
+              >
               <ul class="content__categories-list">
                 <li class="categories-list__item">
                   <img
@@ -421,239 +446,264 @@
                 </li>
               </ul>
               <div class="products">
-                <h4 class="products__title">
-                  ТрендСіті
+                <div class="products__main-title">
+                  <h4 class="products__title">ТрендСіті</h4>
                   <strong class="products__subtitle">Акційні товари</strong>
-                </h4>
-                <ul class="products-list discounts__list">
-                  <li class="products-list__item">
-                    <div class="sticker-wrap">
-                      <span class="sticker-top">топ товар</span>
-                    </div>
-                    <img
-                      src="./product-img-1.png"
-                      alt="product-img"
-                      class="products-list__item-img"
-                    />
-                    <h5 class="products-list__item-title">
-                      Аромадифузор LeMien №5 - Fleur Narcotique
-                    </h5>
-                    <div class="products-list__item-info">
-                      <div class="products-list__item-discount">
-                        <div>
-                          <span class="products-list__item-price">₴810</span>
-                          <span class="products-list__item-percent">-30%</span>
+                  <div class="line"></div>
+                </div>
+                <div class="products-list-wrap">
+                  <ul class="products-list discounts__list">
+                    <li class="products-list__item">
+                      <!-- <divц -->
+                      <img
+                        src="./product-img-1.png"
+                        alt="product-img"
+                        class="products-list__item-img"
+                      />
+                      <h5 class="products-list__item-title">
+                        Аромадифузор LeMien №5 - Fleur Narcotique
+                      </h5>
+                      <div class="products-list__item-info">
+                        <div class="products-list__item-discount">
+                          <div>
+                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-percent"
+                              >-30%</span
+                            >
+                          </div>
+                          <h4 class="products-list__item-curr-price">
+                            640<span class="money-symbol">₴</span>
+                          </h4>
                         </div>
-                        <h4 class="products-list__item-curr-price">
-                          640<span class="money-symbol">₴</span>
-                        </h4>
+                        <button class="products-list__item-button">
+                          <img
+                            src="./basket-icon.svg"
+                            alt="item-buy-icon"
+                            class="products-list__item-buy-icon"
+                          />
+                        </button>
                       </div>
-                      <button class="products-list__item-button">
-                        <img
-                          src="./basket-icon.svg"
-                          alt="item-buy-icon"
-                          class="products-list__item-buy-icon"
-                        />
-                      </button>
-                    </div>
-                    <div class="products-list__item-extrainfo">
-                      <div class="products-list__item-infopart">
-                        <span class="products-list__item-raiting">Рейтинг</span>
-                        <img
-                          src="./star-icon.svg"
-                          alt="star-icon"
-                          class="products-list__item-star"
-                        />
-                        <span class="products-list__item-raiting">4,8</span>
-                      </div>
-                      <div class="products-list__item-infopart">
-                        <span class="products-list__item-sextype">Унісекс</span>
-                        <img
-                          src="./sex-icon.svg"
-                          alt="sex-icon"
-                          class="products-list__item-seximg"
-                        />
-                      </div>
-                    </div>
-                    <div class="products-list__item-desc">
-                      <span
-                        >Аромат чистоти, насичений справжньою дерев'яною
-                        шавлією. Він обволікає свіжістю безмежного морського
-                        узбережжя.</span
-                      >
-                    </div>
-                  </li>
-                  <li class="products-list__item">
-                    <img
-                      src="./product-img-2.png"
-                      alt="product-img"
-                      class="products-list__item-img"
-                    />
-                    <h5 class="products-list__item-title">
-                      Аромадифузор LeMien №5 - Fleur Narcotique
-                    </h5>
-                    <div class="products-list__item-info">
-                      <div class="products-list__item-discount">
-                        <div>
-                          <span class="products-list__item-price">₴810</span>
-                          <span class="products-list__item-percent">-30%</span>
+                      <div class="products-list__item-extrainfo">
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-raiting"
+                            >Рейтинг</span
+                          >
+                          <img
+                            src="./star-icon.svg"
+                            alt="star-icon"
+                            class="products-list__item-star"
+                          />
+                          <span class="products-list__item-raiting">4,8</span>
                         </div>
-                        <h4 class="products-list__item-curr-price">
-                          640<span class="money-symbol">₴</span>
-                        </h4>
-                      </div>
-                      <button class="products-list__item-button">
-                        <img
-                          src="./basket-icon.svg"
-                          alt="item-buy-icon"
-                          class="products-list__item-buy-icon"
-                        />
-                      </button>
-                    </div>
-                    <div class="products-list__item-extrainfo">
-                      <div class="products-list__item-infopart">
-                        <span class="products-list__item-raiting">Рейтинг</span>
-                        <img
-                          src="./star-icon.svg"
-                          alt="star-icon"
-                          class="products-list__item-star"
-                        />
-                        <span class="products-list__item-raiting">4,8</span>
-                      </div>
-                      <div class="products-list__item-infopart">
-                        <span class="products-list__item-sextype">Унісекс</span>
-                        <img
-                          src="./sex-icon.svg"
-                          alt="sex-icon"
-                          class="products-list__item-seximg"
-                        />
-                      </div>
-                    </div>
-                    <div class="products-list__item-desc">
-                      <span
-                        >Аромат чистоти, насичений справжньою дерев'яною
-                        шавлією. Він обволікає свіжістю безмежного морського
-                        узбережжя.</span
-                      >
-                    </div>
-                  </li>
-                  <li class="products-list__item">
-                    <img
-                      src="./product-img-4.png"
-                      alt="product-img"
-                      class="products-list__item-img"
-                    />
-                    <h5 class="products-list__item-title">
-                      Аромадифузор LeMien №5 - Fleur Narcotique
-                    </h5>
-                    <div class="products-list__item-info">
-                      <div class="products-list__item-discount">
-                        <div>
-                          <span class="products-list__item-price">₴810</span>
-                          <span class="products-list__item-percent">-30%</span>
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-sextype"
+                            >Унісекс</span
+                          >
+                          <img
+                            src="./sex-icon.svg"
+                            alt="sex-icon"
+                            class="products-list__item-seximg"
+                          />
                         </div>
-                        <h4 class="products-list__item-curr-price">
-                          640<span class="money-symbol">₴</span>
-                        </h4>
                       </div>
-                      <button class="products-list__item-button">
-                        <img
-                          src="./basket-icon.svg"
-                          alt="item-buy-icon"
-                          class="products-list__item-buy-icon"
-                        />
-                      </button>
-                    </div>
-                    <div class="products-list__item-extrainfo">
-                      <div class="products-list__item-infopart">
-                        <span class="products-list__item-raiting">Рейтинг</span>
-                        <img
-                          src="./star-icon.svg"
-                          alt="star-icon"
-                          class="products-list__item-star"
-                        />
-                        <span class="products-list__item-raiting">4,8</span>
+                      <div class="products-list__item-desc">
+                        <span
+                          >Аромат чистоти, насичений справжньою дерев'яною
+                          шавлією. Він обволікає свіжістю безмежного морського
+                          узбережжя.</span
+                        >
                       </div>
-                      <div class="products-list__item-infopart">
-                        <span class="products-list__item-sextype">Унісекс</span>
-                        <img
-                          src="./sex-icon.svg"
-                          alt="sex-icon"
-                          class="products-list__item-seximg"
-                        />
-                      </div>
-                    </div>
-                    <div class="products-list__item-desc">
-                      <span
-                        >Аромат чистоти, насичений справжньою дерев'яною
-                        шавлією. Він обволікає свіжістю безмежного морського
-                        узбережжя.</span
-                      >
-                    </div>
-                  </li>
-                  <li class="products-list__item">
-                    <div class="sticker-wrap">
-                      <span class="sticker-top">топ товар</span>
-                    </div>
-                    <img
-                      src="./product-img-4.png"
-                      alt="product-img"
-                      class="products-list__item-img"
-                    />
-                    <h5 class="products-list__item-title">
-                      Аромадифузор LeMien №5 - Fleur Narcotique
-                    </h5>
-                    <div class="products-list__item-info">
-                      <div class="products-list__item-discount">
-                        <div>
-                          <span class="products-list__item-price">₴810</span>
-                          <span class="products-list__item-percent">-30%</span>
+                    </li>
+                    <li class="products-list__item">
+                      <img
+                        src="./product-img-2.png"
+                        alt="product-img"
+                        class="products-list__item-img"
+                      />
+                      <h5 class="products-list__item-title">
+                        Аромадифузор LeMien №5 - Fleur Narcotique
+                      </h5>
+                      <div class="products-list__item-info">
+                        <div class="products-list__item-discount">
+                          <div>
+                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-percent"
+                              >-30%</span
+                            >
+                          </div>
+                          <h4 class="products-list__item-curr-price">
+                            640<span class="money-symbol">₴</span>
+                          </h4>
                         </div>
-                        <h4 class="products-list__item-curr-price">
-                          640<span class="money-symbol">₴</span>
-                        </h4>
+                        <button class="products-list__item-button">
+                          <img
+                            src="./basket-icon.svg"
+                            alt="item-buy-icon"
+                            class="products-list__item-buy-icon"
+                          />
+                        </button>
                       </div>
-                      <button class="products-list__item-button">
-                        <img
-                          src="./basket-icon.svg"
-                          alt="item-buy-icon"
-                          class="products-list__item-buy-icon"
-                        />
-                      </button>
-                    </div>
-                    <div class="products-list__item-extrainfo">
-                      <div class="products-list__item-infopart">
-                        <span class="products-list__item-raiting">Рейтинг</span>
-                        <img
-                          src="./star-icon.svg"
-                          alt="star-icon"
-                          class="products-list__item-star"
-                        />
-                        <span class="products-list__item-raiting">4,8</span>
+                      <div class="products-list__item-extrainfo">
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-raiting"
+                            >Рейтинг</span
+                          >
+                          <img
+                            src="./star-icon.svg"
+                            alt="star-icon"
+                            class="products-list__item-star"
+                          />
+                          <span class="products-list__item-raiting">4,8</span>
+                        </div>
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-sextype"
+                            >Унісекс</span
+                          >
+                          <img
+                            src="./sex-icon.svg"
+                            alt="sex-icon"
+                            class="products-list__item-seximg"
+                          />
+                        </div>
                       </div>
-                      <div class="products-list__item-infopart">
-                        <span class="products-list__item-sextype">Унісекс</span>
-                        <img
-                          src="./sex-icon.svg"
-                          alt="sex-icon"
-                          class="products-list__item-seximg"
-                        />
+                      <div class="products-list__item-desc">
+                        <span
+                          >Аромат чистоти, насичений справжньою дерев'яною
+                          шавлією. Він обволікає свіжістю безмежного морського
+                          узбережжя.</span
+                        >
                       </div>
-                    </div>
-                    <div class="products-list__item-desc">
-                      <span
-                        >Аромат чистоти, насичений справжньою дерев'яною
-                        шавлією. Він обволікає свіжістю безмежного морського
-                        узбережжя.</span
-                      >
-                    </div>
-                  </li>
-                </ul>
+                    </li>
+                    <li class="products-list__item">
+                      <img
+                        src="./product-img-4.png"
+                        alt="product-img"
+                        class="products-list__item-img"
+                      />
+                      <h5 class="products-list__item-title">
+                        Аромадифузор LeMien №5 - Fleur Narcotique
+                      </h5>
+                      <div class="products-list__item-info">
+                        <div class="products-list__item-discount">
+                          <div>
+                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-percent"
+                              >-30%</span
+                            >
+                          </div>
+                          <h4 class="products-list__item-curr-price">
+                            640<span class="money-symbol">₴</span>
+                          </h4>
+                        </div>
+                        <button class="products-list__item-button">
+                          <img
+                            src="./basket-icon.svg"
+                            alt="item-buy-icon"
+                            class="products-list__item-buy-icon"
+                          />
+                        </button>
+                      </div>
+                      <div class="products-list__item-extrainfo">
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-raiting"
+                            >Рейтинг</span
+                          >
+                          <img
+                            src="./star-icon.svg"
+                            alt="star-icon"
+                            class="products-list__item-star"
+                          />
+                          <span class="products-list__item-raiting">4,8</span>
+                        </div>
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-sextype"
+                            >Унісекс</span
+                          >
+                          <img
+                            src="./sex-icon.svg"
+                            alt="sex-icon"
+                            class="products-list__item-seximg"
+                          />
+                        </div>
+                      </div>
+                      <div class="products-list__item-desc">
+                        <span
+                          >Аромат чистоти, насичений справжньою дерев'яною
+                          шавлією. Він обволікає свіжістю безмежного морського
+                          узбережжя.</span
+                        >
+                      </div>
+                    </li>
+                    <li class="products-list__item">
+                      <!-- <div class="sticker-wrap">
+                        <span class="sticker-top">топ товар</span>
+                      </div> -->
+                      <img
+                        src="./product-img-4.png"
+                        alt="product-img"
+                        class="products-list__item-img"
+                      />
+                      <h5 class="products-list__item-title">
+                        Аромадифузор LeMien №5 - Fleur Narcotique
+                      </h5>
+                      <div class="products-list__item-info">
+                        <div class="products-list__item-discount">
+                          <div>
+                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-percent"
+                              >-30%</span
+                            >
+                          </div>
+                          <h4 class="products-list__item-curr-price">
+                            640<span class="money-symbol">₴</span>
+                          </h4>
+                        </div>
+                        <button class="products-list__item-button">
+                          <img
+                            src="./basket-icon.svg"
+                            alt="item-buy-icon"
+                            class="products-list__item-buy-icon"
+                          />
+                        </button>
+                      </div>
+                      <div class="products-list__item-extrainfo">
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-raiting"
+                            >Рейтинг</span
+                          >
+                          <img
+                            src="./star-icon.svg"
+                            alt="star-icon"
+                            class="products-list__item-star"
+                          />
+                          <span class="products-list__item-raiting">4,8</span>
+                        </div>
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-sextype"
+                            >Унісекс</span
+                          >
+                          <img
+                            src="./sex-icon.svg"
+                            alt="sex-icon"
+                            class="products-list__item-seximg"
+                          />
+                        </div>
+                      </div>
+                      <div class="products-list__item-desc">
+                        <span
+                          >Аромат чистоти, насичений справжньою дерев'яною
+                          шавлією. Він обволікає свіжістю безмежного морського
+                          узбережжя.</span
+                        >
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
                 <h4 class="products__title">
-                  ТрендСіті
                   <strong class="products__subtitle">Топ аромасвічі</strong>
                 </h4>
-                <ul class="products-list discounts__list">
+                <!-- <ul class="products-list discounts__list">
                   <li class="products-list__item">
                     <img
                       src="./product-img-1.png"
@@ -873,12 +923,11 @@
                       >
                     </div>
                   </li>
-                </ul>
+                </ul> -->
                 <h4 class="products__title">
-                  ТрендСіті
                   <strong class="products__subtitle">Топ аромадифузори</strong>
                 </h4>
-                <ul class="products-list discounts__list">
+                <!-- <ul class="products-list discounts__list">
                   <li class="products-list__item">
                     <img
                       src="./product-img-1.png"
@@ -1098,7 +1147,7 @@
                       >
                     </div>
                   </li>
-                </ul>
+                </ul> -->
               </div>
             </div>
           </section>
