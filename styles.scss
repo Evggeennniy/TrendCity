@@ -29,6 +29,10 @@ body {
 .container-sml {
   max-width: 900px;
   margin: 0 auto;
+
+  @media (max-width: 576px) {
+    padding: 0 20px;
+  }
 }
 
 .header {
@@ -251,12 +255,17 @@ body {
   }
 
   .main__content {
+    width: 100%;
     flex: 8;
   }
 
   @media (max-width: 576px) {
     .main__panel {
       display: none;
+    }
+
+    .main-wrap {
+      margin-bottom: 30px;
     }
   }
 }
@@ -453,13 +462,12 @@ body {
     font-size: 15px;
   }
 
-  .products-list-wrap {
-    width: 100%;
-  }
-
   .products-list {
     display: flex;
     gap: 5px;
+  }
+
+  .products-list-wrap {
     margin-bottom: 50px;
   }
 
@@ -587,7 +595,7 @@ body {
   }
 
   .sticker-wrap {
-    position: absolute;
+    text-wrap: nowrap;
   }
 
   .sticker-wrap span {
@@ -596,6 +604,7 @@ body {
     font-size: 11px;
     font-weight: 600;
     color: white;
+    position: relative;
   }
 
   .sticker-top {
@@ -629,6 +638,18 @@ body {
     .products__title:nth-child(1) {
       padding: 11px 40px 11px 13px;
     }
+
+    .products-list-wrap {
+      overflow-x: scroll;
+    }
+
+    .products-list__item:hover {
+      transform: none;
+    }
+
+    .products-list__item:hover .products-list__item-desc {
+      display: none;
+    }
   }
 }
 
@@ -652,6 +673,7 @@ body {
 
   .adventages-icon {
     padding: 10px;
+    height: 20px;
     border-radius: 30px;
   }
 
@@ -687,6 +709,18 @@ body {
   .aboutus__info-subtitle {
     font-weight: 500;
     margin-bottom: 10px;
+  }
+
+  .aboutus__info-link {
+    font-weight: 600;
+    color: black;
+  }
+
+  @media (max-width: 576px) {
+    .aboutus__adventages {
+      gap: 10px;
+      flex-direction: column;
+    }
   }
 }
 
@@ -751,7 +785,68 @@ body {
     gap: 10px;
   }
 
-  .footer-info__block {
+  .footer-info__item {
     gap: 5px;
+  }
+
+  .footer__copy-2 {
+    display: none;
+  }
+
+  .footer__vm-icon-2 {
+    display: none;
+  }
+
+  @media (max-width: 576px) {
+    .footer-info {
+      display: grid;
+      justify-content: unset;
+      grid-template-areas:
+        "companyname ."
+        "infoblock documblock"
+        "contactblock contactblock";
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-info__general {
+      grid-area: companyname;
+    }
+
+    .footer-info__information {
+      grid-area: infoblock;
+    }
+
+    .footer-info__documentation {
+      grid-area: documblock;
+    }
+
+    .footer-info__contacts {
+      grid-area: contactblock;
+    }
+
+    .footer__contacts-list {
+      display: flex;
+      gap: 9px;
+      align-items: center;
+    }
+
+    .footer__copy-1,
+    .footer__vm-icon-1 {
+      display: none;
+    }
+
+    .footer__vm-icon-2 {
+      display: inline-block;
+      height: 25px;
+      width: 64px;
+    }
+
+    .footer__copy-2 {
+      display: block;
+      padding: 10px 0;
+      text-align: center;
+      background-color: #dfdde0;
+    }
   }
 }
