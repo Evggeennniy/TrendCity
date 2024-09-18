@@ -58,6 +58,9 @@ body {
 .autrztn-popup.registration .autrztn-popup-reg {
   display: flex;
 }
+.autrztn-popup.registration .close-btn {
+  filter: invert(1);
+}
 .autrztn-popup .close-btn {
   height: 15px;
   position: absolute;
@@ -128,6 +131,7 @@ body {
 }
 .autrztn-popup .form__reg-title {
   grid-area: regtitle;
+  text-align: center;
 }
 .autrztn-popup .form__input-name {
   grid-area: name;

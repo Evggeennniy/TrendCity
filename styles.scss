@@ -61,6 +61,10 @@ body {
     .autrztn-popup-reg {
       display: flex;
     }
+
+    .close-btn {
+      filter: invert(1);
+    }
   }
 
   .close-btn {
@@ -155,6 +159,7 @@ body {
 
   .form__reg-title {
     grid-area: regtitle;
+    text-align: center;
   }
 
   .form__input-name {
