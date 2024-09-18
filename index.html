@@ -5,9 +5,165 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
     <title>ТрендСіті</title>
   </head>
   <body>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="autrztn-popup" id="autrztn-popup">
+      <img
+        src="./close-icon.svg"
+        alt="Закрыть"
+        class="close-btn"
+        id="close-popup-btn"
+      />
+      <div class="autrztn-popup-wrap autrztn-popup-login">
+        <div class="autrztn-popup__big">
+          <form action="POST" class="autrztn-popup__form">
+            <div class="autrztn-popup__form-wrap">
+              <h4 class="form__title">Увійдіть в аккаунт</h4>
+              <div class="form__input-wrap">
+                <img
+                  class="form__input-icon"
+                  src="./message-icon.svg"
+                  alt="Иконка сообщения"
+                />
+                <input
+                  type="email"
+                  class="form__input"
+                  id="autrztn-login__email"
+                  placeholder="Ел. пошта"
+                  required
+                />
+              </div>
+              <div class="form__input-wrap">
+                <img
+                  class="form__input-icon"
+                  src="./eye-icon.svg"
+                  alt="Иконка пароля"
+                />
+                <input
+                  type="password"
+                  class="form__input"
+                  id="autrztn-login__password"
+                  placeholder="Пароль"
+                  required
+                />
+              </div>
+              <button class="form__button" type="submit">Увійти</button>
+            </div>
+          </form>
+        </div>
+        <div class="autrztn-popup__sml">
+          <h4 class="reg__title">Вітаємо!</h4>
+          <h5 class="reg__subtitle">
+            У вас ще немає аккаунту?<br />Зареєструйте його
+          </h5>
+          <a href="#" class="reg_link" id="popup-reg-btn">Реєстрація</a>
+        </div>
+      </div>
+
+      <div class="autrztn-popup-wrap autrztn-popup-reg">
+        <div class="autrztn-popup__sml">
+          <h4 class="reg__title">Вітаємо!</h4>
+          <h5 class="reg__subtitle">
+            У вас вже є аккаунт?<br />Увійдіть у нього
+          </h5>
+          <a href="#" class="reg_link" id="popup-login-btn">Увійти</a>
+        </div>
+        <div class="autrztn-popup__big">
+          <form action="POST" class="autrztn-popup__form">
+            <div class="autrztn-popup__form-wrap">
+              <h4 class="form__title form__reg-title">Зареєструйте аккаунт</h4>
+              <div class="form__input-wrap form__input-name">
+                <img
+                  class="form__input-icon"
+                  src="./user-icon.svg"
+                  alt="Иконка профиля"
+                />
+                <input
+                  type="text"
+                  class="form__input"
+                  id="autrztn-register__name"
+                  placeholder="І’мя"
+                  required
+                />
+              </div>
+              <div class="form__input-wrap form__input-surname">
+                <img
+                  class="form__input-icon"
+                  src="./user-icon.svg"
+                  alt="Иконка профиля"
+                />
+                <input
+                  type="text"
+                  class="form__input"
+                  id="autrztn-register__surname"
+                  placeholder="Прізвище"
+                  required
+                />
+              </div>
+              <div class="form__input-wrap form__input-numberpart-1">
+                <input
+                  type="text"
+                  class="form__input"
+                  id="autrztn-register__phone-code"
+                  placeholder="+380"
+                  required
+                />
+              </div>
+              <div class="form__input-wrap form__input-numberpart-2">
+                <img
+                  class="form__input-icon"
+                  src="./phone-icon.svg"
+                  alt="Иконка телефона"
+                />
+                <input
+                  type="tel"
+                  class="form__input"
+                  id="autrztn-register__phone"
+                  placeholder="Номер телефону"
+                  required
+                />
+              </div>
+              <div class="form__input-wrap form__input-email">
+                <img
+                  class="form__input-icon"
+                  src="./message-icon.svg"
+                  alt="Иконка сообщения"
+                />
+                <input
+                  type="email"
+                  class="form__input"
+                  id="autrztn-register__email"
+                  placeholder="Ел. пошта"
+                  required
+                />
+              </div>
+              <div class="form__input-wrap form__input-password">
+                <img
+                  class="form__input-icon"
+                  src="./eye-icon.svg"
+                  alt="Иконка пароля"
+                />
+                <input
+                  type="password"
+                  class="form__input"
+                  id="autrztn-register__password"
+                  placeholder="Пароль"
+                  required
+                />
+              </div>
+              <div class="form__reg-btn">
+                <button class="form__button" type="submit">Реєстрація</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
     <div class="page-wrap">
       <header class="header">
         <div class="header-wrap container">
@@ -65,7 +221,7 @@
                   <span class="basket-btn__items-value">3</span>
                 </span>
               </a>
-              <a href="#" class="menu-item login-btn">
+              <a href="#" class="menu-item login-btn" id="autoriz-btn">
                 <h5 class="menu-item__title">Увійти</h5>
               </a>
             </div>
@@ -454,19 +610,20 @@
                 <div class="products-list-wrap">
                   <ul class="products-list discounts__list">
                     <li class="products-list__item">
-                      <!-- <divц -->
-                      <img
-                        src="./product-img-1.png"
-                        alt="product-img"
-                        class="products-list__item-img"
-                      />
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-1.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                      </div>
                       <h5 class="products-list__item-title">
                         Аромадифузор LeMien №5 - Fleur Narcotique
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
                           <div>
-                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-price">810₴</span>
                             <span class="products-list__item-percent"
                               >-30%</span
                             >
@@ -515,18 +672,20 @@
                       </div>
                     </li>
                     <li class="products-list__item">
-                      <img
-                        src="./product-img-2.png"
-                        alt="product-img"
-                        class="products-list__item-img"
-                      />
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-2.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                      </div>
                       <h5 class="products-list__item-title">
                         Аромадифузор LeMien №5 - Fleur Narcotique
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
                           <div>
-                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-price">810₴</span>
                             <span class="products-list__item-percent"
                               >-30%</span
                             >
@@ -575,18 +734,20 @@
                       </div>
                     </li>
                     <li class="products-list__item">
-                      <img
-                        src="./product-img-4.png"
-                        alt="product-img"
-                        class="products-list__item-img"
-                      />
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-4.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                      </div>
                       <h5 class="products-list__item-title">
                         Аромадифузор LeMien №5 - Fleur Narcotique
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
                           <div>
-                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-price">810₴</span>
                             <span class="products-list__item-percent"
                               >-30%</span
                             >
@@ -638,18 +799,20 @@
                       <!-- <div class="sticker-wrap">
                         <span class="sticker-top">топ товар</span>
                       </div> -->
-                      <img
-                        src="./product-img-4.png"
-                        alt="product-img"
-                        class="products-list__item-img"
-                      />
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-4.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                      </div>
                       <h5 class="products-list__item-title">
                         Аромадифузор LeMien №5 - Fleur Narcotique
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
                           <div>
-                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-price">810₴</span>
                             <span class="products-list__item-percent"
                               >-30%</span
                             >
@@ -705,18 +868,20 @@
                 <div class="products-list-wrap">
                   <ul class="products-list discounts__list">
                     <li class="products-list__item">
-                      <img
-                        src="./product-img-1.png"
-                        alt="product-img"
-                        class="products-list__item-img"
-                      />
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-1.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                      </div>
                       <h5 class="products-list__item-title">
                         Аромадифузор LeMien №5 - Fleur Narcotique
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
                           <div>
-                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-price">810₴</span>
                             <span class="products-list__item-percent"
                               >-30%</span
                             >
@@ -765,18 +930,20 @@
                       </div>
                     </li>
                     <li class="products-list__item">
-                      <img
-                        src="./product-img-2.png"
-                        alt="product-img"
-                        class="products-list__item-img"
-                      />
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-2.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                      </div>
                       <h5 class="products-list__item-title">
                         Аромадифузор LeMien №5 - Fleur Narcotique
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
                           <div>
-                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-price">810₴</span>
                             <span class="products-list__item-percent"
                               >-30%</span
                             >
@@ -825,18 +992,20 @@
                       </div>
                     </li>
                     <li class="products-list__item">
-                      <img
-                        src="./product-img-4.png"
-                        alt="product-img"
-                        class="products-list__item-img"
-                      />
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-4.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                      </div>
                       <h5 class="products-list__item-title">
                         Аромадифузор LeMien №5 - Fleur Narcotique
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
                           <div>
-                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-price">810₴</span>
                             <span class="products-list__item-percent"
                               >-30%</span
                             >
@@ -888,18 +1057,20 @@
                       <div class="sticker-wrap">
                         <span class="sticker-top">топ товар</span>
                       </div>
-                      <img
-                        src="./product-img-4.png"
-                        alt="product-img"
-                        class="products-list__item-img"
-                      />
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-4.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                      </div>
                       <h5 class="products-list__item-title">
                         Аромадифузор LeMien №5 - Fleur Narcotique
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
                           <div>
-                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-price">810₴</span>
                             <span class="products-list__item-percent"
                               >-30%</span
                             >
@@ -955,18 +1126,20 @@
                 <div class="products-list-wrap">
                   <ul class="products-list discounts__list">
                     <li class="products-list__item">
-                      <img
-                        src="./product-img-1.png"
-                        alt="product-img"
-                        class="products-list__item-img"
-                      />
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-1.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                      </div>
                       <h5 class="products-list__item-title">
                         Аромадифузор LeMien №5 - Fleur Narcotique
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
                           <div>
-                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-price">810₴</span>
                             <span class="products-list__item-percent"
                               >-30%</span
                             >
@@ -1015,18 +1188,20 @@
                       </div>
                     </li>
                     <li class="products-list__item">
-                      <img
-                        src="./product-img-2.png"
-                        alt="product-img"
-                        class="products-list__item-img"
-                      />
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-2.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                      </div>
                       <h5 class="products-list__item-title">
                         Аромадифузор LeMien №5 - Fleur Narcotique
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
                           <div>
-                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-price">810₴</span>
                             <span class="products-list__item-percent"
                               >-30%</span
                             >
@@ -1078,18 +1253,20 @@
                       <div class="sticker-wrap">
                         <span class="sticker-new">новинка</span>
                       </div>
-                      <img
-                        src="./product-img-4.png"
-                        alt="product-img"
-                        class="products-list__item-img"
-                      />
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-4.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                      </div>
                       <h5 class="products-list__item-title">
                         Аромадифузор LeMien №5 - Fleur Narcotique
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
                           <div>
-                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-price">810₴</span>
                             <span class="products-list__item-percent"
                               >-30%</span
                             >
@@ -1138,18 +1315,20 @@
                       </div>
                     </li>
                     <li class="products-list__item">
-                      <img
-                        src="./product-img-4.png"
-                        alt="product-img"
-                        class="products-list__item-img"
-                      />
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-4.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                      </div>
                       <h5 class="products-list__item-title">
                         Аромадифузор LeMien №5 - Fleur Narcotique
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
                           <div>
-                            <span class="products-list__item-price">₴810</span>
+                            <span class="products-list__item-price">810₴</span>
                             <span class="products-list__item-percent"
                               >-30%</span
                             >
@@ -1279,7 +1458,6 @@
             <div class="footer-info__item footer-info__contacts">
               <h5 class="footer__title">Контакти</h5>
               <a href="#" class="footer__link">Телефон +38 (063) 67 591 67 </a>
-              <a href="#" class="footer__link">Договір публічної оферти</a>
               <div class="footer__contacts-list">
                 <a href="#" class="contacts-list__item-link"
                   ><img

@@ -2,10 +2,18 @@
 
 h4 {
   font-size: 20px;
+
+  @media (max-width: 576px) {
+    font-size: 15px;
+  }
 }
 
 h5 {
   font-size: 13px;
+
+  @media (max-width: 576px) {
+    font-size: 10px;
+  }
 }
 
 p {
@@ -15,6 +23,231 @@ p {
 body {
   background-color: #fbfbfb;
   font-family: "Montserrat";
+}
+
+.overlay {
+  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.8;
+  background-color: black;
+  display: none;
+
+  &.active {
+    z-index: 8;
+    display: block;
+  }
+}
+
+.autrztn-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  display: none;
+
+  &.active {
+    z-index: 9;
+    display: block;
+  }
+
+  &.registration {
+    .autrztn-popup-login {
+      display: none;
+    }
+
+    .autrztn-popup-reg {
+      display: flex;
+    }
+  }
+
+  .close-btn {
+    height: 15px;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    cursor: pointer;
+  }
+
+  .autrztn-popup-wrap {
+    display: flex;
+    height: 500px;
+    border-radius: 10px;
+  }
+
+  .autrztn-popup-reg {
+    display: none;
+  }
+
+  .autrztn-popup__big,
+  .autrztn-popup__sml {
+    flex: 1;
+    background-color: white;
+  }
+
+  .autrztn-popup__big {
+    padding: 0 100px;
+  }
+
+  .autrztn-popup__sml {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("./popup-bg.png");
+    color: white;
+    padding: 0 60px;
+  }
+
+  .autrztn-popup-login .autrztn-popup__big {
+    border-radius: 10px 0 0 10px;
+  }
+
+  .autrztn-popup-login .autrztn-popup__sml {
+    border-radius: 0 10px 10px 0;
+  }
+
+  .autrztn-popup-reg .autrztn-popup__big {
+    border-radius: 0 10px 10px 0;
+  }
+
+  .autrztn-popup-reg .autrztn-popup__sml {
+    border-radius: 10px 0 0 10px;
+  }
+
+  .form__input-icon {
+    height: 20px;
+  }
+
+  .autrztn-popup__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .autrztn-popup-login .autrztn-popup__form-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .autrztn-popup-reg .autrztn-popup__form-wrap {
+    display: grid;
+    grid-template-areas:
+      "regtitle regtitle"
+      "name name"
+      "surname surname"
+      "number1 number2"
+      "email email"
+      "password password"
+      "regbtn regbtn";
+    gap: 10px;
+  }
+
+  .autrztn-popup-reg .form__input-wrap {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .form__reg-title {
+    grid-area: regtitle;
+  }
+
+  .form__input-name {
+    grid-area: name;
+  }
+
+  .form__input-surname {
+    grid-area: surname;
+  }
+
+  .form__input-numberpart-1 {
+    grid-area: number1;
+    width: 80px;
+  }
+
+  .form__input-numberpart-2 {
+    grid-area: number2;
+  }
+
+  .form__input-email {
+    grid-area: email;
+  }
+
+  .form__input-password {
+    grid-area: password;
+  }
+
+  .form__reg-btn {
+    margin-top: 10px;
+    grid-area: regbtn;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form__title,
+  .reg__title {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .form__input-wrap {
+    padding: 10px 20px;
+    border: 1px solid #ececec;
+    background: #f4f8f7;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .form__input-wrap:nth-child(1) {
+    margin-bottom: 20px;
+  }
+
+  .form__input {
+    border: 0;
+    background-color: transparent;
+    font-size: 15px;
+  }
+
+  .autrztn-popup-login .form__input-wrap {
+    width: 293px;
+  }
+
+  .form__input:focus {
+    outline: none;
+  }
+
+  .form__button {
+    padding: 10px 30px;
+    border-radius: 30px;
+    border: 1px solid #fa6900;
+    color: #fa6900;
+    background-color: transparent;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .reg_link {
+    border-radius: 30px;
+    border: 1px solid #fff;
+    padding: 10px 30px;
+    text-decoration: none;
+    color: white;
+  }
+
+  .reg__subtitle {
+    margin-bottom: 20px;
+    text-align: center;
+    text-wrap: nowrap;
+    line-height: 20px;
+  }
 }
 
 .container {
@@ -488,6 +721,10 @@ body {
     margin-bottom: 7px;
   }
 
+  .product-list__img-wrap {
+    text-align: center;
+  }
+
   .products-list__item-title {
     font-weight: 300;
     margin-bottom: 8px;
@@ -531,6 +768,10 @@ body {
     font-size: 15px;
   }
 
+  .money-symbol-sec {
+    font-size: 10px;
+  }
+
   .products-list__item-button {
     border-radius: 5px;
     background: #fa6900;
@@ -540,14 +781,19 @@ body {
   }
 
   .products-list__item-buy-icon {
+    display: block;
     height: 20px;
   }
 
   .products-list__item-extrainfo {
     font-weight: 500;
-    font-size: 12px;
+    gap: 10px;
     display: flex;
     justify-content: space-between;
+  }
+
+  .products-list__item-extrainfo span {
+    font-size: 12px;
   }
 
   .products-list__item-infopart {
@@ -596,6 +842,7 @@ body {
 
   .sticker-wrap {
     text-wrap: nowrap;
+    height: 0;
   }
 
   .sticker-wrap span {
@@ -643,12 +890,41 @@ body {
       overflow-x: scroll;
     }
 
+    .products-list__item {
+      width: 120px;
+      padding: 10px 15px;
+    }
+
     .products-list__item:hover {
       transform: none;
     }
 
     .products-list__item:hover .products-list__item-desc {
       display: none;
+    }
+
+    .products-list__item-img {
+      height: 90px;
+    }
+
+    .products-list__item-price {
+      font-size: 10px;
+    }
+
+    .products-list__item-button {
+      padding: 5px 6px;
+    }
+
+    .products-list__item-buy-icon {
+      height: 15px;
+    }
+
+    .products-list__item-extrainfo span {
+      font-size: 9px;
+    }
+
+    .products-list__item-extrainfo img {
+      height: 9px;
     }
   }
 }
@@ -727,7 +1003,7 @@ body {
 .footer {
   background: #fff;
   box-shadow: 0px -2px 11px 0px rgba(0, 0, 0, 0.25);
-  padding-top: 20px;
+  padding: 20px 0;
 
   .footer-line {
     height: 1px;
@@ -798,6 +1074,10 @@ body {
   }
 
   @media (max-width: 576px) {
+    .footer-line {
+      visibility: hidden;
+    }
+
     .footer-info {
       display: grid;
       justify-content: unset;
