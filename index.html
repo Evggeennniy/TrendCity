@@ -19,10 +19,176 @@
   <body>
     <div class="overlay" id="overlay"></div>
 
+    <div class="slider-menu" id="slider-nav-menu">
+      <div class="slider-menu-wrap">
+        <div class="slider-menu__header">
+          <h4 class="slider-menu__header-title">ТрендСіті</h4>
+          <div class="slider-menu__nav">
+            <button class="menu-item lang-btn">
+              <h5 class="menu-item__title">UA</h5>
+              <img src="./arrow-small.svg" alt="icon" class="menu-item__icon" />
+            </button>
+            <img
+              src="./close-icon.svg"
+              alt="сlose-btn"
+              class="close-btn menu-item__icon"
+              id="close-slider-btn"
+            />
+          </div>
+        </div>
+        <div class="slider-menu__block">
+          <a href="#" class="slider-menu__categories-btn">
+            <img
+              src="menu-slider-icon.svg"
+              alt="menu-icon"
+              class="slider-menu__categories-icon slider-icon"
+            />
+            <span>ВСІ КАТЕГОРІЇ</span></a
+          >
+        </div>
+        <div class="line"></div>
+        <div class="slider-menu__block">
+          <div class="slider-menu__auth slider-menu__item">
+            <img
+              src="./profile-slider-icon.svg"
+              alt="auth-icon"
+              class="slider-menu__auth-icon slider-icon"
+            />
+            <h4 class="slider-menu__auth-title slider-title" id="slider-auth-btn">Увійти/Реєстрація</h4>
+          </div>
+        </div>
+        <p class="slider-menu__content-title">Сторінки</p>
+        <div class="slider-menu__block slider-menu__block-pages">
+          <div class="slider-menu__auth slider-menu__item">
+            <img
+              src="./team-slider-icon.svg"
+              alt="auth-icon"
+              class="slider-menu__auth-icon slider-icon"
+            />
+            <h4 class="slider-menu__auth-title slider-title">
+              <a href="#" class="slider-menu__link">Про Трендсіті</a>
+            </h4>
+          </div>
+          <div class="slider-menu__auth slider-menu__item">
+            <img
+              src="./info-slider-icon.svg"
+              alt="auth-icon"
+              class="slider-menu__auth-icon slider-icon"
+            />
+            <h4 class="slider-menu__auth-title slider-title">
+              Співпраця
+            </h4>
+          </div>
+          <div class="slider-menu__auth slider-menu__item">
+            <img
+              src="./basket-slider-icon.svg"
+              alt="auth-icon"
+              class="slider-menu__auth-icon slider-icon"
+            />
+            <h4 class="slider-menu__auth-title slider-title">Корзина</h4>
+          </div>
+        </div>
+        <p class="slider-menu__content-title">Топ товари</p>
+        <div class="slider-menu__block slider-menu__block-top">
+          <ul class="slider-menu__top-list">
+            <li class="slider-menu__top-item">
+              <img
+                src="./aromadifusori.png"
+                alt="top-item__img"
+                class="slider-menu__top-img"
+              />
+              <div class="slider-menu__top-wrap">
+                <img
+                  src="./item-raiting.png"
+                  alt="item-raiting"
+                  class="slider-menu__top-raiting"
+                />
+                <p class="slider-menu__top-title">
+                  LeMien / Tobacco Vanille
+                </p>
+                <h5 class="slider-menu__top-price">640₴</h5>
+              </div>
+            </li>
+            <li class="slider-menu__top-item">
+              <img
+                src="./aromadifusori.png"
+                alt="top-item__img"
+                class="slider-menu__top-img"
+              />
+              <div class="slider-menu__top-wrap">
+                <img
+                  src="./item-raiting.png"
+                  alt="item-raiting"
+                  class="slider-menu__top-raiting"
+                />
+                <p class="slider-menu__top-title">
+                  LeMien / Tobacco Vanille
+                </p>
+                <h5 class="slider-menu__top-price">640₴</h5>
+              </div>
+            </li>
+            <li class="slider-menu__top-item">
+              <img
+                src="./aromadifusori.png"
+                alt="top-item__img"
+                class="slider-menu__top-img"
+              />
+              <div class="slider-menu__top-wrap">
+                <img
+                  src="./item-raiting.png"
+                  alt="item-raiting"
+                  class="slider-menu__top-raiting"
+                />
+                <p class="slider-menu__top-title">
+                  LeMien / Tobacco Vanille
+                </p>
+                <h5 class="slider-menu__top-price">640₴</h5>
+              </div>
+            </li>
+            <li class="slider-menu__top-item">
+              <img
+                src="./aromadifusori.png"
+                alt="top-item__img"
+                class="slider-menu__top-img"
+              />
+              <div class="slider-menu__top-wrap">
+                <img
+                  src="./item-raiting.png"
+                  alt="item-raiting"
+                  class="slider-menu__top-raiting"
+                />
+                <p class="slider-menu__top-title">
+                  LeMien / Tobacco Vanille
+                </p>
+                <h5 class="slider-menu__top-price">640₴</h5>
+              </div>
+            </li>
+            <li class="slider-menu__top-item">
+              <img
+                src="./aromadifusori.png"
+                alt="top-item__img"
+                class="slider-menu__top-img"
+              />
+              <div class="slider-menu__top-wrap">
+                <img
+                  src="./item-raiting.png"
+                  alt="item-raiting"
+                  class="slider-menu__top-raiting"
+                />
+                <p class="slider-menu__top-title">
+                  LeMien / Tobacco Vanille
+                </p>
+                <h5 class="slider-menu__top-price">640₴</h5>
+              </div>
+            </li>
+        </div>
+      </div>
+    </div>
+
     <div class="autrztn-popup" id="autrztn-popup">
       <img
         src="./close-icon.svg"
-        alt="Закрыть"
+        alt="сlose-btn"
         class="close-btn"
         id="close-popup-btn"
       />
@@ -112,17 +278,18 @@
                   required
                 />
               </div>
-              <div class="form__input-wrap form__input-numberpart-1">
-                <input
+              <div class="form__input-number">
+                <div class="form__input-wrap">
+                  <input
                   type="text"
                   class="form__input"
                   id="autrztn-register__phone-code"
                   placeholder="+380"
                   required
                 />
-              </div>
-              <div class="form__input-wrap form__input-numberpart-2">
-                <img
+                </div>
+                <div class="form__input-wrap">
+                  <img
                   class="form__input-icon"
                   src="./phone-icon.svg"
                   alt="Иконка телефона"
@@ -134,6 +301,8 @@
                   placeholder="Номер телефону"
                   required
                 />
+                </div>
+                
               </div>
               <div class="form__input-wrap form__input-email">
                 <img
@@ -177,6 +346,13 @@
         <div class="header-wrap container">
           <h4 class="header__title">ТрендСіті</h4>
           <div class="header__nav">
+            <div class="header__mob-panel">
+              <button class="mob-panel__button" id="nav-mob-btn">
+                <div class="mob-panel__button-line"></div>
+                <div class="mob-panel__button-line"></div>
+                <div class="mob-panel__button-line"></div>
+              </button>
+            </div>
             <div class="nav__catalog">
               <img
                 src="./menu-icon.svg"
@@ -184,13 +360,6 @@
                 class="nav__catalog-icon"
               />
               <h5 class="nav__catalog-title">Каталог</h5>
-            </div>
-            <div class="header__mob-panel">
-              <button class="mob-panel__button">
-                <div class="mob-panel__button-line"></div>
-                <div class="mob-panel__button-line"></div>
-                <div class="mob-panel__button-line"></div>
-              </button>
             </div>
             <div class="nav__search">
               <input
@@ -210,14 +379,14 @@
               <a href="#" class="menu-item">
                 <h5 class="menu-item__title">О&nbsp;нас</h5>
               </a>
-              <a href="#" class="menu-item lang-btn">
+              <button class="menu-item lang-btn">
                 <h5 class="menu-item__title">UA</h5>
                 <img
                   src="./arrow-small.svg"
                   alt="icon"
                   class="menu-item__icon"
                 />
-              </a>
+              </button>
               <a href="#" class="menu-item basket-btn">
                 <h5 class="menu-item__title basket-btn__price">640₴</h5>
                 <img
@@ -377,10 +546,10 @@
                         alt="item-raiting"
                         class="top-raiting"
                       />
-                      <p class="panel__item-title top-title">
+                      <p class="slider-menu__top-title">
                         LeMien / Tobacco Vanille
                       </p>
-                      <h5 class="panel__item-price">640₴</h5>
+                      <h5 class="slider-menu__top-raiting">640₴</h5>
                     </div>
                   </li>
                   <li class="panel__item top-item">
@@ -395,10 +564,10 @@
                         alt="item-raiting"
                         class="top-raiting"
                       />
-                      <p class="panel__item-title top-title">
+                      <p class="slider-menu__top-title">
                         LeMien / Tobacco Vanille
                       </p>
-                      <h5 class="panel__item-price">640₴</h5>
+                      <h5 class="slider-menu__top-raiting">640₴</h5>
                     </div>
                   </li>
                   <li class="panel__item top-item">
@@ -413,10 +582,10 @@
                         alt="item-raiting"
                         class="top-raiting"
                       />
-                      <p class="panel__item-title top-title">
+                      <p class="slider-menu__top-title">
                         LeMien / 1 MILLION
                       </p>
-                      <h5 class="panel__item-price">640₴</h5>
+                      <h5 class="slider-menu__top-raiting">640₴</h5>
                     </div>
                   </li>
                   <li class="panel__item top-item">
@@ -431,10 +600,10 @@
                         alt="item-raiting"
                         class="top-raiting"
                       />
-                      <p class="panel__item-title top-title">
+                      <p class="slider-menu__top-title">
                         LeMien / Wood Sage
                       </p>
-                      <h5 class="panel__item-price">640₴</h5>
+                      <h5 class="slider-menu__top-raiting">640₴</h5>
                     </div>
                   </li>
                   <li class="panel__item top-item">
@@ -449,10 +618,10 @@
                         alt="item-raiting"
                         class="top-raiting"
                       />
-                      <p class="panel__item-title top-title">
+                      <p class="slider-menu__top-title">
                         LeMien / 1 MILLION
                       </p>
-                      <h5 class="panel__item-price">640₴</h5>
+                      <h5 class="slider-menu__top-raiting">640₴</h5>
                     </div>
                   </li>
                 </ul>
