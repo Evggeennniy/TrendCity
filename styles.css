@@ -185,9 +185,6 @@ main {
 .autrztn-popup.registration .autrztn-popup-reg {
   display: flex;
 }
-.autrztn-popup.registration .close-btn {
-  filter: invert(1);
-}
 .autrztn-popup .close-btn {
   height: 15px;
   position: absolute;
@@ -339,16 +336,13 @@ main {
   .autrztn-popup {
     left: 20px;
     right: 20px;
-    bottom: 0;
-    top: 15%;
+    top: 10%;
     transform: none;
   }
   .autrztn-popup .autrztn-popup-wrap {
     flex-direction: column;
     gap: 15px;
     padding: 5px 10px;
-    position: relative;
-    top: -50px;
   }
   .autrztn-popup .reg__subtitle {
     font-size: 13px;

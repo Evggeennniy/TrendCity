@@ -207,10 +207,6 @@ main {
     .autrztn-popup-reg {
       display: flex;
     }
-
-    .close-btn {
-      filter: invert(1);
-    }
   }
 
   .close-btn {
@@ -401,16 +397,13 @@ main {
   @media (max-width: 576px) {
     left: 20px;
     right: 20px;
-    bottom: 0;
-    top: 15%;
+    top: 10%;
     transform: none;
 
     .autrztn-popup-wrap {
       flex-direction: column;
       gap: 15px;
       padding: 5px 10px;
-      position: relative;
-      top: -50px;
     }
 
     .reg__subtitle {
