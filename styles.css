@@ -1265,6 +1265,9 @@ footer {
   .main__content.aboutus .form__input-wrap {
     padding: 9px 10px;
   }
+  .main__content.aboutus .form__input {
+    font-size: 12px;
+  }
   .main__content.aboutus .partners__part:nth-child(1) {
     order: 2;
   }
