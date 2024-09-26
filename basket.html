@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./script.js" defer></script>
+    <title>ТрендСіті</title>
+
+    <!-- For cache cleaning -->
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+
+    <div class="slider-menu" id="slider-nav-menu">
+      <div class="slider-menu-wrap">
+        <div class="slider-menu__header">
+          <h4 class="slider-menu__header-title">
+            <a href="./index.html" class="link-to-aboutus">ТрендСіті</a>
+          </h4>
+          <div class="slider-menu__nav">
+            <button class="menu-item lang-btn">
+              <h5 class="menu-item__title">UA</h5>
+              <img src="./arrow-small.svg" alt="icon" class="menu-item__icon" />
+            </button>
+            <img
+              src="./close-icon.svg"
+              alt="сlose-btn"
+              class="close-btn menu-item__icon"
+              id="close-slider-btn"
+            />
+          </div>
+        </div>
+        <div class="slider-menu__block">
+          <a href="#" class="slider-menu__categories-btn">
+            <img
+              src="menu-slider-icon.svg"
+              alt="menu-icon"
+              class="slider-menu__categories-icon slider-icon"
+            />
+            <span>ВСІ КАТЕГОРІЇ</span></a
+          >
+        </div>
+        <div class="line"></div>
+        <div class="slider-menu__block">
+          <div class="slider-menu__auth slider-menu__item">
+            <img
+              src="./profile-slider-icon.svg"
+              alt="auth-icon"
+              class="slider-menu__auth-icon slider-icon"
+            />
+            <h4
+              class="slider-menu__auth-title slider-title"
+              id="slider-auth-btn"
+            >
+              Увійти/Реєстрація
+            </h4>
+          </div>
+        </div>
+        <p class="slider-menu__content-title">Сторінки</p>
+        <div class="slider-menu__block slider-menu__block-pages">
+          <div class="slider-menu__auth slider-menu__item">
+            <img
+              src="./team-slider-icon.svg"
+              alt="auth-icon"
+              class="slider-menu__auth-icon slider-icon"
+            />
+            <h4 class="slider-menu__auth-title slider-title">
+              <a href="./aboutus.html" class="slider-menu__link"
+                >Про Трендсіті</a
+              >
+            </h4>
+          </div>
+          <div class="slider-menu__auth slider-menu__item">
+            <img
+              src="./info-slider-icon.svg"
+              alt="auth-icon"
+              class="slider-menu__auth-icon slider-icon"
+            />
+            <h4 class="slider-menu__auth-title slider-title">Співпраця</h4>
+          </div>
+          <div class="slider-menu__auth slider-menu__item">
+            <img
+              src="./basket-slider-icon.svg"
+              alt="auth-icon"
+              class="slider-menu__auth-icon slider-icon"
+            />
+            <h4 class="slider-menu__auth-title slider-title">Корзина</h4>
+          </div>
+        </div>
+        <p class="slider-menu__content-title">Топ товари</p>
+        <div class="slider-menu__block slider-menu__block-top">
+          <ul class="slider-menu__top-list">
+            <li class="slider-menu__top-item">
+              <img
+                src="./aromadifusori.png"
+                alt="top-item__img"
+                class="slider-menu__top-img"
+              />
+              <div class="slider-menu__top-wrap">
+                <img
+                  src="./item-raiting.png"
+                  alt="item-raiting"
+                  class="slider-menu__top-raiting"
+                />
+                <p class="slider-menu__top-title">LeMien / Tobacco Vanille</p>
+                <h5 class="slider-menu__top-price">640₴</h5>
+              </div>
+            </li>
+            <li class="slider-menu__top-item">
+              <img
+                src="./aromadifusori.png"
+                alt="top-item__img"
+                class="slider-menu__top-img"
+              />
+              <div class="slider-menu__top-wrap">
+                <img
+                  src="./item-raiting.png"
+                  alt="item-raiting"
+                  class="slider-menu__top-raiting"
+                />
+                <p class="slider-menu__top-title">LeMien / Tobacco Vanille</p>
+                <h5 class="slider-menu__top-price">640₴</h5>
+              </div>
+            </li>
+            <li class="slider-menu__top-item">
+              <img
+                src="./aromadifusori.png"
+                alt="top-item__img"
+                class="slider-menu__top-img"
+              />
+              <div class="slider-menu__top-wrap">
+                <img
+                  src="./item-raiting.png"
+                  alt="item-raiting"
+                  class="slider-menu__top-raiting"
+                />
+                <p class="slider-menu__top-title">LeMien / Tobacco Vanille</p>
+                <h5 class="slider-menu__top-price">640₴</h5>
+              </div>
+            </li>
+            <li class="slider-menu__top-item">
+              <img
+                src="./aromadifusori.png"
+                alt="top-item__img"
+                class="slider-menu__top-img"
+              />
+              <div class="slider-menu__top-wrap">
+                <img
+                  src="./item-raiting.png"
+                  alt="item-raiting"
+                  class="slider-menu__top-raiting"
+                />
+                <p class="slider-menu__top-title">LeMien / Tobacco Vanille</p>
+                <h5 class="slider-menu__top-price">640₴</h5>
+              </div>
+            </li>
+            <li class="slider-menu__top-item">
+              <img
+                src="./aromadifusori.png"
+                alt="top-item__img"
+                class="slider-menu__top-img"
+              />
+              <div class="slider-menu__top-wrap">
+                <img
+                  src="./item-raiting.png"
+                  alt="item-raiting"
+                  class="slider-menu__top-raiting"
+                />
+                <p class="slider-menu__top-title">LeMien / Tobacco Vanille</p>
+                <h5 class="slider-menu__top-price">640₴</h5>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="autrztn-popup" id="autrztn-popup">
+      <img
+        src="./close-icon.svg"
+        alt="сlose-btn"
+        class="close-btn"
+        id="close-popup-btn"
+      />
+      <div class="autrztn-popup-wrap autrztn-popup-login">
+        <div class="autrztn-popup__big">
+          <form action="POST" class="autrztn-popup__form">
+            <div class="autrztn-popup__form-wrap">
+              <h4 class="form__title">Увійдіть в акаунт</h4>
+              <div class="form__input-wrap">
+                <img
+                  class="form__input-icon"
+                  src="./message-icon.svg"
+                  alt="icon"
+                />
+                <input
+                  type="email"
+                  class="form__input"
+                  id="autrztn-login__email"
+                  placeholder="Ел. пошта"
+                  required
+                />
+              </div>
+              <div class="form__input-wrap">
+                <img
+                  class="form__input-icon"
+                  src="./eye-icon.svg"
+                  alt="Иконка пароля"
+                />
+                <input
+                  type="password"
+                  class="form__input"
+                  id="autrztn-login__password"
+                  placeholder="Пароль"
+                  required
+                />
+              </div>
+              <button class="form__button" type="submit">Увійти</button>
+            </div>
+          </form>
+        </div>
+        <div class="autrztn-popup__sml">
+          <h4 class="reg__title">Вітаємо!</h4>
+          <h5 class="reg__subtitle">
+            У вас ще немає акаунту?<br />Зареєструйте його
+          </h5>
+          <a href="#" class="reg_link" id="popup-reg-btn">Реєстрація</a>
+        </div>
+      </div>
+
+      <div class="autrztn-popup-wrap autrztn-popup-reg">
+        <div class="autrztn-popup__sml">
+          <h4 class="reg__title">Вітаємо!</h4>
+          <h5 class="reg__subtitle">
+            У вас вже є акаунт?<br />Увійдіть у нього
+          </h5>
+          <a href="#" class="reg_link" id="popup-login-btn">Увійти</a>
+        </div>
+        <div class="autrztn-popup__big">
+          <form action="POST" class="autrztn-popup__form">
+            <div class="autrztn-popup__form-wrap">
+              <h4 class="form__title form__reg-title">Реєстрація акаунта</h4>
+              <div class="form__input-wrap form__input-name">
+                <img
+                  class="form__input-icon"
+                  src="./user-icon.svg"
+                  alt="Иконка профиля"
+                />
+                <input
+                  type="text"
+                  class="form__input"
+                  id="autrztn-register__name"
+                  placeholder="І’мя"
+                  required
+                />
+              </div>
+              <div class="form__input-wrap form__input-surname">
+                <img
+                  class="form__input-icon"
+                  src="./user-icon.svg"
+                  alt="Иконка профиля"
+                />
+                <input
+                  type="text"
+                  class="form__input"
+                  id="autrztn-register__surname"
+                  placeholder="Прізвище"
+                  required
+                />
+              </div>
+              <div class="form__input-number">
+                <div class="form__input-wrap">
+                  <input
+                    type="text"
+                    class="form__input"
+                    id="autrztn-register__phone-code"
+                    placeholder="+380"
+                    required
+                  />
+                </div>
+                <div class="form__input-wrap">
+                  <img
+                    class="form__input-icon"
+                    src="./phone-icon.svg"
+                    alt="icon"
+                  />
+                  <input
+                    type="tel"
+                    class="form__input"
+                    id="autrztn-register__phone"
+                    placeholder="Номер телефону"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form__input-wrap form__input-email">
+                <img
+                  class="form__input-icon"
+                  src="./message-icon.svg"
+                  alt="icon"
+                />
+                <input
+                  type="email"
+                  class="form__input"
+                  id="autrztn-register__email"
+                  placeholder="Ел. пошта"
+                  required
+                />
+              </div>
+              <div class="form__input-wrap form__input-password">
+                <img
+                  class="form__input-icon"
+                  src="./eye-icon.svg"
+                  alt="Иконка пароля"
+                />
+                <input
+                  type="password"
+                  class="form__input"
+                  id="autrztn-register__password"
+                  placeholder="Пароль"
+                  required
+                />
+              </div>
+              <div class="form__reg-btn">
+                <button class="form__button" type="submit">Реєстрація</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-wrap">
+      <header class="header">
+        <div class="header-wrap container">
+          <h4 class="header__title">
+            <a href="./index.html" class="link-to-aboutus">ТрендСіті</a>
+          </h4>
+          <div class="header__nav">
+            <div class="header__mob-panel">
+              <button class="mob-panel__button" id="nav-mob-btn">
+                <div class="mob-panel__button-line"></div>
+                <div class="mob-panel__button-line"></div>
+                <div class="mob-panel__button-line"></div>
+              </button>
+            </div>
+            <div class="nav__catalog">
+              <img
+                src="./menu-icon.svg"
+                alt="menu-icon"
+                class="nav__catalog-icon"
+              />
+              <h5 class="nav__catalog-title">Каталог</h5>
+            </div>
+            <div class="nav__search">
+              <input
+                type="text"
+                class="nav__search-input"
+                placeholder="Що вас цікавить?"
+              />
+              <button class="nav__search-btn">
+                <img
+                  src="./search-icon.svg"
+                  alt="search-icon"
+                  class="nav__search-icon"
+                />
+              </button>
+            </div>
+            <div class="nav__menu">
+              <a href="./aboutus.html" class="menu-item">
+                <h5 class="menu-item__title">О&nbsp;нас</h5>
+              </a>
+              <button class="menu-item lang-btn">
+                <h5 class="menu-item__title">UA</h5>
+                <img
+                  src="./arrow-small.svg"
+                  alt="icon"
+                  class="menu-item__icon"
+                />
+              </button>
+              <a href="./basket.html" class="menu-item basket-btn">
+                <h5 class="menu-item__title basket-btn__price">640₴</h5>
+                <img
+                  src="./basket-icon.svg"
+                  alt="icon"
+                  class="basket-btn__icon"
+                />
+                <span class="basket-btn__items-count">
+                  <span class="basket-btn__items-value">3</span>
+                </span>
+              </a>
+              <a href="#" class="menu-item login-btn" id="autoriz-btn">
+                <h5 class="menu-item__title">Увійти</h5>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <main class="main">
+        <div class="container">
+          <section class="main__fullcontent basket">
+            <div class="basket">
+              <div class="basket__header gray-border">
+                <p class="basket__header-title">Оформлення замовлення</p>
+                <button class="basket__header-btn">
+                  <img src="trash-icon.svg" alt="basket-icon" />
+                  <p>Видалити обране</p>
+                </button>
+              </div>
+              <div class="basket__item chosen gray-border">
+                <div class="basket__item-general">
+                  <img
+                    src="checkmark-icon.svg"
+                    alt="checkmark"
+                    class="basket__item-checkmark"
+                  />
+                  <img
+                    src="./product-img-1.png"
+                    alt="product-item"
+                    class="basket__item-img"
+                  />
+                  <div class="basket__item-info">
+                    <p class="basket__item-name">
+                      Аромодифузор “Tobacco Vanille” Аромат №1
+                    </p>
+                    <p class="basket__item-wraptype">+ PREMIUM ПАКУВАННЯ</p>
+                    <div class="basket__item-quantity">
+                      <div>
+                        <img
+                          src="./plus-icon.svg"
+                          alt="plus"
+                          class="plus basket__item-icon"
+                        />
+                        <h3>1</h3>
+                        <img
+                          src="./minus-icon.svg"
+                          alt="minus"
+                          class="minus basket__item-icon"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="basket__item-price">
+                  <div class="basket__item-discount">
+                    <span class="full-price">810₴</span>
+                    <span class="discount-percent">-30%</span>
+                  </div>
+                  <h3>620<span class="curr-symbol">₴</span></h3>
+                </div>
+              </div>
+              <div class="basket__item gray-border">
+                <div class="basket__item-general">
+                  <img
+                    src="checkmark-icon.svg"
+                    alt="checkmark"
+                    class="basket__item-checkmark"
+                  />
+                  <img
+                    src="./product-img-1.png"
+                    alt="product-item"
+                    class="basket__item-img"
+                  />
+                  <div class="basket__item-info">
+                    <p class="basket__item-name">
+                      Аромодифузор “Tobacco Vanille” Аромат №1
+                    </p>
+                    <p class="basket__item-wraptype">+ PREMIUM ПАКУВАННЯ</p>
+                    <div class="basket__item-quantity">
+                      <div>
+                        <img
+                          src="./plus-icon.svg"
+                          alt="plus"
+                          class="plus basket__item-icon"
+                        />
+                        <h3>1</h3>
+                        <img
+                          src="./minus-icon.svg"
+                          alt="minus"
+                          class="minus basket__item-icon"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="basket__item-price">
+                  <h3>620<span class="curr-symbol">₴</span></h3>
+                </div>
+              </div>
+              <div class="basket__item gray-border">
+                <div class="basket__item-general">
+                  <img
+                    src="checkmark-icon.svg"
+                    alt="checkmark"
+                    class="basket__item-checkmark"
+                  />
+                  <img
+                    src="./product-img-1.png"
+                    alt="product-item"
+                    class="basket__item-img"
+                  />
+                  <div class="basket__item-info">
+                    <p class="basket__item-name">
+                      Аромодифузор “Tobacco Vanille” Аромат №1
+                    </p>
+                    <p class="basket__item-wraptype">+ PREMIUM ПАКУВАННЯ</p>
+                    <div class="basket__item-quantity">
+                      <div>
+                        <img
+                          src="./plus-icon.svg"
+                          alt="plus"
+                          class="plus basket__item-icon"
+                        />
+                        <h3>1</h3>
+                        <img
+                          src="./minus-icon.svg"
+                          alt="minus"
+                          class="minus basket__item-icon"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="basket__item-price">
+                  <h3>620<span class="curr-symbol">₴</span></h3>
+                </div>
+              </div>
+            </div>
+            <div class="statistic">
+              <h4 class="statistic__header gray-border">ЗАГАЛЬНА СУМА</h4>
+              <div class="statistic__list statistic__content gray-border">
+                <div class="statistic__item">
+                  <h4>Premium пакування</h4>
+                  <h4>120₴</h4>
+                </div>
+                <div class="statistic__item">
+                  <h4>Загальна сума знижки</h4>
+                  <h4>-300₴</h4>
+                </div>
+                <div class="statistic__item">
+                  <h4>Сума без знижки</h4>
+                  <h4>1244₴</h4>
+                </div>
+                <div class="statistic__line"></div>
+                <div class="statistic__item">
+                  <h4>Загалом</h4>
+                  <h4 class="statistic__fullprice">944₴</h4>
+                </div>
+                <div class="statistic__promocode">
+                  <h4>У вас є промокод?</h4>
+                  <img src="./arrow-sml-black.svg" alt="" />
+                </div>
+              </div>
+              <div class="statistic__addinvite gray-border">
+                <p class="statistic__addinvite-title">
+                  Потребуете доповнити<br />Ваш кошик?
+                </p>
+                <a href="#" class="statistic__addinvite-link">Перейти</a>
+              </div>
+            </div>
+            <div class="order-form">
+              <div class="order-form-wrap">
+                <form action="POST" class="order-form__form gray-border">
+                  <div class="order-form__form-wrap">
+                    <div class="form__input-wrap form__input-name">
+                      <img
+                        class="form__input-icon"
+                        src="./user-icon.svg"
+                        alt="Иконка профиля"
+                      />
+                      <input
+                        type="text"
+                        class="form__input"
+                        id="order-form__name"
+                        placeholder="Анатолій"
+                        required
+                      />
+                    </div>
+                    <div class="form__input-wrap form__input-surname">
+                      <img
+                        class="form__input-icon"
+                        src="./user-icon.svg"
+                        alt="Иконка профиля"
+                      />
+                      <input
+                        type="text"
+                        class="form__input"
+                        id="order-form__surname"
+                        placeholder="Кузьменко"
+                        required
+                      />
+                    </div>
+                    <div class="form__input-number">
+                      <div class="form__input-wrap">
+                        <input
+                          type="text"
+                          class="form__input"
+                          id="order-form__phone-code"
+                          placeholder="+380"
+                          required
+                        />
+                      </div>
+                      <div class="form__input-wrap">
+                        <img
+                          class="form__input-icon"
+                          src="./phone-icon.svg"
+                          alt="icon"
+                        />
+                        <input
+                          type="tel"
+                          class="form__input"
+                          id="order-form__phone-num"
+                          placeholder="Номер телефону"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="form__input-wrap form__input-paymethod">
+                      <img
+                        class="form__input-icon"
+                        src="./wallet-icon.svg"
+                        alt="icon"
+                      />
+                      <input
+                        type="text"
+                        class="form__input"
+                        id="order-form__paymethod"
+                        placeholder="Спосіб оплати"
+                        required
+                      />
+                    </div>
+                    <div class="form__input-wrap form__input-deltype">
+                      <img
+                        class="form__input-icon"
+                        src="./place-icon.svg"
+                        alt="icon"
+                      />
+                      <input
+                        type="text"
+                        class="form__input"
+                        id="order-form__deltype"
+                        placeholder="Доставка: Нова пошта"
+                        required
+                      />
+                    </div>
+                    <div class="form__input-wrap form__input-novaid">
+                      <img
+                        class="form__input-icon"
+                        src="./place-icon.svg"
+                        alt="icon"
+                      />
+                      <input
+                        type="text"
+                        class="form__input"
+                        id="order-form__novaid"
+                        placeholder="Відділення Нової пошти"
+                        required
+                      />
+                    </div>
+
+                    <div class="form__input-wrap form__input-text">
+                      <textarea
+                        type="text"
+                        class="form__input"
+                        id="order-form__text"
+                        placeholder="Коментар до замовлення"
+                        required
+                      ></textarea>
+                    </div>
+                    <div class="form__ok-btn">
+                      <button class="form__button" type="submit">
+                        Оформлення
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="recomends">
+              <div class="recomends-wrap">
+                <div class="recomends__header gray-border">
+                  <img
+                    src="./discount-icon.svg"
+                    alt="icon"
+                    class="recomends__header-icon"
+                  />
+                  <h5 class="recomends__header-title">Разом дешевше</h5>
+                </div>
+                <div class="recomends__content gray-border">
+                  <div class="recomends__combo">
+                    <div class="recomends__item">
+                      <img
+                        src="./product-img-1.png"
+                        alt=""
+                        class="recomends__item-img"
+                      />
+                      <div class="recomends__item-info">
+                        <h5 class="recomends__item-name">
+                          Аромасаше “TOBACCO VANILLE” аромат №1
+                        </h5>
+                        <p class="recomends__item-price">
+                          420<span class="curr-symbol">₴</span>
+                        </p>
+                      </div>
+                    </div>
+                    <img
+                      src="./plus-icon.svg"
+                      alt="plus-icon"
+                      class="recomends__plus-icon"
+                    />
+                    <div class="recomends__item">
+                      <img
+                        src="./product-img-2.png"
+                        alt=""
+                        class="recomends__item-img"
+                      />
+                      <div class="recomends__item-info">
+                        <h5 class="recomends__item-name">
+                          Аромасаше “TOBACCO VANILLE” аромат №1
+                        </h5>
+                        <p class="recomends__item-price">
+                          420<span class="curr-symbol">₴</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="recomends__add">
+                    <button class="recomends__add-btn">У кошик</button>
+                    <div class="recomends__add-info">
+                      <div class="recomends__add-price">
+                        <span>₴1100</span>
+                        <span>-15%</span>
+                      </div>
+                      <h4 class="recomends__add-dsprice">
+                        890<span class="curr-symbol">₴</span>
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="products-list-wrap recomends-products gray-border">
+              <h4 class="products__title">
+                <strong class="products__subtitle">Рекомендовані товари</strong>
+              </h4>
+              <ul class="products-list discounts__list">
+                <li class="products-list__item">
+                  <div class="product-list__img-wrap">
+                    <img
+                      src="./product-img-1.png"
+                      alt="product-img"
+                      class="products-list__item-img"
+                    />
+                    <img
+                      src="./heart-border-icon.svg"
+                      alt="icon"
+                      class="product-list__item-liked"
+                    />
+                  </div>
+                  <h5 class="products-list__item-title">
+                    Аромадифузор LeMien №5 - Fleur Narcotique
+                  </h5>
+                  <div class="products-list__item-info">
+                    <div class="products-list__item-discount">
+                      <div>
+                        <span class="products-list__item-price">810₴</span>
+                        <span class="products-list__item-percent">-30%</span>
+                      </div>
+                      <h4 class="products-list__item-curr-price">
+                        640<span class="money-symbol">₴</span>
+                      </h4>
+                    </div>
+                    <button class="products-list__item-button">
+                      <img
+                        src="./basket-icon.svg"
+                        alt="item-buy-icon"
+                        class="products-list__item-buy-icon"
+                      />
+                    </button>
+                  </div>
+                  <div class="products-list__item-extrainfo">
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-raiting">Рейтинг</span>
+                      <img
+                        src="./star-icon.svg"
+                        alt="star-icon"
+                        class="products-list__item-star"
+                      />
+                      <span class="products-list__item-raiting">4,8</span>
+                    </div>
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-sextype">Унісекс</span>
+                      <img
+                        src="./sex-icon.svg"
+                        alt="sex-icon"
+                        class="products-list__item-seximg"
+                      />
+                    </div>
+                  </div>
+                  <div class="products-list__item-desc">
+                    <span
+                      >Аромат чистоти, насичений справжньою дерев'яною шавлією.
+                      Він обволікає свіжістю безмежного морського
+                      узбережжя.</span
+                    >
+                  </div>
+                </li>
+                <li class="products-list__item">
+                  <div class="product-list__img-wrap">
+                    <img
+                      src="./product-img-2.png"
+                      alt="product-img"
+                      class="products-list__item-img"
+                    />
+                    <img
+                      src="./heart-border-icon.svg"
+                      alt="icon"
+                      class="product-list__item-liked"
+                    />
+                  </div>
+                  <h5 class="products-list__item-title">
+                    Аромадифузор LeMien №5 - Fleur Narcotique
+                  </h5>
+                  <div class="products-list__item-info">
+                    <div class="products-list__item-discount">
+                      <div>
+                        <span class="products-list__item-price">810₴</span>
+                        <span class="products-list__item-percent">-30%</span>
+                      </div>
+                      <h4 class="products-list__item-curr-price">
+                        640<span class="money-symbol">₴</span>
+                      </h4>
+                    </div>
+                    <button class="products-list__item-button">
+                      <img
+                        src="./basket-icon.svg"
+                        alt="item-buy-icon"
+                        class="products-list__item-buy-icon"
+                      />
+                    </button>
+                  </div>
+                  <div class="products-list__item-extrainfo">
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-raiting">Рейтинг</span>
+                      <img
+                        src="./star-icon.svg"
+                        alt="star-icon"
+                        class="products-list__item-star"
+                      />
+                      <span class="products-list__item-raiting">4,8</span>
+                    </div>
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-sextype">Унісекс</span>
+                      <img
+                        src="./sex-icon.svg"
+                        alt="sex-icon"
+                        class="products-list__item-seximg"
+                      />
+                    </div>
+                  </div>
+                  <div class="products-list__item-desc">
+                    <span
+                      >Аромат чистоти, насичений справжньою дерев'яною шавлією.
+                      Він обволікає свіжістю безмежного морського
+                      узбережжя.</span
+                    >
+                  </div>
+                </li>
+                <li class="products-list__item">
+                  <div class="product-list__img-wrap">
+                    <img
+                      src="./product-img-4.png"
+                      alt="product-img"
+                      class="products-list__item-img"
+                    />
+                    <img
+                      src="./heart-border-icon.svg"
+                      alt="icon"
+                      class="product-list__item-liked"
+                    />
+                  </div>
+                  <h5 class="products-list__item-title">
+                    Аромадифузор LeMien №5 - Fleur Narcotique
+                  </h5>
+                  <div class="products-list__item-info">
+                    <div class="products-list__item-discount">
+                      <div>
+                        <span class="products-list__item-price">810₴</span>
+                        <span class="products-list__item-percent">-30%</span>
+                      </div>
+                      <h4 class="products-list__item-curr-price">
+                        640<span class="money-symbol">₴</span>
+                      </h4>
+                    </div>
+                    <button class="products-list__item-button">
+                      <img
+                        src="./basket-icon.svg"
+                        alt="item-buy-icon"
+                        class="products-list__item-buy-icon"
+                      />
+                    </button>
+                  </div>
+                  <div class="products-list__item-extrainfo">
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-raiting">Рейтинг</span>
+                      <img
+                        src="./star-icon.svg"
+                        alt="star-icon"
+                        class="products-list__item-star"
+                      />
+                      <span class="products-list__item-raiting">4,8</span>
+                    </div>
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-sextype">Унісекс</span>
+                      <img
+                        src="./sex-icon.svg"
+                        alt="sex-icon"
+                        class="products-list__item-seximg"
+                      />
+                    </div>
+                  </div>
+                  <div class="products-list__item-desc">
+                    <span
+                      >Аромат чистоти, насичений справжньою дерев'яною шавлією.
+                      Він обволікає свіжістю безмежного морського
+                      узбережжя.</span
+                    >
+                  </div>
+                </li>
+                <li class="products-list__item">
+                  <div class="sticker-wrap">
+                    <span class="sticker-top">топ товар</span>
+                  </div>
+                  <div class="product-list__img-wrap">
+                    <img
+                      src="./product-img-4.png"
+                      alt="product-img"
+                      class="products-list__item-img"
+                    />
+                    <img
+                      src="./heart-border-icon.svg"
+                      alt="icon"
+                      class="product-list__item-liked"
+                    />
+                  </div>
+                  <h5 class="products-list__item-title">
+                    Аромадифузор LeMien №5 - Fleur Narcotique
+                  </h5>
+                  <div class="products-list__item-info">
+                    <div class="products-list__item-discount">
+                      <div>
+                        <span class="products-list__item-price">810₴</span>
+                        <span class="products-list__item-percent">-30%</span>
+                      </div>
+                      <h4 class="products-list__item-curr-price">
+                        640<span class="money-symbol">₴</span>
+                      </h4>
+                    </div>
+                    <button class="products-list__item-button">
+                      <img
+                        src="./basket-icon.svg"
+                        alt="item-buy-icon"
+                        class="products-list__item-buy-icon"
+                      />
+                    </button>
+                  </div>
+                  <div class="products-list__item-extrainfo">
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-raiting">Рейтинг</span>
+                      <img
+                        src="./star-icon.svg"
+                        alt="star-icon"
+                        class="products-list__item-star"
+                      />
+                      <span class="products-list__item-raiting">4,8</span>
+                    </div>
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-sextype">Унісекс</span>
+                      <img
+                        src="./sex-icon.svg"
+                        alt="sex-icon"
+                        class="products-list__item-seximg"
+                      />
+                    </div>
+                  </div>
+                  <div class="products-list__item-desc">
+                    <span
+                      >Аромат чистоти, насичений справжньою дерев'яною шавлією.
+                      Він обволікає свіжістю безмежного морського
+                      узбережжя.</span
+                    >
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="products-list-wrap liked-products gray-border">
+              <h4 class="products__title">
+                <img
+                  src="./heart-icon.svg"
+                  alt="heart-icon"
+                  class="liked-products__heart-icon"
+                />
+                <strong class="products__subtitle">Вподобані товари</strong>
+              </h4>
+              <ul class="products-list discounts__list">
+                <li class="products-list__item">
+                  <div class="product-list__img-wrap">
+                    <img
+                      src="./product-img-1.png"
+                      alt="product-img"
+                      class="products-list__item-img"
+                    />
+                    <img
+                      src="./heart-icon.svg"
+                      alt="icon"
+                      class="product-list__item-liked"
+                    />
+                  </div>
+                  <h5 class="products-list__item-title">
+                    Аромадифузор LeMien №5 - Fleur Narcotique
+                  </h5>
+                  <div class="products-list__item-info">
+                    <div class="products-list__item-discount">
+                      <div>
+                        <span class="products-list__item-price">810₴</span>
+                        <span class="products-list__item-percent">-30%</span>
+                      </div>
+                      <h4 class="products-list__item-curr-price">
+                        640<span class="money-symbol">₴</span>
+                      </h4>
+                    </div>
+                    <button class="products-list__item-button">
+                      <img
+                        src="./basket-icon.svg"
+                        alt="item-buy-icon"
+                        class="products-list__item-buy-icon"
+                      />
+                    </button>
+                  </div>
+                  <div class="products-list__item-extrainfo">
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-raiting">Рейтинг</span>
+                      <img
+                        src="./star-icon.svg"
+                        alt="star-icon"
+                        class="products-list__item-star"
+                      />
+                      <span class="products-list__item-raiting">4,8</span>
+                    </div>
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-sextype">Унісекс</span>
+                      <img
+                        src="./sex-icon.svg"
+                        alt="sex-icon"
+                        class="products-list__item-seximg"
+                      />
+                    </div>
+                  </div>
+                  <div class="products-list__item-desc">
+                    <span
+                      >Аромат чистоти, насичений справжньою дерев'яною шавлією.
+                      Він обволікає свіжістю безмежного морського
+                      узбережжя.</span
+                    >
+                  </div>
+                </li>
+                <li class="products-list__item">
+                  <div class="product-list__img-wrap">
+                    <img
+                      src="./product-img-2.png"
+                      alt="product-img"
+                      class="products-list__item-img"
+                    />
+                    <img
+                      src="./heart-icon.svg"
+                      alt="icon"
+                      class="product-list__item-liked"
+                    />
+                  </div>
+                  <h5 class="products-list__item-title">
+                    Аромадифузор LeMien №5 - Fleur Narcotique
+                  </h5>
+                  <div class="products-list__item-info">
+                    <div class="products-list__item-discount">
+                      <div>
+                        <span class="products-list__item-price">810₴</span>
+                        <span class="products-list__item-percent">-30%</span>
+                      </div>
+                      <h4 class="products-list__item-curr-price">
+                        640<span class="money-symbol">₴</span>
+                      </h4>
+                    </div>
+                    <button class="products-list__item-button">
+                      <img
+                        src="./basket-icon.svg"
+                        alt="item-buy-icon"
+                        class="products-list__item-buy-icon"
+                      />
+                    </button>
+                  </div>
+                  <div class="products-list__item-extrainfo">
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-raiting">Рейтинг</span>
+                      <img
+                        src="./star-icon.svg"
+                        alt="star-icon"
+                        class="products-list__item-star"
+                      />
+                      <span class="products-list__item-raiting">4,8</span>
+                    </div>
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-sextype">Унісекс</span>
+                      <img
+                        src="./sex-icon.svg"
+                        alt="sex-icon"
+                        class="products-list__item-seximg"
+                      />
+                    </div>
+                  </div>
+                  <div class="products-list__item-desc">
+                    <span
+                      >Аромат чистоти, насичений справжньою дерев'яною шавлією.
+                      Він обволікає свіжістю безмежного морського
+                      узбережжя.</span
+                    >
+                  </div>
+                </li>
+                <li class="products-list__item">
+                  <div class="product-list__img-wrap">
+                    <img
+                      src="./product-img-4.png"
+                      alt="product-img"
+                      class="products-list__item-img"
+                    />
+                    <img
+                      src="./heart-icon.svg"
+                      alt="icon"
+                      class="product-list__item-liked"
+                    />
+                  </div>
+                  <h5 class="products-list__item-title">
+                    Аромадифузор LeMien №5 - Fleur Narcotique
+                  </h5>
+                  <div class="products-list__item-info">
+                    <div class="products-list__item-discount">
+                      <div>
+                        <span class="products-list__item-price">810₴</span>
+                        <span class="products-list__item-percent">-30%</span>
+                      </div>
+                      <h4 class="products-list__item-curr-price">
+                        640<span class="money-symbol">₴</span>
+                      </h4>
+                    </div>
+                    <button class="products-list__item-button">
+                      <img
+                        src="./basket-icon.svg"
+                        alt="item-buy-icon"
+                        class="products-list__item-buy-icon"
+                      />
+                    </button>
+                  </div>
+                  <div class="products-list__item-extrainfo">
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-raiting">Рейтинг</span>
+                      <img
+                        src="./star-icon.svg"
+                        alt="star-icon"
+                        class="products-list__item-star"
+                      />
+                      <span class="products-list__item-raiting">4,8</span>
+                    </div>
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-sextype">Унісекс</span>
+                      <img
+                        src="./sex-icon.svg"
+                        alt="sex-icon"
+                        class="products-list__item-seximg"
+                      />
+                    </div>
+                  </div>
+                  <div class="products-list__item-desc">
+                    <span
+                      >Аромат чистоти, насичений справжньою дерев'яною шавлією.
+                      Він обволікає свіжістю безмежного морського
+                      узбережжя.</span
+                    >
+                  </div>
+                </li>
+                <li class="products-list__item">
+                  <div class="sticker-wrap">
+                    <span class="sticker-top">топ товар</span>
+                  </div>
+                  <div class="product-list__img-wrap">
+                    <img
+                      src="./product-img-4.png"
+                      alt="product-img"
+                      class="products-list__item-img"
+                    />
+                    <img
+                      src="./heart-icon.svg"
+                      alt="icon"
+                      class="product-list__item-liked"
+                    />
+                  </div>
+                  <h5 class="products-list__item-title">
+                    Аромадифузор LeMien №5 - Fleur Narcotique
+                  </h5>
+                  <div class="products-list__item-info">
+                    <div class="products-list__item-discount">
+                      <div>
+                        <span class="products-list__item-price">810₴</span>
+                        <span class="products-list__item-percent">-30%</span>
+                      </div>
+                      <h4 class="products-list__item-curr-price">
+                        640<span class="money-symbol">₴</span>
+                      </h4>
+                    </div>
+                    <button class="products-list__item-button">
+                      <img
+                        src="./basket-icon.svg"
+                        alt="item-buy-icon"
+                        class="products-list__item-buy-icon"
+                      />
+                    </button>
+                  </div>
+                  <div class="products-list__item-extrainfo">
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-raiting">Рейтинг</span>
+                      <img
+                        src="./star-icon.svg"
+                        alt="star-icon"
+                        class="products-list__item-star"
+                      />
+                      <span class="products-list__item-raiting">4,8</span>
+                    </div>
+                    <div class="products-list__item-infopart">
+                      <span class="products-list__item-sextype">Унісекс</span>
+                      <img
+                        src="./sex-icon.svg"
+                        alt="sex-icon"
+                        class="products-list__item-seximg"
+                      />
+                    </div>
+                  </div>
+                  <div class="products-list__item-desc">
+                    <span
+                      >Аромат чистоти, насичений справжньою дерев'яною шавлією.
+                      Він обволікає свіжістю безмежного морського
+                      узбережжя.</span
+                    >
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="footer-wrap container-sml">
+          <div class="footer-line"></div>
+          <div class="footer-info">
+            <div class="footer-info__item footer-info__general">
+              <h4 class="footer__companyname">ТрендСіті</h4>
+              <h5 class="footer__copy footer__copy-1">©ТрендСіті, 2023–2024</h5>
+              <img
+                src="./vmpaymethods.png"
+                alt="payment methods"
+                class="footer__vm-icon footer__vm-icon-1"
+              />
+            </div>
+            <div class="footer-info__item footer-info__information">
+              <h5 class="footer__title">Інформація</h5>
+              <a href="#" class="footer__link">Гарантія</a>
+              <a href="#" class="footer__link">Доставка</a>
+              <a href="#" class="footer__link">Оплата</a>
+              <a href="#" class="footer__link">Повернення</a>
+            </div>
+            <div class="footer-info__item footer-info__documentation">
+              <h5 class="footer__title">Документація</h5>
+              <a href="#" class="footer__link">Політика конфеденційності </a>
+              <a href="#" class="footer__link">Договір публічної оферти</a>
+            </div>
+            <div class="footer-info__item footer-info__contacts">
+              <h5 class="footer__title">Контакти</h5>
+              <a href="#" class="footer__link">Телефон +38 (063) 67 591 67 </a>
+              <div class="footer__contacts-list">
+                <a href="#" class="contacts-list__item-link"
+                  ><img
+                    src="./viber-icon.png"
+                    alt="item-img"
+                    class="contacts-list__item-img"
+                /></a>
+                <a href="#" class="contacts-list__item-link"
+                  ><img
+                    src="./telegram-icon.png"
+                    alt="item-img"
+                    class="contacts-list__item-img"
+                /></a>
+                <a href="#" class="contacts-list__item-link"
+                  ><img
+                    src="./instagram-icon.png"
+                    alt="item-img"
+                    class="contacts-list__item-img"
+                /></a>
+                <a href="#" class="contacts-list__item-link"
+                  ><img
+                    src="./facebook-icon.png"
+                    alt="item-img"
+                    class="contacts-list__item-img"
+                /></a>
+                <a href="#" class="contacts-list__item-link"
+                  ><img
+                    src="./tiktok-icon.png"
+                    alt="item-img"
+                    class="contacts-list__item-img"
+                /></a>
+                <img
+                  src="./vmpaymethods.png"
+                  alt="payment methods"
+                  class="footer__vm-icon footer__vm-icon-2"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <h5 class="footer__copy footer__copy-2">©ТрендСіті, 2023–2024</h5>
+      </footer>
+    </div>
+  </body>
+</html>
