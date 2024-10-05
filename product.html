@@ -340,6 +340,80 @@
       </div>
     </div>
 
+    <div class="create-review-popup" id="create-review-popup">
+      <img
+        src="./close-icon.svg"
+        alt="сlose-btn"
+        class="close-btn"
+        id="close-review-popup"
+      />
+      <div class="create-review-wrap">
+        <div class="review-popup__big">
+          <div class="form-wrap">
+            <form action="#" class="review-popup__form">
+              <h4 class="form-title">Написати відгук</h4>
+              <div class="form__input-wrap">
+                <img
+                  src="./user-icon.svg"
+                  alt="form-icon"
+                  class="form__input-icon"
+                />
+                <input
+                  type="text"
+                  class="form__input"
+                  placeholder="Ваше ім’я"
+                />
+              </div>
+              <p class="form__input-label">Ваш відгук</p>
+              <div class="form__input-wrap" id="form__input-textarea">
+                <textarea class="form__input form__textarea"></textarea>
+              </div>
+              <p class="form__input-label">Оцінка товару</p>
+              <div class="stars-list">
+                <img
+                  src="./star-gray-icon.svg"
+                  alt="star-icon"
+                  class="star-icon"
+                  data-index="1"
+                />
+                <img
+                  src="./star-gray-icon.svg"
+                  alt="star-icon"
+                  class="star-icon"
+                  data-index="2"
+                />
+                <img
+                  src="./star-gray-icon.svg"
+                  alt="star-icon"
+                  class="star-icon"
+                  data-index="3"
+                />
+                <img
+                  src="./star-gray-icon.svg"
+                  alt="star-icon"
+                  class="star-icon"
+                  data-index="4"
+                />
+                <img
+                  src="./star-gray-icon.svg"
+                  alt="star-icon"
+                  class="star-icon"
+                  data-index="5"
+                />
+              </div>
+              <button class="form-btn">Відправити</button>
+            </form>
+          </div>
+        </div>
+        <div class="review-popup__sml">
+          <h4 class="review-popup__title">Дякуємо!</h4>
+          <h5 class="review-popup__subtitle">
+            Ваші слова надихають нас<br />ставати кращими!
+          </h5>
+        </div>
+      </div>
+    </div>
+
     <div class="page-wrap">
       <header class="header">
         <div class="header-wrap container">
@@ -446,17 +520,36 @@
                         src="./zoom-icon.svg"
                         alt="zoom-btn"
                         class="photos__general-zoom"
+                        id="zoom-product-btn"
                       />
                     </div>
-                    <img
-                      src="./product-img-gen.png"
-                      alt="main-img"
-                      class="photos__general-img"
-                    />
+                    <div class="image-container">
+                      <div class="scroll-container">
+                        <img
+                          src="./product-img-gen.png"
+                          alt="main-img"
+                          class="photos__general-img image"
+                          id="product-main-img"
+                        />
+                        <img
+                          src="./product-img-gen.png"
+                          alt="main-img"
+                          class="photos__general-img image"
+                          id="product-main-img-2"
+                        />
+                        <img
+                          src="./product-img-gen.png"
+                          alt="main-img"
+                          class="photos__general-img image"
+                          id="product-main-img-2"
+                        />
+                      </div>
+                      <div class="zoom-lens"></div>
+                    </div>
                     <div class="photos__general-nav">
-                      <div class="circle active"></div>
-                      <div class="circle"></div>
-                      <div class="circle"></div>
+                      <div class="circle active" id="circle-1"></div>
+                      <div class="circle" id="circle-2"></div>
+                      <div class="circle" id="circle-3"></div>
                     </div>
                   </div>
                   <div class="photos__imgs-list">
@@ -464,16 +557,19 @@
                       src="./product-sml-img.png"
                       alt="img"
                       class="photos__imgs-item active"
+                      image-id="1"
                     />
                     <img
                       src="./product-sml-img.png"
                       alt="img"
                       class="photos__imgs-item"
+                      image-id="2"
                     />
                     <img
                       src="./product-sml-img.png"
                       alt="img"
                       class="photos__imgs-item"
+                      image-id="3"
                     />
                   </div>
                 </div>
@@ -521,12 +617,15 @@
                     </div>
                   </div>
                 </div>
-                <div class="product__volume gray-border">
-                  <p class="volume-title">Виберіть об’єм (мл)</p>
-                  <p class="volume-item chosen">5</p>
-                  <p class="volume-item">30</p>
-                  <p class="volume-item">50</p>
-                  <p class="volume-item">100</p>
+                <div
+                  class="product__volume gray-border"
+                  id="product-volumes-list"
+                >
+                  <p class="volume-title">Оберіть об’єм (мл)</p>
+                  <button class="volume-item chosen" volume="5">5</button>
+                  <button class="volume-item" volume="30">30</button>
+                  <button class="volume-item" volume="50">50</button>
+                  <button class="volume-item" volume="100">100</button>
                 </div>
                 <div class="product__variations gray-border">
                   <div class="variations__header">
@@ -535,13 +634,22 @@
                       alt="icon"
                       class="variations__header-icon"
                     />
-                    <p class="variations__header-title">Виберіть аромат</p>
-                    <img
-                      src="./arrow-sml-black.svg"
-                      alt="icon"
-                      class="variations__header-icon variations__header-arrow"
-                    />
+                    <p class="variations__header-title">Оберіть аромат</p>
                   </div>
+                  <ul class="variations__list">
+                    <li class="variations__item chosen">
+                      <p>Wood Sage & Sea Salt</p>
+                      <img src="./success-orange-icon.svg" alt="chosen" />
+                    </li>
+                    <li class="variations__item">
+                      <p>Wood Sage & Sea Salt</p>
+                      <img src="./success-orange-icon.svg" alt="chosen" />
+                    </li>
+                    <li class="variations__item">
+                      <p>Wood Sage & Sea Salt</p>
+                      <img src="./success-orange-icon.svg" alt="chosen" />
+                    </li>
+                  </ul>
                 </div>
                 <div class="product__nav gray-border">
                   <div class="nav__price-wrap">
@@ -554,35 +662,58 @@
                     </h3>
                   </div>
                   <div class="nav__panel">
-                    <div class="nav__quantity">
+                    <div
+                      class="nav__quantity quantity_item"
+                      id="general-quantity-nav"
+                    >
                       <div>
                         <img
                           src="./plus-icon.svg"
                           alt="plus"
-                          class="plus nav__quantity-icon"
+                          class="plus nav__quantity-icon quantity-btn"
+                          action="plus"
                         />
-                        <h3>1</h3>
+                        <h3 class="quantity-value" value="1">1</h3>
                         <img
                           src="./minus-icon.svg"
                           alt="minus"
-                          class="minus nav__quantity-icon"
+                          class="minus nav__quantity-icon quantity-btn"
+                          action="minus"
                         />
                       </div>
                     </div>
-                    <button class="nav__like-btn nav__btn">
+                    <button class="nav__like-btn nav__btn" id="like-btn">
                       <img
                         class="nav__btn-icon"
-                        src="./heart-white-icon.svg"
+                        src="./heart-orange-icon.svg"
+                        alt="like-icon"
+                      />
+                      <img
+                        class="nav__btn-icon"
+                        src="./heart-orange-filled-icon.svg"
                         alt="like-icon"
                       />
                     </button>
-                    <button class="nav__buy-btn nav__btn">
-                      <img
-                        class="nav__btn-icon"
-                        src="./basket-icon.svg"
-                        alt="like-icon"
-                      />
-                      <p class="nav__btn-text">Купити</p>
+                    <button
+                      class="nav__buy-btn nav__btn add-switch-btn"
+                      id="add-product-btn"
+                    >
+                      <div class="nav__btn-wrap">
+                        <img
+                          class="nav__btn-icon"
+                          src="./basket-icon.svg"
+                          alt="like-icon"
+                        />
+                        <p class="nav__btn-text">Купити</p>
+                      </div>
+                      <div class="nav__btn-wrap">
+                        <img
+                          class="nav__btn-icon"
+                          src="./success-orange-icon.svg"
+                          alt="like-icon"
+                        />
+                        <p class="nav__btn-text">Добавлено</p>
+                      </div>
                     </button>
                   </div>
                 </div>
@@ -621,8 +752,8 @@
                 </div>
                 <div class="product__components">
                   <p class="components-title">Комплектуючі</p>
-                  <div class="components-list-wrap">
-                    <ul class="components__list">
+                  <div class="components-list-wrap products__list-wrap">
+                    <ul class="components__list" id="components-list">
                       <li class="components__item">
                         <div class="components__item-img">
                           <img src="./comp-difusor.png" alt="img" />
@@ -634,29 +765,41 @@
                           <h4 class="item-price">
                             800<span class="money-symbol">₴</span>
                           </h4>
-                          <div class="components__item--quantity">
+                          <div class="components__item--quantity quantity_item">
                             <div>
                               <img
                                 src="./plus-icon.svg"
                                 alt="plus"
-                                class="plus components__item--icon"
+                                class="plus components__item--icon quantity-btn"
+                                action="plus"
                               />
-                              <h3>1</h3>
+                              <h3 class="quantity-value" value="1">1</h3>
                               <img
                                 src="./minus-icon.svg"
                                 alt="minus"
-                                class="minus components__item--icon"
+                                class="minus components__item--icon quantity-btn"
+                                action="minus"
                               />
                             </div>
                           </div>
                         </div>
-                        <button class="components__item-btn">
-                          <img
-                            class="components__item--icon"
-                            src="./basket-icon.svg"
-                            alt="icon"
-                          />
-                          <p>Доповнити</p>
+                        <button class="components__item-btn add-switch-btn">
+                          <div class="nav__btn-wrap">
+                            <img
+                              class="components__item--icon quantity-btn"
+                              src="./basket-icon.svg"
+                              alt="icon"
+                            />
+                            <p>Доповнити</p>
+                          </div>
+                          <div class="nav__btn-wrap">
+                            <img
+                              class="nav__btn-icon"
+                              src="./success-orange-icon.svg"
+                              alt="like-icon"
+                            />
+                            <p class="nav__btn-text">Добавлено</p>
+                          </div>
                         </button>
                       </li>
                       <li class="components__item">
@@ -670,29 +813,41 @@
                           <h4 class="item-price">
                             800<span class="money-symbol">₴</span>
                           </h4>
-                          <div class="components__item--quantity">
+                          <div class="components__item--quantity quantity_item">
                             <div>
                               <img
                                 src="./plus-icon.svg"
                                 alt="plus"
-                                class="plus components__item--icon"
+                                class="plus components__item--icon quantity-btn"
+                                action="plus"
                               />
-                              <h3>1</h3>
+                              <h3 class="quantity-value" value="1">1</h3>
                               <img
                                 src="./minus-icon.svg"
                                 alt="minus"
-                                class="minus components__item--icon"
+                                class="minus components__item--icon quantity-btn"
+                                action="minus"
                               />
                             </div>
                           </div>
                         </div>
-                        <button class="components__item-btn">
-                          <img
-                            class="components__item--icon"
-                            src="./basket-icon.svg"
-                            alt="icon"
-                          />
-                          <p>Доповнити</p>
+                        <button class="components__item-btn add-switch-btn">
+                          <div class="nav__btn-wrap">
+                            <img
+                              class="components__item--icon quantity-btn"
+                              src="./basket-icon.svg"
+                              alt="icon"
+                            />
+                            <p>Доповнити</p>
+                          </div>
+                          <div class="nav__btn-wrap">
+                            <img
+                              class="nav__btn-icon"
+                              src="./success-orange-icon.svg"
+                              alt="like-icon"
+                            />
+                            <p class="nav__btn-text">Добавлено</p>
+                          </div>
                         </button>
                       </li>
                       <li class="components__item">
@@ -706,25 +861,41 @@
                           <h4 class="item-price">
                             800<span class="money-symbol">₴</span>
                           </h4>
-                          <div class="components__item--quantity">
+                          <div class="components__item--quantity quantity_item">
                             <div>
                               <img
                                 src="./plus-icon.svg"
                                 alt="plus"
-                                class="plus components__item--icon"
+                                class="plus components__item--icon quantity-btn"
+                                action="plus"
                               />
-                              <h3>1</h3>
+                              <h3 class="quantity-value" value="1">1</h3>
                               <img
                                 src="./minus-icon.svg"
                                 alt="minus"
-                                class="minus components__item--icon"
+                                class="minus components__item--icon quantity-btn"
+                                action="minus"
                               />
                             </div>
                           </div>
                         </div>
-                        <button class="components__item-btn">
-                          <img src="./basket-icon.svg" alt="icon" />
-                          <p>Доповнити</p>
+                        <button class="components__item-btn add-switch-btn">
+                          <div class="nav__btn-wrap">
+                            <img
+                              class="components__item--icon quantity-btn"
+                              src="./basket-icon.svg"
+                              alt="icon"
+                            />
+                            <p>Доповнити</p>
+                          </div>
+                          <div class="nav__btn-wrap">
+                            <img
+                              class="nav__btn-icon"
+                              src="./success-orange-icon.svg"
+                              alt="like-icon"
+                            />
+                            <p class="nav__btn-text">Добавлено</p>
+                          </div>
                         </button>
                       </li>
                     </ul>
@@ -732,7 +903,7 @@
                 </div>
                 <div class="product__wrapper">
                   <p class="wrapper-title">Пакування</p>
-                  <ul class="wrapper__list">
+                  <ul class="wrapper__list" id="product-wrapper-list">
                     <li class="wrapper__item gray-border">
                       <img
                         src="./wrapper-img.png"
@@ -778,7 +949,7 @@
                         </h4>
                       </div>
                     </li>
-                    <li class="wrapper__item gray-border">
+                    <li class="wrapper__item chosen gray-border">
                       <img
                         src="./empty-wrapper-img.png"
                         alt="wrapper-img"
@@ -794,55 +965,59 @@
                 </div>
                 <div class="product__reviews">
                   <p class="reviews-title">Відгуки до товару</p>
-                  <ul class="reviews__list">
+                  <ul class="reviews__list" id="reviews-list">
                     <li class="reviews__item">
                       <div class="reviews__item-content">
                         <p class="reviews__item-username">Дмитро Сиренченко</p>
-                        <p class="reviews__item-text">
-                          Стильно виглядає, танаповнює машину приємним,
-                          ненав’язливим ароматом☺️
-                        </p>
-                      </div>
-
-                      <div class="reviews__item-grade">
-                        <div class="reviews__item-line"></div>
-                        <div class="reviews__item-value">
-                          <img
-                            src="./star-icon.svg"
-                            alt="star-icon"
-                            class="reviews__item-icon"
-                          />
-                          <span>4,8</span>
+                        <div class="reviews__item-grade">
+                          <div class="reviews__item-line"></div>
+                          <div class="reviews__item-value">
+                            <img
+                              src="./star-icon.svg"
+                              alt="star-icon"
+                              class="reviews__item-icon"
+                            />
+                            <span>4,8</span>
+                          </div>
                         </div>
                       </div>
+                      <p class="reviews__item-text">
+                        Стильно виглядає, танаповнює машину приємним,
+                        ненав’язливим ароматом☺️
+                      </p>
                     </li>
                     <li class="reviews__item">
                       <div class="reviews__item-content">
                         <p class="reviews__item-username">Дмитро Сиренченко</p>
-                        <p class="reviews__item-text">
-                          Стильно виглядає, танаповнює машину приємним,
-                          ненав’язливим ароматом☺️
-                        </p>
-                      </div>
-
-                      <div class="reviews__item-grade">
-                        <div class="reviews__item-line"></div>
-                        <div class="reviews__item-value">
-                          <img
-                            src="./star-icon.svg"
-                            alt="star-icon"
-                            class="reviews__item-icon"
-                          />
-                          <span>4,8</span>
+                        <div class="reviews__item-grade">
+                          <div class="reviews__item-line"></div>
+                          <div class="reviews__item-value">
+                            <img
+                              src="./star-icon.svg"
+                              alt="star-icon"
+                              class="reviews__item-icon"
+                            />
+                            <span>4,8</span>
+                          </div>
                         </div>
                       </div>
+                      <p class="reviews__item-text">
+                        Стильно виглядає, танаповнює машину приємним,
+                        ненав’язливим ароматом☺️
+                      </p>
                     </li>
                   </ul>
                   <div class="reviews__nav">
-                    <button class="reviews__nav-btn reviews__nav-create">
+                    <button
+                      class="reviews__nav-btn reviews__nav-create"
+                      id="create-review-btn"
+                    >
                       Залишити відгук
                     </button>
-                    <button class="reviews__nav-btn reviews__nav-more">
+                    <button
+                      class="reviews__nav-btn reviews__nav-more"
+                      id="more-reviews-btn"
+                    >
                       Показати ще
                     </button>
                   </div>
