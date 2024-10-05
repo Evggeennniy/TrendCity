@@ -210,10 +210,16 @@ function zoom(e) {
   lens.style.left = lensX + "px";
   lens.style.top = lensY + "px";
 
-  if (x > 0 && x < rect.width && y > 0 && y < rect.height) {
-    lens.style.display = "block";
+  if (
+    x > 0 &&
+    x < rect.width &&
+    y > 0 &&
+    y < rect.height &&
+    window.innerWidth >= 576
+  ) {
+    lens.style.display = "block"; // Показываем элемент lens
   } else {
-    lens.style.display = "none";
+    lens.style.display = "none"; // Скрываем элемент lens
   }
 
   const backgroundX = (x / rect.width) * 100;

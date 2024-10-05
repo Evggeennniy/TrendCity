@@ -3560,6 +3560,7 @@ footer {
 
     .image-container:hover .zoom-lens {
       display: none;
+      z-index: 0;
     }
 
     .photos__general-zoom {

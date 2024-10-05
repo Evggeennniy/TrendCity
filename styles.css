@@ -2901,6 +2901,7 @@ footer {
   }
   .main__fullcontent.product .image-container:hover .zoom-lens {
     display: none;
+    z-index: 0;
   }
   .main__fullcontent.product .photos__general-zoom {
     display: none;
