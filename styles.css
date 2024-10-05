@@ -2701,6 +2701,7 @@ footer {
   border-radius: 55px;
   border: 1px solid #fa6900;
   background-color: white;
+  color: black;
   padding: 8px 10px;
   cursor: pointer;
 }
@@ -2912,6 +2913,7 @@ footer {
   }
   .main__fullcontent.product .volume-item {
     padding: 5px 10px;
+    color: black;
   }
   .main__fullcontent.product .nav__panel {
     position: fixed;
