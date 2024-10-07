@@ -90,14 +90,11 @@ scrollContainer.addEventListener("scroll", () => {
   const scrollPosition = scrollContainer.scrollLeft;
   const containerWidth = scrollContainer.clientWidth;
 
-  // Вычисляем активный индекс
   let activeIndex = Math.round(scrollPosition / containerWidth);
 
-  // Ограничиваем активный индекс
   if (activeIndex < 0) activeIndex = 0;
   if (activeIndex >= images.length) activeIndex = images.length - 1;
 
-  // Обновляем классы кружочков
   circles.forEach((circle, index) => {
     circle.classList.toggle("active", index === activeIndex);
   });
