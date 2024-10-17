@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="./styles.css" />
-    <script src="./script.js" defer></script>
+    <script src="./default.js" defer></script>
+    <script src="./product.js" defer></script>
     <title>ТрендСіті</title>
 
     <!-- For cache cleaning -->
@@ -462,6 +463,135 @@
                   class="menu-item__icon"
                 />
               </button>
+              <div class="menu-item" id="favorite-btn">
+                <img
+                  src="./heart-white-border-icon.svg"
+                  alt="icon"
+                  class="menu-item favorite-btn"
+                />
+                <span class="favorite-btn__count">
+                  <span class="favorite-btn__value">3</span>
+                </span>
+                <div class="favorite-nav" id="favorite-nav">
+                  <div class="favorite-nav__wrap">
+                    <div class="triangle-wrap">
+                      <img
+                        src="./triangle-icon.svg"
+                        alt="icon"
+                        class="triangle-icon"
+                      />
+                    </div>
+                    <ul class="favorite-nav__list">
+                      <li class="favorite-nav__item">
+                        <img
+                          src="./product-sml-img.png"
+                          alt="img"
+                          class="favorite-nav__item-img"
+                        />
+                        <div class="favorite-nav__item-content">
+                          <div class="favorite-nav__item-stars">
+                            <img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            />
+                          </div>
+                          <p>LeMien / Tobacco Vanille</p>
+                          <h5>640₴</h5>
+                        </div>
+                      </li>
+                      <li class="favorite-nav__item">
+                        <img
+                          src="./product-sml-img.png"
+                          alt="img"
+                          class="favorite-nav__item-img"
+                        />
+                        <div class="favorite-nav__item-content">
+                          <div class="favorite-nav__item-stars">
+                            <img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            />
+                          </div>
+                          <p>LeMien / Tobacco Vanille</p>
+                          <h5>640₴</h5>
+                        </div>
+                      </li>
+                      <li class="favorite-nav__item">
+                        <img
+                          src="./product-sml-img.png"
+                          alt="img"
+                          class="favorite-nav__item-img"
+                        />
+                        <div class="favorite-nav__item-content">
+                          <div class="favorite-nav__item-stars">
+                            <img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            />
+                          </div>
+                          <p>LeMien / Tobacco Vanille</p>
+                          <h5>640₴</h5>
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="favorite-nav__btn-wrap">
+                      <a href="#">До обраного</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <a href="./basket.html" class="menu-item basket-btn">
                 <h5 class="menu-item__title basket-btn__price">640₴</h5>
                 <img
@@ -529,7 +659,7 @@
                           src="./product-img-gen.png"
                           alt="main-img"
                           class="photos__general-img image"
-                          id="product-main-img"
+                          id="product-main-img-1"
                         />
                         <img
                           src="./product-img-gen.png"
@@ -541,15 +671,15 @@
                           src="./product-img-gen.png"
                           alt="main-img"
                           class="photos__general-img image"
-                          id="product-main-img-2"
+                          id="product-main-img-3"
                         />
                       </div>
                       <div class="zoom-lens"></div>
                     </div>
-                    <div class="photos__general-nav">
-                      <div class="circle active" id="circle-1"></div>
-                      <div class="circle" id="circle-2"></div>
-                      <div class="circle" id="circle-3"></div>
+                    <div class="photos__general-nav" id="circles-container">
+                      <div class="circle" id="circle-1" objid="1"></div>
+                      <div class="circle" id="circle-2" objid="2"></div>
+                      <div class="circle" id="circle-3" objid="3"></div>
                     </div>
                   </div>
                   <div class="photos__imgs-list">
@@ -557,24 +687,27 @@
                       src="./product-sml-img.png"
                       alt="img"
                       class="photos__imgs-item active"
-                      image-id="1"
+                      id="sml-photo-1"
+                      objid="1"
                     />
                     <img
                       src="./product-sml-img.png"
                       alt="img"
                       class="photos__imgs-item"
-                      image-id="2"
+                      id="sml-photo-2"
+                      objid="2"
                     />
                     <img
                       src="./product-sml-img.png"
                       alt="img"
                       class="photos__imgs-item"
-                      image-id="3"
+                      id="sml-photo-3"
+                      objid="3"
                     />
                   </div>
                 </div>
                 <div class="product__name gray-border">
-                  <span>LeMien</span>
+                  <span class="brand-name">LeMien</span>
                   <h3 class="name__title">
                     Аромадифузер “Wood Sage & Sea Salt” Аромат №1
                   </h3>
@@ -605,7 +738,9 @@
                         alt=""
                         class="name__reviews-star"
                       />
-                      <p class="name__reviews-comments">1 відгук(ків)</p>
+                      <p class="name__reviews-comments" id="reviews-link">
+                        1 відгук(ків)
+                      </p>
                     </div>
                     <div class="name__reviews-sex">
                       <p>Унісекс</p>
@@ -963,7 +1098,7 @@
                     </li>
                   </ul>
                 </div>
-                <div class="product__reviews">
+                <div class="product__reviews" id="reviews-list">
                   <p class="reviews-title">Відгуки до товару</p>
                   <ul class="reviews__list" id="reviews-list">
                     <li class="reviews__item">

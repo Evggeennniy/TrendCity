@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="./styles.css" />
-    <script src="./script.js" defer></script>
+    <script src="./default.js" defer></script>
     <title>ТрендСіті</title>
 
     <!-- For cache cleaning -->
@@ -388,6 +388,135 @@
                   class="menu-item__icon"
                 />
               </button>
+              <div class="menu-item" id="favorite-btn">
+                <img
+                  src="./heart-white-border-icon.svg"
+                  alt="icon"
+                  class="menu-item favorite-btn"
+                />
+                <span class="favorite-btn__count">
+                  <span class="favorite-btn__value">3</span>
+                </span>
+                <div class="favorite-nav" id="favorite-nav">
+                  <div class="favorite-nav__wrap">
+                    <div class="triangle-wrap">
+                      <img
+                        src="./triangle-icon.svg"
+                        alt="icon"
+                        class="triangle-icon"
+                      />
+                    </div>
+                    <ul class="favorite-nav__list">
+                      <li class="favorite-nav__item">
+                        <img
+                          src="./product-sml-img.png"
+                          alt="img"
+                          class="favorite-nav__item-img"
+                        />
+                        <div class="favorite-nav__item-content">
+                          <div class="favorite-nav__item-stars">
+                            <img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            />
+                          </div>
+                          <p>LeMien / Tobacco Vanille</p>
+                          <h5>640₴</h5>
+                        </div>
+                      </li>
+                      <li class="favorite-nav__item">
+                        <img
+                          src="./product-sml-img.png"
+                          alt="img"
+                          class="favorite-nav__item-img"
+                        />
+                        <div class="favorite-nav__item-content">
+                          <div class="favorite-nav__item-stars">
+                            <img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            />
+                          </div>
+                          <p>LeMien / Tobacco Vanille</p>
+                          <h5>640₴</h5>
+                        </div>
+                      </li>
+                      <li class="favorite-nav__item">
+                        <img
+                          src="./product-sml-img.png"
+                          alt="img"
+                          class="favorite-nav__item-img"
+                        />
+                        <div class="favorite-nav__item-content">
+                          <div class="favorite-nav__item-stars">
+                            <img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            />
+                          </div>
+                          <p>LeMien / Tobacco Vanille</p>
+                          <h5>640₴</h5>
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="favorite-nav__btn-wrap">
+                      <a href="#">До обраного</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <a href="./basket.html" class="menu-item basket-btn">
                 <h5 class="menu-item__title basket-btn__price">640₴</h5>
                 <img
@@ -436,19 +565,21 @@
                       </p>
                       <p class="basket__item-wraptype">+ PREMIUM ПАКУВАННЯ</p>
                       <div
-                        class="basket__item-quantity quantity-panel-cover-mob"
+                        class="basket__item-quantity quantity_item quantity-panel-cover-mob"
                       >
                         <div>
                           <img
                             src="./plus-icon.svg"
                             alt="plus"
-                            class="plus basket__item-icon"
+                            action="plus"
+                            class="plus basket__item-icon quantity-btn"
                           />
-                          <h3>1</h3>
+                          <h3 class="quantity-value" value="1">1</h3>
                           <img
                             src="./minus-icon.svg"
                             alt="minus"
-                            class="minus basket__item-icon"
+                            action="minus"
+                            class="minus basket__item-icon quantity-btn"
                           />
                         </div>
                       </div>
@@ -457,19 +588,21 @@
                   <div class="gray-line"></div>
                   <div class="basket__item-price">
                     <div
-                      class="basket__item-quantity quantity-panel-cover-pc quantity-panel-cover-pc"
+                      class="basket__item-quantity quantity_item quantity-panel-cover-pc quantity-panel-cover-pc"
                     >
                       <div>
                         <img
                           src="./plus-icon.svg"
                           alt="plus"
-                          class="plus basket__item-icon"
+                          action="plus"
+                          class="plus basket__item-icon quantity-btn"
                         />
-                        <h3>1</h3>
+                        <h3 class="quantity-value" value="1">1</h3>
                         <img
                           src="./minus-icon.svg"
                           alt="minus"
-                          class="minus basket__item-icon"
+                          action="minus"
+                          class="minus basket__item-icon quantity-btn"
                         />
                       </div>
                     </div>
@@ -500,19 +633,21 @@
                       </p>
                       <p class="basket__item-wraptype">+ PREMIUM ПАКУВАННЯ</p>
                       <div
-                        class="basket__item-quantity quantity-panel-cover-mob"
+                        class="basket__item-quantity quantity_item quantity-panel-cover-mob"
                       >
                         <div>
                           <img
                             src="./plus-icon.svg"
                             alt="plus"
-                            class="plus basket__item-icon"
+                            action="plus"
+                            class="plus basket__item-icon quantity-btn"
                           />
-                          <h3>1</h3>
+                          <h3 class="quantity-value" value="1">1</h3>
                           <img
                             src="./minus-icon.svg"
                             alt="minus"
-                            class="minus basket__item-icon"
+                            action="minus"
+                            class="minus basket__item-icon quantity-btn"
                           />
                         </div>
                       </div>
@@ -520,18 +655,22 @@
                   </div>
                   <div class="gray-line"></div>
                   <div class="basket__item-price">
-                    <div class="basket__item-quantity quantity-panel-cover-pc">
+                    <div
+                      class="basket__item-quantity quantity_item quantity-panel-cover-pc"
+                    >
                       <div>
                         <img
                           src="./plus-icon.svg"
                           alt="plus"
-                          class="plus basket__item-icon"
+                          action="plus"
+                          class="plus basket__item-icon quantity-btn"
                         />
-                        <h3>1</h3>
+                        <h3 class="quantity-value" value="1">1</h3>
                         <img
                           src="./minus-icon.svg"
                           alt="minus"
-                          class="minus basket__item-icon"
+                          action="minus"
+                          class="minus basket__item-icon quantity-btn"
                         />
                       </div>
                     </div>
@@ -558,19 +697,21 @@
                       </p>
                       <p class="basket__item-wraptype">+ PREMIUM ПАКУВАННЯ</p>
                       <div
-                        class="basket__item-quantity quantity-panel-cover-mob"
+                        class="basket__item-quantity quantity_item quantity-panel-cover-mob"
                       >
                         <div>
                           <img
                             src="./plus-icon.svg"
                             alt="plus"
-                            class="plus basket__item-icon"
+                            action="plus"
+                            class="plus basket__item-icon quantity-btn"
                           />
-                          <h3>1</h3>
+                          <h3 class="quantity-value" value="1">1</h3>
                           <img
                             src="./minus-icon.svg"
                             alt="minus"
-                            class="minus basket__item-icon"
+                            action="minus"
+                            class="minus basket__item-icon quantity-btn"
                           />
                         </div>
                       </div>
@@ -578,18 +719,22 @@
                   </div>
                   <div class="gray-line"></div>
                   <div class="basket__item-price">
-                    <div class="basket__item-quantity quantity-panel-cover-pc">
+                    <div
+                      class="basket__item-quantity quantity_item quantity-panel-cover-pc"
+                    >
                       <div>
                         <img
                           src="./plus-icon.svg"
                           alt="plus"
-                          class="plus basket__item-icon"
+                          action="plus"
+                          class="plus basket__item-icon quantity-btn"
                         />
-                        <h3>1</h3>
+                        <h3 class="quantity-value" value="1">1</h3>
                         <img
                           src="./minus-icon.svg"
                           alt="minus"
-                          class="minus basket__item-icon"
+                          action="minus"
+                          class="minus basket__item-icon quantity-btn"
                         />
                       </div>
                     </div>
@@ -847,9 +992,9 @@
                           class="products-list__item-img"
                         />
                         <img
-                          src="./heart-border-icon.svg"
-                          alt="icon"
-                          class="product-list__item-liked"
+                          src="./heart-orange-icon.svg"
+                          alt=""
+                          class="heart-orange-icon"
                         />
                       </div>
                       <h5 class="products-list__item-title">
@@ -914,9 +1059,9 @@
                           class="products-list__item-img"
                         />
                         <img
-                          src="./heart-border-icon.svg"
-                          alt="icon"
-                          class="product-list__item-liked"
+                          src="./heart-orange-icon.svg"
+                          alt=""
+                          class="heart-orange-icon"
                         />
                       </div>
                       <h5 class="products-list__item-title">
@@ -981,9 +1126,9 @@
                           class="products-list__item-img"
                         />
                         <img
-                          src="./heart-border-icon.svg"
-                          alt="icon"
-                          class="product-list__item-liked"
+                          src="./heart-orange-icon.svg"
+                          alt=""
+                          class="heart-orange-icon"
                         />
                       </div>
                       <h5 class="products-list__item-title">
@@ -1051,9 +1196,9 @@
                           class="products-list__item-img"
                         />
                         <img
-                          src="./heart-border-icon.svg"
-                          alt="icon"
-                          class="product-list__item-liked"
+                          src="./heart-orange-icon.svg"
+                          alt=""
+                          class="heart-orange-icon"
                         />
                       </div>
                       <h5 class="products-list__item-title">
@@ -1116,7 +1261,7 @@
               <div class="products-list-wrap liked-products gray-border">
                 <h4 class="products__title">
                   <img
-                    src="./heart-icon.svg"
+                    src="./heart-orange-icon.svg"
                     alt="heart-icon"
                     class="liked-products__heart-icon"
                   />
@@ -1132,9 +1277,9 @@
                           class="products-list__item-img"
                         />
                         <img
-                          src="./heart-icon.svg"
+                          src="./heart-orange-icon.svg"
                           alt="icon"
-                          class="product-list__item-liked"
+                          class="heart-orange-icon active"
                         />
                       </div>
                       <h5 class="products-list__item-title">
@@ -1199,9 +1344,9 @@
                           class="products-list__item-img"
                         />
                         <img
-                          src="./heart-icon.svg"
+                          src="./heart-orange-icon.svg"
                           alt="icon"
-                          class="product-list__item-liked"
+                          class="heart-orange-icon active"
                         />
                       </div>
                       <h5 class="products-list__item-title">
@@ -1266,9 +1411,9 @@
                           class="products-list__item-img"
                         />
                         <img
-                          src="./heart-icon.svg"
+                          src="./heart-orange-icon.svg"
                           alt="icon"
-                          class="product-list__item-liked"
+                          class="heart-orange-icon active"
                         />
                       </div>
                       <h5 class="products-list__item-title">
@@ -1336,9 +1481,9 @@
                           class="products-list__item-img"
                         />
                         <img
-                          src="./heart-icon.svg"
+                          src="./heart-orange-icon.svg"
                           alt="icon"
-                          class="product-list__item-liked"
+                          class="heart-orange-icon active"
                         />
                       </div>
                       <h5 class="products-list__item-title">

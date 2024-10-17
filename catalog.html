@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="./styles.css" />
     <script src="./default.js" defer></script>
+    <script src="./catalog.js" defer></script>
     <title>ТрендСіті</title>
 
     <!-- For cache cleaning -->
@@ -84,7 +85,9 @@
               alt="auth-icon"
               class="slider-menu__auth-icon slider-icon"
             />
-            <h4 class="slider-menu__auth-title slider-title">Співпраця</h4>
+            <a class="slider-menu__auth-title slider-title slider-menu__link"
+              >Співпраця</a
+            >
           </div>
           <div class="slider-menu__auth slider-menu__item">
             <img
@@ -92,7 +95,7 @@
               alt="auth-icon"
               class="slider-menu__auth-icon slider-icon"
             />
-            <a href="./basket.html" class="slider-menu__link slider-title"
+            <a href="./basket.html" class="slider-title slider-menu__link"
               >Корзина</a
             >
           </div>
@@ -388,6 +391,135 @@
                   class="menu-item__icon"
                 />
               </button>
+              <div class="menu-item" id="favorite-btn">
+                <img
+                  src="./heart-white-border-icon.svg"
+                  alt="icon"
+                  class="menu-item favorite-btn"
+                />
+                <span class="favorite-btn__count">
+                  <span class="favorite-btn__value">3</span>
+                </span>
+                <div class="favorite-nav" id="favorite-nav">
+                  <div class="favorite-nav__wrap">
+                    <div class="triangle-wrap">
+                      <img
+                        src="./triangle-icon.svg"
+                        alt="icon"
+                        class="triangle-icon"
+                      />
+                    </div>
+                    <ul class="favorite-nav__list">
+                      <li class="favorite-nav__item">
+                        <img
+                          src="./product-sml-img.png"
+                          alt="img"
+                          class="favorite-nav__item-img"
+                        />
+                        <div class="favorite-nav__item-content">
+                          <div class="favorite-nav__item-stars">
+                            <img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            />
+                          </div>
+                          <p>LeMien / Tobacco Vanille</p>
+                          <h5>640₴</h5>
+                        </div>
+                      </li>
+                      <li class="favorite-nav__item">
+                        <img
+                          src="./product-sml-img.png"
+                          alt="img"
+                          class="favorite-nav__item-img"
+                        />
+                        <div class="favorite-nav__item-content">
+                          <div class="favorite-nav__item-stars">
+                            <img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            />
+                          </div>
+                          <p>LeMien / Tobacco Vanille</p>
+                          <h5>640₴</h5>
+                        </div>
+                      </li>
+                      <li class="favorite-nav__item">
+                        <img
+                          src="./product-sml-img.png"
+                          alt="img"
+                          class="favorite-nav__item-img"
+                        />
+                        <div class="favorite-nav__item-content">
+                          <div class="favorite-nav__item-stars">
+                            <img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            /><img
+                              src="./star-orange-icon.svg"
+                              alt="star-icon"
+                              class="favorite-nav__item-star"
+                            />
+                          </div>
+                          <p>LeMien / Tobacco Vanille</p>
+                          <h5>640₴</h5>
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="favorite-nav__btn-wrap">
+                      <a href="#">До обраного</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <a href="./basket.html" class="menu-item basket-btn">
                 <h5 class="menu-item__title basket-btn__price">640₴</h5>
                 <img
@@ -408,7 +540,7 @@
       </header>
       <main class="main">
         <div class="main-wrap container">
-          <section class="main__panel">
+          <section class="main__panel" id="main-panel">
             <div class="panel-wrap">
               <div class="panel__block panel__categories">
                 <h5 class="panel__title categories-title">Kатегорії</h5>
@@ -532,124 +664,215 @@
                   </li>
                 </ul>
               </div>
-              <div class="panel__block panel__top">
-                <h5 class="panel__title top-title">топ товари</h5>
-                <ul class="panel__list top-list">
-                  <li class="panel__item top-item">
-                    <img
-                      src="./aromadifusori.png"
-                      alt="top-item__img"
-                      class="top-item__img"
-                    />
-                    <div class="panel__item-wrap">
+              <div class="panel__calatog-nav" id="panel-filter-nav">
+                <div class="slider-menu__header">
+                  <h4 class="slider-menu__header-title">
+                    <a href="./index.html" class="link-to-aboutus">ТрендСіті</a>
+                  </h4>
+                  <div class="slider-menu__nav">
+                    <button class="menu-item lang-btn">
+                      <h5 class="menu-item__title">UA</h5>
                       <img
-                        src="./item-raiting.png"
-                        alt="item-raiting"
-                        class="top-raiting"
+                        src="./arrow-small.svg"
+                        alt="icon"
+                        class="menu-item__icon"
                       />
-                      <p class="slider-menu__top-title">
-                        LeMien / Tobacco Vanille
-                      </p>
-                      <h5 class="slider-menu__top-raiting">640₴</h5>
-                    </div>
-                  </li>
-                  <li class="panel__item top-item">
+                    </button>
                     <img
-                      src="./aromasvichi.png"
-                      alt="top-item__img"
-                      class="top-item__img"
+                      src="./close-icon.svg"
+                      alt="сlose-btn"
+                      class="close-btn menu-item__icon"
+                      id="slider-filter-btn"
                     />
-                    <div class="panel__item-wrap">
+                  </div>
+                </div>
+                <div class="panel__block panel__brands">
+                  <h5 class="panel__title panel__brands-title">Бренди</h5>
+                  <ul class="panel__list">
+                    <li class="panel__item brands-item">
+                      <div class="panel__item-wrap brands-wrap">
+                        <img
+                          src="./lemein-img-sml.png"
+                          alt="brand-img"
+                          class="brands-item__img"
+                        />
+                        <h5 class="brands-item__brandname">LeMien</h5>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="panel__block panel__offers">
+                  <h5 class="panel__title panel__offers-title">Пропозиції</h5>
+                  <ul class="panel__list">
+                    <li class="panel__item offers-item">
+                      <div class="panel__item-wrap">
+                        <label class="checkbox-wrap">
+                          <input
+                            type="checkbox"
+                            class="checkbox"
+                            name="new_items"
+                          />
+                          <span class="offers-title">Новинки</span>
+                        </label>
+                      </div>
+                    </li>
+                    <li class="panel__item offers-item">
+                      <div class="panel__item-wrap">
+                        <label class="checkbox-wrap">
+                          <input
+                            type="checkbox"
+                            class="checkbox"
+                            name="top_items"
+                          />
+                          <span class="offers-title">Топ товари</span>
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="panel__block panel__price">
+                  <h5 class="panel__title panel__price-title">Ціна</h5>
+                  <div class="range-slider">
+                    <input
+                      type="range"
+                      min="0"
+                      max="2000"
+                      value="150"
+                      id="minRange"
+                      step="5"
+                      class="range-line"
+                    />
+                    <input
+                      type="range"
+                      min="0"
+                      max="2000"
+                      value="1850"
+                      id="maxRange"
+                      step="5"
+                      class="range-line"
+                    />
+                  </div>
+                  <div class="range-values">
+                    <span class="range-filter"
+                      ><span>Від:</span>
+                      <input
+                        type="text"
+                        id="minValue"
+                        value="150"
+                        max="2000"
+                        readonly
+                    /></span>
+                    <span class="range-filter"
+                      ><span>До:</span>
+                      <input
+                        type="text"
+                        id="maxValue"
+                        value="1850"
+                        max="2000"
+                        readonly
+                    /></span>
+                  </div>
+                </div>
+                <div class="panel__block panel__offers">
+                  <h5 class="panel__title panel__offers-title">ЗНИЖКА</h5>
+                  <ul class="panel__list">
+                    <li class="panel__item offers-item">
+                      <div class="panel__item-wrap">
+                        <label class="checkbox-wrap">
+                          <input
+                            type="checkbox"
+                            class="checkbox"
+                            name="discount_items"
+                          />
+                          <span class="offers-title">Зі знижкою</span>
+                        </label>
+                      </div>
+                    </li>
+                    <li class="panel__item offers-item">
+                      <div class="panel__item-wrap">
+                        <label class="checkbox-wrap">
+                          <input
+                            type="checkbox"
+                            class="checkbox"
+                            name="all_items"
+                          />
+                          <span class="offers-title">Без знижки</span>
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="panel__block panel__offers">
+                  <h5 class="panel__title panel__offers-title">для кого</h5>
+                  <ul class="panel__list">
+                    <li class="panel__item offers-item">
+                      <div class="panel__item-wrap">
+                        <label class="checkbox-wrap">
+                          <input
+                            type="checkbox"
+                            class="checkbox"
+                            name="men_items"
+                          />
+                          <span class="offers-title">Чоловіче</span>
+                        </label>
+                      </div>
+                    </li>
+                    <li class="panel__item offers-item">
+                      <div class="panel__item-wrap">
+                        <label class="checkbox-wrap">
+                          <input
+                            type="checkbox"
+                            class="checkbox"
+                            name="women_items"
+                          />
+                          <span class="offers-title">Жіноче</span>
+                        </label>
+                      </div>
+                    </li>
+                    <li class="panel__item offers-item">
+                      <div class="panel__item-wrap">
+                        <label class="checkbox-wrap">
+                          <input
+                            type="checkbox"
+                            class="checkbox"
+                            name="unisex_items"
+                          />
+                          <span class="offers-title">Унісекс</span>
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="panel__block panel__info">
+                  <h5 class="panel__title info-title">ІНФОРМАЦІЯ</h5>
+                  <ul class="panel__list info-list">
+                    <li class="panel__item info-item">
                       <img
-                        src="./item-raiting.png"
-                        alt="item-raiting"
-                        class="top-raiting"
+                        src="./info-icon.svg"
+                        alt="info-item__icon"
+                        class="info-item__icon"
                       />
-                      <p class="slider-menu__top-title">
-                        LeMien / Tobacco Vanille
-                      </p>
-                      <h5 class="slider-menu__top-raiting">640₴</h5>
-                    </div>
-                  </li>
-                  <li class="panel__item top-item">
-                    <img
-                      src="./aromapidviska.png"
-                      alt="top-item__img"
-                      class="top-item__img"
-                    />
-                    <div class="panel__item-wrap">
+                      <div class="panel__item-wrap">
+                        <p class="panel__item-title">Співпраця</p>
+                      </div>
+                    </li>
+                    <li class="panel__item info-item">
                       <img
-                        src="./item-raiting.png"
-                        alt="item-raiting"
-                        class="top-raiting"
+                        src="./info-icon.svg"
+                        alt="info-item__icon"
+                        class="info-item__icon"
                       />
-                      <p class="slider-menu__top-title">LeMien / 1 MILLION</p>
-                      <h5 class="slider-menu__top-raiting">640₴</h5>
-                    </div>
-                  </li>
-                  <li class="panel__item top-item">
-                    <img
-                      src="./aromapidviska.png"
-                      alt="top-item__img"
-                      class="top-item__img"
-                    />
-                    <div class="panel__item-wrap">
-                      <img
-                        src="./item-raiting.png"
-                        alt="item-raiting"
-                        class="top-raiting"
-                      />
-                      <p class="slider-menu__top-title">LeMien / Wood Sage</p>
-                      <h5 class="slider-menu__top-raiting">640₴</h5>
-                    </div>
-                  </li>
-                  <li class="panel__item top-item">
-                    <img
-                      src="./aromadifusori.png"
-                      alt="top-item__img"
-                      class="top-item__img"
-                    />
-                    <div class="panel__item-wrap">
-                      <img
-                        src="./item-raiting.png"
-                        alt="item-raiting"
-                        class="top-raiting"
-                      />
-                      <p class="slider-menu__top-title">LeMien / 1 MILLION</p>
-                      <h5 class="slider-menu__top-raiting">640₴</h5>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="panel__block panel__info">
-                <h5 class="panel__title info-title">ІНФОРМАЦІЯ</h5>
-                <ul class="panel__list info-list">
-                  <li class="panel__item info-item">
-                    <img
-                      src="./info-icon.svg"
-                      alt="info-item__icon"
-                      class="info-item__icon"
-                    />
-                    <div class="panel__item-wrap">
-                      <p class="panel__item-title">Співпраця</p>
-                    </div>
-                  </li>
-                  <li class="panel__item info-item">
-                    <img
-                      src="./info-icon.svg"
-                      alt="info-item__icon"
-                      class="info-item__icon"
-                    />
-                    <div class="panel__item-wrap">
-                      <p class="panel__item-title">Про ТрендCіті</p>
-                    </div>
-                  </li>
-                </ul>
+                      <div class="panel__item-wrap">
+                        <p class="panel__item-title">Про ТрендCіті</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </section>
-          <section class="main__content aboutus">
-            <div class="main__content-wrap">
+          <section class="main__content index">
+            <div class="content-wrap">
               <div class="path-structure">
                 <div class="path-structure-wrap">
                   <div class="path-structure__item">
@@ -667,303 +890,185 @@
                       class="path-structure__arrow path-structure__icon"
                     />
                   </div>
-
                   <div class="path-structure__item">
                     <img
-                      src="./warning-icon.svg"
+                      src="./heart-black-border-icon.svg"
                       alt="icon"
                       class="path-structure__icon"
                     />
-                    <span class="path-structure__title">О нас</span>
+                    <span class="path-structure__title">Обрані товари</span>
                   </div>
                 </div>
               </div>
-              <div class="aboutus__content">
-                <h4 class="aboutus__title">
-                  Ваш український маркетплейс – TrendCity: Лідер ринку з 2024
-                  року
-                </h4>
-                <p class="aboutus__text">
-                  Ваш ідеальний маркетплейс для покупки товарів в Україні. Ми
-                  успішно працюємо з 2024 року, пропонуючи унікальну платформу,
-                  яка об’єднує сотні якісних товарів від провідних виробників.
-                  Незалежно від ваших потреб, TrendCity допоможе вам знайти саме
-                  те, що ви шукаєте. Завітайте та знайдіть ідеальний продукт,
-                  який відповідає вашим очікуванням!
-                </p>
-                <h4 class="aboutus__title">Гарантія якості товарів</h4>
-                <p class="aboutus__text">
-                  На TrendCity ми гарантуємо високу якість усіх товарів на нашій
-                  платформі. Кожен продукт ретельно перевіряється перед
-                  відправкою, щоб відповідати найвищим стандартам якості. Ми
-                  забезпечуємо надійність і безпечність продукції для наших
-                  клієнтів, щоб ви могли з упевненістю купувати найкращі товари
-                  онлайн.
-                </p>
-              </div>
-              <div class="aboutus__main-title">
-                <h4 class="aboutus__main-title">ТрендСіті</h4>
-                <strong class="aboutus__main-subtitle">Для покупців</strong>
-                <div class="line"></div>
-              </div>
-              <div class="info_block">
-                <div class="info_block__item aboutus__content">
-                  <div class="info_block__item-header">
-                    <img
-                      src="./delivery-icon.svg"
-                      alt="item-icon"
-                      class="info_block__item-icon"
-                    />
-                    <h4 class="info_block__item-title">Доставка</h4>
+              <div class="page-wrap favorite">
+                <img
+                  src="./favorite-img.png"
+                  alt="header-img"
+                  class="favorite-img"
+                />
+                <div class="favorite__nav">
+                  <div class="favorite__nav-part">
+                    <button
+                      class="favorite__nav-item filter-btn"
+                      id="close-slider-filter-btn"
+                    >
+                      <img
+                        src="./filter-icon.svg"
+                        alt="icon"
+                        class="favorite__nav-icon"
+                      />
+                      <h5>Фільтри</h5>
+                    </button>
                   </div>
-                  <p class="info_block__item-text">
-                    Ми пропонуємо швидку та надійну доставку по всій території
-                    України. Ви отримаєте своє замовлення у найкоротші терміни.
-                    Обирайте зручний для себе спосіб
-                  </p>
-                </div>
-                <div class="info_block__item aboutus__content">
-                  <div class="info_block__item-header">
-                    <img
-                      src="./payment-method-icon.svg"
-                      alt="item-icon"
-                      class="info_block__item-icon"
-                    />
-                    <h4 class="info_block__item-title">Оплата</h4>
+                  <div class="favorite__nav-part">
+                    <button class="favorite__nav-item sort-btn">
+                      <img
+                        src="./sort-icon.svg"
+                        alt="icon"
+                        class="favorite__nav-icon"
+                      />
+                      <h5>Сортування</h5>
+                    </button>
                   </div>
-                  <p class="info_block__item-text">
-                    Оплатити замовлення можна онлайн через банківську картку або
-                    при отриманні готівкою Усі платежі захищені сучасними
-                    технологіями безпеки, що гарантує надійність вашої
-                    транзакції.
-                  </p>
                 </div>
-                <div class="info_block__item aboutus__content">
-                  <div class="info_block__item-header">
-                    <img
-                      src="./return-box-icon.svg"
-                      alt="item-icon"
-                      class="info_block__item-icon"
-                    />
-                    <h4 class="info_block__item-title">Повернення</h4>
-                  </div>
-                  <p class="info_block__item-text">
-                    Перевірка при отриманні на Новій Пошті. У разі браку або
-                    помилки — повертаємо гроші після повернення товару.
-                    Парфумерія не підлягає поверненню згідно із Законом України.
-                    Усі товари перевіряються перед відправкою.
-                  </p>
-                </div>
-                <div class="info_block__item aboutus__content">
-                  <div class="info_block__item-header">
-                    <img
-                      src="./guarantee-icon.svg"
-                      alt="item-icon"
-                      class="info_block__item-icon"
-                    />
-                    <h4 class="info_block__item-title">Гарантія</h4>
-                  </div>
-                  <p class="info_block__item-text">
-                    Ми гарантуємо якість усіх товарів, представлених на нашому
-                    маркетплейсі. У разі виявлення дефектів або несправностей,
-                    ви можете скористатися гарантійним обслуговуванням, яке діє
-                    згідно з українським законодавством.
-                  </p>
-                </div>
-              </div>
-              <div class="partners">
-                <div class="partners__part aboutus__content">
-                  <h4 class="partners__title">
-                    Співпраця з TrendCity<br />Ваші переваги як бізнес-партнера
-                  </h4>
-                  <p class="partners__text">
-                    TrendCity пропонує бізнесам доступ до широкого асортименту
-                    товарів, вигідні умови співпраці, конкурентні ціни та швидку
-                    доставку. Наша команда завжди готова надати професійну
-                    допомогу для успішного розвитку вашого бізнесу.
-                  </p>
-                  <p class="partners__text">
-                    Щоб розпочати співпрацю, заповніть форму на нашому сайті,
-                    виберіть потрібні товари та обговоріть умови. Ми швидко
-                    організуємо доставку, щоб ви могли зосередитися на розвитку
-                    свого бізнесу. Розвивайте свій бізнес разом з TrendCity!
-                  </p>
-                  <h4 class="partners__title">ІННОВАЦІЙНИЙ ПРОДУКТ</h4>
-                  <h4 class="partners__title">КЛІЄНТСЬКА ПІДТРИМКА</h4>
-                  <h4 class="partners__title">ОТРИМАННЯ ЕКСКЛЮЗИВУ</h4>
-                </div>
-                <div class="partners__part aboutus__content">
-                  <form action="POST" class="partners__form">
-                    <div class="partners__form-wrap">
-                      <div class="form__input-wrap form__input-name">
+                <div class="products-list-wrap">
+                  <ul class="products-list discounts__list">
+                    <li class="products-list__item">
+                      <div class="product-list__img-wrap">
                         <img
-                          class="form__input-icon"
-                          src="./user-icon.svg"
-                          alt="Иконка профиля"
+                          src="./product-img-1.png"
+                          alt="product-img"
+                          class="products-list__item-img"
                         />
-                        <input
-                          type="text"
-                          class="form__input"
-                          id="partners__name"
-                          placeholder="І’мя"
-                          required
+                        <img
+                          src="./heart-orange-icon.svg"
+                          alt=""
+                          class="heart-orange-icon"
                         />
                       </div>
-                      <div class="form__input-number">
-                        <div class="form__input-wrap">
-                          <input
-                            type="text"
-                            class="form__input"
-                            id="partners__phone-code"
-                            placeholder="+380"
-                            required
-                          />
+                      <h5 class="products-list__item-title">
+                        Аромадифузор LeMien №5 - Fleur Narcotique
+                      </h5>
+                      <div class="products-list__item-info">
+                        <div class="products-list__item-discount">
+                          <div>
+                            <span class="products-list__item-price">810₴</span>
+                            <span class="products-list__item-percent"
+                              >-30%</span
+                            >
+                          </div>
+                          <h4 class="products-list__item-curr-price">
+                            640<span class="money-symbol">₴</span>
+                          </h4>
                         </div>
-                        <div class="form__input-wrap">
+                        <button class="products-list__item-button">
                           <img
-                            class="form__input-icon"
-                            src="./phone-icon.svg"
-                            alt="Иконка телефона"
+                            src="./basket-icon.svg"
+                            alt="item-buy-icon"
+                            class="products-list__item-buy-icon"
                           />
-                          <input
-                            type="tel"
-                            class="form__input"
-                            id="partners__phone"
-                            placeholder="Номер телефону"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div class="form__input-wrap form__input-email">
-                        <img
-                          class="form__input-icon"
-                          src="./message-icon.svg"
-                          alt="Иконка сообщения"
-                        />
-                        <input
-                          type="email"
-                          class="form__input"
-                          id="partners__email"
-                          placeholder="Ел. пошта"
-                          required
-                        />
-                      </div>
-                      <div class="form__input-wrap form__input-city">
-                        <img
-                          class="form__input-icon"
-                          src="./place-icon.svg"
-                          alt="Иконка сообщения"
-                        />
-                        <input
-                          type="text"
-                          class="form__input"
-                          id="partners__city"
-                          placeholder="Місто"
-                          required
-                        />
-                      </div>
-                      <div class="form__input-wrap form__input-text">
-                        <textarea
-                          type="text"
-                          class="form__input"
-                          id="partners__text"
-                          placeholder="Опишіть напрямок вашего бізнесу"
-                          required
-                        ></textarea>
-                      </div>
-                      <div class="form__partners-btn">
-                        <button class="form__button" type="submit">
-                          Залишити запит
                         </button>
                       </div>
-                    </div>
-                  </form>
+                      <div class="products-list__item-extrainfo">
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-raiting"
+                            >Рейтинг</span
+                          >
+                          <img
+                            src="./star-icon.svg"
+                            alt="star-icon"
+                            class="products-list__item-star"
+                          />
+                          <span class="products-list__item-raiting">4,8</span>
+                        </div>
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-sextype"
+                            >Унісекс</span
+                          >
+                          <img
+                            src="./sex-icon.svg"
+                            alt="sex-icon"
+                            class="products-list__item-seximg"
+                          />
+                        </div>
+                      </div>
+                      <div class="products-list__item-desc">
+                        <span
+                          >Аромат чистоти, насичений справжньою дерев'яною
+                          шавлією. Він обволікає свіжістю безмежного морського
+                          узбережжя.</span
+                        >
+                      </div>
+                    </li>
+                    <li class="products-list__item">
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="./product-img-2.png"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                        <img
+                          src="./heart-orange-icon.svg"
+                          alt=""
+                          class="heart-orange-icon"
+                        />
+                      </div>
+                      <h5 class="products-list__item-title">
+                        Аромадифузор LeMien №5 - Fleur Narcotique
+                      </h5>
+                      <div class="products-list__item-info">
+                        <div class="products-list__item-discount">
+                          <div>
+                            <span class="products-list__item-price">810₴</span>
+                            <span class="products-list__item-percent"
+                              >-30%</span
+                            >
+                          </div>
+                          <h4 class="products-list__item-curr-price">
+                            640<span class="money-symbol">₴</span>
+                          </h4>
+                        </div>
+                        <button class="products-list__item-button">
+                          <img
+                            src="./basket-icon.svg"
+                            alt="item-buy-icon"
+                            class="products-list__item-buy-icon"
+                          />
+                        </button>
+                      </div>
+                      <div class="products-list__item-extrainfo">
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-raiting"
+                            >Рейтинг</span
+                          >
+                          <img
+                            src="./star-icon.svg"
+                            alt="star-icon"
+                            class="products-list__item-star"
+                          />
+                          <span class="products-list__item-raiting">4,8</span>
+                        </div>
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-sextype"
+                            >Унісекс</span
+                          >
+                          <img
+                            src="./sex-icon.svg"
+                            alt="sex-icon"
+                            class="products-list__item-seximg"
+                          />
+                        </div>
+                      </div>
+                      <div class="products-list__item-desc">
+                        <span
+                          >Аромат чистоти, насичений справжньою дерев'яною
+                          шавлією. Він обволікає свіжістю безмежного морського
+                          узбережжя.</span
+                        >
+                      </div>
+                    </li>
+                  </ul>
                 </div>
-              </div>
-              <div class="aboutus__main-title">
-                <h4 class="aboutus__main-title">ТрендСіті</h4>
-                <strong class="aboutus__main-subtitle">Відгуки</strong>
-                <div class="line"></div>
-              </div>
-              <div class="reviews">
-                <ul class="reviews__list">
-                  <li class="reviews__list-item aboutus__content">
-                    <div class="reviews__list-item__rating">
-                      <div>
-                        <img
-                          src="./star-icon.svg"
-                          alt="star"
-                          class="reviews__list-item__img"
-                        />
-                        <span>4,8</span>
-                      </div>
-                    </div>
-                    <p class="reviews__list-item__text">
-                      Замовляю на TrendCity багато разів — завжди швидка
-                      доставка і відмінна якість товарів. Дуже зручно перевіряти
-                      посилку на Новій Пошті це дає впевненість.
-                    </p>
-                    <div class="line"></div>
-                    <h5 class="reviews__list-item__username">Олена Мазур</h5>
-                  </li>
-                  <li class="reviews__list-item aboutus__content">
-                    <div class="reviews__list-item__rating">
-                      <div>
-                        <img
-                          src="./star-icon.svg"
-                          alt="star"
-                          class="reviews__list-item__img"
-                        />
-                        <span>4,8</span>
-                      </div>
-                    </div>
-                    <p class="reviews__list-item__text">
-                      Замовляю на TrendCity багато разів — завжди швидка
-                      доставка і відмінна якість товарів. Дуже зручно перевіряти
-                      посилку на Новій Пошті це дає впевненість.
-                    </p>
-                    <div class="line"></div>
-                    <h5 class="reviews__list-item__username">Олена Мазур</h5>
-                  </li>
-                  <li class="reviews__list-item aboutus__content">
-                    <div class="reviews__list-item__rating">
-                      <div>
-                        <img
-                          src="./star-icon.svg"
-                          alt="star"
-                          class="reviews__list-item__img"
-                        />
-                        <span>4,8</span>
-                      </div>
-                    </div>
-                    <p class="reviews__list-item__text">
-                      Замовляю на TrendCity багато разів — завжди швидка
-                      доставка і відмінна якість товарів. Дуже зручно перевіряти
-                      посилку на Новій Пошті це дає впевненість.
-                    </p>
-                    <div class="line"></div>
-                    <h5 class="reviews__list-item__username">Олена Мазур</h5>
-                  </li>
-                  <li class="reviews__list-item aboutus__content">
-                    <div class="reviews__list-item__rating">
-                      <div>
-                        <img
-                          src="./star-icon.svg"
-                          alt="star"
-                          class="reviews__list-item__img"
-                        />
-                        <span>4,8</span>
-                      </div>
-                    </div>
-                    <p class="reviews__list-item__text">
-                      Замовляю на TrendCity багато разів — завжди швидка
-                      доставка і відмінна якість товарів. Дуже зручно перевіряти
-                      посилку на Новій Пошті це дає впевненість.
-                    </p>
-                    <div class="line"></div>
-                    <h5 class="reviews__list-item__username">Олена Мазур</h5>
-                  </li>
-                </ul>
               </div>
             </div>
           </section>
