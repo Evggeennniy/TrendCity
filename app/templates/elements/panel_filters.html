@@ -1,0 +1,190 @@
+{% load static %}
+
+<form method="get" id="filter-form">
+  <div class="panel__calatog-nav" id="panel-filter-nav">
+    <div class="slider-menu__header">
+      <h4 class="slider-menu__header-title">
+        <a href="{% url 'index' %}" class="link-to-aboutus">ТрендСіті</a>
+      </h4>
+      <div class="slider-menu__nav">
+        <button class="menu-item lang-btn">
+          <h5 class="menu-item__title">UA</h5>
+          <img
+            src="{% static 'arrow-small.svg' %}"
+            alt="icon"
+            class="menu-item__icon"
+          />
+        </button>
+        <img
+          src="{% static 'close-icon.svg' %}"
+          alt="сlose-btn"
+          class="close-btn menu-item__icon"
+          id="slider-filter-btn"
+        />
+      </div>
+    </div>
+    <div class="panel__block panel__brands">
+      <h5 class="panel__title panel__brands-title">Бренди</h5>
+      <ul class="panel__list">
+        {% for brand in brands %}
+        <li class="panel__item offers-item">
+          <div class="panel__item-wrap">
+            <label class="checkbox-wrap">
+              <!-- prettier-ignore -->
+              <input type="checkbox" class="checkbox" name="brand" 
+              value="{{ brand.id }}"
+              {% if brand.id in selected_brands %} checked {% endif %}/>
+
+              <span class="offers-title">{{ brand.name }}</span>
+            </label>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="panel__block panel__offers">
+      <h5 class="panel__title panel__offers-title">Пропозиції</h5>
+      <ul class="panel__list">
+        <li class="panel__item offers-item">
+          <div class="panel__item-wrap">
+            <label class="checkbox-wrap">
+              <!-- prettier-ignore -->
+              <input
+                type="checkbox"
+                class="checkbox"
+                name="new_items"
+                value="1"
+                {% if selected_new_items %}checked{% endif %}
+              />
+              <span class="offers-title">Новинки</span>
+            </label>
+          </div>
+        </li>
+        <li class="panel__item offers-item">
+          <div class="panel__item-wrap">
+            <label class="checkbox-wrap">
+              <!-- prettier-ignore -->
+              <input
+                type="checkbox"
+                class="checkbox"
+                name="top_items"
+                value="1"
+                {% if selected_top_items %}checked{% endif %}
+              />
+              <span class="offers-title">Топ товари</span>
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="panel__block panel__price">
+      <h5 class="panel__title panel__price-title">Ціна</h5>
+      <div class="range-slider">
+        <input
+          type="range"
+          min="0"
+          max="2000"
+          value="{{ min_price }}"
+          id="minRange"
+          step="5"
+          class="range-line"
+        />
+        <input
+          type="range"
+          min="0"
+          max="2000"
+          value="{{ max_price }}"
+          id="maxRange"
+          step="5"
+          class="range-line"
+        />
+      </div>
+      <div class="range-values">
+        <span class="range-filter"
+          ><span>Від:</span>
+          <input
+            type="text"
+            id="minValue"
+            value="{{ min_price }}"
+            max="2000"
+            readonly
+          />
+        </span>
+        <span class="range-filter"
+          ><span>До:</span>
+          <input
+            type="text"
+            id="maxValue"
+            value="{{ max_price }}"
+            max="2000"
+            readonly
+        /></span>
+      </div>
+    </div>
+    <div class="panel__block panel__offers">
+      <h5 class="panel__title panel__offers-title">ЗНИЖКА</h5>
+      <ul class="panel__list">
+        <li class="panel__item offers-item">
+          <div class="panel__item-wrap">
+            <label class="checkbox-wrap">
+              <!-- prettier-ignore -->
+              <input type="checkbox" class="checkbox" 
+              name="discount_items" 
+              {% if selected_discount_items %}checked{% endif %}/>
+              <span class="offers-title">Зі знижкою</span>
+            </label>
+          </div>
+        </li>
+        <li class="panel__item offers-item">
+          <div class="panel__item-wrap">
+            <label class="checkbox-wrap">
+              <!-- prettier-ignore -->
+              <input type="checkbox" class="checkbox" name="all_items"
+              {% if selected_all_items %}checked{% endif %} />
+              <span class="offers-title">Без знижки</span>
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="panel__block panel__offers">
+      <h5 class="panel__title panel__offers-title">Для кого</h5>
+      <ul class="panel__list">
+        <li class="panel__item offers-item">
+          <div class="panel__item-wrap">
+            <label class="checkbox-wrap">
+              <input type="checkbox" class="checkbox" name="gender" value="men"
+              {% if 'men' in selected_genders %} checked {% endif %} />
+              <span class="offers-title">Чоловіче</span>
+            </label>
+          </div>
+        </li>
+        <li class="panel__item offers-item">
+          <div class="panel__item-wrap">
+            <label class="checkbox-wrap">
+              <!-- prettier-ignore -->
+              <input type="checkbox" class="checkbox" name="gender"
+              value="women" 
+              {% if 'women' in selected_genders %} checked {% endif %} />
+              <span class="offers-title">Жіноче</span>
+            </label>
+          </div>
+        </li>
+        <li class="panel__item offers-item">
+          <div class="panel__item-wrap">
+            <label class="checkbox-wrap">
+              <!-- prettier-ignore -->
+              <input type="checkbox" class="checkbox" name="gender"
+              value="unisex" 
+              
+              {% if 'unisex' in selected_genders %} checked {% endif %} />
+              <span class="offers-title">Унісекс</span>
+            </label>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    {% include 'panel_info.html' %}
+  </div>
+</form>

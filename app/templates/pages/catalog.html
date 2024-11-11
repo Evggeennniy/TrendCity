@@ -1,0 +1,241 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <script src="{% static 'default.js' %}" defer></script>
+    <script src="{% static 'catalog.js' %}" defer></script>
+    <title>ТрендСіті - Каталог</title>
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+
+    {% include 'slider_menu.html' %} {% include 'authpopup.html' %}
+
+    <div class="page-wrap">
+      {% include 'navbar.html' %}
+      <main class="main">
+        <div class="main-wrap container">
+          <section class="main__panel" id="main-panel">
+            <div class="panel-wrap">
+              <!-- prettier-ignore -->
+              {% include 'panel_categories.html' %}
+              {% include 'panel_filters.html' %}
+            </div>
+          </section>
+          <section class="main__content index">
+            <div class="content-wrap">
+              <div class="path-structure">
+                <div class="path-structure-wrap">
+                  <div class="path-structure__item">
+                    <img
+                      src="{% static 'home-icon.svg' %}"
+                      alt="icon"
+                      class="path-structure__icon"
+                    />
+                    <a href="{% url 'index' %}" class="path-structure__title"
+                      >Головна</a
+                    >
+                    <img
+                      src="{% static 'arrow-path-icon.svg' %}"
+                      alt="arrow-icon"
+                      class="path-structure__arrow path-structure__icon"
+                    />
+                  </div>
+                  <div class="path-structure__item">
+                    <img
+                      src="{% static 'catalog-icon.svg' %}"
+                      alt="icon"
+                      class="path-structure__icon"
+                    />
+                    <span class="path-structure__title">Каталог</span>
+                  </div>
+                </div>
+              </div>
+              <div class="page-wrap favorite">
+                <img
+                  src="{% static 'favorite-img.png' %}"
+                  alt="header-img"
+                  class="favorite-img"
+                />
+                <div class="favorite__nav">
+                  <div class="favorite__nav-part">
+                    <button
+                      class="favorite__nav-item filter-btn"
+                      id="close-slider-filter-btn"
+                    >
+                      <img
+                        src="{% static 'filter-icon.svg' %}"
+                        alt="icon"
+                        class="favorite__nav-icon"
+                      />
+                      <h5>Фільтри</h5>
+                    </button>
+                  </div>
+                  <div class="favorite__nav-part">
+                    <div class="sort-container">
+                      <button
+                        class="favorite__nav-item sort-btn"
+                        id="sortButton"
+                      >
+                        <img
+                          src="{% static 'sort-icon.svg' %}"
+                          alt="icon"
+                          class="favorite__nav-icon"
+                        />
+                        <!-- prettier-ignore -->
+                        <h5>
+                          Сортування: {{ current_sort_label|default:"Виберіть" }}
+                        </h5>
+                      </button>
+                      <div
+                        class="sort-dropdown"
+                        id="sortDropdown"
+                        style="display: none"
+                      >
+                        <ul class="sort-options">
+                          <li>
+                            <a
+                              href="#"
+                              class="sort-option"
+                              data-sort="price_asc"
+                              >Ціна: за зростанням</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              class="sort-option"
+                              data-sort="price_desc"
+                              >Ціна: за спаданням</a
+                            >
+                          </li>
+                          <li>
+                            <a href="#" class="sort-option" data-sort="name_asc"
+                              >Назва: від А до Я</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              href="#"
+                              class="sort-option"
+                              data-sort="name_desc"
+                              >Назва: від Я до А</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="products-list-wrap">
+                  {% if object_list %}
+                  <ul class="products-list discounts__list">
+                    {% for item in object_list %}
+                    <li
+                      class="products-list__item"
+                      product-id="{{ item.id }}"
+                      inlocalbasket="false"
+                    >
+                      {% if item.special_sticker %}
+                      <div class="sticker-wrap">
+                        <span class="sticker-{{item.special_sticker}}">
+                          {{ item.get_special_sticker_display }}</span
+                        >
+                      </div>
+                      {% endif %}
+                      <div class="product-list__img-wrap">
+                        <a
+                          class="product-link"
+                          href="{% url 'product' item.id %}"
+                        >
+                          <img
+                            src="{{ item.images.all.0.image.url }}"
+                            alt="product-img"
+                            class="products-list__item-img"
+                          />
+                        </a>
+                        <img
+                          src="{% static 'heart-orange-icon.svg' %}"
+                          alt=""
+                          class="heart-orange-icon favorite-{{ item.id }}"
+                          data-product-id="{{ item.id }}"
+                        />
+                      </div>
+                      <h5 class="products-list__item-title">{{ item.name }}</h5>
+                      <div class="products-list__item-info">
+                        <div class="products-list__item-discount">
+                          <!-- prettier-ignore -->
+                          {% with item.volumes.all|first as volume %} 
+                          {% if volume and volume.discount %}
+                          <div>
+                            <span class="products-list__item-price"
+                              ><span class="full-price">{{ volume.price }}</span
+                              >₴</span
+                            >
+                            <span class="products-list__item-percent"
+                              >-{{ volume.discount }}%</span
+                            >
+                          </div>
+                          {% endif %}
+                          <h4 class="products-list__item-curr-price">
+                            <span class="current-price"
+                              >{{ volume.get_curr_price }}</span
+                            ><span class="money-symbol">₴</span>
+                          </h4>
+                          {% endwith %}
+                        </div>
+                        <button class="products-list__item-button">
+                          <img
+                            src="{% static 'basket-icon.svg' %}"
+                            alt="item-buy-icon"
+                            class="products-list__item-buy-icon"
+                          />
+                        </button>
+                      </div>
+                      <div class="products-list__item-extrainfo">
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-raiting"
+                            >Рейтинг</span
+                          >
+                          <img
+                            src="{% static 'star-icon.svg' %}"
+                            alt="star-icon"
+                            class="products-list__item-star"
+                          />
+                          <span class="products-list__item-raiting"
+                            >{{ item.get_avg_review }}</span
+                          >
+                        </div>
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-sextype"
+                            >{{ item.get_gender_for_display }}</span
+                          >
+                          <img
+                            src="{% static 'sex-icon.svg' %}"
+                            alt="sex-icon"
+                            class="products-list__item-seximg"
+                          />
+                        </div>
+                      </div>
+                      <div class="products-list__item-desc">
+                        <span>{{ item.description|safe }}</span>
+                      </div>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+      {% include 'footer.html' %}
+    </div>
+  </body>
+</html>

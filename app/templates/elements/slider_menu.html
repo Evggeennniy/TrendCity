@@ -1,0 +1,137 @@
+{% load static %}
+
+<div class="slider-menu" id="slider-nav-menu">
+  <div class="slider-menu-wrap">
+    <div class="slider-menu__header">
+      <h4 class="slider-menu__header-title">
+        <a href="{% url 'index' %}" class="link-to-aboutus">ТрендСіті</a>
+      </h4>
+      <div class="slider-menu__nav">
+        <button class="menu-item lang-btn">
+          <h5 class="menu-item__title">UA</h5>
+          <img
+            src="{% static 'arrow-small.svg' %}"
+            alt="icon"
+            class="menu-item__icon"
+          />
+        </button>
+        <img
+          src="{% static 'close-icon.svg' %}"
+          alt="сlose-btn"
+          class="close-btn menu-item__icon"
+          id="close-slider-btn"
+        />
+      </div>
+    </div>
+    {% include 'panel_categories.html' %}
+    <div class="line"></div>
+    <div class="slider-menu__block">
+      <div class="slider-menu__auth slider-menu__item">
+        <img
+          src="{% static 'profile-slider-icon.svg' %}"
+          alt="auth-icon"
+          class="slider-menu__auth-icon slider-icon"
+        />
+        {% if request.user.id %}
+        <a
+          class="slider-menu__auth-title slider-title slider-menu__link"
+          auth-action="logout"
+          href="{% url 'logout' %}"
+        >
+          Вийти
+        </a>
+        {% else %}
+        <h4
+          class="slider-menu__auth-title slider-title"
+          id="slider-auth-btn"
+          auth-action="login"
+        >
+          Увійти/Реєстрація
+        </h4>
+        {% endif %}
+      </div>
+    </div>
+    <p class="slider-menu__content-title">Сторінки</p>
+    <div class="slider-menu__block slider-menu__block-pages">
+      <div class="slider-menu__auth slider-menu__item">
+        <img
+          src="{% static 'team-slider-icon.svg' %}"
+          alt="auth-icon"
+          class="slider-menu__auth-icon slider-icon"
+        />
+        <h4 class="slider-menu__auth-title slider-title">
+          <a href="{% url 'about_us' %}" class="slider-menu__link"
+            >Про Трендсіті</a
+          >
+        </h4>
+      </div>
+      <div class="slider-menu__auth slider-menu__item">
+        <img
+          src="{% static 'info-slider-icon.svg' %}"
+          alt="auth-icon"
+          class="slider-menu__auth-icon slider-icon"
+        />
+        <a
+          href="{% url 'about_us' %}"
+          class="slider-menu__auth-title slider-title slider-menu__link"
+          >Співпраця</a
+        >
+      </div>
+      <div class="slider-menu__auth slider-menu__item">
+        <img
+          src="{% static 'heart-icon.svg' %}"
+          alt="auth-icon"
+          class="slider-menu__auth-icon slider-icon"
+        />
+        <a href="{% url 'favorite' %}" class="slider-title slider-menu__link"
+          >Обранi</a
+        >
+      </div>
+      <div class="slider-menu__auth slider-menu__item">
+        <img
+          src="{% static 'basket-slider-icon.svg' %}"
+          alt="auth-icon"
+          class="slider-menu__auth-icon slider-icon"
+        />
+        <a href="{% url 'basket' %}" class="slider-title slider-menu__link"
+          >Корзина</a
+        >
+      </div>
+      <div class="slider-menu__auth slider-menu__item">
+        <img
+          src="{% static 'basket-slider-icon.svg' %}"
+          alt="auth-icon"
+          class="slider-menu__auth-icon slider-icon"
+        />
+        <a href="{% url 'contacts' %}" class="slider-title slider-menu__link"
+          >Контакти</a
+        >
+      </div>
+    </div>
+    <p class="slider-menu__content-title">Топ товари</p>
+    <div class="slider-menu__block slider-menu__block-top">
+      {% if top_products %}
+      <ul class="slider-menu__top-list">
+        {% for product in top_products %}
+        <li class="slider-menu__top-item">
+          <img
+            src="{{ product.image.url }}"
+            alt="top-item__img"
+            class="slider-menu__top-img"
+          />
+          <div class="slider-menu__top-wrap">
+            <img
+              src="{% static 'item-raiting.png' %}"
+              alt="item-raiting"
+              class="slider-menu__top-raiting"
+            />
+            <p class="slider-menu__top-title">{{ product.name }}</p>
+            <h5 class="slider-menu__top-price">{{ product.price }}₴</h5>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</div>

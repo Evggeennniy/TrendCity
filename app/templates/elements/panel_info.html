@@ -1,0 +1,19 @@
+{% load static %}
+
+<div class="panel__block panel__info">
+  <h5 class="panel__title info-title">ІНФОРМАЦІЯ</h5>
+  <ul class="panel__list info-list">
+    <li class="info-item">
+      <a href="{% url 'contacts' %}" class="panel__item panel__item-wrap">
+        <img
+          src="{% static 'info-icon.svg' %}"
+          alt="info-item__icon"
+          class="info-item__icon"
+        />
+        <div class="panel__item-wrap">
+          <p class="panel__item-title">Контакти</p>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>

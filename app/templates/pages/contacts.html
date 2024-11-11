@@ -1,0 +1,236 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <script src="{% static 'default.js' %}" defer></script>
+    <title>ТрендСіті - Контакти</title>
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+
+    {% include 'slider_menu.html' %} {% include 'authpopup.html' %}
+
+    <div class="page-wrap">
+      {% include 'navbar.html' %}
+      <main class="main">
+        <div class="container">
+          <section class="main__fullcontent contacts">
+            <div class="content-wrap">
+              <div class="path-structure">
+                <div class="path-structure-wrap">
+                  <div class="path-structure__item">
+                    <img
+                      src="{% static 'home-icon.svg' %}"
+                      alt="icon"
+                      class="path-structure__icon"
+                    />
+                    <a href="{% url 'index' %}" class="path-structure__title"
+                      >Головна</a
+                    >
+                    <img
+                      src="{% static 'arrow-path-icon.svg' %}"
+                      alt="arrow-icon"
+                      class="path-structure__arrow path-structure__icon"
+                    />
+                  </div>
+                  <div class="path-structure__item">
+                    <img
+                      src="{% static 'contacts-icon.svg' %}"
+                      alt="icon"
+                      class="path-structure__icon"
+                    />
+                    <span class="path-structure__title">Контакти</span>
+                  </div>
+                </div>
+              </div>
+              <div class="page-wrap">
+                <div class="contacts__intro">
+                  <h4 class="contacts__title">Контактна сторінка</h4>
+                  <h5 class="contacts__subtitle">
+                    У Вас з’явились питання? Ми люб’язно<br />допоможемо!
+                  </h5>
+                </div>
+                <div class="contacts__info contacts__block">
+                  <h3 class="contacts__info-title">Ми завжди на зв'язку!</h3>
+                  <p class="contacts__info-subtitle">
+                    Команда TrendCity завжди готова надати підтримку та
+                    допомогти вам з будь-яким питанням
+                  </p>
+                </div>
+                <div class="contacts__links contacts__block">
+                  <div class="contacts__links-general">
+                    <div class="contacts__link">
+                      <img
+                        src="{% static 'contact-phone-icon.svg' %}"
+                        alt="icon"
+                        class="contacts__link-icon"
+                      />
+                      <div class="contacts__link-info">
+                        <span class="contacts__link-title"
+                          >Телефон / Viber</span
+                        >
+                        <span class="contacts__link-subtitle"
+                          >+38 (063) 67 591 67</span
+                        >
+                      </div>
+                    </div>
+                    <div class="contacts__link">
+                      <img
+                        src="{% static 'email-icon.svg' %}"
+                        alt="icon"
+                        class="contacts__link-icon"
+                      />
+                      <div class="contacts__link-info">
+                        <span class="contacts__link-title">Ел. пошта</span>
+                        <span class="contacts__link-subtitle"
+                          >trendcity@gmail.com</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                  <div class="contacts__socials">
+                    <div class="contacts__link">
+                      <img
+                        src="{% static 'tiktok-contact-link.png' %}"
+                        alt="icon"
+                        class="contacts__link-icon"
+                      />
+                      <span class="contacts__link-url">@TrendCityUA</span>
+                    </div>
+                    <div class="contacts__link">
+                      <img
+                        src="{% static 'inst-contact-link.png' %}"
+                        alt="icon"
+                        class="contacts__link-icon"
+                      />
+                      <span class="contacts__link-url">@TrendCity_ua</span>
+                    </div>
+                    <div class="contacts__link">
+                      <img
+                        src="{% static 'telegram-contact-link.png' %}"
+                        alt="icon"
+                        class="contacts__link-icon"
+                      />
+                      <span class="contacts__link-url">@TrendCity</span>
+                    </div>
+                    <div class="contacts__link">
+                      <img
+                        src="{% static 'facebook-contact-link.png' %}"
+                        alt="icon"
+                        class="contacts__link-icon"
+                      />
+                      <span class="contacts__link-url">@TrendCity_ua</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="contacts__feedback contacts__block">
+                  <h3 class="contacts__feedback-title">
+                    Форма зворотнього зв'язку
+                  </h3>
+                  <form
+                    action="{% url 'feedback_form' %}"
+                    method="post"
+                    class="contacts__feedback-form"
+                  >
+                    {% csrf_token %}
+                    <div
+                      class="contacts__feedback-wrap contacts__feedback-first"
+                    >
+                      <div class="form__input-wrap form__input-email">
+                        <img
+                          src="{% static 'email-icon.svg' %}"
+                          alt="icon"
+                          class="form__icon"
+                        />
+                        <input
+                          type="text"
+                          class="form__input"
+                          placeholder="Ел. пошта"
+                          name="email"
+                          required
+                        />
+                      </div>
+                      <div class="form__input-wrap form__input-username">
+                        <img
+                          src="{% static 'user-icon.svg' %}"
+                          alt="icon"
+                          class="form__icon"
+                        />
+                        <input
+                          type="text"
+                          class="form__input"
+                          placeholder="Ваше ім’я"
+                          name="username"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="contacts__feedback-wrap contacts__feedback-second"
+                    >
+                      <div class="form__input-wrap form__input-countrycode">
+                        <input
+                          type="text"
+                          class="form__input form__input-code"
+                          placeholder="+380"
+                          pattern="[0-9]*"
+                          name="country_code"
+                          required
+                        />
+                      </div>
+                      <div class="form__input-wrap form__input-number">
+                        <input
+                          type="text"
+                          class="form__input"
+                          placeholder="Номер телефону"
+                          pattern="[0-9 ]*"
+                          name="phone_number"
+                          oninput="formatPhone(this)"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="form__input-wrap form__textarea-wrap">
+                      <textarea
+                        class="form__input-textarea form__input"
+                        placeholder="Ваш лист"
+                        name="message"
+                        required
+                      ></textarea>
+                    </div>
+                    <div class="form__nav">
+                      <button
+                        class="form__nav-btn form__nav-item"
+                        type="submit"
+                      >
+                        Надіслати
+                      </button>
+                      <select
+                        name="topic"
+                        id=""
+                        class="form__nav-select form__nav-item"
+                        required
+                      >
+                        <option value="">Оберіть тему</option>
+                        <option value="Гарантія">Гарантія</option>
+                        <option value="Оплата">Оплата</option>
+                        <option value="Повернення">Повернення</option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+      {% include 'footer.html' %}
+    </div>
+  </body>
+</html>

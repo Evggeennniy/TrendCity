@@ -1,0 +1,31 @@
+{% load static %}
+
+<div class="panel__block panel__categories">
+  <h5 class="panel__title categories-title">Kатегорії</h5>
+  {% if categories %}
+  <ul class="panel__list categories-list">
+    {% for category in categories %}
+    <li class="categories-item">
+      <a
+        href="{% url 'catalog' category.id %}"
+        class="panel__item categories-link"
+      >
+        <div class="panel__item-wrap categories-wrap">
+          <img
+            src="{{ category.icon.url }}"
+            alt="panel__item-icon"
+            class="panel__item-icon"
+          />
+          <p class="panel__item-title categories-title">{{ category.name }}</p>
+        </div>
+        <img
+          src="{% static 'arrow-sml-black.svg' %}"
+          alt="arrow"
+          class="panel__item-arrow"
+        />
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>

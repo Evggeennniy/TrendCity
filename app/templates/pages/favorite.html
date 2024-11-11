@@ -1,0 +1,150 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <script src="{% static 'default.js' %}" defer></script>
+    <title>ТрендСіті - Обрані</title>
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+
+    {% include 'slider_menu.html' %} {% include 'authpopup.html' %}
+
+    <div class="page-wrap">
+      {% include 'navbar.html' %}
+      <main class="main">
+        <div class="main-wrap container">
+          <section class="main__panel">
+            <div class="panel-wrap">
+              <!-- prettier-ignore -->
+              {% include 'panel_categories.html' %}
+              {% include 'panel_top.html' %}
+              {% include 'panel_info.html' %}
+            </div>
+          </section>
+          <section class="main__content index">
+            <div class="content-wrap">
+              <div class="path-structure">
+                <div class="path-structure-wrap">
+                  <div class="path-structure__item">
+                    <img
+                      src="{% static 'home-icon.svg' %}"
+                      alt="icon"
+                      class="path-structure__icon"
+                    />
+                    <a
+                      href="{% static 'index.html' %}"
+                      class="path-structure__title"
+                      >Головна</a
+                    >
+                    <img
+                      src="{% static 'arrow-path-icon.svg' %}"
+                      alt="arrow-icon"
+                      class="path-structure__arrow path-structure__icon"
+                    />
+                  </div>
+                  <div class="path-structure__item">
+                    <img
+                      src="{% static 'heart-black-border-icon.svg' %}"
+                      alt="icon"
+                      class="path-structure__icon"
+                    />
+                    <span class="path-structure__title">Обрані товари</span>
+                  </div>
+                </div>
+              </div>
+              <div class="page-wrap favorite">
+                <img
+                  src="{% static 'favorite-img.png' %}"
+                  alt="header-img"
+                  class="favorite-img"
+                />
+
+                <div class="products-list-wrap">
+                  <ul
+                    class="products-list favorite-list discounts__list"
+                    id="favorite-list"
+                  >
+                    <!-- <li class="products-list__item">
+                      <div class="product-list__img-wrap">
+                        <img
+                          src="{% static 'product-img-1.png' %}"
+                          alt="product-img"
+                          class="products-list__item-img"
+                        />
+                        <img
+                          src="{% static 'heart-orange-icon.svg' %}"
+                          alt=""
+                          class="heart-orange-icon"
+                        />
+                      </div>
+                      <h5 class="products-list__item-title">
+                        Аромадифузор LeMien №5 - Fleur Narcotique
+                      </h5>
+                      <div class="products-list__item-info">
+                        <div class="products-list__item-discount">
+                          <div>
+                            <span class="products-list__item-price">810₴</span>
+                            <span class="products-list__item-percent"
+                              >-30%</span
+                            >
+                          </div>
+                          <h4 class="products-list__item-curr-price">
+                            640<span class="money-symbol">₴</span>
+                          </h4>
+                        </div>
+                        <button class="products-list__item-button">
+                          <img
+                            src="{% static 'basket-icon.svg' %}"
+                            alt="item-buy-icon"
+                            class="products-list__item-buy-icon"
+                          />
+                        </button>
+                      </div>
+                      <div class="products-list__item-extrainfo">
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-raiting"
+                            >Рейтинг</span
+                          >
+                          <img
+                            src="{% static 'star-icon.svg' %}"
+                            alt="star-icon"
+                            class="products-list__item-star"
+                          />
+                          <span class="products-list__item-raiting">4,8</span>
+                        </div>
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-sextype"
+                            >Унісекс</span
+                          >
+                          <img
+                            src="{% static 'sex-icon.svg' %}"
+                            alt="sex-icon"
+                            class="products-list__item-seximg"
+                          />
+                        </div>
+                      </div>
+                      <div class="products-list__item-desc">
+                        <span
+                          >Аромат чистоти, насичений справжньою дерев'яною
+                          шавлією. Він обволікає свіжістю безмежного морського
+                          узбережжя.</span
+                        >
+                      </div>
+                    </li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+      {% include 'footer.html' %}
+    </div>
+  </body>
+</html>

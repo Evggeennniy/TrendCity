@@ -1,0 +1,338 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <script src="{% static 'default.js' %}" defer></script>
+    <title>ТрендСіті</title>
+  </head>
+  <body>
+    {% include 'slider_menu.html' %} {% include 'authpopup.html' %}
+
+    <div class="page-wrap">
+      {% include 'navbar.html' %}
+      <main class="main">
+        <div class="main-wrap container">
+          <section class="main__panel">
+            <div class="panel-wrap">
+              <!-- prettier-ignore -->
+              {% include 'panel_categories.html' %}
+              {% include 'panel_top.html' %}
+              {% include 'panel_info.html' %}
+            </div>
+          </section>
+          <section class="main__content index">
+            <div class="content-wrap">
+              <div class="content__slider">
+                <img
+                  src="{% static 'slider-1.png' %}"
+                  alt="slider-photo"
+                  class="content__slider-img slider-img__1"
+                />
+                <img
+                  src="{% static 'slider-2.png' %}"
+                  alt="slider-photo"
+                  class="content__slider-img slider-img__2"
+                />
+                <img
+                  src="{% static 'slider-3.png' %}"
+                  alt="slider-photo"
+                  class="content__slider-img slider-img__3"
+                />
+              </div>
+              <a href="{% url 'catalog' %}" class="content__link-categories">
+                <img
+                  src="{% static 'menu-icon.svg' %}"
+                  alt="menu-icon"
+                  class="content__link-categories__icon"
+                />
+                ВСІ КАТЕГОРІЇ</a
+              >
+              {% if categories %}
+              <ul class="content__categories-list">
+                {% for category in categories %}
+                <li class="categories-list__item">
+                  <a
+                    href="{% url 'catalog' category.id %}"
+                    class="categories-list__link"
+                  >
+                    <img
+                      src="{{ category.image.url }}"
+                      alt="item-img"
+                      class="categories-list__item-img"
+                    />
+                    <p class="categories-list__item-title">
+                      {{ category.name }}
+                    </p>
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+              <div class="products">
+                <div class="products__main-title">
+                  <h4 class="products__title">ТрендСіті</h4>
+                  <strong class="products__subtitle">Акційні товари</strong>
+                  <div class="line"></div>
+                </div>
+                <!-- prettier-ignore -->
+                {% if promo_products %}
+                <div class="products-list-wrap">
+                  <ul class="products-list discounts__list">
+                    {% for item in promo_products %}
+                    <li class="products-list__item">
+                      {% if item.special_sticker %}
+                      <div class="sticker-wrap">
+                        <span class="sticker-{{item.special_sticker}}">
+                          {{ item.get_special_sticker_display }}</span
+                        >
+                      </div>
+                      {% endif %}
+
+                      <div class="product-list__img-wrap">
+                        <a
+                          class="product-link"
+                          href="{% url 'product' item.id %}"
+                        >
+                          <img
+                            src="{{ item.images.all.0.image.url }}"
+                            alt="product-img"
+                            class="products-list__item-img"
+                          />
+                        </a>
+                        <img
+                          src="{% static 'heart-orange-icon.svg' %}"
+                          alt=""
+                          class="heart-orange-icon favorite-{{ item.id }}"
+                          data-product-id="{{ item.id }}"
+                        />
+                      </div>
+                      <h5 class="products-list__item-title">{{ item.name }}</h5>
+                      <div class="products-list__item-info">
+                        <div class="products-list__item-discount">
+                          <!-- prettier-ignore -->
+                          {% with item.volumes.all|first as volume %} 
+                          {% if volume and volume.discount %}
+                          <div>
+                            <span class="products-list__item-price"
+                              ><span class="full-price">{{ volume.price }}</span
+                              >₴</span
+                            >
+                            <span class="products-list__item-percent"
+                              >-{{ volume.discount }}%</span
+                            >
+                          </div>
+                          {% endif %}
+                          <h4 class="products-list__item-curr-price">
+                            <span class="current-price"
+                              >{{ volume.get_curr_price }}</span
+                            ><span class="money-symbol">₴</span>
+                          </h4>
+                          {% endwith %}
+                        </div>
+                        <a
+                          class="product-link"
+                          href="{% url 'product' item.id %}"
+                        >
+                          <button class="products-list__item-button">
+                            <img
+                              src="{% static 'basket-add-icon.svg' %}"
+                              alt="item-buy-icon"
+                              class="products-list__item-buy-icon"
+                            />
+                          </button>
+                        </a>
+                      </div>
+                      <div class="products-list__item-extrainfo">
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-raiting"
+                            >Рейтинг</span
+                          >
+                          <img
+                            src="{% static 'star-icon.svg' %}"
+                            alt="star-icon"
+                            class="products-list__item-star"
+                          />
+                          <span class="products-list__item-raiting"
+                            >{{ item.get_avg_review }}</span
+                          >
+                        </div>
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-sextype"
+                            >{{ item.get_gender_for_display }}</span
+                          >
+                          <img
+                            src="{% static 'sex-icon.svg' %}"
+                            alt="sex-icon"
+                            class="products-list__item-seximg"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="products-list__item-desc">
+                        <span>{{ item.description|safe }}</span>
+                      </div>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endif %}
+                <!-- prettier-ignore -->
+                {% if top_products %} 
+                {% for title, list in filtered_top_products.items %}
+                <h4 class="products__title">
+                  <strong class="products__subtitle">Топ {{ title }}</strong>
+                </h4>
+                <div class="products-list-wrap">
+                  <ul class="products-list discounts__list">
+                    {% for item in list %}
+                    <li
+                      class="products-list__item"
+                      product-id="{{ item.id }}"
+                      inlocalbasket="false"
+                    >
+                      {% if item.special_sticker %}
+                      <div class="sticker-wrap">
+                        <span class="sticker-{{item.special_sticker}}">
+                          {{ item.get_special_sticker_display }}</span
+                        >
+                      </div>
+                      {% endif %}
+                      <div class="product-list__img-wrap">
+                        <a
+                          class="product-link"
+                          href="{% url 'product' item.id %}"
+                        >
+                          <img
+                            src="{{ item.images.all.0.image.url }}"
+                            alt="product-img"
+                            class="products-list__item-img"
+                          />
+                        </a>
+                        <img
+                          src="{% static 'heart-orange-icon.svg' %}"
+                          alt=""
+                          class="heart-orange-icon"
+                        />
+                      </div>
+                      <h5 class="products-list__item-title">{{ item.name }}</h5>
+                      <div class="products-list__item-info">
+                        <div class="products-list__item-discount">
+                          {% if item.discount %}
+                          <div>
+                            <span class="products-list__item-price"
+                              ><span class="full-price"
+                                >{{ item.volumes.all.0.price }}</span
+                              ><span class="money-symbol">₴</span></span
+                            >
+                            <span class="products-list__item-percent"
+                              >-{{ item.discount }}%</span
+                            >
+                          </div>
+                          {% endif %}
+                          <h4 class="products-list__item-curr-price">
+                            <span class="current-price"
+                              >{{ item.volumes.all.0.price }}</span
+                            ><span class="money-symbol">₴</span>
+                          </h4>
+                        </div>
+                        <button class="products-list__item-button">
+                          <img
+                            src="{% static 'basket-add-icon.svg' %}"
+                            alt="item-buy-icon"
+                            class="products-list__item-buy-icon"
+                          />
+                        </button>
+                      </div>
+                      <div class="products-list__item-extrainfo">
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-raiting"
+                            >Рейтинг</span
+                          >
+                          <img
+                            src="{% static 'star-icon.svg' %}"
+                            alt="star-icon"
+                            class="products-list__item-star"
+                          />
+                          <span class="products-list__item-raiting"
+                            >{{ item.get_avg_review }}</span
+                          >
+                        </div>
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-sextype"
+                            >{{ item.get_gender_for_display }}</span
+                          >
+                          <img
+                            src="{% static 'sex-icon.svg' %}"
+                            alt="sex-icon"
+                            class="products-list__item-seximg"
+                          />
+                        </div>
+                      </div>
+                      <div class="products-list__item-desc">
+                        <span>{{ item.description }}</span>
+                      </div>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endfor %} {% endif %}
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="info-wrap">
+          <section class="footer__aboutus">
+            <div class="aboutus-wrap">
+              <div class="aboutus__adventages container-sml">
+                <div class="adventages-item">
+                  <img
+                    src="{% static 'basket-black-icon.svg' %}"
+                    alt="adventages-icon"
+                    class="adventages-icon-1 adventages-icon"
+                  />
+                  <span class="adventages-title">Широкий вибір товарів</span>
+                </div>
+                <div class="adventages-item">
+                  <img
+                    src="{% static 'chair-icon.svg' %}"
+                    alt="adventages-icon"
+                    class="adventages-icon-2 adventages-icon"
+                  />
+                  <span class="adventages-title">Зручний інтерфейс</span>
+                </div>
+                <div class="adventages-item">
+                  <img
+                    src="{% static 'transaction-icon.svg' %}"
+                    alt="adventages-icon"
+                    class="adventages-icon-3 adventages-icon"
+                  />
+                  <span class="adventages-title">Безпечні транзакції</span>
+                </div>
+              </div>
+              <div class="aboutus__info">
+                <div class="aboutus__info-wrap container-sml">
+                  <h5 class="aboutus__info-title">
+                    Український Маркетплейс: Вигідні Покупки та Надійні Продавці
+                  </h5>
+                  <h5 class="aboutus__info-subtitle">
+                    Ми сучасна онлайн-платформа, що об'єднує найкращі товари в
+                    одному місці. Широкий асортимент товарів, вигідні ціни,
+                    зручний інтерфейс та безпечні транзакції роблять покупки
+                    швидкими та комфортними. Підтримуйте вітчизняний бізнес
+                    разом із нашим маркетплейсом.
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+      {% include 'footer.html' %}
+    </div>
+  </body>
+</html>

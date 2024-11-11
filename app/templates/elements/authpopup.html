@@ -1,0 +1,195 @@
+{% load static %}
+
+<div
+  class="overlay {% if request.session.regerror or request.session.logerror %}active{% endif %}"
+  id="overlay"
+></div>
+
+<div
+  class="autrztn-popup {% if request.session.regerror or request.session.logerror %}active{% endif %}{% if request.session.regerror %} registration{% endif %}"
+  id="autrztn-popup"
+>
+  <img
+    src="{% static 'close-icon.svg' %}"
+    alt="сlose-btn"
+    class="close-btn"
+    id="close-popup-btn"
+  />
+  <div class="autrztn-popup-wrap autrztn-popup-login">
+    <div class="autrztn-popup__big">
+      <form
+        action="{% url 'login' %}"
+        method="POST"
+        class="autrztn-popup__form"
+      >
+        {% csrf_token %}
+        <div class="autrztn-popup__form-wrap">
+          <!-- prettier-ignore -->
+          {% if request.session.logerror is not None %}
+          {% if request.session.logerror %}
+          <p>Невірна ел. пошта або пароль.</p>
+          {% else %}
+          <p>Ви успішно увійшли.</p>
+          {% endif %} {% endif %}
+
+          <h4 class="form__title">Увійдіть в акаунт</h4>
+          <div class="form__input-wrap">
+            <img
+              class="form__input-icon"
+              src="{% static 'message-icon.svg' %}"
+              alt="Иконка сообщения"
+            />
+            <input
+              type="email"
+              class="form__input"
+              id="autrztn-login__email"
+              name="email"
+              placeholder="Ел. пошта"
+              required
+            />
+          </div>
+          <div class="form__input-wrap">
+            <img
+              class="form__input-icon"
+              src="{% static 'eye-icon.svg' %}"
+              alt="Иконка пароля"
+            />
+            <input
+              type="password"
+              class="form__input"
+              id="autrztn-login__password"
+              name="password"
+              placeholder="Пароль"
+              required
+              autocomplete="password"
+            />
+          </div>
+          <button class="form__button" type="submit">Увійти</button>
+        </div>
+      </form>
+    </div>
+    <div class="autrztn-popup__sml">
+      <h4 class="reg__title">Вітаємо!</h4>
+      <h5 class="reg__subtitle">
+        У вас ще немає акаунту?<br />Зареєструйте його
+      </h5>
+      <a href="#" class="reg_link" id="popup-reg-btn">Реєстрація</a>
+    </div>
+  </div>
+
+  <div class="autrztn-popup-wrap autrztn-popup-reg">
+    <div class="autrztn-popup__sml">
+      <h4 class="reg__title">Вітаємо!</h4>
+      <h5 class="reg__subtitle">У вас вже є акаунт?<br />Увійдіть у нього</h5>
+      <a href="#" class="reg_link" id="popup-login-btn">Увійти</a>
+    </div>
+    <div class="autrztn-popup__big">
+      <form
+        action="{% url 'register' %}"
+        method="POST"
+        class="autrztn-popup__form"
+      >
+        {% csrf_token %}
+        <div class="autrztn-popup__form-wrap">
+          <!-- prettier-ignore -->
+          {% if request.session.regerror is not None %}
+          {% if request.session.regerror %}
+          <p>Ел. пошта вже використовується.</p>
+          {% endif %} {% endif %}
+          <h4 class="form__title form__reg-title">Реєстрація акаунта</h4>
+          <div class="form__input-wrap form__input-name">
+            <img
+              class="form__input-icon"
+              src="{% static 'user-icon.svg' %}"
+              alt="Иконка профиля"
+            />
+            <input
+              type="text"
+              class="form__input"
+              id="autrztn-register__name"
+              name="first_name"
+              placeholder="І’мя"
+              required
+            />
+          </div>
+          <div class="form__input-wrap form__input-surname">
+            <img
+              class="form__input-icon"
+              src="{% static 'user-icon.svg' %}"
+              alt="Иконка профиля"
+            />
+            <input
+              type="text"
+              class="form__input"
+              id="autrztn-register__surname"
+              name="last_name"
+              placeholder="Прізвище"
+              required
+            />
+          </div>
+          <div class="form__input-number">
+            <div class="form__input-wrap">
+              <input
+                type="text"
+                class="form__input"
+                id="autrztn-register__phone-code"
+                name="phone_code"
+                placeholder="+380"
+                required
+              />
+            </div>
+            <div class="form__input-wrap">
+              <img
+                class="form__input-icon"
+                src="{% static 'phone-icon.svg' %}"
+                alt="Иконка телефона"
+              />
+              <input
+                type="tel"
+                class="form__input"
+                id="autrztn-register__phone"
+                name="phone_number"
+                placeholder="Номер телефону"
+                required
+              />
+            </div>
+          </div>
+          <div class="form__input-wrap form__input-email">
+            <img
+              class="form__input-icon"
+              src="{% static 'message-icon.svg' %}"
+              alt="Иконка сообщения"
+            />
+            <input
+              type="email"
+              class="form__input"
+              id="autrztn-register__email"
+              name="email"
+              placeholder="Ел. пошта"
+              required
+            />
+          </div>
+          <div class="form__input-wrap form__input-password">
+            <img
+              class="form__input-icon"
+              src="{% static 'eye-icon.svg' %}"
+              alt="Иконка пароля"
+            />
+            <input
+              type="password"
+              class="form__input"
+              id="autrztn-register__password"
+              name="password"
+              autocomplete="password"
+              placeholder="Пароль"
+              required
+            />
+          </div>
+          <div class="form__reg-btn">
+            <button class="form__button" type="submit">Реєстрація</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+{% load static %}
+
+<div class="panel__block panel__top">
+  <h5 class="panel__title top-title">топ товари</h5>
+  {% if top_products %}
+  <ul class="panel__list top-list">
+    {% for item in top_products %}
+    <li class="top-item">
+      <a href="{% url 'product' item.id %}" class="panel__item top-link">
+        <img
+          src="{{ item.images.all.0.image.url }}"
+          alt="top-item__img"
+          class="top-item__img"
+        />
+        <div class="panel__item-wrap">
+          <img
+            src="{% static 'item-raiting.png' %}"
+            alt="item-raiting"
+            class="top-raiting"
+          />
+          <p class="slider-menu__top-title">{{ item.name }}</p>
+          <h5 class="slider-menu__top-raiting">{{ item.price }}₴</h5>
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</div>

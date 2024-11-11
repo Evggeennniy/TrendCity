@@ -1,0 +1,112 @@
+{% load static %}
+
+<header class="header">
+  <div class="header-wrap container">
+    <h4 class="header__title">
+      <a href="{% url 'index' %}" class="link-to-aboutus">ТрендСіті</a>
+    </h4>
+    <div class="header__nav">
+      <div class="header__mob-panel">
+        <button class="mob-panel__button" id="nav-mob-btn">
+          <div class="mob-panel__button-line"></div>
+          <div class="mob-panel__button-line"></div>
+          <div class="mob-panel__button-line"></div>
+        </button>
+      </div>
+      <a href="{% url 'catalog' %}" class="nav__catalog">
+        <img
+          src="{% static 'menu-icon.svg' %}"
+          alt="menu-icon"
+          class="nav__catalog-icon"
+        />
+        <h5 class="nav__catalog-title">Каталог</h5>
+      </a>
+      <div class="">
+        <form class="nav__search" action="{% url 'catalog' %}" method="get">
+          <input
+            type="text"
+            name="q"
+            class="nav__search-input"
+            placeholder="Що вас цікавить?"
+            value="{{ search_query }}"
+          />
+          <button type="submit" class="nav__search-btn">
+            <img
+              src="{% static 'search-icon.svg' %}"
+              alt="search-icon"
+              class="nav__search-icon"
+            />
+          </button>
+        </form>
+      </div>
+      <div class="nav__menu">
+        <a href="{% url 'about_us' %}" class="menu-item">
+          <h5 class="menu-item__title">О&nbsp;нас</h5>
+        </a>
+        <button class="menu-item lang-btn">
+          <h5 class="menu-item__title">UA</h5>
+          <img
+            src="{% static 'arrow-small.svg' %}"
+            alt="icon"
+            class="menu-item__icon"
+          />
+        </button>
+        <div class="menu-item" id="favorite-btn">
+          <img
+            src="{% static 'heart-white-border-icon.svg' %}"
+            alt="icon"
+            class="menu-item favorite-btn"
+          />
+          <span class="favorite-btn__count">
+            <span class="favorite-btn__value" id="favorite-counter">0</span>
+          </span>
+          <div class="favorite-nav" id="favorite-nav">
+            <div class="favorite-nav__wrap">
+              <div class="triangle-wrap">
+                <img
+                  src="{% static 'triangle-icon.svg' %}"
+                  alt="icon"
+                  class="triangle-icon"
+                />
+              </div>
+              <ul class="favorite-nav__list" id="favorite-nav-list"></ul>
+              <div class="favorite-nav__btn-wrap">
+                <a href="{% url 'favorite' %}">До обраного</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="{% url 'basket' %}" class="menu-item basket-btn">
+          <!-- <h5 class="menu-item__title basket-btn__price">0₴</h5> -->
+          <img
+            src="{% static 'basket-icon.svg' %}"
+            alt="icon"
+            class="basket-btn__icon"
+          />
+          <span class="basket-btn__items-count">
+            <span class="basket-btn__items-value" id="basket-counter">0</span>
+          </span>
+        </a>
+        {% if request.user.id %}
+        <a
+          href="{% url 'logout' %}"
+          class="menu-item logout-btn"
+          id="autoriz-btn-logout"
+          auth-action="logout"
+        >
+          <h5 class="menu-item__title">Вийти</h5>
+        </a>
+        {% else %}
+        <a
+          href="#"
+          class="menu-item login-btn"
+          id="autoriz-btn-login"
+          auth-action="login"
+        >
+          <h5 class="menu-item__title">Увійти</h5>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</header>

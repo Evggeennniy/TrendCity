@@ -1,0 +1,673 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <script src="{% static 'default.js' %}" defer></script>
+    <script src="{% static 'product.js' %}" defer></script>
+    <title>ТрендСіті - Продукт</title>
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+
+    {% include 'slider_menu.html' %} {% include 'authpopup.html' %}
+
+    <div class="create-review-popup" id="create-review-popup">
+      <img
+        src="{% static 'close-icon.svg' %}"
+        alt="сlose-btn"
+        class="close-btn"
+        id="close-review-popup"
+      />
+      <div class="create-review-wrap">
+        <div class="review-popup__big">
+          <div class="form-wrap">
+            <form
+              action="{% url 'add_review' product.id %}"
+              method="POST"
+              class="review-popup__form"
+            >
+              {% csrf_token %}
+              <h4 class="form-title">Написати відгук</h4>
+              <div class="form__input-wrap">
+                <img
+                  src="{% static 'user-icon.svg' %}"
+                  alt="form-icon"
+                  class="form__input-icon"
+                />
+                <input
+                  type="text"
+                  name="name"
+                  class="form__input"
+                  placeholder="Ваше ім’я"
+                  required
+                />
+              </div>
+              <p class="form__input-label">Ваш відгук</p>
+              <div class="form__input-wrap" id="form__input-textarea">
+                <textarea
+                  name="text"
+                  class="form__input form__textarea"
+                  required
+                ></textarea>
+              </div>
+              <p class="form__input-label">Оцінка товару</p>
+              <div class="stars-list">
+                <!-- Скрытое поле для хранения оценки -->
+                <input
+                  type="hidden"
+                  name="rating"
+                  id="rating-value"
+                  value="0"
+                  required
+                />
+                <!-- Звёздочки для выбора оценки -->
+                {% for i in "12345" %}
+                <img
+                  src="{% static 'star-gray-icon.svg' %}"
+                  alt="star-icon"
+                  class="star-icon"
+                  data-index="{{ forloop.counter }}"
+                  onclick="setRating()"
+                />
+                {% endfor %}
+              </div>
+              <button class="form-btn" type="submit">Відправити</button>
+            </form>
+          </div>
+        </div>
+        <div class="review-popup__sml">
+          <h4 class="review-popup__title">Дякуємо!</h4>
+          <h5 class="review-popup__subtitle">
+            Ваші слова надихають нас<br />ставати кращими!
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-wrap">
+      {% include 'navbar.html' %}
+      <main class="main">
+        <div class="container">
+          <section class="main__fullcontent product">
+            <li class="products-list__item" style="display: none">
+              {% if product.special_sticker %}
+              <div class="sticker-wrap">
+                <span class="sticker-{{product.special_sticker}}">
+                  {{ product.get_special_sticker_display }}</span
+                >
+              </div>
+              {% endif %}
+
+              <div class="product-list__img-wrap">
+                <a class="product-link" href="{% url 'product' product.id %}">
+                  <img
+                    src="{{ product.images.all.0.image.url }}"
+                    alt="product-img"
+                    class="products-list__item-img"
+                  />
+                </a>
+                <img
+                  src="{% static 'heart-orange-icon.svg' %}"
+                  alt=""
+                  class="heart-orange-icon favorite-{{ product.id }}"
+                  data-product-id="{{ product.id }}"
+                />
+              </div>
+              <h5 class="products-list__item-title">{{ product.name }}</h5>
+              <span id="product-id" style="display: none"
+                >{{ product.id }}</span
+              >
+              <div class="products-list__item-info">
+                <div class="products-list__item-discount">
+                  {% if product.discount %}
+                  <div>
+                    <span class="products-list__item-price"
+                      ><span class="full-price"
+                        >{{ product.volumes.all.0.price }}</span
+                      >₴</span
+                    >
+                    <span class="products-list__item-percent"
+                      >-{{ product.discount }}%</span
+                    >
+                  </div>
+                  {% endif %}
+                  <h4 class="products-list__item-curr-price">
+                    <span class="current-price"
+                      >{{ product.volumes.all.0.price }}</span
+                    ><span class="money-symbol">₴</span>
+                  </h4>
+                </div>
+                <a class="product-link" href="{% url 'product' product.id %}">
+                  <button class="products-list__item-button">
+                    <img
+                      src="{% static 'basket-add-icon.svg' %}"
+                      alt="item-buy-icon"
+                      class="products-list__item-buy-icon"
+                    />
+                  </button>
+                </a>
+              </div>
+              <div class="products-list__item-extrainfo">
+                <div class="products-list__item-infopart">
+                  <span class="products-list__item-raiting">Рейтинг</span>
+                  <img
+                    src="{% static 'star-icon.svg' %}"
+                    alt="star-icon"
+                    class="products-list__item-star"
+                  />
+                  <span class="products-list__item-raiting"
+                    >{{ product.get_avg_review }}</span
+                  >
+                </div>
+                <div class="products-list__item-infopart">
+                  <span class="products-list__item-sextype"
+                    >{{ product.get_gender_for_display }}</span
+                  >
+                  <img
+                    src="{% static 'sex-icon.svg' %}"
+                    alt="sex-icon"
+                    class="products-list__item-seximg"
+                  />
+                </div>
+              </div>
+
+              <div class="products-list__item-desc">
+                <span>{{ product.description|safe }}</span>
+              </div>
+            </li>
+            <div class="content-wrap">
+              <div class="path-structure">
+                <div class="path-structure-wrap">
+                  <div class="path-structure__item">
+                    <img
+                      src="{% static 'home-icon.svg' %}"
+                      alt="icon"
+                      class="path-structure__icon"
+                    />
+                    <a href="{% url 'index' %}" class="path-structure__title"
+                      >Головна</a
+                    >
+                    <img
+                      src="{% static 'arrow-path-icon.svg' %}"
+                      alt="arrow-icon"
+                      class="path-structure__arrow path-structure__icon"
+                    />
+                  </div>
+                  <div class="path-structure__item">
+                    <img
+                      src="{% static 'product-icon.svg' %}"
+                      alt="icon"
+                      class="path-structure__icon"
+                    />
+                    <span class="path-structure__title">Продукт</span>
+                  </div>
+                </div>
+              </div>
+              <div class="product">
+                <div class="product__photos">
+                  <div class="photos__general gray-border">
+                    <div class="photos__general-header">
+                      {% if product.special_sticker %}
+                      <div class="sticker-wrap">
+                        <span
+                          class="sticker-{{product.special_sticker}} photos__general-sticker"
+                        >
+                          {{ product.get_special_sticker_display }}</span
+                        >
+                      </div>
+                      {% endif %}
+                      <img
+                        src="{% static 'zoom-icon.svg' %}"
+                        alt="zoom-btn"
+                        class="photos__general-zoom"
+                        id="zoom-product-btn"
+                      />
+                    </div>
+                    <div class="image-container">
+                      <div class="scroll-container">
+                        {% for item in product.images.all %}
+                        <img
+                          src="{{ item.image.url }}"
+                          alt="main-img"
+                          class="photos__general-img image product-main-img"
+                          id="product-main-img-{{ item.id }}"
+                        />
+                        {% endfor %}
+                      </div>
+                      <div class="zoom-lens" id="photo-lens-zoom"></div>
+                    </div>
+                    <div class="photos__general-nav" id="circles-container">
+                      {% for item in product.images.all %}
+                      <div
+                        class="circle"
+                        id="circle-{{ item.id }}"
+                        objid="{{ item.id }}"
+                      ></div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="photos__imgs-list">
+                    {% for item in product.images.all %}
+                    <img
+                      src="{{ item.image.url }}"
+                      alt="img"
+                      class="photos__imgs-item"
+                      id="sml-photo-{{ item.id }}"
+                      objid="{{ item.id }}"
+                    />
+                    {% endfor %}
+                  </div>
+                </div>
+                <div class="product__name gray-border">
+                  <span class="brand-name">{{ product.brand.name }}</span>
+                  <h3 class="name__title" id="main-product-title">
+                    {{ product.name }}
+                  </h3>
+                  <div class="name__reviews">
+                    <div class="name__reviews-stars">
+                      <img
+                        src="{% static 'star-icon.svg' %}"
+                        alt=""
+                        class="name__reviews-star"
+                      />
+                      {{ product.get_avg_review }}
+                      <p class="name__reviews-comments" id="reviews-link">
+                        {{ active_reviews_count }} відгук(а/ів)
+                      </p>
+                    </div>
+                    <div class="name__reviews-sex">
+                      <p>{{ product.get_gender_for_display }}</p>
+                      <img
+                        src="{% static 'sex-icon.svg' %}"
+                        alt="sex-icon"
+                        class="name__reviews-sexicon"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="product__volume gray-border"
+                  id="product-volumes-list"
+                >
+                  <p class="volume-title">Оберіть об’єм</p>
+                  {% for volume in product.volumes.all %}
+                  <button
+                    class="volume-item"
+                    id="{{ volume.id }}"
+                    volume="{{ volume.value }}"
+                    price="{{ volume.price }}"
+                    discount="{{ volume.discount }}"
+                  >
+                    {{volume.value}}
+                  </button>
+                  {% endfor %}
+                </div>
+                <div class="product__variations gray-border">
+                  <div class="variations__header">
+                    <img
+                      src="{% static 'aromadifusori.svg' %}"
+                      alt="icon"
+                      class="variations__header-icon"
+                    />
+                    <p class="variations__header-title">Оберіть аромат</p>
+                    <img
+                      src="{% static 'arrow-sml-black.svg' %}"
+                      alt="icon"
+                      class="variations__header-icon variations__header-arrow"
+                    />
+                  </div>
+                  <ul class="variations__list">
+                    {% for option in product.options.all %}
+                    <li
+                      class="variations__item"
+                      name="{{ option.name }}"
+                      id="{{ option.id }}"
+                    >
+                      <p>{{ option.name }}</p>
+                      <img
+                        src="{% static 'success-orange-icon.svg' %}"
+                        alt=""
+                      />
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                <div class="product__nav gray-border">
+                  <div class="nav__price-wrap">
+                    <div
+                      class="nav__discount"
+                      id="discount-info"
+                      style="display: none"
+                    >
+                      <span class="nav__full-price" id="full-price"></span>
+                      <span class="nav__discount-percent"
+                        >-
+                        <span class="price_value" id="discount-value"></span>
+                        %</span
+                      >
+                    </div>
+                    <h3 class="nav__current-price">
+                      <span id="current-price"></span
+                      ><span class="money-symbol">₴</span>
+                    </h3>
+                  </div>
+                  <div class="nav__panel">
+                    <div
+                      class="nav__quantity quantity_item"
+                      id="general-quantity-nav"
+                    >
+                      <div>
+                        <img
+                          src="{% static 'plus-icon.svg' %}"
+                          alt="plus"
+                          class="plus nav__quantity-icon quantity-btn"
+                          action="plus"
+                        />
+                        <h3
+                          class="quantity-value"
+                          value="1"
+                          id="product-quantity"
+                        >
+                          1
+                        </h3>
+                        <img
+                          src="{% static 'minus-icon.svg' %}"
+                          alt="minus"
+                          class="minus nav__quantity-icon quantity-btn"
+                          action="minus"
+                        />
+                      </div>
+                    </div>
+                    <button
+                      class="nav__like-btn nav__btn"
+                      id="like-btn"
+                      data-product-id="{{ product.id }}"
+                    >
+                      <img
+                        class="nav__btn-icon"
+                        src="{% static 'heart-orange-icon.svg' %}"
+                        alt="like-icon"
+                      />
+                      <img
+                        class="nav__btn-icon"
+                        src="{% static 'heart-orange-filled-icon.svg' %}"
+                        alt="like-icon"
+                      />
+                    </button>
+                    <button class="nav__buy-btn nav__btn" id="add-product-btn">
+                      <div class="nav__btn-wrap">
+                        <img
+                          class="nav__btn-icon"
+                          src="{% static 'basket-icon.svg' %}"
+                          alt="like-icon"
+                        />
+                        <p class="nav__btn-text">Купити</p>
+                      </div>
+                      <div class="nav__btn-wrap">
+                        <img
+                          class="nav__btn-icon"
+                          src="{% static 'success-orange-icon.svg' %}"
+                          alt="like-icon"
+                        />
+                        <p class="nav__btn-text">Добавлено</p>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+                <div class="product__discount gray-border">
+                  {% for promotion in product.related_category.promos.all %}
+                  <p class="discount-info">🎁 {{ promotion.name }}</p>
+                  {% endfor %}
+                </div>
+                <div class="product__details gray-border">
+                  <p class="details-title font--highlight">
+                    Опис та характеристика
+                  </p>
+                  <p class="details-subtitle">{{ product.description|safe }}</p>
+                </div>
+                <div class="product__components">
+                  <p class="components-title">Комплектуючі</p>
+                  <div class="components-list-wrap products__list-wrap">
+                    <ul class="components__list" id="components-list">
+                      {% for accesory in product.related_accesories.all %}
+                      <li class="components__item">
+                        <a
+                          href="{% url 'product' accesory.id %}"
+                          class="components__item-link"
+                        >
+                          <div class="components__item-img">
+                            <img
+                              src="{{ accesory.images.all.0.image.url }}"
+                              alt="img"
+                            />
+                          </div>
+                        </a>
+                        <h5 class="components__item-title">
+                          Рефіл для дифузора
+                        </h5>
+                        <div class="components__item-nav">
+                          <h4 class="item-price">
+                            800<span class="money-symbol">₴</span>
+                          </h4>
+                          <div class="components__item--quantity quantity_item">
+                            <div>
+                              <img
+                                src="{% static 'plus-icon.svg' %}"
+                                alt="plus"
+                                class="plus components__item--icon quantity-btn"
+                                action="plus"
+                              />
+                              <h3 class="quantity-value" value="1">1</h3>
+                              <img
+                                src="{% static 'minus-icon.svg' %}"
+                                alt="minus"
+                                class="minus components__item--icon quantity-btn"
+                                action="minus"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <button class="components__item-btn add-switch-btn">
+                          <div class="nav__btn-wrap">
+                            <img
+                              class="components__item--icon quantity-btn"
+                              src="{% static 'basket-icon.svg' %}"
+                              alt="icon"
+                            />
+                            <p>Доповнити</p>
+                          </div>
+                          <div class="nav__btn-wrap">
+                            <img
+                              class="nav__btn-icon"
+                              src="{% static 'success-orange-icon.svg' %}"
+                              alt="like-icon"
+                            />
+                            <p class="nav__btn-text">Добавлено</p>
+                          </div>
+                        </button>
+                      </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
+                <div class="product__wrapper">
+                  <p class="wrapper-title">Пакування</p>
+                  <ul class="wrapper__list" id="product-wrapper-list">
+                    {% for wrapper in product.wrappers.all %}
+                    <li
+                      class="wrapper__item gray-border"
+                      id="{{ wrapper.id }}"
+                      name="{{ wrapper.name }}"
+                      price="{{ wrapper.price }}"
+                    >
+                      <img
+                        src="{{ wrapper.image.url }}"
+                        alt="wrapper-img"
+                        class="wrapper__item-img"
+                      />
+                      <div class="wrapper__item-content">
+                        <p class="wrapper__item-title">{{ wrapper.name }}</p>
+                        <h4 class="wrapper__item-price">
+                          {{ wrapper.price }}<span class="money-symbol">₴</span>
+                        </h4>
+                      </div>
+                    </li>
+                    {% endfor %}
+                    <li class="wrapper__item gray-border chosen">
+                      <img
+                        src="{% static 'empty-wrapper-img.png' %}"
+                        alt="wrapper-img"
+                        class="wrapper__item-img"
+                      />
+                      <div class="wrapper__item-content">
+                        <p class="wrapper__item-title">Без пакування</p>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="product__reviews" id="product-reviews">
+                  <p class="reviews-title">Відгуки до товару</p>
+                  <ul class="reviews__list" id="reviews-list">
+                    <!-- prettier-ignore -->
+                    {% for review in product.reviews.all %} {% if review.active %}
+                    <li
+                      class="reviews__item {% if forloop.counter > 3 %}hidden-review{% endif %}"
+                    >
+                      <div class="reviews__item-content">
+                        <p class="reviews__item-username">{{ review.name }}</p>
+                        <div class="reviews__item-grade">
+                          <div class="reviews__item-line"></div>
+                          <div class="reviews__item-value">
+                            <img
+                              src="{% static 'star-icon.svg' %}"
+                              alt="star-icon"
+                              class="reviews__item-icon"
+                            />
+                            <span>{{ review.rating }}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="reviews__item-text">{{ review.text }}</p>
+                    </li>
+                    {% endif %} {% empty %}
+                    <p>Немає відгуків для цього товару.</p>
+                    {% endfor %}
+                  </ul>
+                  <div class="reviews__nav">
+                    <button
+                      class="reviews__nav-btn reviews__nav-create"
+                      id="create-review-btn"
+                    >
+                      Залишити відгук
+                    </button>
+                    <button
+                      class="reviews__nav-btn reviews__nav-more"
+                      id="more-reviews-btn"
+                    >
+                      Показати ще
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="products-list-wrap recomends-products gray-border">
+                <h4 class="products__title">
+                  <strong class="products__subtitle"
+                    >Рекомендовані товари</strong
+                  >
+                </h4>
+                <div class="products__list-wrap">
+                  {% if recomend_products %}
+                  <ul class="products-list discounts__list">
+                    {% for item in promo_products %}
+                    <li class="products-list__item" product-id="{{ item.id }}">
+                      {% if item.special_sticker %}
+                      <div class="sticker-wrap">
+                        <span class="sticker-{{item.special_sticker}}">
+                          {{ item.get_special_sticker_display }}</span
+                        >
+                      </div>
+                      {% endif %}
+                      <div class="product-list__img-wrap">
+                        <a href="{% url 'product' item.id %}">
+                          <img
+                            src="{{ item.images.all.0.image.url }}"
+                            alt="product-img"
+                            class="products-list__item-img"
+                          />
+                        </a>
+                        <img
+                          src="{% static 'heart-orange-icon.svg' %}"
+                          alt=""
+                          class="heart-orange-icon"
+                        />
+                      </div>
+                      <h5 class="products-list__item-title">{{ item.name }}</h5>
+                      <div class="products-list__item-info">
+                        <div class="products-list__item-discount">
+                          {% if item.discount %}
+                          <div>
+                            <span class="products-list__item-price"
+                              >{{ item.price }}₴</span
+                            >
+                            <span class="products-list__item-percent"
+                              >-{{ item.discount }}%</span
+                            >
+                          </div>
+                          {% endif %}
+                          <h4 class="products-list__item-curr-price">
+                            {{ item.price }}<span class="money-symbol">₴</span>
+                          </h4>
+                        </div>
+                        <button class="products-list__item-button">
+                          <img
+                            src="{% static 'basket-icon.svg' %}"
+                            alt="item-buy-icon"
+                            class="products-list__item-buy-icon"
+                          />
+                        </button>
+                      </div>
+                      <div class="products-list__item-extrainfo">
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-raiting"
+                            >Рейтинг</span
+                          >
+                          <img
+                            src="{% static 'star-icon.svg' %}"
+                            alt="star-icon"
+                            class="products-list__item-star"
+                          />
+                          <span class="products-list__item-raiting">4,8</span>
+                        </div>
+                        <div class="products-list__item-infopart">
+                          <span class="products-list__item-sextype"
+                            >{{ item.get_gender_for_display }}</span
+                          >
+                          <img
+                            src="{% static 'sex-icon.svg' %}"
+                            alt="sex-icon"
+                            class="products-list__item-seximg"
+                          />
+                        </div>
+                      </div>
+                      <div class="products-list__item-desc">
+                        <span>{{ item.description }}</span>
+                      </div>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+      {% include 'footer.html' %}
+    </div>
+  </body>
+</html>
