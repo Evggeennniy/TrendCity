@@ -2,6 +2,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
+
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -98,12 +99,13 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / '..' / 'static'
 STATICFILES_DIRS = [
-    BASE_DIR / '..' / 'static' / 'content',
-    BASE_DIR / '..' / 'static' / 'css',
-    BASE_DIR / '..' / 'static' / 'js'
+    STATIC_ROOT / 'content',
+    STATIC_ROOT / 'css',
+    STATIC_ROOT / 'js'
 ]
-STATIC_ROOT = 'settings/static/'
+
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / '..' / 'static'
