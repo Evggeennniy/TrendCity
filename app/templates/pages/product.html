@@ -620,7 +620,10 @@
                           </div>
                           {% endif %}
                           <h4 class="products-list__item-curr-price">
-                            {{ item.price }}<span class="money-symbol">₴</span>
+                            {{ item.volumes.all.0.price }}<span
+                              class="money-symbol"
+                              >₴</span
+                            >
                           </h4>
                         </div>
                         <button class="products-list__item-button">
