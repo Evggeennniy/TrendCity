@@ -1195,13 +1195,13 @@ footer {
     align-items: center;
   }
 
+  .categories-link {
+    justify-content: space-between;
+  }
+
   .top-raiting,
   .top-title {
     margin-bottom: 5px;
-  }
-
-  .categories-item {
-    justify-content: space-between;
   }
 
   .top-item__img {
@@ -1415,6 +1415,7 @@ footer {
 
   .content__categories-list {
     display: flex;
+    justify-content: space-between !important;
     flex-wrap: wrap;
     gap: 20px;
     margin-bottom: 30px;
@@ -4054,6 +4055,10 @@ footer {
 
     .reviews__item-line {
       height: 18px;
+    }
+
+    .product__details * {
+      font-size: 13px;
     }
 
     .wrapper__list {

@@ -94,13 +94,14 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'uk-uk'
 
-TIME_ZONE = 'Europe/Kyiv'
+TIME_ZONE = 'Europe/Kiev'
 USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / '..' / 'static'
 STATICFILES_DIRS = [
+    BASE_DIR / '..' / 'localstatic',
 ]
 
 
