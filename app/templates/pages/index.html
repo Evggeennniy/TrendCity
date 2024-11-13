@@ -222,23 +222,25 @@
                       <h5 class="products-list__item-title">{{ item.name }}</h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
-                          {% if item.discount %}
+                          <!-- prettier-ignore -->
+                          {% with item.volumes.all|first as volume %} 
+                          {% if volume and volume.discount %}
                           <div>
                             <span class="products-list__item-price"
-                              ><span class="full-price"
-                                >{{ item.volumes.all.0.price }}</span
-                              ><span class="money-symbol">₴</span></span
+                              ><span class="full-price">{{ volume.price }}</span
+                              >₴</span
                             >
                             <span class="products-list__item-percent"
-                              >-{{ item.discount }}%</span
+                              >-{{ volume.discount }}%</span
                             >
                           </div>
                           {% endif %}
                           <h4 class="products-list__item-curr-price">
                             <span class="current-price"
-                              >{{ item.volumes.all.0.price }}</span
+                              >{{ volume.get_curr_price }}</span
                             ><span class="money-symbol">₴</span>
                           </h4>
+                          {% endwith %}
                         </div>
                         <button class="products-list__item-button">
                           <img
