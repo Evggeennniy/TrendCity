@@ -64,69 +64,38 @@
                 </div>
                 <div class="contacts__links contacts__block">
                   <div class="contacts__links-general">
+                    {% for object in contact_text_list %}
                     <div class="contacts__link">
                       <img
-                        src="{% static 'contact-phone-icon.svg' %}"
+                        src="{{ object.icon.url }}"
                         alt="icon"
                         class="contacts__link-icon"
                       />
                       <div class="contacts__link-info">
                         <span class="contacts__link-title"
-                          >Телефон / Viber</span
+                          >{{ object.header }}</span
                         >
                         <span class="contacts__link-subtitle"
-                          >+38 (063) 67 591 67</span
+                          >{{ object.value }}</span
                         >
                       </div>
                     </div>
-                    <div class="contacts__link">
-                      <img
-                        src="{% static 'email-icon.svg' %}"
-                        alt="icon"
-                        class="contacts__link-icon"
-                      />
-                      <div class="contacts__link-info">
-                        <span class="contacts__link-title">Ел. пошта</span>
-                        <span class="contacts__link-subtitle"
-                          >trendcity@gmail.com</span
-                        >
-                      </div>
-                    </div>
+                    {% endfor %}
                   </div>
                   <div class="line"></div>
                   <div class="contacts__socials">
+                    {% for object in contact_link_list %}
                     <div class="contacts__link">
                       <img
-                        src="{% static 'tiktok-contact-link.png' %}"
+                        src="{{ object.icon.url }}"
                         alt="icon"
                         class="contacts__link-icon"
                       />
-                      <span class="contacts__link-url">@TrendCityUA</span>
+                      <a href="{{ object.link }}" class="contacts__link-url"
+                        >{{ object.header }}</a
+                      >
                     </div>
-                    <div class="contacts__link">
-                      <img
-                        src="{% static 'inst-contact-link.png' %}"
-                        alt="icon"
-                        class="contacts__link-icon"
-                      />
-                      <span class="contacts__link-url">@TrendCity_ua</span>
-                    </div>
-                    <div class="contacts__link">
-                      <img
-                        src="{% static 'telegram-contact-link.png' %}"
-                        alt="icon"
-                        class="contacts__link-icon"
-                      />
-                      <span class="contacts__link-url">@TrendCity</span>
-                    </div>
-                    <div class="contacts__link">
-                      <img
-                        src="{% static 'facebook-contact-link.png' %}"
-                        alt="icon"
-                        class="contacts__link-icon"
-                      />
-                      <span class="contacts__link-url">@TrendCity_ua</span>
-                    </div>
+                    {% endfor %}
                   </div>
                 </div>
                 <div class="contacts__feedback contacts__block">

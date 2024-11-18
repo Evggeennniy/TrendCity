@@ -1761,6 +1761,19 @@ footer {
 }
 
 .main__content.aboutus {
+  .info_content {
+    padding: 20px;
+    background-color: white;
+  }
+
+  .info_content__block {
+    margin-bottom: 20px;
+  }
+
+  .info_content__block * {
+    font: revert;
+  }
+
   .aboutus__content {
     padding: 30px;
     background-color: white;
@@ -4202,7 +4215,7 @@ footer {
 
   .contacts__link-url {
     font-size: 15px;
-    text-decoration: underline;
+    color: black;
   }
 
   .contacts__feedback-title {

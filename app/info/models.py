@@ -1,4 +1,5 @@
 from django.db import models
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class PartnerRequest(models.Model):
@@ -31,4 +32,76 @@ class Feedback(models.Model):
 
     class Meta:
         verbose_name = "Запит на зв'язок"
-        verbose_name_plural = "Запити на зв'язки"
+        verbose_name_plural = "Запити на зв'язок"
+
+
+class AboutUsHeader(models.Model):
+    text = CKEditor5Field(verbose_name='Текст', config_name='default', max_length=500)
+
+    class Meta:
+        verbose_name = "Iнфо блок (О нас/Заголовок)"
+        verbose_name_plural = "Iнфо блоки (О нас/Заголовок)"
+
+
+class AboutUsForClients(models.Model):
+    icon = models.FileField(verbose_name='Значок', upload_to='icons')
+    header = models.CharField(verbose_name='Заголовок', max_length=26)
+    text = CKEditor5Field(verbose_name='Текст', config_name='default', max_length=500)
+
+    class Meta:
+        verbose_name = "Iнфо блок (О нас/Для покупців)"
+        verbose_name_plural = "Iнфо блоки (О нас/Для покупців)"
+
+
+class AboutUsForm(models.Model):
+    text = CKEditor5Field(verbose_name='Текст', config_name='default', max_length=500)
+
+    class Meta:
+        verbose_name = "Iнфо блок (О нас/Форма)"
+        verbose_name_plural = "Iнфо блоки (О нас/Форма)"
+
+
+class AboutUsReview(models.Model):
+    grade = models.CharField(verbose_name='Оцiнка', max_length=12)
+    text = CKEditor5Field(verbose_name='Текст', config_name='default', max_length=200)
+    name = models.CharField(verbose_name="Iм'я та Призвище", max_length=48)
+
+    class Meta:
+        verbose_name = "Iнфо блок (О нас/Вiдгук)"
+        verbose_name_plural = "Iнфо блоки (О нас/Вiдгук)"
+
+
+class ContactText(models.Model):
+    icon = models.FileField(verbose_name='Значок', upload_to='icons')
+    header = models.CharField(verbose_name='Заголовок', max_length=16)
+    value = models.CharField(verbose_name='Значення', max_length=32)
+
+    class Meta:
+        verbose_name = "Iнфо блок (Контакти/Текстове)"
+        verbose_name_plural = "Iнфо блоки (Контакти/Текстове)"
+
+
+class ContactLink(models.Model):
+    icon = models.FileField(verbose_name='Значок', upload_to='icons')
+    header = models.CharField(verbose_name='Заголовок', max_length=16)
+    link = models.CharField(verbose_name='Посилання', max_length=128)
+
+    class Meta:
+        verbose_name = "Iнфо блок (Контакти/Посылання)"
+        verbose_name_plural = "Iнфо блоки (Контакти/Посылання)"
+
+
+class PrivacyPolicy(models.Model):
+    text = CKEditor5Field(verbose_name='Текст', config_name='default', max_length=2000)
+
+    class Meta:
+        verbose_name = "Iнфо блок (Політика конфеденційності)"
+        verbose_name_plural = "Iнфо блоки (Політика конфеденційності)"
+
+
+class PublicOfferАgreement(models.Model):
+    text = CKEditor5Field(verbose_name='Текст', config_name='default', max_length=2000)
+
+    class Meta:
+        verbose_name = "Iнфо блок (Договір публічної оферти)"
+        verbose_name_plural = "Iнфо блоки (Договір публічної оферти)"

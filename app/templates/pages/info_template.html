@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    <script src="{% static 'default.js' %}" defer></script>
+    <title>ТрендСіті - Iнфо</title>
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+
+    {% include 'slider_menu.html' %} {% include 'authpopup.html' %}
+
+    <div class="page-wrap">
+      {% include 'navbar.html' %}
+      <main class="main">
+        <div class="main-wrap container">
+          <section class="main__panel">
+            <div class="panel-wrap">
+              <!-- prettier-ignore -->
+              {% include 'panel_categories.html' %}
+              {% include 'panel_top.html' %}
+              {% include 'panel_info.html' %}
+            </div>
+          </section>
+          <section class="main__content aboutus">
+            <div class="main__content-wrap">
+              <div class="path-structure">
+                <div class="path-structure-wrap">
+                  <div class="path-structure__item">
+                    <img
+                      src="{% static 'home-icon.svg' %}"
+                      alt="icon"
+                      class="path-structure__icon"
+                    />
+                    <a href="{% url 'index' %}" class="path-structure__title"
+                      >Головна</a
+                    >
+                    <img
+                      src="{% static 'arrow-path-icon.svg' %}"
+                      alt="arrow-icon"
+                      class="path-structure__arrow path-structure__icon"
+                    />
+                  </div>
+                  <div class="path-structure__item">
+                    <img
+                      src="{% static 'warning-icon.svg' %}"
+                      alt="icon"
+                      class="path-structure__icon"
+                    />
+                    <span class="path-structure__title">Iнформацiя</span>
+                  </div>
+                </div>
+              </div>
+              <div class="info_content">
+                {% for object in object_list %}
+                <div class="info_content__block">{{ object.text|safe }}</div>
+                {% endfor %}
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+      {% include 'footer.html' %}
+    </div>
+  </body>
+</html>

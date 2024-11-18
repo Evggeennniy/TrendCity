@@ -1531,6 +1531,16 @@ footer {
   content: url("./heart-orange-filled-icon.svg");
 }
 
+.main__content.aboutus .info_content {
+  padding: 20px;
+  background-color: white;
+}
+.main__content.aboutus .info_content__block {
+  margin-bottom: 20px;
+}
+.main__content.aboutus .info_content__block * {
+  font: revert;
+}
 .main__content.aboutus .aboutus__content {
   padding: 30px;
   background-color: white;
@@ -3466,7 +3476,7 @@ footer {
 }
 .main__fullcontent.contacts .contacts__link-url {
   font-size: 15px;
-  text-decoration: underline;
+  color: black;
 }
 .main__fullcontent.contacts .contacts__feedback-title {
   font-weight: 600;

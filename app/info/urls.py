@@ -7,4 +7,6 @@ urlpatterns = [
     path('partner-form/', info_views.partner_form_view, name='partner_form'),
     path('contacts/', info_views.ContactsView.as_view(), name='contacts'),
     path('feedback/', info_views.feedback_form_view, name='feedback_form'),
+    path('privacy-policy/', info_views.PrivacyPolicyView.as_view(), name='privacypolicy'),
+    path('public-offer-agreement/', info_views.PublicOfferАgreementView.as_view(), name='publicofferagreement'),
 ]

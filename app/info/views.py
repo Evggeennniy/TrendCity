@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from catalog.views import PanelView
 from django.contrib import messages
 from info import models as info_models
@@ -12,6 +12,25 @@ class AboutUsView(PanelView, TemplateView):
 
 class ContactsView(PanelView, TemplateView):
     template_name = "contacts.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        contact_text_items = info_models.ContactText.objects.all()
+        contact_link_items = info_models.ContactLink.objects.all()
+
+        context['contact_text_list'] = contact_text_items
+        context['contact_link_list'] = contact_link_items
+        return context
+
+
+class PrivacyPolicyView(PanelView, ListView):
+    queryset = info_models.PrivacyPolicy.objects.all()
+    template_name = "info_template.html"
+
+
+class PublicOfferАgreementView(PanelView, ListView):
+    queryset = info_models.PublicOfferАgreement.objects.all()
+    template_name = "info_template.html"
 
 
 def partner_form_view(request):
