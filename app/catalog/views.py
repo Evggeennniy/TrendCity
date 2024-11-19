@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, ListView, DetailView, View
 from catalog import models as catalog_models
 from django.http import Http404, JsonResponse
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Count, Q, Min, Max, Subquery, OuterRef
 from collections import defaultdict
 import json
@@ -255,3 +256,14 @@ def order_submit(request):
         return JsonResponse({'status': 'success'})
     else:
         return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+def check_promocode(request, promocode):
+    # Удаляем пробелы на случай, если есть лишние
+    promocode = promocode.strip()
+
+    try:
+        promo = catalog_models.Promocode.objects.get(name=promocode)
+        return JsonResponse({"status": "success", "discount": promo.discount})
+    except catalog_models.Promocode.DoesNotExist:
+        return JsonResponse({"status": "error", "message": "Промокод відсутній"}, status=404)

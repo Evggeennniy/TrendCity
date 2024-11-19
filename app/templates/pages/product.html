@@ -294,6 +294,7 @@
                   class="product__volume gray-border"
                   id="product-volumes-list"
                 >
+                  {% if product.volumes.all %}
                   <p class="volume-title">Оберіть об’єм</p>
                   {% for volume in product.volumes.all %}
                   <button
@@ -305,7 +306,7 @@
                   >
                     {{volume.value}}
                   </button>
-                  {% endfor %}
+                  {% endfor %} {% endif %}
                 </div>
                 <div class="product__variations gray-border">
                   <div class="variations__header">
@@ -419,17 +420,20 @@
                     </button>
                   </div>
                 </div>
+                {% if product.related_category.promos.all %}
                 <div class="product__discount gray-border">
                   {% for promotion in product.related_category.promos.all %}
                   <p class="discount-info">🎁 {{ promotion.name }}</p>
                   {% endfor %}
                 </div>
+                {% endif %}
                 <div class="product__details gray-border">
                   <p class="details-title font--highlight">
                     Опис та характеристика
                   </p>
                   <p class="details-subtitle">{{ product.description|safe }}</p>
                 </div>
+                {% if product.related_accesories.all %}
                 <div class="product__components">
                   <p class="components-title">Комплектуючі</p>
                   <div class="components-list-wrap products__list-wrap">
@@ -495,6 +499,7 @@
                     </ul>
                   </div>
                 </div>
+                {% endif %}
                 <div class="product__wrapper">
                   <p class="wrapper-title">Пакування</p>
                   <ul class="wrapper__list" id="product-wrapper-list">

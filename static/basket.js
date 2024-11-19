@@ -186,6 +186,21 @@ function updateStatisticsUI() {
 
 updateStatisticsUI();
 
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
 const form = document.querySelector(".order-form__form");
 form.addEventListener("submit", function (event) {
   event.preventDefault();
@@ -204,20 +219,6 @@ form.addEventListener("submit", function (event) {
     order_list: localBasket,
   };
 
-  function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== "") {
-      const cookies = document.cookie.split(";");
-      for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, name.length + 1) === name + "=") {
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }
-      }
-    }
-    return cookieValue;
-  }
   const csrftoken = getCookie("csrftoken");
 
   // Send data to the server using Fetch API
@@ -240,5 +241,37 @@ form.addEventListener("submit", function (event) {
     })
     .catch((error) => {
       console.error("Error:", error);
+    });
+});
+
+const promoInput = document.getElementById("promo-input");
+const promoBtn = document.getElementById("promo-btn");
+
+promoBtn.addEventListener("click", () => {
+  if (promoInput.value === "") {
+    alert("Будь ласка, введіть промокод");
+    return;
+  }
+
+  const encodedPromo = encodeURIComponent(promoInput.value);
+  fetch(`/check-promocode/${encodedPromo}/`, {
+    method: "GET",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Невірний запит");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status === "success") {
+        alert(`Промокод прийнято! Знижка: ${data.discount}%`);
+      } else {
+        alert("Промокод не дійсний.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("Виникла помилка. Спробуйте ще раз.");
     });
 });

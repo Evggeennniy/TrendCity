@@ -9,6 +9,19 @@ from django.http import JsonResponse
 class AboutUsView(PanelView, TemplateView):
     template_name = "aboutus.html"
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        aboutus_header_items = info_models.AboutUsHeader.objects.all()
+        aboutus_forclient_items = info_models.AboutUsForClients.objects.all()
+        aboutus_formtext_items = info_models.AboutUsForm.objects.all()
+        aboutus_reviews_items = info_models.AboutUsReview.objects.all()
+
+        context['aboutus_header_items'] = aboutus_header_items
+        context['aboutus_forclient_items'] = aboutus_forclient_items
+        context['aboutus_formtext_items'] = aboutus_formtext_items
+        context['aboutus_reviews_items'] = aboutus_reviews_items
+        return context
+
 
 class ContactsView(PanelView, TemplateView):
     template_name = "contacts.html"

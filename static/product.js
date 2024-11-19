@@ -15,6 +15,7 @@ const images = document.querySelectorAll(".photos__general-img");
 const zoomLens = document.querySelector("#photo-lens-zoom");
 function updateZoomLens(index) {
   let currentObj = circles[index];
+  if (!currentObj) return;
   currentObj = currentObj.getAttribute("objid");
   const currentImg = scrollContainer.querySelector(
     `#product-main-img-${currentObj}`
@@ -47,7 +48,9 @@ updateZoomLens(0);
 
 const imgContainer = document.querySelector(".image-container");
 const smlImages = document.querySelectorAll(".photos__imgs-item");
-smlImages[0].classList.add("active");
+if (smlImages[0] !== undefined) {
+  smlImages[0].classList.add("active");
+}
 imgContainer.style.scrollBehavior = "smooth";
 const photosList = document.querySelector(".photos__imgs-list");
 photosList.addEventListener("click", (event) => {
@@ -72,7 +75,10 @@ photosList.addEventListener("click", (event) => {
   });
 });
 
-circles[0].classList.add("active");
+if (circles[0] !== undefined) {
+  circles[0].classList.add("active");
+}
+
 circlesContainer.addEventListener("click", (event) => {
   const target = event.target;
 
@@ -97,12 +103,16 @@ circlesContainer.addEventListener("click", (event) => {
 
 const variationsHeader = document.querySelector(".variations__header");
 const firstOption = document.querySelector(".variations__item");
-firstOption.classList.add("chosen");
-variationsHeader.addEventListener("click", (event) => {
-  const variationsBlock = event.target.closest(".product__variations");
+if (firstOption !== null) {
+  firstOption.classList.add("chosen");
+}
+if (variationsHeader !== null) {
+  variationsHeader.addEventListener("click", (event) => {
+    const variationsBlock = event.target.closest(".product__variations");
 
-  variationsBlock.classList.toggle("active");
-});
+    variationsBlock.classList.toggle("active");
+  });
+}
 
 const productVolumesList = document.getElementById("product-volumes-list");
 let chosenProductVolume = productVolumesList.querySelector(".volume-item");
@@ -325,7 +335,6 @@ addProductBtn.addEventListener("click", () => {
   const productWrapper = document.querySelector(".wrapper__item.chosen");
   const productPrice = document.getElementById("current-price");
   const productQuantity = document.getElementById("product-quantity");
-  const productPromo = "";
 
   const localBasket = JSON.parse(localStorage.getItem("basket"));
   let localIndex = JSON.parse(localStorage.getItem("last_index"));
