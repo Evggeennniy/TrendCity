@@ -152,14 +152,6 @@ function updateOptionPrice() {
 }
 updateOptionPrice();
 
-const addProductBtns = document.querySelectorAll(".add-switch-btn");
-addProductBtns.forEach((item) => {
-  item.addEventListener("click", (event) => {
-    const btn = event.target.closest(".add-switch-btn");
-    btn.classList.toggle("success");
-  });
-});
-
 let chosenProductType = document.querySelector(".variations__item.chosen");
 const productTypes = document.querySelectorAll(".variations__item");
 
@@ -375,3 +367,53 @@ addProductBtn.addEventListener("click", () => {
 });
 
 updateProductUI();
+
+const accesoriesList = document.getElementById("components-list");
+accesoriesList.addEventListener("click", (event) => {
+  const target = event.target;
+
+  if (!target.classList.contains("components__item-btn")) return;
+
+  const productEl = target.closest(".components__item");
+  const localBasket = JSON.parse(localStorage.getItem("basket"));
+  let localIndex = JSON.parse(localStorage.getItem("last_index"));
+
+  const order = {
+    itemId: localIndex++,
+    productId: productEl.getAttribute("id"),
+    productImg: productEl.getAttribute("img"),
+    productName: productEl.getAttribute("name"),
+    optionName: productEl.getAttribute("option"),
+    volume: productEl.getAttribute("volume"),
+    volumeId: productEl.getAttribute("volumeId"),
+    volumePrice: productEl.getAttribute("volumePrice"),
+    volumeDiscount: productEl.getAttribute("volumeDiscount"),
+    wrapperName: null,
+    wrapperId: null,
+    wrapperPrice: null,
+    productQuantity: productEl
+      .querySelector(".quantity-value")
+      .getAttribute("value"),
+    currentPrice:
+      productEl.getAttribute("volumePrice") -
+      (productEl.getAttribute("volumePrice") / 100) *
+        productEl.getAttribute("volumeDiscount"),
+  };
+
+  localBasket.push(order);
+  localStorage.setItem("basket", JSON.stringify(localBasket));
+  localStorage.setItem("last_index", JSON.stringify(localIndex));
+
+  updateBasketUi();
+  updateProductUI();
+
+  target.disabled = true;
+
+  target.classList.add("success");
+  setTimeout(() => {
+    if (addProductBtn.classList.contains("success")) {
+      addProductBtn.classList.remove("success");
+      addProductBtn.disabled = false;
+    }
+  }, 2000);
+});

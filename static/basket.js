@@ -1,8 +1,51 @@
-{
-  /* <div class="basket__item chosen gray-border">
-  
-</div>; */
-}
+const promoInput = document.getElementById("promo-input");
+const promoBtn = document.getElementById("promo-btn");
+const statisticList = document.getElementById("statistic-list-wrap");
+const promocodeBlock = document.querySelector(".statistic__promocode");
+let promoCode;
+let promoPercent;
+
+let fullCurrentPrice;
+
+promoBtn.addEventListener("click", () => {
+  if (promoInput.value === "") {
+    alert("Будь ласка, введіть промокод");
+    return;
+  }
+
+  const encodedPromo = encodeURIComponent(promoInput.value);
+  fetch(`/check-promocode/${encodedPromo}/`, {
+    method: "GET",
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Невірний запит");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      if (data.status === "success") {
+        alert(`Промокод прийнято! Знижка: ${data.discount}%`);
+        const newEl = document.createElement("div");
+        newEl.classList.add("statistic__item");
+        newEl.innerHTML = `
+          <h4>Промокод ${promoInput.value}</h4>
+          <h4>-${data.discount}%</h4>
+        `;
+        statisticList.append(newEl);
+        promocodeBlock.remove();
+
+        promoCode = promoInput.value;
+        promoPercent = data.discount;
+        updateStatisticsUI();
+      } else {
+        alert("Промокод не дійсний.");
+      }
+    })
+    .catch((error) => {
+      alert("Виникла помилка. Спробуйте ще раз.");
+    });
+});
 
 function toggleItem(event) {
   event.target.classList.toggle("active");
@@ -176,7 +219,12 @@ function updateStatisticsUI() {
   }, 0);
 
   const discountValue = fullPrice - discountedPrice;
-  const currentFullPrice = discountedPrice + wrappersPrice;
+  let currentFullPrice = discountedPrice + wrappersPrice;
+  if (promoCode != undefined) {
+    currentFullPrice =
+      currentFullPrice - (currentFullPrice / 100) * promoPercent;
+  }
+  fullCurrentPrice = currentFullPrice;
 
   priceWithoutDiscountHeader.textContent = `${fullPrice}₴`;
   priceWithDiscountHeader.textContent = `-${discountValue}₴`;
@@ -217,6 +265,11 @@ form.addEventListener("submit", function (event) {
     post_office_id: document.getElementById("order-form__novaid").value,
     comment: document.getElementById("order-form__text").value,
     order_list: localBasket,
+    full_price: fullCurrentPrice,
+    promocode: {
+      id: promoCode,
+      percent: promoPercent,
+    },
   };
 
   const csrftoken = getCookie("csrftoken");
@@ -241,37 +294,5 @@ form.addEventListener("submit", function (event) {
     })
     .catch((error) => {
       console.error("Error:", error);
-    });
-});
-
-const promoInput = document.getElementById("promo-input");
-const promoBtn = document.getElementById("promo-btn");
-
-promoBtn.addEventListener("click", () => {
-  if (promoInput.value === "") {
-    alert("Будь ласка, введіть промокод");
-    return;
-  }
-
-  const encodedPromo = encodeURIComponent(promoInput.value);
-  fetch(`/check-promocode/${encodedPromo}/`, {
-    method: "GET",
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Невірний запит");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      if (data.status === "success") {
-        alert(`Промокод прийнято! Знижка: ${data.discount}%`);
-      } else {
-        alert("Промокод не дійсний.");
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      alert("Виникла помилка. Спробуйте ще раз.");
     });
 });

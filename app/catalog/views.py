@@ -229,6 +229,9 @@ def order_submit(request):
         post_office_id = data.get('post_office_id')
         comment = data.get('comment')
         post_office = data.get('delivery_type')
+        full_price = data.get('full_price')
+        promocode_name = data.get('promocode', '').get('id')
+        promocode_percent = data.get('promocode', '').get('percent')
 
         order_content = data.get('order_list')
 
@@ -241,6 +244,8 @@ def order_submit(request):
             post_office=post_office,
             post_office_id=post_office_id,
             comment=comment,
+            full_price=full_price,
+            promocode=f'{promocode_name} / {promocode_percent}%'
         )
 
         order_content = [
@@ -266,4 +271,4 @@ def check_promocode(request, promocode):
         promo = catalog_models.Promocode.objects.get(name=promocode)
         return JsonResponse({"status": "success", "discount": promo.discount})
     except catalog_models.Promocode.DoesNotExist:
-        return JsonResponse({"status": "error", "message": "Промокод відсутній"}, status=404)
+        return JsonResponse({"status": "error", "message": "Промокод відсутній"})

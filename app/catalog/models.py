@@ -229,7 +229,9 @@ class Order(models.Model):
     payment_method = models.CharField(verbose_name='Тип оплати', max_length=50)
     post_office = models.CharField(verbose_name='Пошта', max_length=20)
     post_office_id = models.CharField(verbose_name='Вiддiлення', max_length=20)
+    full_price = models.DecimalField(verbose_name='Цiна', max_digits=12, decimal_places=2)
     comment = models.CharField(verbose_name='Коментар', max_length=256)
+    promocode = models.CharField(verbose_name='Промокод', max_length=16)
 
     class Meta:
         verbose_name = 'Замовлення'
@@ -239,12 +241,12 @@ class Order(models.Model):
 class OrderPart(models.Model):
     related_order = models.ForeignKey(verbose_name='Відношення до замовлення', to=Order,
                                       on_delete=models.CASCADE, related_name='order_items')
-    product = models.ForeignKey(verbose_name='Відношення до продукту', to=Product,
+    product = models.ForeignKey(verbose_name='Товар', to=Product,
                                 on_delete=models.SET_NULL, null=True)
     count = models.IntegerField(verbose_name='Кiлькiсть')
-    volume = models.ForeignKey(verbose_name='Відношення до об\'ему', to=ProductVolume,
+    volume = models.ForeignKey(verbose_name='Об\'ем', to=ProductVolume,
                                on_delete=models.SET_NULL, null=True)
-    wrapper = models.ForeignKey(verbose_name='Відношення до обертки', to=ProductWrapper,
+    wrapper = models.ForeignKey(verbose_name='Обертка', to=ProductWrapper,
                                 on_delete=models.SET_NULL, null=True)
 
     class Meta:

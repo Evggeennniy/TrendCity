@@ -138,10 +138,11 @@
                   {% endif %}
                   <h4 class="products-list__item-curr-price">
                     <span class="current-price"
-                      >{{ product.volumes.all.0.price }}</span
+                      >{{ product.volumes.all.0.get_curr_price }}</span
                     ><span class="money-symbol">₴</span>
                   </h4>
                 </div>
+                <!--  -->
                 <a class="product-link" href="{% url 'product' product.id %}">
                   <button class="products-list__item-button">
                     <img
@@ -433,13 +434,25 @@
                   </p>
                   <p class="details-subtitle">{{ product.description|safe }}</p>
                 </div>
-                {% if product.related_accesories.all %}
+                {% with product.related_accesories.all as product_accesories %}
+                {% if product_accesories %}
                 <div class="product__components">
                   <p class="components-title">Комплектуючі</p>
                   <div class="components-list-wrap products__list-wrap">
                     <ul class="components__list" id="components-list">
-                      {% for accesory in product.related_accesories.all %}
-                      <li class="components__item">
+                      {% for accesory in product_accesories %}
+                      <li
+                        class="components__item"
+                        id="{{ accesory.id }}"
+                        img="{{ accesory.images.all.0.image.url }}"
+                        name="{{ accesory.name }}"
+                        optionId="{{ accesory.options.all.0.id }}"
+                        option="{{ accesory.options.all.0.name }}"
+                        volumeId="{{ accesory.volumes.all.0.id }}"
+                        volume="{{ accesory.volumes.all.0.value }}"
+                        volumeDiscount="{{ accesory.volumes.all.0.discount }}"
+                        volumePrice="{{ accesory.volumes.all.0.get_curr_price }}"
+                      >
                         <a
                           href="{% url 'product' accesory.id %}"
                           class="components__item-link"
@@ -452,11 +465,14 @@
                           </div>
                         </a>
                         <h5 class="components__item-title">
-                          Рефіл для дифузора
+                          {{ accesory.name }}
                         </h5>
                         <div class="components__item-nav">
                           <h4 class="item-price">
-                            800<span class="money-symbol">₴</span>
+                            {{ accesory.volumes.all.0.get_curr_price }}<span
+                              class="money-symbol"
+                              >₴</span
+                            >
                           </h4>
                           <div class="components__item--quantity quantity_item">
                             <div>
@@ -499,7 +515,7 @@
                     </ul>
                   </div>
                 </div>
-                {% endif %}
+                {% endif %} {% endwith %}
                 <div class="product__wrapper">
                   <p class="wrapper-title">Пакування</p>
                   <ul class="wrapper__list" id="product-wrapper-list">
