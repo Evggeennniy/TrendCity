@@ -2,10 +2,13 @@ const promoInput = document.getElementById("promo-input");
 const promoBtn = document.getElementById("promo-btn");
 const statisticList = document.getElementById("statistic-list-wrap");
 const promocodeBlock = document.querySelector(".statistic__promocode");
+const discountList = document.getElementById("discount-list");
+const csrftoken = getCookie("csrftoken");
 let promoCode;
 let promoPercent;
 
 let fullCurrentPrice;
+
 
 promoBtn.addEventListener("click", () => {
   if (promoInput.value === "") {
@@ -92,14 +95,12 @@ function updateBasketList() {
                 class="basket__item-img"
                 />
                 <div class="basket__item-info">
-                <p class="basket__item-name">${item.productName} (${
-      item.volume
-    }) - ${item.optionName}</p>
-                <p class="basket__item-wraptype">${
-                  item.wrapperName != null
-                    ? `${item.wrapperName} / ${item.wrapperPrice}₴`
-                    : "Без пакування"
-                }</p>
+                <p class="basket__item-name">${item.productName} (${item.volume
+      }) - ${item.optionName}</p>
+                <p class="basket__item-wraptype">${item.wrapperName != null
+        ? `${item.wrapperName} / ${item.wrapperPrice}₴`
+        : "Без пакування"
+      }</p>
                 <div class="basket__item-quantity quantity_item quantity-panel-cover-mob">
                     <div>
                     <img
@@ -147,13 +148,11 @@ function updateBasketList() {
                 </div>
                 </div>
                 <div class="price-wrap">
-                <div class="basket__item-discount" ${
-                  item.volumeDiscount == 0 ? 'style="display: none"' : ""
-                }>
+                <div class="basket__item-discount" ${item.volumeDiscount == 0 ? 'style="display: none"' : ""
+      }>
                     <span class="full-price">${item.volumePrice}₴</span>
-                    <span class="discount-percent">-${
-                      item.volumeDiscount
-                    }%</span>
+                    <span class="discount-percent">-${item.volumeDiscount
+      }%</span>
                 </div>
                 <h3>
                     ${item.currentPrice}<span class="curr-symbol">₴</span>
@@ -203,7 +202,6 @@ const currentFullPriceHeader = document.getElementById("current-full-price");
 function updateStatisticsUI() {
   const localBasket = JSON.parse(localStorage.getItem("basket"));
   if (localBasket.lenght) return;
-
   const fullPrice = localBasket.reduce(
     (sum, item) =>
       sum + parseInt(item.volumePrice) * parseInt(item.productQuantity),
@@ -225,7 +223,7 @@ function updateStatisticsUI() {
       currentFullPrice - (currentFullPrice / 100) * promoPercent;
   }
   fullCurrentPrice = currentFullPrice;
-
+  discount()
   priceWithoutDiscountHeader.textContent = `${fullPrice}₴`;
   priceWithDiscountHeader.textContent = `-${discountValue}₴`;
   wrappersPricetHeader.textContent = `${wrappersPrice}₴`;
@@ -233,6 +231,57 @@ function updateStatisticsUI() {
 }
 
 updateStatisticsUI();
+
+function discount() {
+  const localBasket = JSON.parse(localStorage.getItem("basket"));
+  const categorySummary = localBasket.reduce((acc, item) => {
+    const categoryId = item.categoryId || "null";
+    const currentPrice = parseFloat(item.currentPrice);
+    const quantity = parseInt(item.productQuantity, 10);
+    if (!acc[categoryId]) {
+      acc[categoryId] = {
+        totalAmount: 0,
+        totalQuantity: 0
+      };
+    }
+
+    acc[categoryId].totalAmount += currentPrice * quantity;
+    acc[categoryId].totalQuantity += quantity;
+    acc.totalAmount = (acc.totalAmount || 0) + currentPrice * quantity;
+    acc.totalQuantity = (acc.totalQuantity || 0) + quantity;
+
+    return acc;
+  }, {});
+  fetch("/discount/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-CSRFToken": csrftoken,
+    },
+    body: JSON.stringify(categorySummary),
+  })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Результат запиту:", data);
+      localStorage.setItem("activeDiscount", JSON.stringify(data));
+      discountList.innerHTML = "";
+      data.freeDelivery.forEach(promo => {
+        addItemDiscount(promo);
+      });
+    })
+    .catch(error => {
+      console.error("Помилка запиту:", error);
+    });
+
+}
+
+function addItemDiscount(promo) {
+  const promoItem = document.createElement("p");
+  promoItem.classList.add("discount-info");
+  promoItem.style.margin = "10px 0";
+  promoItem.innerHTML = `<strong>${promo}</strong>`
+  discountList.appendChild(promoItem);
+}
 
 function getCookie(name) {
   let cookieValue = null;
@@ -254,7 +303,7 @@ form.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const localBasket = JSON.parse(localStorage.getItem("basket"));
-
+  const activeDiscount = JSON.parse(localStorage.getItem("activeDiscount"));
   const data = {
     name: document.getElementById("order-form__name").value,
     surname: document.getElementById("order-form__surname").value,
@@ -265,6 +314,7 @@ form.addEventListener("submit", function (event) {
     post_office_id: document.getElementById("order-form__novaid").value,
     comment: document.getElementById("order-form__text").value,
     order_list: localBasket,
+    active_Discount: activeDiscount,
     full_price: fullCurrentPrice,
     promocode: {
       id: promoCode,
@@ -272,7 +322,6 @@ form.addEventListener("submit", function (event) {
     },
   };
 
-  const csrftoken = getCookie("csrftoken");
 
   // Send data to the server using Fetch API
   fetch("/submit-order/", {
