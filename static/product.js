@@ -333,6 +333,7 @@ addProductBtn.addEventListener("click", () => {
 
   const order = {
     itemId: localIndex++,
+    categoryId: productId.getAttribute("category-id"),
     productId: productId.textContent,
     productImg: productImg.getAttribute("src"),
     productName: productTitle.textContent.trim(),

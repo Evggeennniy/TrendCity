@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from django.contrib.auth import logout as auth_logout
 from django.views.decorators.csrf import csrf_protect
+from catalog import models as catalog_models
 
 
 class FavoriteView(PanelView, TemplateView):

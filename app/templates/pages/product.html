@@ -119,7 +119,10 @@
                 />
               </div>
               <h5 class="products-list__item-title">{{ product.name }}</h5>
-              <span id="product-id" style="display: none"
+              <span
+                id="product-id"
+                category-id="{{ product.related_category.id }}"
+                style="display: none"
                 >{{ product.id }}</span
               >
               <div class="products-list__item-info">
@@ -176,7 +179,6 @@
                   />
                 </div>
               </div>
-
               <div class="products-list__item-desc">
                 <span>{{ product.description|safe }}</span>
               </div>
@@ -453,6 +455,16 @@
                         volumeDiscount="{{ accesory.volumes.all.0.discount }}"
                         volumePrice="{{ accesory.volumes.all.0.get_curr_price }}"
                       >
+                        <!-- prettier-ignore -->
+                        {% for promotion in accesory.related_category.promos.all %}
+                        <p
+                          class="discount-info"
+                          promoinfo="{{ promotion.get_data }}"
+                          style="display: none"
+                        >
+                          🎁 {{ promotion.name }}
+                        </p>
+                        {% endfor %}
                         <a
                           href="{% url 'product' accesory.id %}"
                           class="components__item-link"
