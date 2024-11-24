@@ -11,6 +11,7 @@ django-jazzmin = "*"
 django-ckeditor-5 = "*"
 django-debug-toolbar = "*"
 django-extensions = "*"
+requests = "*"
 
 [dev-packages]
 

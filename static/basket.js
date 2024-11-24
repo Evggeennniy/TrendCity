@@ -263,7 +263,7 @@ function discount() {
     .then(response => response.json())
     .then(data => {
       console.log("Результат запиту:", data);
-      localStorage.setItem("activeDiscount", JSON.stringify(data));
+      localStorage.setItem("activeDiscount", data.freeDelivery.join("\n"));
       discountList.innerHTML = "";
       data.freeDelivery.forEach(promo => {
         addItemDiscount(promo);
@@ -277,9 +277,9 @@ function discount() {
 
 function addItemDiscount(promo) {
   const promoItem = document.createElement("p");
-  promoItem.classList.add("discount-info");
+  promoItem.classList.add("promo-item");
   promoItem.style.margin = "10px 0";
-  promoItem.innerHTML = `<strong>${promo}</strong>`
+  promoItem.textContent = promo;
   discountList.appendChild(promoItem);
 }
 
@@ -303,7 +303,7 @@ form.addEventListener("submit", function (event) {
   event.preventDefault();
 
   const localBasket = JSON.parse(localStorage.getItem("basket"));
-  const activeDiscount = JSON.parse(localStorage.getItem("activeDiscount"));
+  const activeDiscount = localStorage.getItem("activeDiscount");
   const data = {
     name: document.getElementById("order-form__name").value,
     surname: document.getElementById("order-form__surname").value,
@@ -314,7 +314,7 @@ form.addEventListener("submit", function (event) {
     post_office_id: document.getElementById("order-form__novaid").value,
     comment: document.getElementById("order-form__text").value,
     order_list: localBasket,
-    active_Discount: activeDiscount,
+    active_discount: activeDiscount,
     full_price: fullCurrentPrice,
     promocode: {
       id: promoCode,

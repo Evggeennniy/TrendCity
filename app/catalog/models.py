@@ -90,6 +90,9 @@ class Product(models.Model):
         verbose_name = "Товар"
         verbose_name_plural = "Товари"
 
+    def get_telegram_text(self):
+        return self.name
+
 
 class ProductImage(models.Model):
     image = models.FileField(verbose_name="Зображення", upload_to="product_images")
@@ -131,6 +134,9 @@ class ProductVolume(models.Model):
         verbose_name = "Опцiя об'єму"
         verbose_name_plural = "Опцiї об'єму"
 
+    def get_telegram_text(self):
+        return f"{self.value}/{self.price}/{self.discount}%"
+
 
 class ProductOption(models.Model):
     name = models.CharField(verbose_name="Назва", max_length=32)
@@ -162,6 +168,9 @@ class ProductWrapper(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    def get_telegram_text(self):
+        return f"{self.name}:{self.price}"
 
     class Meta:
         verbose_name = "Обгортка продукту"
@@ -275,11 +284,42 @@ class Order(models.Model):
         verbose_name="Цiна", max_digits=12, decimal_places=2
     )
     comment = models.CharField(verbose_name="Коментар", max_length=256)
+    promotion_text = models.CharField(
+        verbose_name="🎁 Застосовані акції та промокоди:",
+        max_length=1024,
+        default="No promotion",
+    )
     promocode = models.CharField(verbose_name="Промокод", max_length=16)
 
     class Meta:
         verbose_name = "Замовлення"
         verbose_name_plural = "Замовлення"
+
+    def get_telegram_text(self):
+        country_names = {
+            "380": "Україна",
+        }
+
+        country_name = country_names.get(self.country_code, "Невідомо")
+        order_parts = self.order_items.all()
+        parts_text = "\n".join([part.get_telegram_text() for part in order_parts])
+        return f"""\
+        📦 Замовлення від {self.name} {self.surname}:\
+
+        Країна: {country_name} (Код: {self.country_code})
+        Номер телефону: {self.number}
+        Спосіб оплати: {self.payment_method}
+        Пошта: {self.post_office}
+        Відділення: {self.post_office_id}
+        Ціна: {self.full_price} грн
+        Промокод: {self.promocode}
+        Коментар: {self.comment}
+        Дата та час замовлення: {self.datetime.strftime('%Y-%m-%d %H:%M:%S')}
+        🎁 Застосовані акції та промокоди:
+        {self.promotion_text}
+        📦 Товари:
+        {parts_text}       
+        """
 
 
 class OrderPart(models.Model):
@@ -303,3 +343,13 @@ class OrderPart(models.Model):
     class Meta:
         verbose_name = "Подробицi замовлення"
         verbose_name_plural = "Подробицi замовлень"
+
+    def get_telegram_text(self):
+        """
+        Формує красивий текст для однієї частини замовлення.
+        """
+        product_name = self.product.get_telegram_text() if self.product else "Невідомо"
+        volume = self.volume.get_telegram_text() if self.volume else "Невідомо"
+        wrapper = self.wrapper.get_telegram_text() if self.wrapper else "Невідомо"
+
+        return f"- Товар: {product_name}, Кількість: {self.count}, Об'єм: {volume}, Обертка: {wrapper}"

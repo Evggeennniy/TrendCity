@@ -1,13 +1,12 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView, View
 from catalog import models as catalog_models
-from django.http import Http404, JsonResponse
+from django.http import JsonResponse
 from django.urls import reverse
-from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Count, Q, Min, Max, Subquery, OuterRef
 from collections import defaultdict
 import json
-from django.core.serializers import serialize
+from .utils import send_telegram_message
 
 
 class PanelView(View):
@@ -246,7 +245,6 @@ def add_review(request, pk):
 def order_submit(request):
     if request.method == "POST":
         data = json.loads(request.body)
-
         name = data.get("name")
         surname = data.get("surname")
         country_code = data.get("country_code")
@@ -260,6 +258,7 @@ def order_submit(request):
         promocode_percent = data.get("promocode", "").get("percent")
 
         order_content = data.get("order_list")
+        promotion_text = str(data.get("active_discount", "Немає знижок"))
 
         order = catalog_models.Order.objects.create(
             name=name,
@@ -271,6 +270,7 @@ def order_submit(request):
             post_office_id=post_office_id,
             comment=comment,
             full_price=full_price,
+            promotion_text=promotion_text,
             promocode=f"{promocode_name} / {promocode_percent}%",
         )
 
@@ -290,7 +290,7 @@ def order_submit(request):
             )
             for item in order_content
         ]
-
+        send_telegram_message(order.get_telegram_text())
         return JsonResponse({"status": "success"})
     else:
         return JsonResponse({"error": "Invalid request"}, status=400)
