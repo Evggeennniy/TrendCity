@@ -263,9 +263,9 @@ function discount() {
     .then(response => response.json())
     .then(data => {
       console.log("Результат запиту:", data);
-      localStorage.setItem("activeDiscount", data.freeDelivery.join("\n"));
+      localStorage.setItem("activeDiscount", data.applicablePromotions.join("\n"));
       discountList.innerHTML = "";
-      data.freeDelivery.forEach(promo => {
+      data.applicablePromotions.forEach(promo => {
         addItemDiscount(promo);
       });
     })

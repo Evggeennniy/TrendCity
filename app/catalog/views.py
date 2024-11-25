@@ -311,7 +311,7 @@ def get_discount(request):
     if request.method == "POST":
         try:
             data = json.loads(request.body)
-            free_delivery_promotions = []
+            applicable_promotions = []
             # БЕЗКОШТОВНА ДОСТАВКА
             total_amount = data.get("totalAmount", 0)
             total_quantity = data.get("totalQuantity", 0)
@@ -330,22 +330,31 @@ def get_discount(request):
                                 promo.promo_controller == "price"
                                 and category_data["totalAmount"] >= promo.promo_value
                             ):
-                                free_delivery_promotions.append(promo.name)
+                                applicable_promotions.append(promo.name)
                             elif (
                                 promo.promo_controller == "count"
                                 and category_data["totalQuantity"] >= promo.promo_value
                             ):
-                                free_delivery_promotions.append(promo.name)
+                                applicable_promotions.append(promo.name)
 
             if promo.promo_controller == "price" and total_amount >= promo.promo_value:
-                free_delivery_promotions.append(promo.name)
+                applicable_promotions.append(promo.name)
             elif (
                 promo.promo_controller == "count"
                 and total_quantity >= promo.promo_value
             ):
-                free_delivery_promotions.append(promo.name)
+                applicable_promotions.append(promo.name)
+            # АКЦІЯ НА ПОДАРУНОК
+            calculate_free_product_promotions(data, applicable_promotions)
+            # АКЦІЯ НА СУМУ ЗАМОВЛЕННЯ
+            calculatePriceDiscounts = calculate_price_discounts(
+                data, applicable_promotions
+            )
             return JsonResponse(
-                {"status": "success", "freeDelivery": free_delivery_promotions}
+                {
+                    "status": "success",
+                    **calculatePriceDiscounts,
+                }
             )
         except catalog_models.Promocode.DoesNotExist:
             return JsonResponse({"status": "error", "message": "Щось пійшло не так"})
@@ -353,15 +362,82 @@ def get_discount(request):
         return JsonResponse({"error": "Invalid request"}, status=400)
 
 
-"""
-    try:
-        # freeDeliveryPromotion = catalog_models.FreeDeliveryPromotion.objects.all()
-        return JsonResponse(
-            {
-                "status": "success",
-                "freeDeliveryPromotion": "ff",
-            }
+def calculate_price_discounts(data, applicable_promotions):
+    """
+    Розраховує знижки по категоріях і загальні знижки для акцій без категорій.
+    """
+    total_amount = data.get("totalAmount", 0)
+    category_discounts = {}
+    total_discount = 0
+
+    promotions = catalog_models.PriceDiscountPromotion.objects.prefetch_related(
+        "applicable_categories"
+    ).all()
+
+    for promo in promotions:
+        applicable_category_ids = list(
+            promo.applicable_categories.values_list("id", flat=True)
         )
-    except catalog_models.Promocode.DoesNotExist:
-        return JsonResponse({"status": "error", "message": "Промокод відсутній"})
-"""
+        for category_id, category_data in data.items():
+            if category_id.isdigit() and int(category_id) in applicable_category_ids:
+                if category_id not in category_discounts:
+                    category_discounts[category_id] = 0
+                if category_data["totalAmount"] >= promo.promo_price:
+                    discount = category_data["totalAmount"] * promo.promo_discount / 100
+                    category_discounts[category_id] += discount
+                    total_discount += discount
+                    if promo.name not in applicable_promotions:
+                        applicable_promotions.append(promo.name)
+
+        if not applicable_category_ids:
+            if total_amount >= promo.promo_price:
+                discount = total_amount * promo.promo_discount / 100
+                total_discount += discount
+
+                if promo.name not in applicable_promotions:
+                    applicable_promotions.append(promo.name)
+
+    result = {
+        "totalDiscount": total_discount,
+        "categoryDiscounts": category_discounts,
+        "applicablePromotions": applicable_promotions,
+    }
+
+    return result
+
+
+def calculate_free_product_promotions(data, applicable_promotions):
+    """
+    Повертає масив строк формату "<кількість активувань> x <назва акції> <назва товару>".
+    """
+    total_quantity = data.get("totalQuantity", 0)
+
+    promotions = catalog_models.FreeProductPromotion.objects.prefetch_related(
+        "applicable_categories"
+    ).all()
+
+    for promo in promotions:
+        applicable_category_ids = list(
+            promo.applicable_categories.values_list("id", flat=True)
+        )
+        free_product_count = 0
+
+        # Перевірка акцій для категорій
+        for category_id, category_data in data.items():
+            if category_id.isdigit() and int(category_id) in applicable_category_ids:
+                if category_data["totalQuantity"] >= promo.promo_count:
+                    applicable_times = (
+                        category_data["totalQuantity"] // promo.promo_count
+                    )
+                    free_product_count += applicable_times
+
+        if not applicable_category_ids and total_quantity >= promo.promo_count:
+            applicable_times = total_quantity // promo.promo_count
+            free_product_count += applicable_times
+
+        if free_product_count > 0:
+            applicable_promotions.append(
+                f"{free_product_count} x {promo.name} {promo.promo_product.name}"
+            )
+
+    return applicable_promotions
