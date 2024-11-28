@@ -8,7 +8,7 @@ from collections import defaultdict
 import json
 from .models import Product
 from .utils import send_telegram_message
-from catalog import basket ,models as catalog_models
+from catalog import basket, models as catalog_models
 
 
 class PanelView(View):
@@ -262,7 +262,7 @@ def order_submit(request):
         order_content = data.get("order_list")
         promotion_text = ", ".join(result["discountLabel"])
         present_text = ", ".join(result["present"])
-        full_price= result["sumPrice"] #!!!!!!!!!!!!!!!!! ціна для сплати наша прорахована на сервері
+        full_price = result["sumPrice"]
         order = catalog_models.Order.objects.create(
             name=name,
             surname=surname,
@@ -274,7 +274,7 @@ def order_submit(request):
             comment=comment,
             full_price=full_price,
             promotion_text=promotion_text,
-            present_text =present_text,
+            present_text=present_text,
             promocode=f"{promocode_name} / {promocode_percent} / {result['promoCodeCof']} %",
         )
 
@@ -295,16 +295,17 @@ def order_submit(request):
             for item in order_content
         ]
         print(order.get_telegram_text())
-        #send_telegram_message(order.get_telegram_text())
+        send_telegram_message(order.get_telegram_text())
         return JsonResponse({"status": "success"})
     else:
         return JsonResponse({"error": "Invalid request"}, status=400)
+
 
 def get_basket(request):
     try:
         if request.method == "POST":
             body = json.loads(request.body)
-            data = basket.calculate_basket(body.get("order_list"),body.get("promocodeName"))
+            data = basket.calculate_basket(body.get("order_list"), body.get("promocodeName"))
             print(body)
             return JsonResponse({"status": "success", "data": data})
         else:
