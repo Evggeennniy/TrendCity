@@ -3,7 +3,7 @@ const promoBtn = document.getElementById("promo-btn");
 const statisticList = document.getElementById("statistic-list-wrap");
 const promocodeBlock = document.querySelector(".statistic__promocode");
 const discountList = document.getElementById("discount-list");
-const csrftoken = getCookie("csrftoken");
+
 let promoCode;
 let promoPercent;
 
@@ -29,15 +29,11 @@ promoBtn.addEventListener("click", () => {
     .then((data) => {
       if (data.status === "success") {
         alert(`Промокод прийнято! Знижка: ${data.discount}%`);
-        const newEl = document.createElement("div");
-        newEl.classList.add("statistic__item");
-        newEl.innerHTML = `
+        createStatisticItem(`
           <h4>Промокод ${promoInput.value}</h4>
           <h4>-${data.discount}%</h4>
-        `;
-        statisticList.append(newEl);
+        `);
         promocodeBlock.remove();
-
         promoCode = promoInput.value;
         promoPercent = data.discount;
         updateStatisticsUI();
@@ -52,6 +48,13 @@ promoBtn.addEventListener("click", () => {
 
 function toggleItem(event) {
   event.target.classList.toggle("active");
+}
+
+function createStatisticItem(html) {
+  const newEl = document.createElement("div");
+  newEl.classList.add("statistic__item");
+  newEl.innerHTML = html;
+  statisticList.append(newEl);
 }
 
 function localBasketEdit(action, itemId) {
@@ -77,11 +80,11 @@ function localBasketEdit(action, itemId) {
 
 const basketList = document.getElementById("basket-list");
 function updateBasketList() {
-  const localBasket = JSON.parse(localStorage.getItem("basket"));
+  const localBasket = );
   for (let item of localBasket) {
     const newItem = document.createElement("div");
-    newItem.classList.add("basket__item", "gray-border");
-    newItem.setAttribute("itemId", `${item.itemId}`);
+    newItem.classList.add();
+    newItem.setAttribute("`);
     newItem.innerHTML = `
             <div class="basket__item-general">
                 <img
@@ -150,7 +153,7 @@ function updateBasketList() {
                 <div class="price-wrap">
                 <div class="basket__item-discount" ${item.volumeDiscount == 0 ? 'style="display: none"' : ""
       }>
-                    <span class="full-price">${item.volumePrice}₴</span>
+                    <span class="full-price">${item.volumePrice}</span>
                     <span class="discount-percent">-${item.volumeDiscount
       }%</span>
                 </div>
@@ -252,6 +255,10 @@ function discount() {
 
     return acc;
   }, {});
+  createStatisticItem(`
+    <h4>Акційя якась ще не придумана</h4>
+    <h4> -50₴</h4>
+  `);
   fetch("/discount/", {
     method: "POST",
     headers: {
@@ -283,20 +290,7 @@ function addItemDiscount(promo) {
   discountList.appendChild(promoItem);
 }
 
-function getCookie(name) {
-  let cookieValue = null;
-  if (document.cookie && document.cookie !== "") {
-    const cookies = document.cookie.split(";");
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i].trim();
-      if (cookie.substring(0, name.length + 1) === name + "=") {
-        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-        break;
-      }
-    }
-  }
-  return cookieValue;
-}
+
 
 const form = document.querySelector(".order-form__form");
 form.addEventListener("submit", function (event) {

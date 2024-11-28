@@ -285,7 +285,12 @@ class Order(models.Model):
     )
     comment = models.CharField(verbose_name="Коментар", max_length=256)
     promotion_text = models.CharField(
-        verbose_name="🎁 Застосовані акції та промокоди:",
+        verbose_name="🎁🛒 Застосовані акції та промокоди:",
+        max_length=1024,
+        default="No promotion",
+    )
+    present_text = models.CharField(
+        verbose_name="🎁 Подарунки",
         max_length=1024,
         default="No promotion",
     )
@@ -297,15 +302,14 @@ class Order(models.Model):
 
     def get_telegram_text(self):
         country_names = {
-            "380": "Україна",
+            "380": "🇺🇦 Україна",
         }
 
         country_name = country_names.get(self.country_code, "Невідомо")
         order_parts = self.order_items.all()
         parts_text = "\n".join([part.get_telegram_text() for part in order_parts])
         return f"""\
-        📦 Замовлення від {self.name} {self.surname}:\
-
+        🛒 Замовлення від {self.name} {self.surname}:
         Країна: {country_name} (Код: {self.country_code})
         Номер телефону: {self.number}
         Спосіб оплати: {self.payment_method}
@@ -317,6 +321,8 @@ class Order(models.Model):
         Дата та час замовлення: {self.datetime.strftime('%Y-%m-%d %H:%M:%S')}
         🎁 Застосовані акції та промокоди:
         {self.promotion_text}
+        🎁 Подарунки:
+        {self.present_text}
         📦 Товари:
         {parts_text}       
         """

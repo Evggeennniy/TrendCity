@@ -1,12 +1,14 @@
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView, View
-from catalog import models as catalog_models
+from django.core.serializers import serialize
 from django.http import JsonResponse
 from django.urls import reverse
 from django.db.models import Count, Q, Min, Max, Subquery, OuterRef
 from collections import defaultdict
 import json
+from .models import Product
 from .utils import send_telegram_message
+from catalog import basket ,models as catalog_models
 
 
 class PanelView(View):
@@ -247,19 +249,20 @@ def order_submit(request):
         data = json.loads(request.body)
         name = data.get("name")
         surname = data.get("surname")
-        country_code = data.get("country_code")
+        country_code = data.get("countryCode")[1:]
         number = data.get("number")
-        payment_method = data.get("payment_method")
-        post_office_id = data.get("post_office_id")
+        payment_method = data.get("paymentMethod")
+        post_office_id = data.get("postOfficeId")
         comment = data.get("comment")
-        post_office = data.get("delivery_type")
-        full_price = data.get("full_price")
-        promocode_name = data.get("promocode", "").get("id")
-        promocode_percent = data.get("promocode", "").get("percent")
+        post_office = data.get("postOffice")
+        promocode_name = data.get("promocodeName", "")
+        promocode_percent = data.get("promocodePercent", "")
 
+        result = basket.calculate_basket(data.get("order_list"), data.get("promocodeName"))
         order_content = data.get("order_list")
-        promotion_text = str(data.get("active_discount", "Немає знижок"))
-
+        promotion_text = ", ".join(result["discountLabel"])
+        present_text = ", ".join(result["present"])
+        full_price= result["sumPrice"] #!!!!!!!!!!!!!!!!! ціна для сплати наша прорахована на сервері
         order = catalog_models.Order.objects.create(
             name=name,
             surname=surname,
@@ -271,7 +274,8 @@ def order_submit(request):
             comment=comment,
             full_price=full_price,
             promotion_text=promotion_text,
-            promocode=f"{promocode_name} / {promocode_percent}%",
+            present_text =present_text,
+            promocode=f"{promocode_name} / {promocode_percent} / {result['promoCodeCof']} %",
         )
 
         order_content = [
@@ -290,154 +294,20 @@ def order_submit(request):
             )
             for item in order_content
         ]
-        send_telegram_message(order.get_telegram_text())
+        print(order.get_telegram_text())
+        #send_telegram_message(order.get_telegram_text())
         return JsonResponse({"status": "success"})
     else:
         return JsonResponse({"error": "Invalid request"}, status=400)
 
-
-def check_promocode(request, promocode):
-    # Удаляем пробелы на случай, если есть лишние
-    promocode = promocode.strip()
-
+def get_basket(request):
     try:
-        promo = catalog_models.Promocode.objects.get(name=promocode)
-        return JsonResponse({"status": "success", "discount": promo.discount})
-    except catalog_models.Promocode.DoesNotExist:
-        return JsonResponse({"status": "error", "message": "Промокод відсутній"})
-
-
-def get_discount(request):
-    if request.method == "POST":
-        try:
-            data = json.loads(request.body)
-            applicable_promotions = []
-            # БЕЗКОШТОВНА ДОСТАВКА
-            total_amount = data.get("totalAmount", 0)
-            total_quantity = data.get("totalQuantity", 0)
-            promotions = catalog_models.FreeDeliveryPromotion.objects.prefetch_related(
-                "applicable_categories"
-            ).all()
-            for promo in promotions:
-                applicable_category_ids = list(
-                    promo.applicable_categories.values_list("id", flat=True)
-                )
-
-                for category_id, category_data in data.items():
-                    if category_id.isdigit():
-                        if int(category_id) in applicable_category_ids:
-                            if (
-                                promo.promo_controller == "price"
-                                and category_data["totalAmount"] >= promo.promo_value
-                            ):
-                                applicable_promotions.append(promo.name)
-                            elif (
-                                promo.promo_controller == "count"
-                                and category_data["totalQuantity"] >= promo.promo_value
-                            ):
-                                applicable_promotions.append(promo.name)
-
-            if promo.promo_controller == "price" and total_amount >= promo.promo_value:
-                applicable_promotions.append(promo.name)
-            elif (
-                promo.promo_controller == "count"
-                and total_quantity >= promo.promo_value
-            ):
-                applicable_promotions.append(promo.name)
-            # АКЦІЯ НА ПОДАРУНОК
-            calculate_free_product_promotions(data, applicable_promotions)
-            # АКЦІЯ НА СУМУ ЗАМОВЛЕННЯ
-            calculatePriceDiscounts = calculate_price_discounts(
-                data, applicable_promotions
-            )
-            return JsonResponse(
-                {
-                    "status": "success",
-                    **calculatePriceDiscounts,
-                }
-            )
-        except catalog_models.Promocode.DoesNotExist:
-            return JsonResponse({"status": "error", "message": "Щось пійшло не так"})
-    else:
+        if request.method == "POST":
+            body = json.loads(request.body)
+            data = basket.calculate_basket(body.get("order_list"),body.get("promocodeName"))
+            print(body)
+            return JsonResponse({"status": "success", "data": data})
+        else:
+            return JsonResponse({"error": "Invalid request"}, status=400)
+    except ImportError:
         return JsonResponse({"error": "Invalid request"}, status=400)
-
-
-def calculate_price_discounts(data, applicable_promotions):
-    """
-    Розраховує знижки по категоріях і загальні знижки для акцій без категорій.
-    """
-    total_amount = data.get("totalAmount", 0)
-    category_discounts = {}
-    total_discount = 0
-
-    promotions = catalog_models.PriceDiscountPromotion.objects.prefetch_related(
-        "applicable_categories"
-    ).all()
-
-    for promo in promotions:
-        applicable_category_ids = list(
-            promo.applicable_categories.values_list("id", flat=True)
-        )
-        for category_id, category_data in data.items():
-            if category_id.isdigit() and int(category_id) in applicable_category_ids:
-                if category_id not in category_discounts:
-                    category_discounts[category_id] = 0
-                if category_data["totalAmount"] >= promo.promo_price:
-                    discount = category_data["totalAmount"] * promo.promo_discount / 100
-                    category_discounts[category_id] += discount
-                    total_discount += discount
-                    if promo.name not in applicable_promotions:
-                        applicable_promotions.append(promo.name)
-
-        if not applicable_category_ids:
-            if total_amount >= promo.promo_price:
-                discount = total_amount * promo.promo_discount / 100
-                total_discount += discount
-
-                if promo.name not in applicable_promotions:
-                    applicable_promotions.append(promo.name)
-
-    result = {
-        "totalDiscount": total_discount,
-        "categoryDiscounts": category_discounts,
-        "applicablePromotions": applicable_promotions,
-    }
-
-    return result
-
-
-def calculate_free_product_promotions(data, applicable_promotions):
-    """
-    Повертає масив строк формату "<кількість активувань> x <назва акції> <назва товару>".
-    """
-    total_quantity = data.get("totalQuantity", 0)
-
-    promotions = catalog_models.FreeProductPromotion.objects.prefetch_related(
-        "applicable_categories"
-    ).all()
-
-    for promo in promotions:
-        applicable_category_ids = list(
-            promo.applicable_categories.values_list("id", flat=True)
-        )
-        free_product_count = 0
-
-        # Перевірка акцій для категорій
-        for category_id, category_data in data.items():
-            if category_id.isdigit() and int(category_id) in applicable_category_ids:
-                if category_data["totalQuantity"] >= promo.promo_count:
-                    applicable_times = (
-                        category_data["totalQuantity"] // promo.promo_count
-                    )
-                    free_product_count += applicable_times
-
-        if not applicable_category_ids and total_quantity >= promo.promo_count:
-            applicable_times = total_quantity // promo.promo_count
-            free_product_count += applicable_times
-
-        if free_product_count > 0:
-            applicable_promotions.append(
-                f"{free_product_count} x {promo.name} {promo.promo_product.name}"
-            )
-
-    return applicable_promotions

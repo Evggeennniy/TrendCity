@@ -5,16 +5,9 @@ from catalog import views as catalog_views
 urlpatterns = [
     path("", catalog_views.IndexView.as_view(), name="index"),
     path("catalog/", catalog_views.CatalogView.as_view(), name="catalog"),
+    path("basket/",catalog_views.get_basket, name="basket"),
     path("catalog/<int:pk>/", catalog_views.CatalogView.as_view(), name="catalog"),
-    path(
-        "product/<int:pk>/", catalog_views.ProductDetailsView.as_view(), name="product"
-    ),
-    path("discount/", catalog_views.get_discount, name="discount"),
+    path("product/<int:pk>/", catalog_views.ProductDetailsView.as_view(), name="product"),
     path("product/<int:pk>/add_review/", catalog_views.add_review, name="add_review"),
     path("submit-order/", catalog_views.order_submit, name="order_submit"),
-    path(
-        "check-promocode/<str:promocode>/",
-        catalog_views.check_promocode,
-        name="check_promo",
-    ),
 ]
