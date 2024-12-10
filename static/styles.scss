@@ -97,7 +97,7 @@ footer {
   z-index: 11;
   width: 290px;
   background-color: white;
-  transition: left 200ms ease-in-out;
+  transition: left 140ms ease-in-out;
 
   &.active {
     left: 0;
@@ -1107,10 +1107,6 @@ footer {
   }
 
   @media (max-width: 576px) {
-    .panel__categories {
-      display: none;
-    }
-
     .main-wrap {
       margin-bottom: 30px;
     }
@@ -1170,6 +1166,7 @@ footer {
   .panel__item-title {
     font-weight: 500;
     text-wrap: nowrap;
+    font-size: 14px;
   }
 
   .panel__item-icon {
@@ -2425,8 +2422,27 @@ footer {
   .statistic__promocode {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     gap: 10px;
+
+    .arrow-sml {
+      height: 15px;
+    }
+
+    .title-wrap {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .panel-wrap {
+      visibility: hidden;
+      opacity: 0;
+      height: 0px;
+      transition: height 300ms ease-in-out, visibility 300ms ease-in-out,
+        opacity 300ms ease-in-out;
+    }
 
     h4 {
       font-size: 12px;
@@ -2434,20 +2450,43 @@ footer {
 
     input {
       border-radius: 5px;
-      padding: 3px 5px;
+      padding: 7px 5px;
       border: 1px solid lightgray;
+      margin-bottom: 10px;
     }
 
     button {
       border-radius: 5px;
-      padding: 5px;
+      padding: 5px 10px;
       border-top: 1px solid lightgray;
       font-weight: 500;
+      background-color: lightgreen;
+      margin-bottom: 10px;
     }
 
     button:active {
       border: 1px solid gray;
     }
+
+    &.active {
+      .arrow-sml {
+        transform: rotate(180deg);
+      }
+
+      .panel-wrap {
+        height: 70px;
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  .promo-info {
+    margin-bottom: 20px;
+  }
+
+  .discount_container {
+    padding: 10px;
   }
 
   .statistic__addinvite {

@@ -19,7 +19,9 @@
             class="top-raiting"
           />
           <p class="slider-menu__top-title">{{ item.name }}</p>
-          <h5 class="slider-menu__top-raiting">{{ item.price }}₴</h5>
+          <h5 class="slider-menu__top-raiting">
+            {{ item.volumes.first.get_curr_price }}₴
+          </h5>
         </div>
       </a>
     </li>

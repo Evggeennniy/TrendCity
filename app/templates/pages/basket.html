@@ -2,493 +2,576 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Basket Store</title>
     <!-- Alpine Plugins -->
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"
+    ></script>
     <!-- Alpine Core -->
-    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <meta name="csrfmiddlewaretoken" content="{{ csrf_token }}">
-    <link rel="stylesheet" href="{% static 'reset.css' %}"/>
-    <link rel="stylesheet" href="{% static 'styles.css' %}"/>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <meta name="csrfmiddlewaretoken" content="{{ csrf_token }}" />
+    <link rel="stylesheet" href="{% static 'reset.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles.css' %}" />
     <script src="{% static 'default.js' %}" defer></script>
+    <!-- <script src="{% static 'basket.js' %}" defer></script> -->
     <title>ТрендСіті</title>
-</head>
-<body>
-<div class="page-wrap">
-    {% include 'navbar.html' %}
-    <main class="main">
+  </head>
+  <body>
+    <div class="page-wrap">
+      {% include 'navbar.html' %}
+      <main class="main">
         <div class="overlay" id="overlay"></div>
         {% include 'slider_menu.html' %} {% include 'authpopup.html' %}
         <div x-data="basketStore" class="container">
-            <section class="main__fullcontent basket">
-                <div class="content-wrap">
-                    <div class="basket">
-                        <div class="basket__header gray-border">
-                            <p class="basket__header-title">Оформлення замовлення</p>
-                            <button class="basket__header-btn" id="btn-delete-checked" @click="removeItems">
-                                <img
-                                        src="{% static 'trash-icon.svg' %}"
-                                        alt="basket-icon"
-                                />
-                                <p>Видалити обране</p>
-                            </button>
-                        </div>
-                        <div class="basket__items" >
-                        <template x-for="(item, index) in items" :key="item.itemId">
-                            <div class="basket__item gray-border" :class="isActive(item.itemId) && 'chosen'">
-                                <div class="basket__item-general" @click="toggleIndex(item.itemId)">
-                                    <img
-                                            src="/static/checkmark-icon.svg"
-                                            alt="checkmark"
-                                            class="basket__item-checkmark \"
-                                    />
-                                    <img
-                                            :src="item.productImg"
-                                            alt="product-item"
-                                            class="basket__item-img"
-                                    />
-                                    <div class="basket__item-info">
-                                        <p class="basket__item-name">
-                                            <span x-text="item.productName"></span>
-                                            (<span x-text="item.volume"></span>) -
-                                            <span x-text="item.optionName"></span>
-                                        </p>
-                                        <p class="basket__item-wraptype">
-                                            <template x-if="item.wrapperName">
-                                              <span>
-                                                <span x-text="item.wrapperName"></span> /
-                                                <span x-text="item.wrapperPrice + '₴'"></span>
-                                              </span>
-                                            </template>
-                                            <template x-if="!item.wrapperName">
-                                                <span>Без пакування</span>
-                                            </template>
-                                        </p>
-                                        <div class="basket__item-quantity quantity_item quantity-panel-cover-mob">
-                                            <div>
-                                                <img
-                                                        src="/static/plus-icon.svg"
-                                                        alt="plus"
-                                                        action="plus"
-                                                        class="plus basket__item-icon quantity-btn"
-                                                        @click.stop="editQuantity(index, 'plus', item.itemId)"
-                                                />
-                                                <h3 class="quantity-value-basket" x-text="item.productQuantity"></h3>
-                                                <img
-                                                        src="/static/minus-icon.svg"
-                                                        alt="minus"
-                                                        action="minus"
-                                                        class="minus basket__item-icon quantity-btn"
-                                                        @click.stop="editQuantity(index, 'minus', item.itemId)"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div class="gray-line"></div>            
-                                    </div>
-                                </div>
-                                <div class="price-wrap">
-                                    <!-- Знижка -->
-                                    <div class="basket__item-price">
-                                    <div
-                                            class="basket__item-discount"
-                                            :style="{ display: item.volumeDiscount == 0 ? 'none' : 'block' }"
-                                    >
-                                        <span class="full-price" x-text="item.volumePrice + '₴'"></span>
-                                        <span class="discount-percent" x-text="'-' + item.volumeDiscount + '%'"></span>
-                                    </div>
-                                    <h3>
-                                        <span x-text="item.currentPrice"></span>
-                                        <span class="curr-symbol">₴</span>
-                                    </h3>
-                                </div>
-                                </div>
-                            </div>
-                        </template>
-                    </div>
+          <section class="main__fullcontent basket">
+            <div class="content-wrap">
+              <div class="basket">
+                <div class="basket__header gray-border">
+                  <p class="basket__header-title">Оформлення замовлення</p>
+                  <button
+                    class="basket__header-btn"
+                    id="btn-delete-checked"
+                    @click="removeItems"
+                  >
+                    <img
+                      src="{% static 'trash-icon.svg' %}"
+                      alt="basket-icon"
+                    />
+                    <p>Видалити обране</p>
+                  </button>
                 </div>
-                    <div class="statistic">
-                        <h4 class="statistic__header gray-border">ЗАГАЛЬНА СУМА</h4>
-                        <div class="statistic__list statistic__content gray-border">
-                            <div class="" id="statistic-list-wrap">
-                                <div class="statistic__item">
-                                    <h4>Товари без знижки</h4>
-                                    <h4 id="price-without-discount" x-text="summary.sumPriceNoDiscount+ '₴'"></h4>
-                                </div>
-                                <div class="statistic__item">
-                                    <h4>Пакування</h4>
-                                    <h4 id="wrappers-price" x-text="summary.wrapperPrice+ '₴'"></h4>
-                                </div>
-                                <div class="statistic__item">
-                                    <h4>Загальна сума знижки</h4>
-                                    <h4 id="price-with-discount" x-text="summary.sumDiscountProduct+ '₴'"></h4>
-                                </div>
-                                <template x-for="discount in summary.discount" :key="discount.name">
-                                    <div class="statistic__item">
-                                        <h4 x-text="discount.name"></h4>
-                                        <h4 x-text="discount.value+ '₴'"></h4>
-                                    </div>
-                                </template>
-                            </div>
-                            <div class="statistic__line"></div>
-                            <div class="statistic__item">
-                                <h4>Загалом</h4>
-                                <h4
-                                        class="statistic__fullprice"
-                                        id="current-full-price"
-                                        x-text="summary.sumPrice"
-                                ></h4>
-                            </div>
-                            <div class="statistic__promocode">
-                                <h4>У вас є промокод?</h4>
-                                <input
-                                        type="text"
-                                        placeholder="Промокод"
-                                        id="promo-input"
-                                        x-model="promocodeName"
-                                />
-                                <button id="promo-btn" @click="activeCode">Добавити</button>
-                            </div>
-                        </div>
-                        <div class="discount_container" x-show="summary.discount">
-                            Подарунки🎁:
-                            <template class="discount-list" x-for="present in summary.present" :key="present">
-                                 <p class="promo-item" style="margin=10px 0" x-text="present"></p>
+                <div class="basket__items">
+                  <template x-for="(item, index) in items" :key="item.itemId">
+                    <div
+                      class="basket__item gray-border"
+                      :class="isActive(item.itemId) && 'chosen'"
+                    >
+                      <div
+                        class="basket__item-general"
+                        @click="toggleIndex(item.itemId)"
+                      >
+                        <img
+                          src="/static/checkmark-icon.svg"
+                          alt="checkmark"
+                          class="basket__item-checkmark \"
+                        />
+                        <img
+                          :src="item.productImg"
+                          alt="product-item"
+                          class="basket__item-img"
+                        />
+                        <div class="basket__item-info">
+                          <p class="basket__item-name">
+                            <span x-text="item.productName"></span>
+                            (<span x-text="item.volume"></span>) -
+                            <span x-text="item.optionName"></span>
+                          </p>
+                          <p class="basket__item-wraptype">
+                            <template x-if="item.wrapperName">
+                              <span>
+                                <span x-text="item.wrapperName"></span> /
+                                <span x-text="item.wrapperPrice + '₴'"></span>
+                              </span>
                             </template>
-                        </div>
-                        <div class="discount_container" x-show="summary.discountLabel">
-                            Акцій🛒:
-                            <template id="discount-list" x-for="label in summary.discountLabel" :key="label">
-                                <p class="promo-item" style="margin=10px 0" x-text="label"></p>
+                            <template x-if="!item.wrapperName">
+                              <span>Без пакування</span>
                             </template>
+                          </p>
+                          <div
+                            class="basket__item-quantity quantity_item quantity-panel-cover-mob"
+                          >
+                            <div>
+                              <img
+                                src="/static/plus-icon.svg"
+                                alt="plus"
+                                action="plus"
+                                class="plus basket__item-icon quantity-btn"
+                                @click.stop="editQuantity(index, 'plus', item.itemId)"
+                              />
+                              <h3
+                                class="quantity-value-basket"
+                                x-text="item.productQuantity"
+                              ></h3>
+                              <img
+                                src="/static/minus-icon.svg"
+                                alt="minus"
+                                action="minus"
+                                class="minus basket__item-icon quantity-btn"
+                                @click.stop="editQuantity(index, 'minus', item.itemId)"
+                              />
+                            </div>
+                          </div>
+                          <div class="gray-line"></div>
                         </div>
-                        <div class="statistic__addinvite gray-border">
-                            <p class="statistic__addinvite-title">
-                                Потребуете доповнити<br/>Ваш кошик?
-                            </p>
-                            <a
-                                href="{% url 'catalog' %}"
-                                class="statistic__addinvite-link"
-                            >Перейти</a
-                            >
+                      </div>
+                      <div class="price-wrap">
+                        <!-- Знижка -->
+                        <div class="basket__item-price">
+                          <div
+                            class="basket__item-discount"
+                            :style="{ display: item.volumeDiscount == 0 ? 'none' : 'block' }"
+                          >
+                            <span
+                              class="full-price"
+                              x-text="item.volumePrice + '₴'"
+                            ></span>
+                            <span
+                              class="discount-percent"
+                              x-text="'-' + item.volumeDiscount + '%'"
+                            ></span>
+                          </div>
+                          <h3>
+                            <span x-text="item.currentPrice"></span>
+                            <span class="curr-symbol">₴</span>
+                          </h3>
                         </div>
+                      </div>
                     </div>
-                    <div class="order-form">
-                        <div class="order-form-wrap">
-                            <form method="post" class="order-form__form gray-border">
-                                <div class="order-form__form-wrap">
-                                    <div class="form__input-wrap form__input-name">
-                                        <img
-                                                class="form__input-icon"
-                                                src="{% static 'user-icon.svg' %}"
-                                                alt="Иконка профиля"
-                                        />
-                                        <input
-                                                type="text"
-                                                class="form__input"
-                                                id="order-form__name"
-                                                placeholder="Анатолій"
-                                                autocomplete="name"
-                                                x-model="order.name"
-                                                required
-                                        />
-                                    </div>
-                                    <div class="form__input-wrap form__input-surname">
-                                        <img
-                                                class="form__input-icon"
-                                                src="{% static 'user-icon.svg' %}"
-                                                alt="Иконка профиля"
-                                        />
-                                        <input
-                                                type="text"
-                                                class="form__input"
-                                                id="order-form__surname"
-                                                placeholder="Кузьменко"
-                                                x-model="order.surname"
-                                                autocomplete="surname"
-                                                required
-                                        />
-                                    </div>
-                                    <div class="form__input-number">
-                                        <div class="form__input-wrap">
-                                            <input
-                                                    type="tel"
-                                                    class="form__input"
-                                                    id="order-form__phone-code"
-                                                    placeholder="+380"
-                                                    pattern="[0-9]*"
-                                                    x-mask="+999"
-                                                    maxlength="4"
-                                                    inputmode="numeric"
-                                                    x-model="order.countryCode"
-                                                    required
-                                                    autocomplete="country-code"
-                                            />
-                                        </div>
-                                        <div class="form__input-wrap">
-                                            <input
-                                                    type="tel"
-                                                    class="form__input"
-                                                    id="order-form__phone-num"
-                                                    placeholder="00 00 00 000"
-                                                    pattern="[0-9]*"
-                                                    maxlength="12"
-                                                    inputmode="numeric"
-                                                    x-model="order.number"
-                                                    x-mask="99 99 99 999"
-                                                    autocomplete="number"
-                                                    required
-                                            />
-                                        </div>
-                                    </div>
-                                    <div class="form__input-wrap form__input-paymethod">
-                                        <img
-                                                class="form__input-icon"
-                                                src="{% static 'wallet-icon.svg' %}"
-                                                alt="icon"
-                                        />
-                                        <select
-                                                class="form__input form__select"
-                                                id="order-form__paymethod"
-                                                x-model="order.paymentMethod"
-                                                required
-                                        >
-                                            <option value="" disabled selected>
-                                                Виберіть спосіб оплати
-                                            </option>
-                                            <option value="Оплата готівкою">
-                                                Оплата готівкою
-                                            </option>
-                                            <option value="Оплата картою при отриманні">
-                                                Оплата картою при отриманні
-                                            </option>
-                                            <option value="Оплата онлайн картою">
-                                                Оплата онлайн картою
-                                            </option>
-                                            <option value="Банківський переказ">
-                                                Банківський переказ
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="form__input-wrap form__input-deltype">
-                                        <img
-                                                class="form__input-icon"
-                                                src="{% static 'place-icon.svg' %}"
-                                                alt="icon"
-                                        />
-                                        <select
-                                                class="form__input form__select"
-                                                id="order-form__deltype"
-                                                x-model="order.postOffice"
-                                                required
-                                        >
-                                            <option value="" disabled selected>
-                                                Виберіть спосіб доставки
-                                            </option>
-                                            <option value="Нова пошта">
-                                                Доставка: Нова пошта
-                                            </option>
-                                            <option value="Укрпошта">Доставка: Укрпошта</option>
-                                            <option value="Justin">Доставка: Justin</option>
-                                            <option value="Самовывоз">Самовывоз</option>
-                                        </select>
-                                    </div>
-                                    <div class="form__input-wrap form__input-novaid">
-                                        <img
-                                                class="form__input-icon"
-                                                src="{% static 'place-icon.svg' %}"
-                                                alt="icon"
-                                        />
-                                        <input
-                                                type="text"
-                                                class="form__input"
-                                                id="order-form__novaid"
-                                                x-model="order.postOfficeId"
-                                                placeholder="Відділення Нової пошти"
-                                                required
-                                                autocomplete="postoffice-id"
-                                        />
-                                    </div>
+                  </template>
+                </div>
+              </div>
+              <div class="statistic">
+                <h4 class="statistic__header gray-border">ЗАГАЛЬНА СУМА</h4>
+                <div class="statistic__list statistic__content gray-border">
+                  <div class="" id="statistic-list-wrap">
+                    <div class="statistic__item">
+                      <h4>Товари без знижки</h4>
+                      <h4
+                        id="price-without-discount"
+                        x-text="summary.sumPriceNoDiscount+ '₴'"
+                      ></h4>
+                    </div>
+                    <div class="statistic__item">
+                      <h4>Пакування</h4>
+                      <h4
+                        id="wrappers-price"
+                        x-text="summary.wrapperPrice+ '₴'"
+                      ></h4>
+                    </div>
+                    <div class="statistic__item">
+                      <h4>Загальна сума знижки</h4>
+                      <h4
+                        id="price-with-discount"
+                        x-text="summary.sumDiscountProduct+ '₴'"
+                      ></h4>
+                    </div>
+                    <template
+                      x-for="discount in summary.discount"
+                      :key="discount.name"
+                    >
+                      <div class="statistic__item">
+                        <h4 x-text="discount.name"></h4>
+                        <h4 x-text="discount.value+ '₴'"></h4>
+                      </div>
+                    </template>
+                  </div>
+                  <div class="statistic__line"></div>
+                  <div class="statistic__item">
+                    <h4>Загалом</h4>
+                    <h4
+                      class="statistic__fullprice"
+                      id="current-full-price"
+                      x-text="summary.sumPrice"
+                    ></h4>
+                  </div>
+                  <div class="statistic__promocode" id="statistic-promo">
+                    <div class="title-wrap" id="promo-title">
+                      <img
+                        src="{% static 'arrow-sml-black.svg' %}"
+                        alt="arrow"
+                        class="arrow-sml"
+                      />
+                      <h4>У вас є промокод?</h4>
+                    </div>
+                    <div class="panel-wrap" id="promo-panel">
+                      <input
+                        type="text"
+                        placeholder="Промокод"
+                        id="promo-input"
+                        x-model="promocodeName"
+                      />
+                      <button id="promo-btn" @click="activeCode">
+                        Добавити
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="promo-info gray-border">
+                  <div class="discount_container" x-show="summary.discount">
+                    Подарунки🎁:
+                    <template
+                      class="discount-list"
+                      x-for="present in summary.present"
+                      :key="present"
+                    >
+                      <p class="promo-item" x-text="present"></p>
+                    </template>
+                  </div>
+                  <div
+                    class="discount_container"
+                    x-show="summary.discountLabel"
+                  >
+                    Акцій🛒:
+                    <template
+                      id="discount-list"
+                      x-for="label in summary.discountLabel"
+                      :key="label"
+                    >
+                      <p class="promo-item" x-text="label"></p>
+                    </template>
+                  </div>
+                </div>
 
-                                    <div class="form__input-wrap form__input-text">
+                <div class="statistic__addinvite gray-border">
+                  <p class="statistic__addinvite-title">
+                    Потребуете доповнити<br />Ваш кошик?
+                  </p>
+                  <a
+                    href="{% url 'catalog' %}"
+                    class="statistic__addinvite-link"
+                    >Перейти</a
+                  >
+                </div>
+              </div>
+              <div class="order-form">
+                <div class="order-form-wrap">
+                  <form method="post" class="order-form__form gray-border">
+                    <div class="order-form__form-wrap">
+                      <div class="form__input-wrap form__input-name">
+                        <img
+                          class="form__input-icon"
+                          src="{% static 'user-icon.svg' %}"
+                          alt="Иконка профиля"
+                        />
+                        <input
+                          type="text"
+                          class="form__input"
+                          id="order-form__name"
+                          placeholder="Анатолій"
+                          autocomplete="name"
+                          x-model="order.name"
+                          required
+                        />
+                      </div>
+                      <div class="form__input-wrap form__input-surname">
+                        <img
+                          class="form__input-icon"
+                          src="{% static 'user-icon.svg' %}"
+                          alt="Иконка профиля"
+                        />
+                        <input
+                          type="text"
+                          class="form__input"
+                          id="order-form__surname"
+                          placeholder="Кузьменко"
+                          x-model="order.surname"
+                          autocomplete="surname"
+                          required
+                        />
+                      </div>
+                      <div class="form__input-number">
+                        <div class="form__input-wrap">
+                          <input
+                            type="tel"
+                            class="form__input"
+                            id="order-form__phone-code"
+                            placeholder="+380"
+                            pattern="[0-9]*"
+                            x-mask="+999"
+                            maxlength="4"
+                            inputmode="numeric"
+                            x-model="order.countryCode"
+                            required
+                            autocomplete="country-code"
+                          />
+                        </div>
+                        <div class="form__input-wrap">
+                          <input
+                            type="tel"
+                            class="form__input"
+                            id="order-form__phone-num"
+                            placeholder="00 00 00 000"
+                            pattern="[0-9]*"
+                            maxlength="12"
+                            inputmode="numeric"
+                            x-model="order.number"
+                            x-mask="99 99 99 999"
+                            autocomplete="number"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="form__input-wrap form__input-paymethod">
+                        <img
+                          class="form__input-icon"
+                          src="{% static 'wallet-icon.svg' %}"
+                          alt="icon"
+                        />
+                        <select
+                          class="form__input form__select"
+                          id="order-form__paymethod"
+                          x-model="order.paymentMethod"
+                          required
+                        >
+                          <option value="" disabled selected>
+                            Виберіть спосіб оплати
+                          </option>
+                          <option value="Оплата готівкою">
+                            Оплата готівкою
+                          </option>
+                          <option value="Оплата картою при отриманні">
+                            Оплата картою при отриманні
+                          </option>
+                          <option value="Оплата онлайн картою">
+                            Оплата онлайн картою
+                          </option>
+                          <option value="Банківський переказ">
+                            Банківський переказ
+                          </option>
+                        </select>
+                      </div>
+                      <div class="form__input-wrap form__input-deltype">
+                        <img
+                          class="form__input-icon"
+                          src="{% static 'place-icon.svg' %}"
+                          alt="icon"
+                        />
+                        <select
+                          class="form__input form__select"
+                          id="order-form__deltype"
+                          x-model="order.postOffice"
+                          required
+                        >
+                          <option value="" disabled selected>
+                            Виберіть спосіб доставки
+                          </option>
+                          <option value="Нова пошта">
+                            Доставка: Нова пошта
+                          </option>
+                          <option value="Укрпошта">Доставка: Укрпошта</option>
+                          <option value="Justin">Доставка: Justin</option>
+                          <option value="Самовывоз">Самовывоз</option>
+                        </select>
+                      </div>
+                      <div class="form__input-wrap form__input-novaid">
+                        <img
+                          class="form__input-icon"
+                          src="{% static 'place-icon.svg' %}"
+                          alt="icon"
+                        />
+                        <input
+                          type="text"
+                          class="form__input"
+                          id="order-form__novaid"
+                          x-model="order.postOfficeId"
+                          placeholder="Відділення Нової пошти"
+                          required
+                          autocomplete="postoffice-id"
+                        />
+                      </div>
+
+                      <div class="form__input-wrap form__input-text">
                         <textarea
-                                type="text"
-                                class="form__input"
-                                id="order-form__text"
-                                x-model="order.comment"
-                                placeholder="Коментар до замовлення"
+                          type="text"
+                          class="form__input"
+                          id="order-form__text"
+                          x-model="order.comment"
+                          placeholder="Коментар до замовлення"
                         ></textarea>
-                                    </div>
-                                    <div class="form__ok-btn">
-                                        <button class="form__button" type="submit" @click="sendOrder">
-                                            Оформлення
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                      </div>
+                      <div class="form__ok-btn">
+                        <button
+                          class="form__button"
+                          type="submit"
+                          @click="sendOrder"
+                        >
+                          Оформлення
+                        </button>
+                      </div>
                     </div>
+                  </form>
                 </div>
-            </section>
+              </div>
+            </div>
+          </section>
         </div>
-    </main>
-    {% include 'footer.html' %}
-</div>
-</body>
-<script>
-    document.addEventListener('alpine:init', () => {
-      Alpine.data('basketStore', () => ({
-        items: Alpine.$persist([]).as('basket'),
-        activeItems: [],
-        summary: {
-          sumPriceNoDiscount: 0,
-          wrapperPrice: 0,
-          sumDiscountProduct: 0,
-          promoCodeDiscount: 0,
-          sumPrice:0,
-          discount: [],
-          discountLabel: [],
-          present: [],
-        },
-        promocodeName:'',
-        order:{
-            promocodeName:'',
-            promocodePercent:'',
-            name:'',
-            surname:'',
-            countryCode:'',
-            number:'',
-            paymentMethod:'',
-            postOfficeId:'',
-            comment:'',
-            postOffice:'',
-        },
-        init() {
-          this.updateBasket();
-          this.$watch('items', () => {
-            this.updateBasket();
-          });
-          
-       },
-        editQuantity(itemIndex, action, temId) {
-            if (itemIndex !== -1) {
-                if (action === 'plus') {
-                    this.items[itemIndex].productQuantity++;
-                } else if (action === 'minus' && this.items[itemIndex].productQuantity > 1) {
-                    this.items[itemIndex].productQuantity--;
-                } else if (action === 'minus' && this.items[itemIndex].productQuantity === 1) {
-                    this.removeItem(temId);
-                };
-            };
-        },
-        toggleIndex(id) {
-            if (this.activeItems.includes(id)) {
-                this.activeItems = this.activeItems.filter(i => i !== id);
-            } else {
-                this.activeItems.push(id);
-            }
-        },
-        isActive(id) {
-            return this.activeItems.includes(id);
-        },
-        removeItem(id) {
-            this.items= this.items.filter(item => item.itemId !== id);
-            this.activeItems = this.activeItems.filter(i => i !== id);
-        },
-        removeItems() {
-            for (let index of this.activeItems) {
-                this.removeItem(index);
-            };
-        },
-        activeCode() {
-            this.order.promocodeName = this.promocodeName;
-            this.updateBasket();
+      </main>
+      {% include 'footer.html' %}
+    </div>
 
-        },
-        formatedBody() {
-            return this.items.map(item => {
-                return {
-                    productId: item.productId,
-                    volumeId: item.volumeId,
-                    wrapperId: item.wrapperId,
-                    productQuantity: item.productQuantity
-                };
+    <script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("basketStore", () => ({
+          items: Alpine.$persist([]).as("basket"),
+          activeItems: [],
+          summary: {
+            sumPriceNoDiscount: 0,
+            wrapperPrice: 0,
+            sumDiscountProduct: 0,
+            promoCodeDiscount: 0,
+            sumPrice: 0,
+            discount: [],
+            discountLabel: [],
+            present: [],
+          },
+          promocodeName: "",
+          order: {
+            promocodeName: "",
+            promocodePercent: "",
+            name: "",
+            surname: "",
+            countryCode: "",
+            number: "",
+            paymentMethod: "",
+            postOfficeId: "",
+            comment: "",
+            postOffice: "",
+          },
+          init() {
+            this.updateBasket();
+            this.$watch("items", () => {
+              this.updateBasket();
             });
-        },
-        getCookie(name) {
-          let cookieValue = null;
-          if (document.cookie && document.cookie !== "") {
-            const cookies = document.cookie.split(";");
-            for (let i = 0; i < cookies.length; i++) {
-              const cookie = cookies[i].trim();
-              if (cookie.substring(0, name.length + 1) === name + "=") {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
+          },
+          editQuantity(itemIndex, action, temId) {
+            if (itemIndex !== -1) {
+              if (action === "plus") {
+                this.items[itemIndex].productQuantity++;
+              } else if (
+                action === "minus" &&
+                this.items[itemIndex].productQuantity > 1
+              ) {
+                this.items[itemIndex].productQuantity--;
+              } else if (
+                action === "minus" &&
+                this.items[itemIndex].productQuantity === 1
+              ) {
+                this.removeItem(temId);
               }
             }
-          }
-          return cookieValue;
-        },
-        updateBasket() {
-            const body = {
-                order_list: this.formatedBody(),
-                promocodeName: this.order.promocodeName
-            };
-          const csrftoken = this.getCookie("csrftoken");
-          fetch("/basket/", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-CSRFToken": csrftoken,
-            },
-            body: JSON.stringify(body),
-          })
-            .then(response => response.json())
-            .then(data => {
-              this.summary.sumPriceNoDiscount = data.data.sumPriceNoDiscount;
-              this.summary.wrapperPrice = data.data.wrapperPrice;
-              this.summary.sumDiscountProduct = data.data.sumDiscountProduct;
-              this.summary.promoCodeDiscount = data.data.promoCodeDiscount;
-              this.summary.sumPrice = data.data.sumPrice;
-              this.summary.discount = data.data.discount || [];
-              this.summary.discountLabel = data.data.discountLabel || [];
-              this.summary.present = data.data.present || [];
-            })
-            .catch(error => {
-              console.error('Error sending basket:', error);
+          },
+          toggleIndex(id) {
+            if (this.activeItems.includes(id)) {
+              this.activeItems = this.activeItems.filter((i) => i !== id);
+            } else {
+              this.activeItems.push(id);
+            }
+          },
+          isActive(id) {
+            return this.activeItems.includes(id);
+          },
+          removeItem(id) {
+            this.items = this.items.filter((item) => item.itemId !== id);
+            this.activeItems = this.activeItems.filter((i) => i !== id);
+          },
+          removeItems() {
+            for (let index of this.activeItems) {
+              this.removeItem(index);
+            }
+          },
+          activeCode() {
+            this.order.promocodeName = this.promocodeName;
+            this.updateBasket();
+          },
+          formatedBody() {
+            return this.items.map((item) => {
+              return {
+                productId: item.productId,
+                volumeId: item.volumeId,
+                wrapperId: item.wrapperId,
+                productQuantity: item.productQuantity,
+              };
             });
-        },
-           sendOrder() {
+          },
+          getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== "") {
+              const cookies = document.cookie.split(";");
+              for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === name + "=") {
+                  cookieValue = decodeURIComponent(
+                    cookie.substring(name.length + 1)
+                  );
+                  break;
+                }
+              }
+            }
+            return cookieValue;
+          },
+          updateBasket() {
             const body = {
-                order_list: this.formatedBody(),
-                ...this.order
+              order_list: this.formatedBody(),
+              promocodeName: this.order.promocodeName,
             };
-          const csrftoken = this.getCookie("csrftoken");
-          fetch("/submit-order/", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "X-CSRFToken": csrftoken,
-            },
-            body: JSON.stringify(body),
-          })
-            .then(response => response.json())
-            .then(data => {
-              this.items=[];
-              this.promocodeName='';
-              this.order.promocodeName='';
-              this.activeItems=[];
+            const csrftoken = this.getCookie("csrftoken");
+            fetch("/basket/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrftoken,
+              },
+              body: JSON.stringify(body),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                this.summary.sumPriceNoDiscount = data.data.sumPriceNoDiscount;
+                this.summary.wrapperPrice = data.data.wrapperPrice;
+                this.summary.sumDiscountProduct = data.data.sumDiscountProduct;
+                this.summary.promoCodeDiscount = data.data.promoCodeDiscount;
+                this.summary.sumPrice = data.data.sumPrice;
+                this.summary.discount = data.data.discount || [];
+                this.summary.discountLabel = data.data.discountLabel || [];
+                this.summary.present = data.data.present || [];
+              })
+              .catch((error) => {
+                console.error("Error sending basket:", error);
+              });
+          },
+          sendOrder() {
+            const body = {
+              order_list: this.formatedBody(),
+              ...this.order,
+            };
+            const csrftoken = this.getCookie("csrftoken");
+            fetch("/submit-order/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrftoken,
+              },
+              body: JSON.stringify(body),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                this.items = [];
+                this.promocodeName = "";
+                this.order.promocodeName = "";
+                this.activeItems = [];
+              })
+              .catch((error) => {
+                console.error("Error sending basket:", error);
+              });
+          },
+        }));
+      });
 
-            })
-            .catch(error => {
-              console.error('Error sending basket:', error);
-            });
-        },
-      }));
-    });
-</script>
-</body>
+      const promoTitle = document.getElementById("promo-title");
+      const promoBlock = document.getElementById("statistic-promo");
+      promoTitle.addEventListener("click", () => {
+        promoBlock.classList.toggle("active");
+      });
+    </script>
+  </body>
 </html>

@@ -8,7 +8,7 @@
       </h4>
       <div class="slider-menu__nav">
         <button class="menu-item lang-btn">
-          <h5 class="menu-item__title">UA</h5>
+          <h4 class="menu-item__title">UA</h4>
           <img
             src="{% static 'arrow-small.svg' %}"
             alt="icon"
@@ -55,6 +55,16 @@
     <div class="slider-menu__block slider-menu__block-pages">
       <div class="slider-menu__auth slider-menu__item">
         <img
+          src="{% static 'basket-slider-icon.svg' %}"
+          alt="auth-icon"
+          class="slider-menu__auth-icon slider-icon"
+        />
+        <a href="{% url 'basket' %}" class="slider-title slider-menu__link"
+          >Корзина</a
+        >
+      </div>
+      <div class="slider-menu__auth slider-menu__item">
+        <img
           src="{% static 'heart-icon.svg' %}"
           alt=""
           class="slider-menu__auth-icon slider-icon"
@@ -75,7 +85,7 @@
       </div>
       <div class="slider-menu__auth slider-menu__item">
         <img
-          src="{% static 'basket-slider-icon.svg' %}"
+          src="{% static 'team-slider-icon.svg' %}"
           alt="auth-icon"
           class="slider-menu__auth-icon slider-icon"
         />
@@ -107,16 +117,6 @@
           >
         </h4>
       </div>
-      <div class="slider-menu__auth slider-menu__item">
-        <img
-          src="{% static 'basket-slider-icon.svg' %}"
-          alt="auth-icon"
-          class="slider-menu__auth-icon slider-icon"
-        />
-        <a href="{% url 'basket' %}" class="slider-title slider-menu__link"
-          >Корзина</a
-        >
-      </div>
     </div>
     <p class="slider-menu__content-title">Топ товари</p>
     <div class="slider-menu__block slider-menu__block-top">
@@ -125,7 +125,7 @@
         {% for product in top_products %}
         <li class="slider-menu__top-item">
           <img
-            src="{{ product.image.url }}"
+            src="{{ product.images.first.image.url }}"
             alt="top-item__img"
             class="slider-menu__top-img"
           />
@@ -136,7 +136,9 @@
               class="slider-menu__top-raiting"
             />
             <p class="slider-menu__top-title">{{ product.name }}</p>
-            <h5 class="slider-menu__top-price">{{ product.price }}₴</h5>
+            <h5 class="slider-menu__top-price">
+              {{ product.volumes.first.get_curr_price }}₴
+            </h5>
           </div>
         </li>
         {% endfor %}

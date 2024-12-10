@@ -9,7 +9,6 @@ let promoPercent;
 
 let fullCurrentPrice;
 
-
 promoBtn.addEventListener("click", () => {
   if (promoInput.value === "") {
     alert("Будь ласка, введіть промокод");
@@ -80,11 +79,11 @@ function localBasketEdit(action, itemId) {
 
 const basketList = document.getElementById("basket-list");
 function updateBasketList() {
-  const localBasket = );
+  const localBasket = JSON.parse(localStorage.getItem("basket"));
   for (let item of localBasket) {
     const newItem = document.createElement("div");
-    newItem.classList.add();
-    newItem.setAttribute("`);
+    newItem.classList.add("basket__item", "gray-border");
+    newItem.setAttribute("itemId", `${item.itemId}`);
     newItem.innerHTML = `
             <div class="basket__item-general">
                 <img
@@ -98,12 +97,14 @@ function updateBasketList() {
                 class="basket__item-img"
                 />
                 <div class="basket__item-info">
-                <p class="basket__item-name">${item.productName} (${item.volume
-      }) - ${item.optionName}</p>
-                <p class="basket__item-wraptype">${item.wrapperName != null
-        ? `${item.wrapperName} / ${item.wrapperPrice}₴`
-        : "Без пакування"
-      }</p>
+                <p class="basket__item-name">${item.productName} (${
+      item.volume
+    }) - ${item.optionName}</p>
+                <p class="basket__item-wraptype">${
+                  item.wrapperName != null
+                    ? `${item.wrapperName} / ${item.wrapperPrice}₴`
+                    : "Без пакування"
+                }</p>
                 <div class="basket__item-quantity quantity_item quantity-panel-cover-mob">
                     <div>
                     <img
@@ -151,11 +152,13 @@ function updateBasketList() {
                 </div>
                 </div>
                 <div class="price-wrap">
-                <div class="basket__item-discount" ${item.volumeDiscount == 0 ? 'style="display: none"' : ""
-      }>
-                    <span class="full-price">${item.volumePrice}</span>
-                    <span class="discount-percent">-${item.volumeDiscount
-      }%</span>
+                <div class="basket__item-discount" ${
+                  item.volumeDiscount == 0 ? 'style="display: none"' : ""
+                }>
+                    <span class="full-price">${item.volumePrice}₴</span>
+                    <span class="discount-percent">-${
+                      item.volumeDiscount
+                    }%</span>
                 </div>
                 <h3>
                     ${item.currentPrice}<span class="curr-symbol">₴</span>
@@ -226,7 +229,7 @@ function updateStatisticsUI() {
       currentFullPrice - (currentFullPrice / 100) * promoPercent;
   }
   fullCurrentPrice = currentFullPrice;
-  discount()
+  discount();
   priceWithoutDiscountHeader.textContent = `${fullPrice}₴`;
   priceWithDiscountHeader.textContent = `-${discountValue}₴`;
   wrappersPricetHeader.textContent = `${wrappersPrice}₴`;
@@ -244,7 +247,7 @@ function discount() {
     if (!acc[categoryId]) {
       acc[categoryId] = {
         totalAmount: 0,
-        totalQuantity: 0
+        totalQuantity: 0,
       };
     }
 
@@ -256,7 +259,7 @@ function discount() {
     return acc;
   }, {});
   createStatisticItem(`
-    <h4>Акційя якась ще не придумана</h4>
+    <h4>Акцій якась ще не придумана</h4>
     <h4> -50₴</h4>
   `);
   fetch("/discount/", {
@@ -267,19 +270,21 @@ function discount() {
     },
     body: JSON.stringify(categorySummary),
   })
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       console.log("Результат запиту:", data);
-      localStorage.setItem("activeDiscount", data.applicablePromotions.join("\n"));
+      localStorage.setItem(
+        "activeDiscount",
+        data.applicablePromotions.join("\n")
+      );
       discountList.innerHTML = "";
-      data.applicablePromotions.forEach(promo => {
+      data.applicablePromotions.forEach((promo) => {
         addItemDiscount(promo);
       });
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Помилка запиту:", error);
     });
-
 }
 
 function addItemDiscount(promo) {
@@ -289,8 +294,6 @@ function addItemDiscount(promo) {
   promoItem.textContent = promo;
   discountList.appendChild(promoItem);
 }
-
-
 
 const form = document.querySelector(".order-form__form");
 form.addEventListener("submit", function (event) {
@@ -316,7 +319,6 @@ form.addEventListener("submit", function (event) {
     },
   };
 
-
   // Send data to the server using Fetch API
   fetch("/submit-order/", {
     method: "POST",
@@ -338,4 +340,11 @@ form.addEventListener("submit", function (event) {
     .catch((error) => {
       console.error("Error:", error);
     });
+});
+
+const promoTitle = document.getElementById("promo-title");
+const promoBlock = document.getElementById("statistic-promo");
+promoBlock.addEventListener("click", () => {
+  // promoBlock.classList.toggle("active");
+  console.log("hello ye");
 });

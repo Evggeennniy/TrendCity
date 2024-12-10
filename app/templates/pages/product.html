@@ -180,7 +180,7 @@
                 </div>
               </div>
               <div class="products-list__item-desc">
-                <span>{{ product.description|safe }}</span>
+                <span>{{ product.short_desc }}</span>
               </div>
             </li>
             <div class="content-wrap">
@@ -694,7 +694,7 @@
                         </div>
                       </div>
                       <div class="products-list__item-desc">
-                        <span>{{ item.description }}</span>
+                        <span>{{ item.short_desc }}</span>
                       </div>
                     </li>
                     {% endfor %}
