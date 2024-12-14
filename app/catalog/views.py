@@ -258,8 +258,8 @@ def order_submit(request):
         promocode_percent = data.get("promocodePercent", "")
         result = basket.calculate_basket(data.get("order_list"), data.get("promocodeName"))
         order_content = data.get("order_list")
-        promotion_text = ", ".join(result["discountLabel"])
-        present_text = ", ".join(result["present"])
+        promotion_text = ";\n".join(result["discountLabel"])
+        present_text = ";\n".join(result["present"])
         full_price = result["sumPrice"]
         promocode = f"{promocode_name} / {promocode_percent}₴ / {result['promoCodeCof']} %" if promocode_name else ""
         order = catalog_models.Order.objects.create(

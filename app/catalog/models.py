@@ -300,11 +300,6 @@ class Order(models.Model):
         verbose_name_plural = "Замовлення"
 
     def get_telegram_text(self):
-        country_names = {
-            "380": "🇺🇦 Україна",
-        }
-
-        country_name = country_names.get(self.country_code, "Невідомо")
         order_parts = self.order_items.all()
         parts_text = "\n".join([part.get_telegram_text() for part in order_parts])
 
@@ -321,17 +316,16 @@ class Order(models.Model):
             else ""
         )
         return (
+            f"Дата та час замовлення: {self.datetime.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
             f"🛒 Замовлення від {self.name} {self.surname}:\n"
-            f"Дата та час замовлення: {self.datetime.strftime('%Y-%m-%d %H:%M:%S')}\n"
-            f"Країна: {country_name} (Код: {self.country_code})\n"
-            f"Номер телефону: {self.number}\n"
+            f"Номер телефону: +{self.country_code}{self.number.replace(' ','')}\n"
             f"Спосіб оплати: {self.payment_method}\n"
             f"Пошта: {self.post_office}/{self.post_office_id}\n"
-            f"Ціна: {self.full_price} ₴\n"
             f"{promocode_text}{comment_text}\n"
             f"{promotion_text}{present_text}"
             "📦 Товари:\n\n"
-            f"{parts_text}")
+            f"{parts_text}"
+            f"Всього: {self.full_price} ₴\n")
 
 
 class OrderPart(models.Model):
