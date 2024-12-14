@@ -246,7 +246,7 @@
               </div>
               <div class="order-form">
                 <div class="order-form-wrap">
-                  <form method="post" class="order-form__form gray-border">
+                  <form class="order-form__form gray-border"  @submit.prevent="">
                     <div class="order-form__form-wrap">
                       <div class="form__input-wrap form__input-name">
                         <img
@@ -261,7 +261,6 @@
                           placeholder="Анатолій"
                           autocomplete="name"
                           x-model="order.name"
-                          required
                         />
                       </div>
                       <div class="form__input-wrap form__input-surname">
@@ -277,7 +276,6 @@
                           placeholder="Кузьменко"
                           x-model="order.surname"
                           autocomplete="surname"
-                          required
                         />
                       </div>
                       <div class="form__input-number">
@@ -287,12 +285,9 @@
                             class="form__input"
                             id="order-form__phone-code"
                             placeholder="+380"
-                            pattern="[0-9]*"
                             x-mask="+999"
                             maxlength="4"
-                            inputmode="numeric"
                             x-model="order.countryCode"
-                            required
                             autocomplete="country-code"
                           />
                         </div>
@@ -302,13 +297,11 @@
                             class="form__input"
                             id="order-form__phone-num"
                             placeholder="00 00 00 000"
-                            pattern="[0-9]*"
                             maxlength="12"
                             inputmode="numeric"
                             x-model="order.number"
                             x-mask="99 99 99 999"
                             autocomplete="number"
-                            required
                           />
                         </div>
                       </div>
@@ -322,7 +315,6 @@
                           class="form__input form__select"
                           id="order-form__paymethod"
                           x-model="order.paymentMethod"
-                          required
                         >
                           <option value="" disabled selected>
                             Виберіть спосіб оплати
@@ -351,7 +343,6 @@
                           class="form__input form__select"
                           id="order-form__deltype"
                           x-model="order.postOffice"
-                          required
                         >
                           <option value="" disabled selected>
                             Виберіть спосіб доставки
@@ -375,8 +366,7 @@
                           class="form__input"
                           id="order-form__novaid"
                           x-model="order.postOfficeId"
-                          placeholder="Відділення Нової пошти"
-                          required
+                          placeholder="Відділення пошти"
                           autocomplete="postoffice-id"
                         />
                       </div>
@@ -393,8 +383,7 @@
                       <div class="form__ok-btn">
                         <button
                           class="form__button"
-                          type="submit"
-                          @click="sendOrder"
+                          @click.prevent="sendOrder"
                         >
                           Оформлення
                         </button>
@@ -427,16 +416,16 @@
           },
           promocodeName: "",
           order: {
-            promocodeName: "",
-            promocodePercent: "",
-            name: "",
-            surname: "",
-            countryCode: "",
-            number: "",
-            paymentMethod: "",
-            postOfficeId: "",
-            comment: "",
-            postOffice: "",
+            promocodeName: Alpine.$persist("").as("promocodeName"),
+            promocodePercent: Alpine.$persist("").as("promocodePercent"),
+            name: Alpine.$persist("").as("name"),
+            surname: Alpine.$persist("").as("surname"),
+            countryCode: Alpine.$persist("").as("countryCode"),
+            number: Alpine.$persist("").as("number"),
+            paymentMethod:  Alpine.$persist("").as("paymentMethod"),
+            postOfficeId:  Alpine.$persist("").as("postOfficeId"),
+            comment: Alpine.$persist("").as("comment"),
+            postOffice: Alpine.$persist("").as("postOffice"),
           },
           init() {
             this.updateBasket();
@@ -484,6 +473,35 @@
             this.order.promocodeName = this.promocodeName;
             this.updateBasket();
           },
+          validateOrder() {
+            const arrayMessage = [];
+            if (this.order.name.trim() === '') {
+              arrayMessage.push("Ім'я замовника є обов'язковим;");
+            }
+            if (this.order.surname.trim() === '') {
+              arrayMessage.push("Прізвище замовника є обов'язковим;");
+            }
+            if (this.order.countryCode.trim() === '' || this.order.countryCode.trim() === '+') {
+              arrayMessage.push("Код країни замовника є обов'язковим;");
+            }
+            if (this.order.number.trim() === '') {
+              arrayMessage.push("Номер замовника є обов'язковим;");
+            }
+            if (this.order.paymentMethod.trim() === '') {
+              arrayMessage.push("Спосіб оплати є обов'язковим;");
+            }
+            if (this.order.postOfficeId.trim() === '') {
+              arrayMessage.push("Відділення пошти є обов'язковим;");
+            }
+            if (this.order.postOffice.trim() === '') {
+              arrayMessage.push("Спосіб доставки є обов'язковим;");
+            }
+            if (this.summary.sumPrice === 0) {
+              arrayMessage.push("Кошик порожній ( ;");
+            }
+            return arrayMessage.join("\n");
+
+          },
           formatedBody() {
             return this.items.map((item) => {
               return {
@@ -530,6 +548,7 @@
                 this.summary.wrapperPrice = data.data.wrapperPrice;
                 this.summary.sumDiscountProduct = data.data.sumDiscountProduct;
                 this.summary.promoCodeDiscount = data.data.promoCodeDiscount;
+                this.order.promocodePercent = data.data.promoCodeDiscount;
                 this.summary.sumPrice = data.data.sumPrice;
                 this.summary.discount = data.data.discount || [];
                 this.summary.discountLabel = data.data.discountLabel || [];
@@ -540,6 +559,11 @@
               });
           },
           sendOrder() {
+            const errMess = this.validateOrder()
+            if (errMess) {
+              alert(errMess);
+              return;
+            }
             const body = {
               order_list: this.formatedBody(),
               ...this.order,
@@ -558,7 +582,9 @@
                 this.items = [];
                 this.promocodeName = "";
                 this.order.promocodeName = "";
+                this.order.promocodePercent= "";
                 this.activeItems = [];
+                this.order.comment = "";
               })
               .catch((error) => {
                 console.error("Error sending basket:", error);

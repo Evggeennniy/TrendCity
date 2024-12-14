@@ -6,7 +6,6 @@ from django.urls import reverse
 from django.db.models import Count, Q, Min, Max, Subquery, OuterRef
 from collections import defaultdict
 import json
-from .models import Product
 from .utils import send_telegram_message
 from catalog import basket, models as catalog_models
 
@@ -257,12 +256,12 @@ def order_submit(request):
         post_office = data.get("postOffice")
         promocode_name = data.get("promocodeName", "")
         promocode_percent = data.get("promocodePercent", "")
-
         result = basket.calculate_basket(data.get("order_list"), data.get("promocodeName"))
         order_content = data.get("order_list")
         promotion_text = ", ".join(result["discountLabel"])
         present_text = ", ".join(result["present"])
         full_price = result["sumPrice"]
+        promocode = f"{promocode_name} / {promocode_percent}₴ / {result['promoCodeCof']} %" if promocode_name else ""
         order = catalog_models.Order.objects.create(
             name=name,
             surname=surname,
@@ -275,7 +274,7 @@ def order_submit(request):
             full_price=full_price,
             promotion_text=promotion_text,
             present_text=present_text,
-            promocode=f"{promocode_name} / {promocode_percent} / {result['promoCodeCof']} %",
+            promocode=promocode,
         )
 
         order_content = [

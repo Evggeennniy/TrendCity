@@ -1,7 +1,5 @@
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
-import json
-
 
 class Category(models.Model):
     icon = models.FileField(verbose_name="Значок", upload_to="icons")
@@ -136,7 +134,7 @@ class ProductVolume(models.Model):
         verbose_name_plural = "Опцiї об'єму"
 
     def get_telegram_text(self):
-        return f"{self.value}/{self.price}/{self.discount}%"
+        return f"{self.value}/{self.get_curr_price()} ₴"
 
 
 class ProductOption(models.Model):
@@ -309,24 +307,31 @@ class Order(models.Model):
         country_name = country_names.get(self.country_code, "Невідомо")
         order_parts = self.order_items.all()
         parts_text = "\n".join([part.get_telegram_text() for part in order_parts])
-        return f"""\
-        🛒 Замовлення від {self.name} {self.surname}:
-        Країна: {country_name} (Код: {self.country_code})
-        Номер телефону: {self.number}
-        Спосіб оплати: {self.payment_method}
-        Пошта: {self.post_office}
-        Відділення: {self.post_office_id}
-        Ціна: {self.full_price} грн
-        Промокод: {self.promocode}
-        Коментар: {self.comment}
-        Дата та час замовлення: {self.datetime.strftime('%Y-%m-%d %H:%M:%S')}
-        🎁 Застосовані акції та промокоди:
-        {self.promotion_text}
-        🎁 Подарунки:
-        {self.present_text}
-        📦 Товари:
-        {parts_text}       
-        """
+
+        promocode_text = (
+            f"Промокод: {self.promocode}\n " if self.promocode else ""
+        )
+        comment_text = f"Коментар: {self.comment}\n" if self.comment else ""
+        present_text = (
+            f"🎁 Подарунки:\n{self.present_text}\n\n" if self.present_text else ""
+        )
+        promotion_text = (
+            f"🛍 Застосовані акції та промокоди:\n{self.promotion_text }\n\n"
+            if self.promotion_text
+            else ""
+        )
+        return (
+            f"🛒 Замовлення від {self.name} {self.surname}:\n"
+            f"Дата та час замовлення: {self.datetime.strftime('%Y-%m-%d %H:%M:%S')}\n"
+            f"Країна: {country_name} (Код: {self.country_code})\n"
+            f"Номер телефону: {self.number}\n"
+            f"Спосіб оплати: {self.payment_method}\n"
+            f"Пошта: {self.post_office}/{self.post_office_id}\n"
+            f"Ціна: {self.full_price} ₴\n"
+            f"{promocode_text}{comment_text}\n"
+            f"{promotion_text}{present_text}"
+            "📦 Товари:\n\n"
+            f"{parts_text}")
 
 
 class OrderPart(models.Model):
@@ -355,8 +360,16 @@ class OrderPart(models.Model):
         """
         Формує красивий текст для однієї частини замовлення.
         """
-        product_name = self.product.get_telegram_text() if self.product else "Невідомо"
-        volume = self.volume.get_telegram_text() if self.volume else "Невідомо"
-        wrapper = self.wrapper.get_telegram_text() if self.wrapper else "Невідомо"
 
-        return f"- Товар: {product_name}, Кількість: {self.count}, Об'єм: {volume}, Обертка: {wrapper}"
+        volume = (
+            f"Об'єм: {self.volume.get_telegram_text()};\n"
+            if self.volume
+            else ""
+        )
+        wrapper = (
+            f"Обертка: {self.wrapper.get_telegram_text()};\n"
+            if self.wrapper
+            else ""
+        )
+
+        return f"{self.product.get_telegram_text()}/{self.count}шт.\n{volume}{wrapper}"
