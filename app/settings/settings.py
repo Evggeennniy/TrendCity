@@ -14,6 +14,10 @@ INTERNAL_IPS = []
 
 ALLOWED_HOSTS = ['*']
 
+# LiqPay Api
+LIQPAY_PUBLIC_KEY = os.getenv('LIQPAY_PUBLIC_KEY')
+LIQPAY_PRIVATE_KEY = os.getenv('LIQPAY_PRIVATE_KEY')
+
 INSTALLED_APPS = [
     'jazzmin',
     'django_ckeditor_5',
@@ -24,6 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+
+    # Payments
+    'liqpay',
 
     'catalog',
     'users',

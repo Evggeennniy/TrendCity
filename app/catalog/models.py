@@ -1,6 +1,7 @@
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
 
+
 class Category(models.Model):
     icon = models.FileField(verbose_name="Значок", upload_to="icons")
     image = models.FileField(verbose_name="Зображення", upload_to="images")
@@ -367,3 +368,19 @@ class OrderPart(models.Model):
         )
 
         return f"{self.product.get_telegram_text()}/{self.count}шт.\n{volume}{wrapper}"
+
+
+class Payment(models.Model):
+    """
+    Модель бази даних платежiв.
+    """
+    order = models.ForeignKey(verbose_name='Клiент', to=Order, on_delete=models.SET_NULL, null=True)
+    summary_price = models.DecimalField(verbose_name='Cума', max_digits=10, decimal_places=2)
+    date = models.DateTimeField(verbose_name='Дата', auto_now_add=True, blank=True)
+
+    def __str__(self) -> str:
+        return f'Платiж {self.id}, сума {self.summary_price}, дата {self.date}'
+
+    class Meta:
+        verbose_name = 'Платiж'
+        verbose_name_plural = 'Платежi'

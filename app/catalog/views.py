@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from django.views.generic import TemplateView, ListView, DetailView, View
 from django.core.serializers import serialize
 from django.http import JsonResponse
@@ -8,6 +8,10 @@ from collections import defaultdict
 import json
 from .utils import send_telegram_message
 from catalog import basket, models as catalog_models
+from liqpay.liqpay3 import LiqPay
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 
 class PanelView(View):
@@ -293,8 +297,8 @@ def order_submit(request):
             )
             for item in order_content
         ]
-        print(order.get_telegram_text())
-        send_telegram_message(order.get_telegram_text())
+
+        # send_telegram_message(order.get_telegram_text())
         return JsonResponse({"status": "success"})
     else:
         return JsonResponse({"error": "Invalid request"}, status=400)
@@ -305,9 +309,43 @@ def get_basket(request):
         if request.method == "POST":
             body = json.loads(request.body)
             data = basket.calculate_basket(body.get("order_list"), body.get("promocodeName"))
-            print(body)
+
             return JsonResponse({"status": "success", "data": data})
         else:
             return JsonResponse({"error": "Invalid request"}, status=400)
     except ImportError:
         return JsonResponse({"error": "Invalid request"}, status=400)
+
+
+class LiqPayView(TemplateView):
+    template_name = 'liqpay_payment.html'
+
+    def get(self, request, *args, **kwargs):
+        liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+        params = {
+            'action': 'pay',
+            'amount': '100',
+            'currency': 'USD',
+            'description': 'Оплата на TrendCity',
+            'order_id': 'testOrder',
+            'version': '3',
+            # 'server_url': 'http://127.0.0.1:8000/liqpay_callback',  # url to callback view
+        }
+        signature = liqpay.cnb_signature(params)
+        data = liqpay.cnb_data(params)
+        return render(request, self.template_name, {'signature': signature, 'data': data})
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class LiqPayCallbackView(View):
+    def post(self, request, *args, **kwargs):
+        liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+        data = request.POST.get('data')
+        signature = request.POST.get('signature')
+        sign = liqpay.str_to_sign(settings.LIQPAY_PRIVATE_KEY + data + settings.LIQPAY_PRIVATE_KEY)
+        if sign == signature:
+            print('callback is valid')
+            response = liqpay.decode_data_from_str(data)
+            print('callback data', response)
+            return HttpResponse()
+        return HttpResponse()
