@@ -1,3 +1,5 @@
+import os
+
 from django.shortcuts import redirect, get_object_or_404, render
 from django.views.generic import TemplateView, ListView, DetailView, View
 from django.core.serializers import serialize
@@ -349,7 +351,7 @@ class LiqPayView(TemplateView):
         # Перевіряємо, чи метод оплати не є "Оплата онлайн картою"
         if order.payment_method != "Оплата онлайн картою":
             return redirect("/user/basket")
-
+        server_url = os.getenv("SERVER_URL")
         liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
         params = {
             "action": "pay",
@@ -358,7 +360,7 @@ class LiqPayView(TemplateView):
             "description": f"Оплата на TrendCity, замовлення {order.id}",
             "order_id": str(order.id),
             "version": "3",
-            "server_url": "http://127.0.0.1:8000/liqpay_callback",  # url to callback view
+            "server_url": f"{server_url}/liqpay_callback",  # url to callback view
         }
         signature = liqpay.cnb_signature(params)
         data = liqpay.cnb_data(params)
