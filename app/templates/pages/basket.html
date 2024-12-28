@@ -290,6 +290,7 @@
                             maxlength="4"
                             x-model="order.countryCode"
                             autocomplete="country-code"
+                            value="+380"
                           />
                         </div>
                         <div class="form__input-wrap">
@@ -432,6 +433,9 @@
           init() {
             if (this.order.orderId) {
               window.location.href = `/liqpay/${this.order.orderId}/`;
+            }
+            if (!this.order.countryCode){
+              this.order.countryCode = "+380"
             }
             this.updateBasket();
             this.$watch("items", () => {
