@@ -59,12 +59,13 @@
                     >
                       <div
                         class="basket__item-general"
-                        @click="toggleIndex(item.itemId)"
+                        @click.stop="window.location.href = '/product/' + item.productId"
                       >
                         <img
                           src="/static/checkmark-icon.svg"
                           alt="checkmark"
                           class="basket__item-checkmark \"
+                          @click.stop="toggleIndex(item.itemId)"
                         />
                         <img
                           :src="item.productImg"

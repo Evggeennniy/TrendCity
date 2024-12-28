@@ -382,7 +382,7 @@ class LiqPayCallbackView(View):
             response = liqpay.decode_data_from_str(data)
             order_id = response.get("order_id")
             summary_price = response.get("amount")
-            pay =  Payment.objects.create(order_id=order_id, summary_price=summary_price)
+            pay = Payment.objects.create(order_id=order_id, summary_price=summary_price)
             send_telegram_message(pay.get_telegram_text())
             return JsonResponse({"status": "success", "data": response})
         return JsonResponse({"error": "Invalid request"}, status=400)
