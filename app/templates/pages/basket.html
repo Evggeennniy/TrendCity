@@ -426,8 +426,12 @@
             postOfficeId:  Alpine.$persist("").as("postOfficeId"),
             comment: Alpine.$persist("").as("comment"),
             postOffice: Alpine.$persist("").as("postOffice"),
+            orderId: Alpine.$persist("").as("orderId"),
           },
           init() {
+            if (this.order.orderId) {
+              window.location.href = `/liqpay/${this.order.orderId}/`;
+            }
             this.updateBasket();
             this.$watch("items", () => {
               this.updateBasket();
@@ -579,12 +583,19 @@
             })
               .then((response) => response.json())
               .then((data) => {
-                this.items = [];
-                this.promocodeName = "";
-                this.order.promocodeName = "";
-                this.order.promocodePercent= "";
-                this.activeItems = [];
-                this.order.comment = "";
+                    this.items = [];
+                    this.promocodeName = "";
+                    this.order.promocodeName = "";
+                    this.order.promocodePercent= "";
+                    this.activeItems = [];
+                    this.order.comment = "";
+                if (data.is_liqpay) {
+                    this.order.orderId = data.data.orderId;
+                    window.location.href = `/liqpay/${data.data.orderId}/`;
+                } else {
+                  alert("Дякуємо за замовлення!");
+                }
+
               })
               .catch((error) => {
                 console.error("Error sending basket:", error);

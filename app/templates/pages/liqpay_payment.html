@@ -13,20 +13,24 @@
           data: "{{ data }}",
           signature: "{{ signature }}",
           embedTo: "#liqpay_checkout",
-          mode: "embed", // embed || popup,
+          mode: "popup", // embed || popup,
         })
           .on("liqpay.callback", function (data) {
-            console.log(data.status);
-            console.log(data);
+            if (data.status === "success") {
+              localStorage.removeItem('orderId');
+              window.location.href = "/user/basket";
+            }
           })
           .on("liqpay.ready", function (data) {
-            // ready
+            console.log("ready");
           })
           .on("liqpay.close", function (data) {
-            // close
+            localStorage.removeItem('orderId');
+            window.location.href = "/user/basket";
           });
       };
     </script>
     <script src="//static.liqpay.ua/libjs/checkout.js" async></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
   </body>
 </html>

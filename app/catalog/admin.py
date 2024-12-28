@@ -112,3 +112,8 @@ class OrderPartInline(admin.TabularInline):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ("datetime", "name", "surname")
     inlines = [OrderPartInline]
+
+
+@admin.register(catalog_models.Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    pass

@@ -230,7 +230,7 @@ class QuantityDiscountPromotion(Promotion):
 
     class Meta:
         verbose_name = "Акцiя"
-        verbose_name_plural = "Акції (Знижка на кількість)"
+        verbose_name_plural = "Акції (Знижка ��а кількість)"
 
 
 class PriceDiscountPromotion(Promotion):
@@ -271,7 +271,7 @@ class Promocode(models.Model):
 
 class Order(models.Model):
     datetime = models.DateTimeField(
-        verbose_name="Дата та час замовлення", auto_now_add=True
+        verbose_name="Да��а та час замовлення", auto_now_add=True
     )
     name = models.CharField(verbose_name="Iм'я", max_length=20)
     surname = models.CharField(verbose_name="Прізвище", max_length=20)
@@ -304,9 +304,7 @@ class Order(models.Model):
         order_parts = self.order_items.all()
         parts_text = "\n".join([part.get_telegram_text() for part in order_parts])
 
-        promocode_text = (
-            f"Промокод: {self.promocode}\n " if self.promocode else ""
-        )
+        promocode_text = f"Промокод: {self.promocode}\n " if self.promocode else ""
         comment_text = f"Коментар: {self.comment}\n" if self.comment else ""
         present_text = (
             f"🎁 Подарунки:\n{self.present_text}\n\n" if self.present_text else ""
@@ -326,7 +324,8 @@ class Order(models.Model):
             f"{promotion_text}{present_text}"
             "📦 Товари:\n\n"
             f"{parts_text}"
-            f"Всього: {self.full_price} ₴\n")
+            f"Всього: {self.full_price} ₴\n"
+        )
 
 
 class OrderPart(models.Model):
@@ -356,15 +355,9 @@ class OrderPart(models.Model):
         Формує красивий текст для однієї частини замовлення.
         """
 
-        volume = (
-            f"Об'єм: {self.volume.get_telegram_text()};\n"
-            if self.volume
-            else ""
-        )
+        volume = f"Об'єм: {self.volume.get_telegram_text()};\n" if self.volume else ""
         wrapper = (
-            f"Обертка: {self.wrapper.get_telegram_text()};\n"
-            if self.wrapper
-            else ""
+            f"Обертка: {self.wrapper.get_telegram_text()};\n" if self.wrapper else ""
         )
 
         return f"{self.product.get_telegram_text()}/{self.count}шт.\n{volume}{wrapper}"
@@ -372,15 +365,28 @@ class OrderPart(models.Model):
 
 class Payment(models.Model):
     """
-    Модель бази даних платежiв.
+    Модель бази даних платежів.
     """
-    order = models.ForeignKey(verbose_name='Клiент', to=Order, on_delete=models.SET_NULL, null=True)
-    summary_price = models.DecimalField(verbose_name='Cума', max_digits=10, decimal_places=2)
-    date = models.DateTimeField(verbose_name='Дата', auto_now_add=True, blank=True)
+
+    order = models.ForeignKey(
+        verbose_name="Кліент", to=Order, on_delete=models.SET_NULL, null=True
+    )
+    summary_price = models.DecimalField(
+        verbose_name="Сума", max_digits=10, decimal_places=2
+    )
+    date = models.DateTimeField(verbose_name="Дата", auto_now_add=True, blank=True)
 
     def __str__(self) -> str:
-        return f'Платiж {self.id}, сума {self.summary_price}, дата {self.date}'
+        return f"Платіж {self.id}, сума {self.summary_price}, дата {self.date}"
 
     class Meta:
-        verbose_name = 'Платiж'
-        verbose_name_plural = 'Платежi'
+        verbose_name = "Платіж"
+        verbose_name_plural = "Платежі"
+
+
+    def get_telegram_text(self):
+        return (
+            f"✅Успішно оплачено {self.date.strftime('%Y-%m-%d %H:%M:%S')}, сума {self.summary_price}₴\n"
+            f"Дата та час замовлення: {self.datetime.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
+            f"🛒 Замовлення від {self.name} {self.surname}:\n"
+        )

@@ -1,17 +1,19 @@
 from django.shortcuts import redirect, get_object_or_404, render
 from django.views.generic import TemplateView, ListView, DetailView, View
 from django.core.serializers import serialize
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.urls import reverse
 from django.db.models import Count, Q, Min, Max, Subquery, OuterRef
 from collections import defaultdict
 import json
+
+from liqpay.liqpay3 import LiqPay
 from .utils import send_telegram_message
 from catalog import basket, models as catalog_models
-from liqpay.liqpay3 import LiqPay
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+from .models import Payment
 
 
 class PanelView(View):
@@ -106,7 +108,7 @@ class CatalogView(PanelView, ListView):
         # Подзапрос для получения первого элемента volumes
         first_volume_discount = (
             catalog_models.ProductVolume.objects.filter(
-                # Замените your_model_name на вашу модель, которая связана через ManyToMany
+                # З��ените your_model_name на вашу модель, которая связана через ManyToMany
                 related=OuterRef("id")
             )
             .order_by("id")
@@ -260,12 +262,18 @@ def order_submit(request):
         post_office = data.get("postOffice")
         promocode_name = data.get("promocodeName", "")
         promocode_percent = data.get("promocodePercent", "")
-        result = basket.calculate_basket(data.get("order_list"), data.get("promocodeName"))
+        result = basket.calculate_basket(
+            data.get("order_list"), data.get("promocodeName")
+        )
         order_content = data.get("order_list")
         promotion_text = ";\n".join(result["discountLabel"])
         present_text = ";\n".join(result["present"])
         full_price = result["sumPrice"]
-        promocode = f"{promocode_name} / {promocode_percent}₴ / {result['promoCodeCof']} %" if promocode_name else ""
+        promocode = (
+            f"{promocode_name} / {promocode_percent}₴ / {result['promoCodeCof']} %"
+            if promocode_name
+            else ""
+        )
         order = catalog_models.Order.objects.create(
             name=name,
             surname=surname,
@@ -297,9 +305,12 @@ def order_submit(request):
             )
             for item in order_content
         ]
+        is_liqpay = payment_method == "Оплата онлайн картою"
 
-        # send_telegram_message(order.get_telegram_text())
-        return JsonResponse({"status": "success"})
+        send_telegram_message(order.get_telegram_text())
+        return JsonResponse(
+            {"status": "success", "is_liqpay": is_liqpay, "data": {"orderId": order.id}}
+        )
     else:
         return JsonResponse({"error": "Invalid request"}, status=400)
 
@@ -308,44 +319,68 @@ def get_basket(request):
     try:
         if request.method == "POST":
             body = json.loads(request.body)
-            data = basket.calculate_basket(body.get("order_list"), body.get("promocodeName"))
+            data = basket.calculate_basket(
+                body.get("order_list"), body.get("promocodeName")
+            )
 
             return JsonResponse({"status": "success", "data": data})
         else:
             return JsonResponse({"error": "Invalid request"}, status=400)
-    except ImportError:
+    except Exception as e:
+        print(e)
         return JsonResponse({"error": "Invalid request"}, status=400)
 
 
 class LiqPayView(TemplateView):
-    template_name = 'liqpay_payment.html'
+    template_name = "liqpay_payment.html"
 
     def get(self, request, *args, **kwargs):
+        # Спробуйте отримати замовлення з бази даних
+        try:
+            order = catalog_models.Order.objects.get(id=kwargs.get("order_id"))
+        except catalog_models.Order.DoesNotExist:
+            # Якщо замовлення не знайдено, перенаправте на кошик
+            return redirect("/user/basket")
+
+        # Перевіряємо, чи оплата вже була здійснена
+        if Payment.objects.filter(order_id=order.id).exists():
+            return redirect("/user/basket")
+
+        # Перевіряємо, чи метод оплати не є "Оплата онлайн картою"
+        if order.payment_method != "Оплата онлайн картою":
+            return redirect("/user/basket")
+
         liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
         params = {
-            'action': 'pay',
-            'amount': '100',
-            'currency': 'USD',
-            'description': 'Оплата на TrendCity',
-            'order_id': 'testOrder',
-            'version': '3',
-            # 'server_url': 'http://127.0.0.1:8000/liqpay_callback',  # url to callback view
+            "action": "pay",
+            "amount": str(order.full_price),
+            "currency": "UAH",
+            "description": f"Оплата на TrendCity, замовлення {order.id}",
+            "order_id": str(order.id),
+            "version": "3",
+            "server_url": "http://127.0.0.1:8000/liqpay_callback",  # url to callback view
         }
         signature = liqpay.cnb_signature(params)
         data = liqpay.cnb_data(params)
-        return render(request, self.template_name, {'signature': signature, 'data': data})
+        return render(
+            request, self.template_name, {"signature": signature, "data": data}
+        )
 
 
-@method_decorator(csrf_exempt, name='dispatch')
+@method_decorator(csrf_exempt, name="dispatch")
 class LiqPayCallbackView(View):
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
+        data = request.POST.get("data")
+        signature = request.POST.get("signature")
         liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
-        data = request.POST.get('data')
-        signature = request.POST.get('signature')
-        sign = liqpay.str_to_sign(settings.LIQPAY_PRIVATE_KEY + data + settings.LIQPAY_PRIVATE_KEY)
+        sign = liqpay.str_to_sign(
+            settings.LIQPAY_PRIVATE_KEY + data + settings.LIQPAY_PRIVATE_KEY
+        )
         if sign == signature:
-            print('callback is valid')
             response = liqpay.decode_data_from_str(data)
-            print('callback data', response)
-            return HttpResponse()
-        return HttpResponse()
+            order_id = response.get("order_id")
+            summary_price = response.get("amount")
+            pay =  Payment.objects.create(order_id=order_id, summary_price=summary_price)
+            send_telegram_message(pay.get_telegram_text())
+            return JsonResponse({"status": "success", "data": response})
+        return JsonResponse({"error": "Invalid request"}, status=400)
