@@ -417,7 +417,7 @@
           },
           promocodeName: "",
           order: {
-            promocodeName: Alpine.$persist("").as("promocodeName"),
+            promocodeName: "",
             promocodePercent: Alpine.$persist("").as("promocodePercent"),
             name: Alpine.$persist("").as("name"),
             surname: Alpine.$persist("").as("surname"),
@@ -560,6 +560,8 @@
                 this.summary.present = data.data.present || [];
               })
               .catch((error) => {
+                this.promocodeName = "";
+                this.order.promocodeName = "";
                 console.error("Error sending basket:", error);
               });
           },
