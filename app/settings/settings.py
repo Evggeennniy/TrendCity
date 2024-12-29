@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     "users",
     "info",
     "django_extensions",
+    "modeltranslation",
 ]
 
 MIDDLEWARE = [
@@ -121,6 +122,7 @@ AUTH_USER_MODEL = "users.CustomUser"
 LOCALE_PATHS = [
     BASE_DIR / "locale/",
 ]
+MODELTRANSLATION_CUSTOM_FIELDS = "CKEditor5Field"
 
 CKEDITOR_5_CONFIGS = {
     "default": {
