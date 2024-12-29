@@ -38,7 +38,7 @@ class Product(models.Model):
     STICKER_CHOICES = [("top", "топ товар"), ("new", "новинка"), ("promo", "акцiя")]
 
     name = models.CharField(verbose_name="Назва", max_length=64)
-    short_desc = models.TextField(verbose_name="Короткий опис", max_length=256)
+    short_desc = CKEditor5Field(verbose_name="Короткий опис", config_name="default", max_length=256)
     description = CKEditor5Field(
         verbose_name="Опис", config_name="default", max_length=2048
     )

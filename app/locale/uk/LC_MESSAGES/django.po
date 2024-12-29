@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-29 01:50+0200\n"
+"POT-Creation-Date: 2024-12-29 19:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,15 +21,15 @@ msgstr ""
 "100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
 "(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
-#: .\catalog\models.py:32
+#: .\catalog\models.py:33
 msgid "чоловіче"
 msgstr ""
 
-#: .\catalog\models.py:33
+#: .\catalog\models.py:34
 msgid "жіноче"
 msgstr ""
 
-#: .\catalog\models.py:34
+#: .\catalog\models.py:35
 msgid "унісекс"
 msgstr ""
 
@@ -46,12 +46,12 @@ msgid "Увійдіть в акаунт"
 msgstr ""
 
 #: .\templates\elements\authpopup.html:41
-#: .\templates\elements\authpopup.html:162 .\templates\pages\aboutus.html:152
+#: .\templates\elements\authpopup.html:162 .\templates\pages\aboutus.html:153
 msgid "Іконка сообщения"
 msgstr ""
 
 #: .\templates\elements\authpopup.html:48
-#: .\templates\elements\authpopup.html:169 .\templates\pages\aboutus.html:159
+#: .\templates\elements\authpopup.html:169 .\templates\pages\aboutus.html:160
 #: .\templates\pages\contacts.html:126
 msgid "Ел. пошта"
 msgstr ""
@@ -106,12 +106,12 @@ msgid "Реєстрація акаунта"
 msgstr ""
 
 #: .\templates\elements\authpopup.html:105
-#: .\templates\elements\authpopup.html:120 .\templates\pages\aboutus.html:110
+#: .\templates\elements\authpopup.html:120 .\templates\pages\aboutus.html:111
 #: .\templates\pages\basket.html:257 .\templates\pages\basket.html:272
 msgid "Іконка профиля"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:112 .\templates\pages\aboutus.html:117
+#: .\templates\elements\authpopup.html:112 .\templates\pages\aboutus.html:118
 msgid "І’мя"
 msgstr ""
 
@@ -123,15 +123,16 @@ msgstr ""
 msgid "Іконка телефона"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:153 .\templates\pages\aboutus.html:143
+#: .\templates\elements\authpopup.html:153 .\templates\pages\aboutus.html:144
 #: .\templates\pages\contacts.html:163
 msgid "Номер телефону"
 msgstr ""
 
 #: .\templates\elements\footer.html:9 .\templates\elements\navbar.html:7
 #: .\templates\elements\panel_filters.html:8
-#: .\templates\elements\slider_menu.html:8 .\templates\pages\aboutus.html:66
-#: .\templates\pages\aboutus.html:198 .\templates\pages\basket.html:29
+#: .\templates\elements\slider_menu.html:8 .\templates\pages\aboutus.html:67
+#: .\templates\pages\aboutus.html:199 .\templates\pages\basket.html:29
+#: .\templates\pages\index.html:12 .\templates\pages\index.html:79
 msgid "ТрендСіті"
 msgstr ""
 
@@ -247,6 +248,7 @@ msgid "Жіноче"
 msgstr ""
 
 #: .\templates\elements\panel_filters.html:183
+#: .\templates\pages\favorite.html:124
 msgid "Унісекс"
 msgstr ""
 
@@ -282,45 +284,45 @@ msgstr ""
 msgid "Про Трендсіті"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:11
+#: .\templates\pages\aboutus.html:12
 msgid "ТрендСіті - О нас"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:41 .\templates\pages\catalog.html:41
+#: .\templates\pages\aboutus.html:42 .\templates\pages\catalog.html:41
 #: .\templates\pages\contacts.html:34 .\templates\pages\favorite.html:44
 #: .\templates\pages\info_template.html:42 .\templates\pages\product.html:197
 msgid "Головна"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:56
+#: .\templates\pages\aboutus.html:57
 msgid "О нас"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:67
+#: .\templates\pages\aboutus.html:68
 msgid "Для покупців"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:136
+#: .\templates\pages\aboutus.html:137
 msgid "іконка телефона"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:167
+#: .\templates\pages\aboutus.html:168
 msgid "Іконка собщения"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:174
+#: .\templates\pages\aboutus.html:175
 msgid "Місто"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:184
+#: .\templates\pages\aboutus.html:185
 msgid "Опишіть напрямок вашего бізнесу"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:190
+#: .\templates\pages\aboutus.html:191
 msgid "Залишити запит"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:199
+#: .\templates\pages\aboutus.html:200
 msgid "Відгуки"
 msgstr ""
 
@@ -493,32 +495,31 @@ msgid "Фільтри"
 msgstr ""
 
 #: .\templates\pages\catalog.html:92
-#, python-format
-msgid ""
-"\n"
-"                          \"Сортування:"
-"\"%(current_sort_label|default:\"Виберіть\")s\n"
-"                          "
+msgid "Виберіть"
 msgstr ""
 
-#: .\templates\pages\catalog.html:108
+#: .\templates\pages\catalog.html:93
+msgid "Сортування: "
+msgstr ""
+
+#: .\templates\pages\catalog.html:107
 msgid "Ціна: за зростанням"
 msgstr ""
 
-#: .\templates\pages\catalog.html:116
+#: .\templates\pages\catalog.html:115
 msgid "Ціна: за спаданням"
 msgstr ""
 
-#: .\templates\pages\catalog.html:121
+#: .\templates\pages\catalog.html:120
 msgid "Назва: від А до Я"
 msgstr ""
 
-#: .\templates\pages\catalog.html:129
+#: .\templates\pages\catalog.html:128
 msgid "Назва: від Я до А"
 msgstr ""
 
-#: .\templates\pages\catalog.html:205 .\templates\pages\product.html:162
-#: .\templates\pages\product.html:677
+#: .\templates\pages\catalog.html:204 .\templates\pages\favorite.html:113
+#: .\templates\pages\product.html:162 .\templates\pages\product.html:677
 msgid "Рейтинг"
 msgstr ""
 
@@ -572,6 +573,28 @@ msgstr ""
 
 #: .\templates\pages\favorite.html:58
 msgid "Обрані товари"
+msgstr ""
+
+#: .\templates\pages\favorite.html:88
+msgid "Аромадифузор LeMien №5 - Fleur Narcotique"
+msgstr ""
+
+#: .\templates\pages\favorite.html:135
+msgid ""
+"\n"
+"                          >Аромат чистоти, насичений справжньою дерев'яною\n"
+"                          шавлією. Він обволікає свіжістю безмежного "
+"морського\n"
+"                          узбережжя.\n"
+"                          "
+msgstr ""
+
+#: .\templates\pages\index.html:54
+msgid "ВСІ КАТЕГОРІЇ"
+msgstr ""
+
+#: .\templates\pages\index.html:80
+msgid "Акційні товари"
 msgstr ""
 
 #: .\templates\pages\index.html:301
