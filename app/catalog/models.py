@@ -2,6 +2,7 @@ from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
 from django.utils.translation import gettext as _
 
+
 class Category(models.Model):
     icon = models.FileField(verbose_name="Значок", upload_to="icons")
     image = models.FileField(verbose_name="Зображення", upload_to="images")
@@ -230,7 +231,7 @@ class QuantityDiscountPromotion(Promotion):
 
     class Meta:
         verbose_name = "Акцiя"
-        verbose_name_plural = "Акції (Знижка ��а кількість)"
+        verbose_name_plural = "Акції (Знижка на кількість)"
 
 
 class PriceDiscountPromotion(Promotion):
@@ -271,7 +272,7 @@ class Promocode(models.Model):
 
 class Order(models.Model):
     datetime = models.DateTimeField(
-        verbose_name="Да��а та час замовлення", auto_now_add=True
+        verbose_name="Дата та час замовлення", auto_now_add=True
     )
     name = models.CharField(verbose_name="Iм'я", max_length=20)
     surname = models.CharField(verbose_name="Прізвище", max_length=20)
@@ -382,7 +383,6 @@ class Payment(models.Model):
     class Meta:
         verbose_name = "Платіж"
         verbose_name_plural = "Платежі"
-
 
     def get_telegram_text(self):
         return (
