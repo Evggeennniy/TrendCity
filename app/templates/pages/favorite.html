@@ -39,7 +39,7 @@
                       class="path-structure__icon"
                     />
                     <a
-                      href="{% static 'index.html' %}"
+                      href="{% url 'index' %}"
                       class="path-structure__title"
                       >{% trans "Головна" %}</a
                     >
@@ -85,7 +85,7 @@
                         />
                       </div>
                       <h5 class="products-list__item-title">
-                        Аромадифузор LeMien №5 - Fleur Narcotique
+                        {% trans "Аромадифузор LeMien №5 - Fleur Narcotique" %}
                       </h5>
                       <div class="products-list__item-info">
                         <div class="products-list__item-discount">
@@ -110,7 +110,7 @@
                       <div class="products-list__item-extrainfo">
                         <div class="products-list__item-infopart">
                           <span class="products-list__item-raiting"
-                            >Рейтинг</span
+                            >{% trans "Рейтинг" %}</span
                           >
                           <img
                             src="{% static 'star-icon.svg' %}"
@@ -121,7 +121,7 @@
                         </div>
                         <div class="products-list__item-infopart">
                           <span class="products-list__item-sextype"
-                            >Унісекс</span
+                            >>{% trans "Унісекс" %}</span
                           >
                           <img
                             src="{% static 'sex-icon.svg' %}"
@@ -132,9 +132,11 @@
                       </div>
                       <div class="products-list__item-desc">
                         <span
+                        {% blocktrans %}
                           >Аромат чистоти, насичений справжньою дерев'яною
                           шавлією. Він обволікає свіжістю безмежного морського
-                          узбережжя.</span
+                          узбережжя.
+                          {% endblocktrans %}</span
                         >
                       </div>
                     </li> -->
