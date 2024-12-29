@@ -28,7 +28,7 @@
             type="text"
             name="q"
             class="nav__search-input"
-            placeholder="Що вас цікавить?"
+            placeholder='{% trans "Що вас цікавить?" %}'
             value="{{ search_query }}"
           />
           <button type="submit" class="nav__search-btn">
@@ -44,7 +44,7 @@
         <a href="{% url 'about_us' %}" class="menu-item">
           <h5 class="menu-item__title">{% trans "О&nbsp;нас" %}</h5>
         </a>
-        <button class="menu-item lang-btn">
+        <button id="langSwitch" class="menu-item lang-btn">
           <h5 class="menu-item__title">UA</h5>
           <img
             src="{% static 'arrow-small.svg' %}"

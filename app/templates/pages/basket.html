@@ -199,7 +199,7 @@
                     <div class="panel-wrap" id="promo-panel">
                       <input
                         type="text"
-                        placeholder='{% trans "Промокод"'
+                        placeholder='{% trans "Промокод" %}'
                         id="promo-input"
                         x-model="promocodeName"
                       />
@@ -486,28 +486,28 @@
           validateOrder() {
             const arrayMessage = [];
             if (this.order.name.trim() === '') {
-              arrayMessage.push({% trans "Ім'я замовника є обов'язковим;" %});
+              arrayMessage.push("{% trans 'Ім\'я замовника є обов\'язковим;' %}");
             }
             if (this.order.surname.trim() === '') {
-              arrayMessage.push({% trans "Прізвище замовника є обов'язковим;" %});
+              arrayMessage.push("{% trans 'Прізвище замовника є обов\'язковим;' %}");
             }
             if (this.order.countryCode.trim() === '' || this.order.countryCode.trim() === '+') {
-              arrayMessage.push({% trans "Код країни замовника є обов'язковим;" %});
+              arrayMessage.push("{% trans 'Код країни замовника є обов\'язковим;' %}");
             }
             if (this.order.number.trim() === '') {
-              arrayMessage.push({% trans "Номер замовника є обов'язковим;" %});
+              arrayMessage.push("{% trans 'Номер замовника є обов\'язковим;' %}");
             }
             if (this.order.paymentMethod.trim() === '') {
-              arrayMessage.push({% trans "Спосіб оплати є обов'язковим;" %});
+              arrayMessage.push("{% trans 'Спосіб оплати є обов\'язковим;' %}");
             }
             if (this.order.postOfficeId.trim() === '') {
-              arrayMessage.push({% trans "Відділення пошти є обов'язковим;" %});
+              arrayMessage.push("{% trans 'Відділення пошти є обов\'язковим;' %}");
             }
             if (this.order.postOffice.trim() === '') {
-              arrayMessage.push({% trans "Спосіб доставки є обов'язковим;" %});
+              arrayMessage.push("{% trans 'Спосіб доставки є обов\'язковим;' %}");
             }
             if (this.summary.sumPrice === 0) {
-              arrayMessage.push({% trans "Кошик порожній ( ;" %});
+              arrayMessage.push("{% trans 'Кошик порожній ( ;' %}");
             }
             return arrayMessage.join("\n");
 
@@ -601,7 +601,7 @@
                     this.order.orderId = data.data.orderId;
                     window.location.href = `/liqpay/${data.data.orderId}/`;
                 } else {
-                  alert({% trans "Дякуємо за замовлення!" %});
+                  alert('{% trans "Дякуємо за замовлення!" %}');
                 }
 
               })

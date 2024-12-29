@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-29 19:03+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2024-12-29 20:28+0200\n"
+"PO-Revision-Date: 2024-12-29 20:03+0200\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,7 @@ msgstr ""
 "11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
 "100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
 "(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+"X-Translated-Using: django-rosetta 0.10.1\n"
 
 #: .\catalog\models.py:33
 msgid "чоловіче"
@@ -184,6 +185,10 @@ msgstr ""
 #: .\templates\elements\navbar.html:23 .\templates\elements\slider_menu.html:84
 #: .\templates\pages\catalog.html:55
 msgid "Каталог"
+msgstr "Католог Українською"
+
+#: .\templates\elements\navbar.html:31
+msgid "Що вас цікавить?"
 msgstr ""
 
 #: .\templates\elements\navbar.html:45
@@ -338,7 +343,7 @@ msgstr ""
 msgid "Видалити обране"
 msgstr ""
 
-#: .\templates\pages\basket.html:90 .\templates\pages\product.html:562
+#: .\templates\pages\basket.html:90 .\templates\pages\product.html:570
 msgid "Без пакування"
 msgstr ""
 
@@ -350,7 +355,7 @@ msgstr ""
 msgid "Товари без знижки"
 msgstr ""
 
-#: .\templates\pages\basket.html:158 .\templates\pages\product.html:533
+#: .\templates\pages\basket.html:158 .\templates\pages\product.html:541
 msgid "Пакування"
 msgstr ""
 
@@ -364,6 +369,10 @@ msgstr ""
 
 #: .\templates\pages\basket.html:197
 msgid "У вас є промокод?"
+msgstr ""
+
+#: .\templates\pages\basket.html:202
+msgid "Промокод"
 msgstr ""
 
 #: .\templates\pages\basket.html:207
@@ -451,31 +460,31 @@ msgid "Оформлення"
 msgstr ""
 
 #: .\templates\pages\basket.html:489
-msgid "Ім'я замовника є обов'язковим;"
+msgid "Ім\\"
 msgstr ""
 
 #: .\templates\pages\basket.html:492
-msgid "Прізвище замовника є обов'язковим;"
+msgid "Прізвище замовника є обов\\"
 msgstr ""
 
 #: .\templates\pages\basket.html:495
-msgid "Код країни замовника є обов'язковим;"
+msgid "Код країни замовника є обов\\"
 msgstr ""
 
 #: .\templates\pages\basket.html:498
-msgid "Номер замовника є обов'язковим;"
+msgid "Номер замовника є обов\\"
 msgstr ""
 
 #: .\templates\pages\basket.html:501
-msgid "Спосіб оплати є обов'язковим;"
+msgid "Спосіб оплати є обов\\"
 msgstr ""
 
 #: .\templates\pages\basket.html:504
-msgid "Відділення пошти є обов'язковим;"
+msgid "Відділення пошти є обов\\"
 msgstr ""
 
 #: .\templates\pages\basket.html:507
-msgid "Спосіб доставки є обов'язковим;"
+msgid "Спосіб доставки є обов\\"
 msgstr ""
 
 #: .\templates\pages\basket.html:510
@@ -488,7 +497,7 @@ msgstr ""
 
 #: .\templates\pages\catalog.html:13
 msgid "ТрендСіті - Каталог"
-msgstr ""
+msgstr "Католог Українською"
 
 #: .\templates\pages\catalog.html:76
 msgid "Фільтри"
@@ -519,7 +528,7 @@ msgid "Назва: від Я до А"
 msgstr ""
 
 #: .\templates\pages\catalog.html:204 .\templates\pages\favorite.html:113
-#: .\templates\pages\product.html:162 .\templates\pages\product.html:677
+#: .\templates\pages\product.html:162 .\templates\pages\product.html:685
 msgid "Рейтинг"
 msgstr ""
 
@@ -674,50 +683,54 @@ msgstr ""
 msgid "відгук(а/ів)"
 msgstr ""
 
-#: .\templates\pages\product.html:302
+#: .\templates\pages\product.html:303
 msgid "Оберіть об’єм"
 msgstr ""
 
-#: .\templates\pages\product.html:322
+#: .\templates\pages\product.html:305
+msgid "Об’єм"
+msgstr ""
+
+#: .\templates\pages\product.html:328
 msgid "Оберіть аромат"
 msgstr ""
 
-#: .\templates\pages\product.html:414
+#: .\templates\pages\product.html:422
 msgid "Купити"
 msgstr ""
 
-#: .\templates\pages\product.html:422 .\templates\pages\product.html:523
+#: .\templates\pages\product.html:430 .\templates\pages\product.html:531
 msgid "Добавлено"
 msgstr ""
 
-#: .\templates\pages\product.html:436
+#: .\templates\pages\product.html:444
 msgid "Опис та характеристика"
 msgstr ""
 
-#: .\templates\pages\product.html:443
+#: .\templates\pages\product.html:451
 msgid "Комплектуючі"
 msgstr ""
 
-#: .\templates\pages\product.html:515
+#: .\templates\pages\product.html:523
 msgid "Доповнити"
 msgstr ""
 
-#: .\templates\pages\product.html:568
+#: .\templates\pages\product.html:576
 msgid "Відгуки до товару"
 msgstr ""
 
-#: .\templates\pages\product.html:592
+#: .\templates\pages\product.html:600
 msgid "Немає відгуків для цього товару."
 msgstr ""
 
-#: .\templates\pages\product.html:600
+#: .\templates\pages\product.html:608
 msgid "Залишити відгук"
 msgstr ""
 
-#: .\templates\pages\product.html:606
+#: .\templates\pages\product.html:614
 msgid "Показати ще"
 msgstr ""
 
-#: .\templates\pages\product.html:614
+#: .\templates\pages\product.html:622
 msgid "Рекомендовані товари"
 msgstr ""

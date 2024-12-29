@@ -298,8 +298,12 @@
                   class="product__volume gray-border"
                   id="product-volumes-list"
                 >
-                  {% if product.volumes.all %}
-                  <p class="volume-title">{% trans "Оберіть об’єм" %}</p>
+                  <p class="volume-title">
+                  {% if product.volumes.all|length > 1 %}
+                  {% trans "Оберіть об’єм" %}</p>
+                  {% else %}
+                  {% trans "Об’єм" %}</p>
+                  {% endif %}
                   {% for volume in product.volumes.all %}
                   <button
                     class="volume-item"
@@ -308,10 +312,11 @@
                     price="{{ volume.price }}"
                     discount="{{ volume.discount }}"
                   >
-                    {{volume.value}}
+                    {{ volume.value }}
                   </button>
-                  {% endfor %} {% endif %}
+                  {% endfor %}
                 </div>
+                {% if product.options.all|length > 1 %}
                 <div class="product__variations gray-border">
                   <div class="variations__header">
                     <img
@@ -319,7 +324,9 @@
                       alt="icon"
                       class="variations__header-icon"
                     />
-                    <p class="variations__header-title">{% trans "Оберіть аромат" %}</p>
+                    <p class="variations__header-title">
+                      {% trans "Оберіть аромат" %}
+                    </p>
                     <img
                       src="{% static 'arrow-sml-black.svg' %}"
                       alt="icon"
@@ -342,6 +349,7 @@
                     {% endfor %}
                   </ul>
                 </div>
+                {% endif %}
                 <div class="product__nav gray-border">
                   <div class="nav__price-wrap">
                     <div
