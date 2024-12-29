@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
     <script src="{% static 'default.js' %}" defer></script>
     <script src="{% static 'product.js' %}" defer></script>
-    <title>ТрендСіті - Продукт</title>
+    <title>{% trans "ТрендСіті - Продукт" %}</title>
   </head>
   <body>
     <div class="overlay" id="overlay"></div>
@@ -32,7 +33,7 @@
               class="review-popup__form"
             >
               {% csrf_token %}
-              <h4 class="form-title">Написати відгук</h4>
+              <h4 class="form-title">{% trans "Написати відгук" %}</h4>
               <div class="form__input-wrap">
                 <img
                   src="{% static 'user-icon.svg' %}"
@@ -47,7 +48,7 @@
                   required
                 />
               </div>
-              <p class="form__input-label">Ваш відгук</p>
+              <p class="form__input-label">{% trans "Ваш відгук" %}</p>
               <div class="form__input-wrap" id="form__input-textarea">
                 <textarea
                   name="text"
@@ -55,7 +56,7 @@
                   required
                 ></textarea>
               </div>
-              <p class="form__input-label">Оцінка товару</p>
+              <p class="form__input-label">{% trans "Оцінка товару" %}</p>
               <div class="stars-list">
                 <!-- Скрытое поле для хранения оценки -->
                 <input
@@ -76,14 +77,14 @@
                 />
                 {% endfor %}
               </div>
-              <button class="form-btn" type="submit">Відправити</button>
+              <button class="form-btn" type="submit">{% trans "Відправити" %}</button>
             </form>
           </div>
         </div>
         <div class="review-popup__sml">
-          <h4 class="review-popup__title">Дякуємо!</h4>
+          <h4 class="review-popup__title">{% trans "Дякуємо!" %}</h4>
           <h5 class="review-popup__subtitle">
-            Ваші слова надихають нас<br />ставати кращими!
+            {% trans "Ваші слова надихають нас" %}<br />{% trans "ставати кращими!" %}
           </h5>
         </div>
       </div>
@@ -158,7 +159,7 @@
               </div>
               <div class="products-list__item-extrainfo">
                 <div class="products-list__item-infopart">
-                  <span class="products-list__item-raiting">Рейтинг</span>
+                  <span class="products-list__item-raiting">{% trans "Рейтинг" %}</span>
                   <img
                     src="{% static 'star-icon.svg' %}"
                     alt="star-icon"
@@ -193,7 +194,7 @@
                       class="path-structure__icon"
                     />
                     <a href="{% url 'index' %}" class="path-structure__title"
-                      >Головна</a
+                      >{% trans "Головна" %}</a
                     >
                     <img
                       src="{% static 'arrow-path-icon.svg' %}"
@@ -207,7 +208,7 @@
                       alt="icon"
                       class="path-structure__icon"
                     />
-                    <span class="path-structure__title">Продукт</span>
+                    <span class="path-structure__title">{% trans "Продукт" %}</span>
                   </div>
                 </div>
               </div>
@@ -280,7 +281,7 @@
                       />
                       {{ product.get_avg_review }}
                       <p class="name__reviews-comments" id="reviews-link">
-                        {{ active_reviews_count }} відгук(а/ів)
+                        {{ active_reviews_count }} {% trans "відгук(а/ів)" %}
                       </p>
                     </div>
                     <div class="name__reviews-sex">
@@ -298,7 +299,7 @@
                   id="product-volumes-list"
                 >
                   {% if product.volumes.all %}
-                  <p class="volume-title">Оберіть об’єм</p>
+                  <p class="volume-title">{% trans "Оберіть об’єм" %}</p>
                   {% for volume in product.volumes.all %}
                   <button
                     class="volume-item"
@@ -318,7 +319,7 @@
                       alt="icon"
                       class="variations__header-icon"
                     />
-                    <p class="variations__header-title">Оберіть аромат</p>
+                    <p class="variations__header-title">{% trans "Оберіть аромат" %}</p>
                     <img
                       src="{% static 'arrow-sml-black.svg' %}"
                       alt="icon"
@@ -410,7 +411,7 @@
                           src="{% static 'basket-icon.svg' %}"
                           alt="like-icon"
                         />
-                        <p class="nav__btn-text">Купити</p>
+                        <p class="nav__btn-text">{% trans "Купити" %}</p>
                       </div>
                       <div class="nav__btn-wrap">
                         <img
@@ -418,7 +419,7 @@
                           src="{% static 'success-orange-icon.svg' %}"
                           alt="like-icon"
                         />
-                        <p class="nav__btn-text">Добавлено</p>
+                        <p class="nav__btn-text">{% trans "Добавлено" %}</p>
                       </div>
                     </button>
                   </div>
@@ -432,14 +433,14 @@
                 {% endif %}
                 <div class="product__details gray-border">
                   <p class="details-title font--highlight">
-                    Опис та характеристика
+                    {% trans "Опис та характеристика" %}
                   </p>
                   <p class="details-subtitle">{{ product.description|safe }}</p>
                 </div>
                 {% with product.related_accesories.all as product_accesories %}
                 {% if product_accesories %}
                 <div class="product__components">
-                  <p class="components-title">Комплектуючі</p>
+                  <p class="components-title">{% trans "Комплектуючі" %}</p>
                   <div class="components-list-wrap products__list-wrap">
                     <ul class="components__list" id="components-list">
                       {% for accesory in product_accesories %}
@@ -511,7 +512,7 @@
                               src="{% static 'basket-icon.svg' %}"
                               alt="icon"
                             />
-                            <p>Доповнити</p>
+                            <p>{% trans "Доповнити" %}</p>
                           </div>
                           <div class="nav__btn-wrap">
                             <img
@@ -519,7 +520,7 @@
                               src="{% static 'success-orange-icon.svg' %}"
                               alt="like-icon"
                             />
-                            <p class="nav__btn-text">Добавлено</p>
+                            <p class="nav__btn-text">{% trans "Добавлено" %}</p>
                           </div>
                         </button>
                       </li>
@@ -529,7 +530,7 @@
                 </div>
                 {% endif %} {% endwith %}
                 <div class="product__wrapper">
-                  <p class="wrapper-title">Пакування</p>
+                  <p class="wrapper-title">{% trans "Пакування" %}</p>
                   <ul class="wrapper__list" id="product-wrapper-list">
                     {% for wrapper in product.wrappers.all %}
                     <li
@@ -558,13 +559,13 @@
                         class="wrapper__item-img"
                       />
                       <div class="wrapper__item-content">
-                        <p class="wrapper__item-title">Без пакування</p>
+                        <p class="wrapper__item-title">{% trans "Без пакування" %}</p>
                       </div>
                     </li>
                   </ul>
                 </div>
                 <div class="product__reviews" id="product-reviews">
-                  <p class="reviews-title">Відгуки до товару</p>
+                  <p class="reviews-title">{% trans "Відгуки до товару" %}</p>
                   <ul class="reviews__list" id="reviews-list">
                     <!-- prettier-ignore -->
                     {% for review in product.reviews.all %} {% if review.active %}
@@ -588,7 +589,7 @@
                       <p class="reviews__item-text">{{ review.text }}</p>
                     </li>
                     {% endif %} {% empty %}
-                    <p>Немає відгуків для цього товару.</p>
+                    <p>{% trans "Немає відгуків для цього товару." %}</p>
                     {% endfor %}
                   </ul>
                   <div class="reviews__nav">
@@ -596,13 +597,13 @@
                       class="reviews__nav-btn reviews__nav-create"
                       id="create-review-btn"
                     >
-                      Залишити відгук
+                      {% trans "Залишити відгук" %}
                     </button>
                     <button
                       class="reviews__nav-btn reviews__nav-more"
                       id="more-reviews-btn"
                     >
-                      Показати ще
+                      {% trans "Показати ще" %}
                     </button>
                   </div>
                 </div>
@@ -610,7 +611,7 @@
               <div class="products-list-wrap recomends-products gray-border">
                 <h4 class="products__title">
                   <strong class="products__subtitle"
-                    >Рекомендовані товари</strong
+                    >{% trans "Рекомендовані товари" %}</strong
                   >
                 </h4>
                 <div class="products__list-wrap">
@@ -673,7 +674,7 @@
                       <div class="products-list__item-extrainfo">
                         <div class="products-list__item-infopart">
                           <span class="products-list__item-raiting"
-                            >Рейтинг</span
+                            >{% trans "Рейтинг" %}</span
                           >
                           <img
                             src="{% static 'star-icon.svg' %}"

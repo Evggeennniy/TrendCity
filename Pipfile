@@ -12,6 +12,7 @@ django-ckeditor-5 = "*"
 django-debug-toolbar = "*"
 django-extensions = "*"
 requests = "*"
+django-rosetta = "*"
 
 [dev-packages]
 

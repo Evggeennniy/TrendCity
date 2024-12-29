@@ -1,6 +1,6 @@
 from django.db import models
 from django_ckeditor_5.fields import CKEditor5Field
-
+from django.utils.translation import gettext as _
 
 class Category(models.Model):
     icon = models.FileField(verbose_name="Значок", upload_to="icons")
@@ -29,9 +29,9 @@ class ProductBrand(models.Model):
 
 class Product(models.Model):
     GENDER_CHOICES = [
-        ("men", "чоловіче"),
-        ("women", "жіноче"),
-        ("unisex", "унісекс"),
+        ("men", _("чоловіче")),
+        ("women", _("жіноче")),
+        ("unisex", _("унісекс")),
     ]
 
     STICKER_CHOICES = [("top", "топ товар"), ("new", "новинка"), ("promo", "акцiя")]
@@ -211,7 +211,7 @@ class FreeProductPromotion(Promotion):
     promo_count = models.IntegerField(verbose_name="Кількість товару")
     promo_product = models.ForeignKey(
         Product,
-        verbose_name="Бесплатный товар",
+        verbose_name="Безкоштовний товар",
         blank=True,
         related_name="free_promo_product",
         on_delete=models.CASCADE,

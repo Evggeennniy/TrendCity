@@ -1,11 +1,12 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Basket Store</title>
+    <title>{% trans "Basket Store" %}</title>
     <!-- Alpine Plugins -->
     <script
       defer
@@ -25,7 +26,7 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
     <script src="{% static 'default.js' %}" defer></script>
     <!-- <script src="{% static 'basket.js' %}" defer></script> -->
-    <title>ТрендСіті</title>
+    <title>{% trans "ТрендСіті" %}</title>
   </head>
   <body>
     <div class="page-wrap">
@@ -38,7 +39,7 @@
             <div class="content-wrap">
               <div class="basket">
                 <div class="basket__header gray-border">
-                  <p class="basket__header-title">Оформлення замовлення</p>
+                  <p class="basket__header-title">{% trans "Оформлення замовлення" %}</p>
                   <button
                     class="basket__header-btn"
                     id="btn-delete-checked"
@@ -48,7 +49,7 @@
                       src="{% static 'trash-icon.svg' %}"
                       alt="basket-icon"
                     />
-                    <p>Видалити обране</p>
+                    <p>{% trans "Видалити обране" %}</p>
                   </button>
                 </div>
                 <div class="basket__items">
@@ -86,7 +87,7 @@
                               </span>
                             </template>
                             <template x-if="!item.wrapperName">
-                              <span>Без пакування</span>
+                              <span>{% trans "Без пакування" %}</span>
                             </template>
                           </p>
                           <div
@@ -143,25 +144,25 @@
                 </div>
               </div>
               <div class="statistic">
-                <h4 class="statistic__header gray-border">ЗАГАЛЬНА СУМА</h4>
+                <h4 class="statistic__header gray-border">{% trans "ЗАГАЛЬНА СУМА" %}</h4>
                 <div class="statistic__list statistic__content gray-border">
                   <div class="" id="statistic-list-wrap">
                     <div class="statistic__item">
-                      <h4>Товари без знижки</h4>
+                      <h4>{% trans "Товари без знижки" %}</h4>
                       <h4
                         id="price-without-discount"
                         x-text="summary.sumPriceNoDiscount+ '₴'"
                       ></h4>
                     </div>
                     <div class="statistic__item">
-                      <h4>Пакування</h4>
+                      <h4>{% trans "Пакування" %}</h4>
                       <h4
                         id="wrappers-price"
                         x-text="summary.wrapperPrice+ '₴'"
                       ></h4>
                     </div>
                     <div class="statistic__item">
-                      <h4>Загальна сума знижки</h4>
+                      <h4>{% trans "Загальна сума знижки" %}</h4>
                       <h4
                         id="price-with-discount"
                         x-text="summary.sumDiscountProduct+ '₴'"
@@ -179,7 +180,7 @@
                   </div>
                   <div class="statistic__line"></div>
                   <div class="statistic__item">
-                    <h4>Загалом</h4>
+                    <h4>{% trans "Загалом" %}</h4>
                     <h4
                       class="statistic__fullprice"
                       id="current-full-price"
@@ -193,24 +194,24 @@
                         alt="arrow"
                         class="arrow-sml"
                       />
-                      <h4>У вас є промокод?</h4>
+                      <h4>{% trans "У вас є промокод?" %}</h4>
                     </div>
                     <div class="panel-wrap" id="promo-panel">
                       <input
                         type="text"
-                        placeholder="Промокод"
+                        placeholder='{% trans "Промокод"'
                         id="promo-input"
                         x-model="promocodeName"
                       />
                       <button id="promo-btn" @click="activeCode">
-                        Добавити
+                        {% trans "Додати" %}
                       </button>
                     </div>
                   </div>
                 </div>
                 <div class="promo-info gray-border">
                   <div class="discount_container" x-show="summary.discount">
-                    Подарунки🎁:
+                    {% trans "Подарунки" %}🎁:
                     <template
                       class="discount-list"
                       x-for="present in summary.present"
@@ -223,7 +224,7 @@
                     class="discount_container"
                     x-show="summary.discountLabel"
                   >
-                    Акцій🛒:
+                    {% trans "Акцій" %}🛒:
                     <template
                       id="discount-list"
                       x-for="label in summary.discountLabel"
@@ -236,12 +237,12 @@
 
                 <div class="statistic__addinvite gray-border">
                   <p class="statistic__addinvite-title">
-                    Потребуете доповнити<br />Ваш кошик?
+                    {% trans "Потребуете доповнити" %}<br />{% trans "Ваш кошик?" %}
                   </p>
                   <a
                     href="{% url 'catalog' %}"
                     class="statistic__addinvite-link"
-                    >Перейти</a
+                    >{% trans "Перейти" %}</a
                   >
                 </div>
               </div>
@@ -253,13 +254,13 @@
                         <img
                           class="form__input-icon"
                           src="{% static 'user-icon.svg' %}"
-                          alt="Иконка профиля"
+                          alt='{% trans "Іконка профиля" %}'
                         />
                         <input
                           type="text"
                           class="form__input"
                           id="order-form__name"
-                          placeholder="Анатолій"
+                          placeholder='{% trans "Анатолій" %}'
                           autocomplete="name"
                           x-model="order.name"
                         />
@@ -268,13 +269,13 @@
                         <img
                           class="form__input-icon"
                           src="{% static 'user-icon.svg' %}"
-                          alt="Иконка профиля"
+                          alt='{% trans "Іконка профиля" %}'
                         />
                         <input
                           type="text"
                           class="form__input"
                           id="order-form__surname"
-                          placeholder="Кузьменко"
+                          placeholder='{% trans "Кузьменко" %}'
                           x-model="order.surname"
                           autocomplete="surname"
                         />
@@ -319,19 +320,19 @@
                           x-model="order.paymentMethod"
                         >
                           <option value="" disabled selected>
-                            Виберіть спосіб оплати
+                            {% trans "Виберіть спосіб оплати" %}
                           </option>
                           <option value="Оплата готівкою">
-                            Оплата готівкою
+                            {% trans "Оплата готівкою" %}
                           </option>
                           <option value="Оплата картою при отриманні">
-                            Оплата картою при отриманні
+                            {% trans "Оплата картою при отриманні" %}
                           </option>
                           <option value="Оплата онлайн картою">
-                            Оплата онлайн картою
+                            {% trans "Оплата онлайн картою" %}
                           </option>
                           <option value="Банківський переказ">
-                            Банківський переказ
+                            {% trans "Банківський переказ" %}
                           </option>
                         </select>
                       </div>
@@ -347,14 +348,14 @@
                           x-model="order.postOffice"
                         >
                           <option value="" disabled selected>
-                            Виберіть спосіб доставки
+                            {% trans "Виберіть спосіб доставки" %}
                           </option>
                           <option value="Нова пошта">
-                            Доставка: Нова пошта
+                            {% trans "Доставка: Нова пошта" %}
                           </option>
-                          <option value="Укрпошта">Доставка: Укрпошта</option>
-                          <option value="Justin">Доставка: Justin</option>
-                          <option value="Самовывоз">Самовывоз</option>
+                          <option value="Укрпошта">{% trans "Доставка: Укрпошта" %}</option>
+                          <option value="Justin">{% trans "Доставка: Justin" %}</option>
+                          <option value="Самовывоз">{% trans "Самовывоз" %}</option>
                         </select>
                       </div>
                       <div class="form__input-wrap form__input-novaid">
@@ -368,7 +369,7 @@
                           class="form__input"
                           id="order-form__novaid"
                           x-model="order.postOfficeId"
-                          placeholder="Відділення пошти"
+                          placeholder='{% trans "Відділення пошти" %}'
                           autocomplete="postoffice-id"
                         />
                       </div>
@@ -379,7 +380,7 @@
                           class="form__input"
                           id="order-form__text"
                           x-model="order.comment"
-                          placeholder="Коментар до замовлення"
+                          placeholder='{% trans "Коментар до замовлення" %}'
                         ></textarea>
                       </div>
                       <div class="form__ok-btn">
@@ -387,7 +388,7 @@
                           class="form__button"
                           @click.prevent="sendOrder"
                         >
-                          Оформлення
+                          {% trans "Оформлення" %}
                         </button>
                       </div>
                     </div>
@@ -485,28 +486,28 @@
           validateOrder() {
             const arrayMessage = [];
             if (this.order.name.trim() === '') {
-              arrayMessage.push("Ім'я замовника є обов'язковим;");
+              arrayMessage.push({% trans "Ім'я замовника є обов'язковим;" %});
             }
             if (this.order.surname.trim() === '') {
-              arrayMessage.push("Прізвище замовника є обов'язковим;");
+              arrayMessage.push({% trans "Прізвище замовника є обов'язковим;" %});
             }
             if (this.order.countryCode.trim() === '' || this.order.countryCode.trim() === '+') {
-              arrayMessage.push("Код країни замовника є обов'язковим;");
+              arrayMessage.push({% trans "Код країни замовника є обов'язковим;" %});
             }
             if (this.order.number.trim() === '') {
-              arrayMessage.push("Номер замовника є обов'язковим;");
+              arrayMessage.push({% trans "Номер замовника є обов'язковим;" %});
             }
             if (this.order.paymentMethod.trim() === '') {
-              arrayMessage.push("Спосіб оплати є обов'язковим;");
+              arrayMessage.push({% trans "Спосіб оплати є обов'язковим;" %});
             }
             if (this.order.postOfficeId.trim() === '') {
-              arrayMessage.push("Відділення пошти є обов'язковим;");
+              arrayMessage.push({% trans "Відділення пошти є обов'язковим;" %});
             }
             if (this.order.postOffice.trim() === '') {
-              arrayMessage.push("Спосіб доставки є обов'язковим;");
+              arrayMessage.push({% trans "Спосіб доставки є обов'язковим;" %});
             }
             if (this.summary.sumPrice === 0) {
-              arrayMessage.push("Кошик порожній ( ;");
+              arrayMessage.push({% trans "Кошик порожній ( ;" %});
             }
             return arrayMessage.join("\n");
 
@@ -600,7 +601,7 @@
                     this.order.orderId = data.data.orderId;
                     window.location.href = `/liqpay/${data.data.orderId}/`;
                 } else {
-                  alert("Дякуємо за замовлення!");
+                  alert({% trans "Дякуємо за замовлення!" %});
                 }
 
               })

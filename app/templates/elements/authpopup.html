@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <div
   class="overlay {% if request.session.regerror or request.session.logerror %}active{% endif %}"
@@ -27,24 +28,24 @@
           <!-- prettier-ignore -->
           {% if request.session.logerror is not None %}
           {% if request.session.logerror %}
-          <p>Невірна ел. пошта або пароль.</p>
+          <p>{% trans "Невірна ел. пошта або пароль." %}</p>
           {% else %}
-          <p>Ви успішно увійшли.</p>
+          <p>{% trans "Ви успішно увійшли." %}</p>
           {% endif %} {% endif %}
 
-          <h4 class="form__title">Увійдіть в акаунт</h4>
+          <h4 class="form__title">{% trans "Увійдіть в акаунт" %}</h4>
           <div class="form__input-wrap">
             <img
               class="form__input-icon"
               src="{% static 'message-icon.svg' %}"
-              alt="Иконка сообщения"
+              alt='{% trans "Іконка сообщения" %}'
             />
             <input
               type="email"
               class="form__input"
               id="autrztn-login__email"
               name="email"
-              placeholder="Ел. пошта"
+              placeholder='{% trans "Ел. пошта" %}'
               required
             />
           </div>
@@ -52,36 +53,36 @@
             <img
               class="form__input-icon"
               src="{% static 'eye-icon.svg' %}"
-              alt="Иконка пароля"
+              alt='{% trans "Іконка пароля" %}'
             />
             <input
               type="password"
               class="form__input"
               id="autrztn-login__password"
               name="password"
-              placeholder="Пароль"
+              placeholder='{% trans "Пароль" %}'
               required
               autocomplete="password"
             />
           </div>
-          <button class="form__button" type="submit">Увійти</button>
+          <button class="form__button" type="submit">{% trans "Увійти" %}</button>
         </div>
       </form>
     </div>
     <div class="autrztn-popup__sml">
-      <h4 class="reg__title">Вітаємо!</h4>
+      <h4 class="reg__title">{% trans "Вітаємо!" %}</h4>
       <h5 class="reg__subtitle">
-        У вас ще немає акаунту?<br />Зареєструйте його
+        {% trans "У вас ще немає акаунту?" %}<br />{% trans "Зареєструйте його" %}
       </h5>
-      <a href="#" class="reg_link" id="popup-reg-btn">Реєстрація</a>
+      <a href="#" class="reg_link" id="popup-reg-btn">{% trans "Реєстрація" %}</a>
     </div>
   </div>
 
   <div class="autrztn-popup-wrap autrztn-popup-reg">
     <div class="autrztn-popup__sml">
-      <h4 class="reg__title">Вітаємо!</h4>
-      <h5 class="reg__subtitle">У вас вже є акаунт?<br />Увійдіть у нього</h5>
-      <a href="#" class="reg_link" id="popup-login-btn">Увійти</a>
+      <h4 class="reg__title">{% trans "Вітаємо!" %}</h4>
+      <h5 class="reg__subtitle">{% trans "У вас вже є акаунт?" %}<br />{% trans "Увійдіть у нього" %}</h5>
+      <a href="#" class="reg_link" id="popup-login-btn">{% trans "Увійти" %}</a>
     </div>
     <div class="autrztn-popup__big">
       <form
@@ -94,21 +95,21 @@
           <!-- prettier-ignore -->
           {% if request.session.regerror is not None %}
           {% if request.session.regerror %}
-          <p>Ел. пошта вже використовується.</p>
+          <p>{% trans "Ел. пошта вже використовується." %}</p>
           {% endif %} {% endif %}
-          <h4 class="form__title form__reg-title">Реєстрація акаунта</h4>
+          <h4 class="form__title form__reg-title">{% trans "Реєстрація акаунта" %}</h4>
           <div class="form__input-wrap form__input-name">
             <img
               class="form__input-icon"
               src="{% static 'user-icon.svg' %}"
-              alt="Иконка профиля"
+              alt='{% trans "Іконка профиля" %}'
             />
             <input
               type="text"
               class="form__input"
               id="autrztn-register__name"
               name="first_name"
-              placeholder="І’мя"
+              placeholder='{% trans "І’мя" %}'
               required
             />
           </div>
@@ -116,14 +117,14 @@
             <img
               class="form__input-icon"
               src="{% static 'user-icon.svg' %}"
-              alt="Иконка профиля"
+              alt='{% trans "Іконка профиля" %}'
             />
             <input
               type="text"
               class="form__input"
               id="autrztn-register__surname"
               name="last_name"
-              placeholder="Прізвище"
+              placeholder='{% trans "Прізвище" %}'
               required
             />
           </div>
@@ -142,14 +143,14 @@
               <img
                 class="form__input-icon"
                 src="{% static 'phone-icon.svg' %}"
-                alt="Иконка телефона"
+                alt='{% trans "Іконка телефона" %}'
               />
               <input
                 type="tel"
                 class="form__input"
                 id="autrztn-register__phone"
                 name="phone_number"
-                placeholder="Номер телефону"
+                placeholder='{% trans "Номер телефону" %}'
                 required
               />
             </div>
@@ -158,14 +159,14 @@
             <img
               class="form__input-icon"
               src="{% static 'message-icon.svg' %}"
-              alt="Иконка сообщения"
+              alt='{% trans "Іконка сообщения" %}'
             />
             <input
               type="email"
               class="form__input"
               id="autrztn-register__email"
               name="email"
-              placeholder="Ел. пошта"
+              placeholder='{% trans "Ел. пошта" %}'
               required
             />
           </div>
@@ -173,7 +174,7 @@
             <img
               class="form__input-icon"
               src="{% static 'eye-icon.svg' %}"
-              alt="Иконка пароля"
+              alt='{% trans "Іконка пароля" %}'
             />
             <input
               type="password"
@@ -181,12 +182,12 @@
               id="autrztn-register__password"
               name="password"
               autocomplete="password"
-              placeholder="Пароль"
+              placeholder='{% trans "Пароль" %}'
               required
             />
           </div>
           <div class="form__reg-btn">
-            <button class="form__button" type="submit">Реєстрація</button>
+            <button class="form__button" type="submit">{% trans "Реєстрація" %}</button>
           </div>
         </div>
       </form>

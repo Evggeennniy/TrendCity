@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
     <script src="{% static 'default.js' %}" defer></script>
     <script src="{% static 'catalog.js' %}" defer></script>
-    <title>ТрендСіті - Каталог</title>
+    <title>{% trans "ТрендСіті - Каталог" %}</title>
   </head>
   <body>
     <div class="overlay" id="overlay"></div>
@@ -37,7 +38,7 @@
                       class="path-structure__icon"
                     />
                     <a href="{% url 'index' %}" class="path-structure__title"
-                      >Головна</a
+                      >{% trans "Головна" %}</a
                     >
                     <img
                       src="{% static 'arrow-path-icon.svg' %}"
@@ -51,7 +52,7 @@
                       alt="icon"
                       class="path-structure__icon"
                     />
-                    <span class="path-structure__title">Каталог</span>
+                    <span class="path-structure__title">{% trans "Каталог" %}</span>
                   </div>
                 </div>
               </div>
@@ -72,7 +73,7 @@
                         alt="icon"
                         class="favorite__nav-icon"
                       />
-                      <h5>Фільтри</h5>
+                      <h5>{% trans "Фільтри" %}</h5>
                     </button>
                   </div>
                   <div class="favorite__nav-part">
@@ -88,7 +89,8 @@
                         />
                         <!-- prettier-ignore -->
                         <h5>
-                          Сортування: {{ current_sort_label|default:"Виберіть" }}
+                          {% trans "Виберіть" as choose_label %}
+                          {% trans "Сортування: " %}{{ current_sort_label|default:choose_label }}
                         </h5>
                       </button>
                       <div
@@ -102,7 +104,7 @@
                               href="#"
                               class="sort-option"
                               data-sort="price_asc"
-                              >Ціна: за зростанням</a
+                              >{% trans "Ціна: за зростанням" %}</a
                             >
                           </li>
                           <li>
@@ -110,12 +112,12 @@
                               href="#"
                               class="sort-option"
                               data-sort="price_desc"
-                              >Ціна: за спаданням</a
+                              >{% trans "Ціна: за спаданням" %}</a
                             >
                           </li>
                           <li>
                             <a href="#" class="sort-option" data-sort="name_asc"
-                              >Назва: від А до Я</a
+                              >{% trans "Назва: від А до Я" %}</a
                             >
                           </li>
                           <li>
@@ -123,7 +125,7 @@
                               href="#"
                               class="sort-option"
                               data-sort="name_desc"
-                              >Назва: від Я до А</a
+                              >{% trans "Назва: від Я до А" %}</a
                             >
                           </li>
                         </ul>
@@ -199,7 +201,7 @@
                       <div class="products-list__item-extrainfo">
                         <div class="products-list__item-infopart">
                           <span class="products-list__item-raiting"
-                            >Рейтинг</span
+                            >{% trans "Рейтинг" %}</span
                           >
                           <img
                             src="{% static 'star-icon.svg' %}"

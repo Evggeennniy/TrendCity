@@ -1,7 +1,8 @@
 {% load static %}
+{% load i18n %}
 
 <div class="panel__block panel__categories">
-  <h5 class="panel__title categories-title">Kатегорії</h5>
+  <h5 class="panel__title categories-title">{% trans "Kатегорії" %}</h5>
   {% if categories %}
   <ul class="panel__list categories-list">
     {% for category in categories %}

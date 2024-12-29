@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'reset.css' %}" />
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
     <script src="{% static 'default.js' %}" defer></script>
-    <title>ТрендСіті - Iнфо</title>
+    <title>{% trans "ТрендСіті - Iнфо" %}</title>
   </head>
   <body>
     <div class="overlay" id="overlay"></div>
@@ -38,7 +39,7 @@
                       class="path-structure__icon"
                     />
                     <a href="{% url 'index' %}" class="path-structure__title"
-                      >Головна</a
+                      >{% trans "Головна" %}</a
                     >
                     <img
                       src="{% static 'arrow-path-icon.svg' %}"
@@ -52,7 +53,7 @@
                       alt="icon"
                       class="path-structure__icon"
                     />
-                    <span class="path-structure__title">Iнформацiя</span>
+                    <span class="path-structure__title">{% trans "Iнформацiя" %}</span>
                   </div>
                 </div>
               </div>

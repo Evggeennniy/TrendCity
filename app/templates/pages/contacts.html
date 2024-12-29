@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'reset.css' %}" />
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
     <script src="{% static 'default.js' %}" defer></script>
-    <title>ТрендСіті - Контакти</title>
+    <title>{% trans "ТрендСіті - Контакти" %}</title>
   </head>
   <body>
     <div class="overlay" id="overlay"></div>
@@ -30,7 +31,7 @@
                       class="path-structure__icon"
                     />
                     <a href="{% url 'index' %}" class="path-structure__title"
-                      >Головна</a
+                      >{% trans "Головна" %}</a
                     >
                     <img
                       src="{% static 'arrow-path-icon.svg' %}"
@@ -44,22 +45,24 @@
                       alt="icon"
                       class="path-structure__icon"
                     />
-                    <span class="path-structure__title">Контакти</span>
+                    <span class="path-structure__title">{% trans "Контакти" %}</span>
                   </div>
                 </div>
               </div>
               <div class="page-wrap">
                 <div class="contacts__intro">
-                  <h4 class="contacts__title">Контактна сторінка</h4>
+                  <h4 class="contacts__title">{% trans "Контактна сторінка</h4>
                   <h5 class="contacts__subtitle">
-                    У Вас з’явились питання? Ми люб’язно<br />допоможемо!
+                    {% trans "У Вас з’явились питання? Ми люб’язно" %}<br />{% trans "допоможемо!" %}
                   </h5>
                 </div>
                 <div class="contacts__info contacts__block">
-                  <h3 class="contacts__info-title">Ми завжди на зв'язку!</h3>
+                  <h3 class="contacts__info-title">{% trans "Ми завжди на зв'язку!" %}</h3>
                   <p class="contacts__info-subtitle">
+                    {% blocktrans %}
                     Команда TrendCity завжди готова надати підтримку та
                     допомогти вам з будь-яким питанням
+                    {% endblocktrans %}
                   </p>
                 </div>
                 <div class="contacts__links contacts__block">
@@ -100,7 +103,7 @@
                 </div>
                 <div class="contacts__feedback contacts__block">
                   <h3 class="contacts__feedback-title">
-                    Форма зворотнього зв'язку
+                    {% trans "Форма зворотнього зв'язку" %}
                   </h3>
                   <form
                     action="{% url 'feedback_form' %}"
@@ -120,7 +123,7 @@
                         <input
                           type="text"
                           class="form__input"
-                          placeholder="Ел. пошта"
+                          placeholder='{% trans "Ел. пошта" %}'
                           name="email"
                           required
                         />
@@ -134,7 +137,7 @@
                         <input
                           type="text"
                           class="form__input"
-                          placeholder="Ваше ім’я"
+                          placeholder='{% trans "Ваше ім’я" %}'
                           name="username"
                           required
                         />
@@ -157,7 +160,7 @@
                         <input
                           type="text"
                           class="form__input"
-                          placeholder="Номер телефону"
+                          placeholder='{% trans "Номер телефону" %}'
                           pattern="[0-9 ]*"
                           name="phone_number"
                           oninput="formatPhone(this)"
@@ -168,7 +171,7 @@
                     <div class="form__input-wrap form__textarea-wrap">
                       <textarea
                         class="form__input-textarea form__input"
-                        placeholder="Ваш лист"
+                        placeholder='{% trans "Ваш лист" %}'
                         name="message"
                         required
                       ></textarea>
@@ -178,7 +181,7 @@
                         class="form__nav-btn form__nav-item"
                         type="submit"
                       >
-                        Надіслати
+                        {% trans "Надіслати" %}
                       </button>
                       <select
                         name="topic"
@@ -186,10 +189,10 @@
                         class="form__nav-select form__nav-item"
                         required
                       >
-                        <option value="">Оберіть тему</option>
-                        <option value="Гарантія">Гарантія</option>
-                        <option value="Оплата">Оплата</option>
-                        <option value="Повернення">Повернення</option>
+                        <option value="">{% trans "Оберіть тему" %}</option>
+                        <option value="Гарантія">{% trans "Гарантія" %}</option>
+                        <option value="Оплата">{% trans "Оплата" %}</option>
+                        <option value="Повернення">{% trans "Повернення" %}</option>
                       </select>
                     </div>
                   </form>

@@ -1,7 +1,8 @@
 {% load static %}
+{% load i18n %}
 
 <div class="panel__block panel__top">
-  <h5 class="panel__title top-title">топ товари</h5>
+  <h5 class="panel__title top-title">{% trans "топ товари" %}</h5>
   {% if top_products %}
   <ul class="panel__list top-list">
     {% for item in top_products %}

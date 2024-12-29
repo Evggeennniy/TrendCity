@@ -1,9 +1,10 @@
 {% load static %}
+{% load i18n %}
 
 <header class="header">
   <div class="header-wrap container">
     <h4 class="header__title">
-      <a href="{% url 'index' %}" class="link-to-aboutus">ТрендСіті</a>
+      <a href="{% url 'index' %}" class="link-to-aboutus">{% trans "ТрендСіті" %}</a>
     </h4>
     <div class="header__nav">
       <div class="header__mob-panel">
@@ -19,7 +20,7 @@
           alt="menu-icon"
           class="nav__catalog-icon"
         />
-        <h5 class="nav__catalog-title">Каталог</h5>
+        <h5 class="nav__catalog-title">{% trans "Каталог" %}</h5>
       </a>
       <div class="">
         <form class="nav__search" action="{% url 'catalog' %}" method="get">
@@ -41,7 +42,7 @@
       </div>
       <div class="nav__menu">
         <a href="{% url 'about_us' %}" class="menu-item">
-          <h5 class="menu-item__title">О&nbsp;нас</h5>
+          <h5 class="menu-item__title">{% trans "О&nbsp;нас" %}</h5>
         </a>
         <button class="menu-item lang-btn">
           <h5 class="menu-item__title">UA</h5>
@@ -71,7 +72,7 @@
               </div>
               <ul class="favorite-nav__list" id="favorite-nav-list"></ul>
               <div class="favorite-nav__btn-wrap">
-                <a href="{% url 'favorite' %}">До обраного</a>
+                <a href="{% url 'favorite' %}">{% trans "До обраного" %}</a>
               </div>
             </div>
           </div>
@@ -94,7 +95,7 @@
           id="autoriz-btn-logout"
           auth-action="logout"
         >
-          <h5 class="menu-item__title">Вийти</h5>
+          <h5 class="menu-item__title">{% trans "Вийти" %}</h5>
         </a>
         {% else %}
         <a
@@ -103,7 +104,7 @@
           id="autoriz-btn-login"
           auth-action="login"
         >
-          <h5 class="menu-item__title">Увійти</h5>
+          <h5 class="menu-item__title">{% trans "Увійти" %}</h5>
         </a>
         {% endif %}
       </div>

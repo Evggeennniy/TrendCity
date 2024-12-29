@@ -1,12 +1,13 @@
 {% load static %}
+{% load i18n %}
 
 <footer class="footer">
   <div class="footer-wrap container-sml">
     <div class="footer-line"></div>
     <div class="footer-info">
       <div class="footer-info__item footer-info__general">
-        <h4 class="footer__companyname">ТрендСіті</h4>
-        <h5 class="footer__copy footer__copy-1">©ТрендСіті, 2023–2024</h5>
+        <h4 class="footer__companyname">{% trans "ТрендСіті" %}</h4>
+        <h5 class="footer__copy footer__copy-1">©{% trans "ТрендСіті, 2024–2025" %}</h5>
         <img
           src="{% static 'vmpaymethods.png' %}"
           alt="payment methods"
@@ -14,24 +15,24 @@
         />
       </div>
       <div class="footer-info__item footer-info__information">
-        <h5 class="footer__title">Інформація</h5>
-        <a href="{% url 'about_us' %}" class="footer__link">Гарантія</a>
-        <a href="{% url 'about_us' %}" class="footer__link">Доставка</a>
-        <a href="{% url 'about_us' %}" class="footer__link">Оплата</a>
-        <a href="{% url 'about_us' %}" class="footer__link">Повернення</a>
+        <h5 class="footer__title">{% trans "Інформація" %}</h5>
+        <a href="{% url 'about_us' %}" class="footer__link">{% trans "Гарантія" %}</a>
+        <a href="{% url 'about_us' %}" class="footer__link">{% trans "Доставка" %}</a>
+        <a href="{% url 'about_us' %}" class="footer__link">{% trans "Оплата" %}</a>
+        <a href="{% url 'about_us' %}" class="footer__link">{% trans "Повернення" %}</a>
       </div>
       <div class="footer-info__item footer-info__documentation">
-        <h5 class="footer__title">Документація</h5>
+        <h5 class="footer__title">{% trans "Документація" %}</h5>
         <a href="{% url 'privacypolicy' %}" class="footer__link"
-          >Політика конфеденційності
+          >{% trans "Політика конфеденційності" %}
         </a>
         <a href="{% url 'publicofferagreement' %}" class="footer__link"
-          >Договір публічної оферти</a
+          >{% trans "Договір публічної оферти" %}</a
         >
       </div>
       <div class="footer-info__item footer-info__contacts">
-        <h5 class="footer__title">Контакти</h5>
-        <a href="#" class="footer__link">Телефон +38 (063) 67 591 67 </a>
+        <h5 class="footer__title">{% trans "Контакти" %}</h5>
+        <a href="#" class="footer__link">{% trans "Телефон +38 (063) 67 591 67" %}</a>
         <div class="footer__contacts-list">
           <a href="#" class="contacts-list__item-link"
             ><img
@@ -72,5 +73,5 @@
       </div>
     </div>
   </div>
-  <h5 class="footer__copy footer__copy-2">©ТрендСіті, 2023–2024</h5>
+  <h5 class="footer__copy footer__copy-2">©{% trans "ТрендСіті, 2024–2025" %}</h5>
 </footer>

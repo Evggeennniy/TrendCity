@@ -1,10 +1,11 @@
 {% load static %}
+{% load i18n %}
 
 <div class="slider-menu" id="slider-nav-menu">
   <div class="slider-menu-wrap">
     <div class="slider-menu__header">
       <h4 class="slider-menu__header-title">
-        <a href="{% url 'index' %}" class="link-to-aboutus">ТрендСіті</a>
+        <a href="{% url 'index' %}" class="link-to-aboutus">{% trans "ТрендСіті" %}</a>
       </h4>
       <div class="slider-menu__nav">
         <button class="menu-item lang-btn">
@@ -38,7 +39,7 @@
           auth-action="logout"
           href="{% url 'logout' %}"
         >
-          Вийти
+          {% trans "Вийти" %}
         </a>
         {% else %}
         <h4
@@ -46,12 +47,12 @@
           id="slider-auth-btn"
           auth-action="login"
         >
-          Увійти/Реєстрація
+          {% trans "Увійти/Реєстрація" %}
         </h4>
         {% endif %}
       </div>
     </div>
-    <p class="slider-menu__content-title">Сторінки</p>
+    <p class="slider-menu__content-title">>{% trans "Сторінки" %}</p>
     <div class="slider-menu__block slider-menu__block-pages">
       <div class="slider-menu__auth slider-menu__item">
         <img
@@ -60,7 +61,7 @@
           class="slider-menu__auth-icon slider-icon"
         />
         <a href="{% url 'basket' %}" class="slider-title slider-menu__link"
-          >Корзина</a
+          >{% trans "Корзина" %}</a
         >
       </div>
       <div class="slider-menu__auth slider-menu__item">
@@ -70,7 +71,7 @@
           class="slider-menu__auth-icon slider-icon"
         />
         <a href="{% url 'favorite' %}" class="slider-title slider-menu__link"
-          >Обранi товари</a
+          >{% trans "Обранi товари" %}</a
         >
       </div>
       <div class="slider-menu__auth slider-menu__item">
@@ -80,7 +81,7 @@
           class="slider-menu__auth-icon slider-icon"
         />
         <a href="{% url 'catalog' %}" class="slider-title slider-menu__link"
-          >Каталог</a
+          >{% trans "Каталог" %}</a
         >
       </div>
       <div class="slider-menu__auth slider-menu__item">
@@ -90,7 +91,7 @@
           class="slider-menu__auth-icon slider-icon"
         />
         <a href="{% url 'contacts' %}" class="slider-title slider-menu__link"
-          >Контакти</a
+          >{% trans "Контакти" %}</a
         >
       </div>
       <div class="slider-menu__auth slider-menu__item">
@@ -102,7 +103,7 @@
         <a
           href="{% url 'about_us' %}"
           class="slider-menu__auth-title slider-title slider-menu__link"
-          >Співпраця</a
+          >{% trans "Співпраця" %}</a
         >
       </div>
       <div class="slider-menu__auth slider-menu__item">
@@ -113,12 +114,12 @@
         />
         <h4 class="slider-menu__auth-title slider-title">
           <a href="{% url 'about_us' %}" class="slider-menu__link"
-            >Про Трендсіті</a
+            >{% trans "Про Трендсіті" %}</a
           >
         </h4>
       </div>
     </div>
-    <p class="slider-menu__content-title">Топ товари</p>
+    <p class="slider-menu__content-title">{% trans "Топ товари" %}</p>
     <div class="slider-menu__block slider-menu__block-top">
       {% if top_products %}
       <ul class="slider-menu__top-list">

@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'reset.css' %}" />
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
     <script src="{% static 'default.js' %}" defer></script>
-    <title>ТрендСіті - О нас</title>
+    <title>{% trans "ТрендСіті - О нас" %}</title>
   </head>
   <body>
     <div class="overlay" id="overlay"></div>
@@ -38,7 +39,7 @@
                       class="path-structure__icon"
                     />
                     <a href="{% url 'index' %}" class="path-structure__title"
-                      >Головна</a
+                      >{% trans "Головна" %}</a
                     >
                     <img
                       src="{% static 'arrow-path-icon.svg' %}"
@@ -53,7 +54,7 @@
                       alt="icon"
                       class="path-structure__icon"
                     />
-                    <span class="path-structure__title">О нас</span>
+                    <span class="path-structure__title">{% trans "О нас" %}</span>
                   </div>
                 </div>
               </div>
@@ -63,8 +64,8 @@
                 {% endfor %}
               </div>
               <div class="aboutus__main-title">
-                <h4 class="aboutus__main-title">ТрендСіті</h4>
-                <strong class="aboutus__main-subtitle">Для покупців</strong>
+                <h4 class="aboutus__main-title">{% trans "ТрендСіті" %}</h4>
+                <strong class="aboutus__main-subtitle">{% trans "Для покупців" %}</strong>
                 <div class="line"></div>
               </div>
               <div class="info_block">
@@ -107,14 +108,14 @@
                         <img
                           class="form__input-icon"
                           src="{% static 'user-icon.svg' %}"
-                          alt="Иконка профиля"
+                          alt='{% trans "Іконка профиля" %}'
                         />
                         <input
                           type="text"
                           class="form__input"
                           id="partners__name"
                           name="partners__name"
-                          placeholder="І’мя"
+                          placeholder='{% trans "І’мя" %}'
                           required
                         />
                       </div>
@@ -133,14 +134,14 @@
                           <img
                             class="form__input-icon"
                             src="{% static 'phone-icon.svg' %}"
-                            alt="Иконка телефона"
+                            alt='{% trans "іконка телефона" %}'
                           />
                           <input
                             type="tel"
                             class="form__input"
                             id="partners__phone"
                             name="partners__phone"
-                            placeholder="Номер телефону"
+                            placeholder='{% trans "Номер телефону" %}'
                             required
                           />
                         </div>
@@ -149,14 +150,14 @@
                         <img
                           class="form__input-icon"
                           src="{% static 'message-icon.svg' %}"
-                          alt="Иконка сообщения"
+                          alt='{% trans "Іконка сообщения" %}'
                         />
                         <input
                           type="email"
                           class="form__input"
                           id="partners__email"
                           name="partners__email"
-                          placeholder="Ел. пошта"
+                          placeholder='{% trans "Ел. пошта" %}'
                           required
                         />
                       </div>
@@ -164,14 +165,14 @@
                         <img
                           class="form__input-icon"
                           src="{% static 'place-icon.svg' %}"
-                          alt="Иконка сообщения"
+                          alt='{% trans "Іконка собщения" %}'
                         />
                         <input
                           type="text"
                           class="form__input"
                           id="partners__city"
                           name="partners__city"
-                          placeholder="Місто"
+                          placeholder='{% trans "Місто" %}'
                           required
                         />
                       </div>
@@ -181,13 +182,13 @@
                           class="form__input"
                           id="partners__text"
                           name="partners__text"
-                          placeholder="Опишіть напрямок вашего бізнесу"
+                          placeholder='{% trans "Опишіть напрямок вашего бізнесу" %}'
                           required
                         ></textarea>
                       </div>
                       <div class="form__partners-btn">
                         <button class="form__button" type="submit">
-                          Залишити запит
+                          {% trans "Залишити запит" %}
                         </button>
                       </div>
                     </div>
@@ -195,8 +196,8 @@
                 </div>
               </div>
               <div class="aboutus__main-title">
-                <h4 class="aboutus__main-title">ТрендСіті</h4>
-                <strong class="aboutus__main-subtitle">Відгуки</strong>
+                <h4 class="aboutus__main-title">{% trans "ТрендСіті" %}</h4>
+                <strong class="aboutus__main-subtitle">{% trans "Відгуки" %}</strong>
                 <div class="line"></div>
               </div>
               <div class="reviews">

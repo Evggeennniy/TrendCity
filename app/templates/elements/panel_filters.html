@@ -1,10 +1,11 @@
 {% load static %}
+{% load i18n %}
 
 <form method="get" id="filter-form">
   <div class="panel__calatog-nav" id="panel-filter-nav">
     <div class="slider-menu__header">
       <h4 class="slider-menu__header-title">
-        <a href="{% url 'index' %}" class="link-to-aboutus">ТрендСіті</a>
+        <a href="{% url 'index' %}" class="link-to-aboutus">{% trans "ТрендСіті" %}</a>
       </h4>
       <div class="slider-menu__nav">
         <button class="menu-item lang-btn">
@@ -25,7 +26,7 @@
     </div>
     {% include 'panel_categories.html' %}
     <div class="panel__block panel__brands">
-      <h5 class="panel__title panel__brands-title">Бренди</h5>
+      <h5 class="panel__title panel__brands-title">{% trans "Бренди" %}</h5>
       <ul class="panel__list">
         {% for brand in brands %}
         <li class="panel__item offers-item">
@@ -44,7 +45,7 @@
       </ul>
     </div>
     <div class="panel__block panel__offers">
-      <h5 class="panel__title panel__offers-title">Пропозиції</h5>
+      <h5 class="panel__title panel__offers-title">{% trans "Пропозиції" %}</h5>
       <ul class="panel__list">
         <li class="panel__item offers-item">
           <div class="panel__item-wrap">
@@ -57,7 +58,7 @@
                 value="1"
                 {% if selected_new_items %}checked{% endif %}
               />
-              <span class="offers-title">Новинки</span>
+              <span class="offers-title">{% trans "Новинки" %}</span>
             </label>
           </div>
         </li>
@@ -72,14 +73,14 @@
                 value="1"
                 {% if selected_top_items %}checked{% endif %}
               />
-              <span class="offers-title">Топ товари</span>
+              <span class="offers-title">{% trans "Топ товари" %}</span>
             </label>
           </div>
         </li>
       </ul>
     </div>
     <div class="panel__block panel__price">
-      <h5 class="panel__title panel__price-title">Ціна</h5>
+      <h5 class="panel__title panel__price-title">{% trans "Ціна" %}</h5>
       <div class="range-slider">
         <input
           type="range"
@@ -123,7 +124,7 @@
       </div>
     </div>
     <div class="panel__block panel__offers">
-      <h5 class="panel__title panel__offers-title">ЗНИЖКА</h5>
+      <h5 class="panel__title panel__offers-title">{% trans "ЗНИЖКА" %}</h5>
       <ul class="panel__list">
         <li class="panel__item offers-item">
           <div class="panel__item-wrap">
@@ -132,7 +133,7 @@
               <input type="checkbox" class="checkbox" 
               name="discount_items" 
               {% if selected_discount_items %}checked{% endif %}/>
-              <span class="offers-title">Зі знижкою</span>
+              <span class="offers-title">{% trans "Зі знижкою" %}</span>
             </label>
           </div>
         </li>
@@ -142,21 +143,21 @@
               <!-- prettier-ignore -->
               <input type="checkbox" class="checkbox" name="all_items"
               {% if selected_all_items %}checked{% endif %} />
-              <span class="offers-title">Без знижки</span>
+              <span class="offers-title">{% trans "Без знижки" %}</span>
             </label>
           </div>
         </li>
       </ul>
     </div>
     <div class="panel__block panel__offers">
-      <h5 class="panel__title panel__offers-title">Для кого</h5>
+      <h5 class="panel__title panel__offers-title">{% trans "Для кого" %}</h5>
       <ul class="panel__list">
         <li class="panel__item offers-item">
           <div class="panel__item-wrap">
             <label class="checkbox-wrap">
               <input type="checkbox" class="checkbox" name="gender" value="men"
               {% if 'men' in selected_genders %} checked {% endif %} />
-              <span class="offers-title">Чоловіче</span>
+              <span class="offers-title">{% trans "Чоловіче" %}</span>
             </label>
           </div>
         </li>
@@ -167,7 +168,7 @@
               <input type="checkbox" class="checkbox" name="gender"
               value="women" 
               {% if 'women' in selected_genders %} checked {% endif %} />
-              <span class="offers-title">Жіноче</span>
+              <span class="offers-title">{% trans "Жіноче" %}</span>
             </label>
           </div>
         </li>
@@ -179,7 +180,7 @@
               value="unisex" 
               
               {% if 'unisex' in selected_genders %} checked {% endif %} />
-              <span class="offers-title">Унісекс</span>
+              <span class="offers-title">{% trans "Унісекс" %}</span>
             </label>
           </div>
         </li>
