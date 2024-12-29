@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load url_replace %}
 
 <header class="header">
   <div class="header-wrap container">
@@ -44,14 +45,18 @@
         <a href="{% url 'about_us' %}" class="menu-item">
           <h5 class="menu-item__title">{% trans "О&nbsp;нас" %}</h5>
         </a>
-        <button id="langSwitch" class="menu-item lang-btn">
-          <h5 class="menu-item__title">UA</h5>
+         <a class="menu-item lang-btn"
+          href="{% generate_new_url request %}" 
+        >
+          <h5 class="menu-item__title">
+            {% if request.LANGUAGE_CODE == 'ru' %}UA{% else %}RU{% endif %}
+          </h5>
           <img
             src="{% static 'arrow-small.svg' %}"
             alt="icon"
             class="menu-item__icon"
           />
-        </button>
+         </a>
         <div class="menu-item" id="favorite-btn">
           <img
             src="{% static 'heart-white-border-icon.svg' %}"

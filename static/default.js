@@ -217,17 +217,3 @@ updateBasketUi();
     localStorage.setItem("lastClearTime", now);
   }
 })();
-
-
-document.getElementById("langSwitch").addEventListener("click", function () {
-  const currentUrl = window.location.pathname; // Отримує поточний URL без домену
-  const currentLang = currentUrl.startsWith("/ru/"); // Перевіряємо, чи є "ru" в URL
-
-  if (currentLang) {
-    const newUrl = currentUrl.replace("/ru/", "/");
-    window.location.href = newUrl;
-  } else {
-    const newUrl = "/ru" + currentUrl;
-    window.location.href = newUrl;
-  }
-});

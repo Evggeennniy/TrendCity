@@ -68,6 +68,9 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
+            "libraries": {
+                "url_replace": "catalog.templatetags.url_replace",  # Вказуємо шлях до кастомного тега
+            },
         },
     },
 ]

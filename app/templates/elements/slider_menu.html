@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load url_replace %}
 
 <div class="slider-menu" id="slider-nav-menu">
   <div class="slider-menu-wrap">
@@ -8,14 +9,18 @@
         <a href="{% url 'index' %}" class="link-to-aboutus">{% trans "ТрендСіті" %}</a>
       </h4>
       <div class="slider-menu__nav">
-        <button id="langSwitch" class="menu-item lang-btn">
-          <h4 class="menu-item__title">UA</h4>
+         <a class="menu-item lang-btn"
+          href="{% generate_new_url request %}" 
+        >
+          <h5 class="menu-item__title">
+            {% if request.LANGUAGE_CODE == 'ru' %}UA{% else %}RU{% endif %}
+          </h5>
           <img
             src="{% static 'arrow-small.svg' %}"
             alt="icon"
             class="menu-item__icon"
           />
-        </button>
+         </a>
         <img
           src="{% static 'close-icon.svg' %}"
           alt="сlose-btn"
