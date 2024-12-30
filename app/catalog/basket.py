@@ -1,4 +1,3 @@
-from tkinter import NO
 from django.db.models import Prefetch
 
 from .models import (
