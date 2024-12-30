@@ -389,17 +389,22 @@ class LiqPayView(TemplateView):
 @method_decorator(csrf_exempt, name="dispatch")
 class LiqPayCallbackView(View):
     def post(self, request):
-        data = request.POST.get("data")
-        signature = request.POST.get("signature")
-        liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
-        sign = liqpay.str_to_sign(
-            settings.LIQPAY_PRIVATE_KEY + data + settings.LIQPAY_PRIVATE_KEY
-        )
-        if sign == signature:
-            response = liqpay.decode_data_from_str(data)
-            order_id = response.get("order_id")
-            summary_price = response.get("amount")
-            pay = Payment.objects.create(order_id=order_id, summary_price=summary_price)
-            send_telegram_message(pay.get_telegram_text())
-            return JsonResponse({"status": "success", "data": response})
+        try:
+            data = request.POST.get("data")
+            signature = request.POST.get("signature")
+            liqpay = LiqPay(settings.LIQPAY_PUBLIC_KEY, settings.LIQPAY_PRIVATE_KEY)
+            sign = liqpay.str_to_sign(
+                settings.LIQPAY_PRIVATE_KEY + data + settings.LIQPAY_PRIVATE_KEY
+            )
+            if sign == signature:
+                response = liqpay.decode_data_from_str(data)
+                order_id = response.get("order_id")
+                summary_price = response.get("amount")
+                pay = Payment.objects.create(order_id=order_id, summary_price=summary_price)
+                send_telegram_message(pay.get_telegram_text())
+                return JsonResponse({"status": "success", "data": response})
+        except Exception as e:
+            send_telegram_message(str(e))
+            send_telegram_message(str(pay))
+            return JsonResponse({"error": "Invalid request"}, status=400)
         return JsonResponse({"error": "Invalid request"}, status=400)
