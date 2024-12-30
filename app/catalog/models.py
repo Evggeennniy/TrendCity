@@ -322,7 +322,7 @@ class Order(models.Model):
         )
         return (
             f"Дата та час замовлення: {self.datetime.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
-            f"🛒 Замовлення від {self.name} {self.surname}:\n"
+            f"🛒 Замовлення №{self.id} від {self.name} {self.surname}:\n"
             f"Номер телефону: +{self.country_code}{self.number.replace(' ','')}\n"
             f"Спосіб оплати: {self.payment_method}\n"
             f"Пошта: {self.post_office}/{self.post_office_id}\n"
@@ -428,6 +428,6 @@ class Payment(models.Model):
 
     def get_telegram_text(self):
         return (
-            f"✅Успішно оплачено {self.date.strftime('%Y-%m-%d %H:%M:%S')}, сума {self.summary_price}₴\n\n"
+            f"✅Успішно оплачено №{self.order.id}/{self.id} {self.date.strftime('%Y-%m-%d %H:%M:%S')}, сума {self.summary_price}₴\n\n"
             f"{self.order.get_telegram_text()}"
         )
