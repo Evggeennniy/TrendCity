@@ -420,7 +420,7 @@ class Payment(models.Model):
     date = models.DateTimeField(verbose_name="Дата", auto_now_add=True, blank=True)
 
     def __str__(self) -> str:
-        return f"Замовлення №{self.order.id} Платіж {self.id}, сума {self.summary_price}, дата {self.date}"
+        return f"Платіж {self.id} на замовлення №{self.order.id}, сума {self.summary_price}, дата {self.date}"
 
     class Meta:
         verbose_name = "Платіж"
