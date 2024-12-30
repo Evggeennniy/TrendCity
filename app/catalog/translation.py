@@ -7,7 +7,7 @@ from .models import (
     ProductOption,
     ProductWrapper,
     Promotion,
-    Promocode,
+    Promocode, FreeDeliveryPromotion, PriceDiscountPromotion, QuantityDiscountPromotion, FreeProductPromotion,
 )
 
 
@@ -35,14 +35,28 @@ class ProductVolumeTranslationOptions(TranslationOptions):
 class ProductOptionTranslationOptions(TranslationOptions):
     fields = ("name",)
 
-
 @register(ProductWrapper)
 class ProductWrapperTranslationOptions(TranslationOptions):
     fields = ("name",)
 
-
 @register(Promotion)
 class PromotionTranslationOptions(TranslationOptions):
+    pass
+
+@register(FreeDeliveryPromotion)
+class FreeDeliveryPromotionTranslationOptions(TranslationOptions):
+    fields = ("name",)
+
+@register(PriceDiscountPromotion)
+class FreeDeliveryPromotionTranslationOptions(TranslationOptions):
+    fields = ("name",)
+
+@register(QuantityDiscountPromotion)
+class QuantityDiscountPromotionTranslationOptions(TranslationOptions):
+    fields = ("name",)
+
+@register(FreeProductPromotion)
+class FreeProductPromotionTranslationOptions(TranslationOptions):
     fields = ("name",)
 
 

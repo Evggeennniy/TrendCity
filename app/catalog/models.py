@@ -38,7 +38,9 @@ class Product(models.Model):
     STICKER_CHOICES = [("top", "топ товар"), ("new", "новинка"), ("promo", "акцiя")]
 
     name = models.CharField(verbose_name="Назва", max_length=64)
-    short_desc = CKEditor5Field(verbose_name="Короткий опис", config_name="default", max_length=256)
+    short_desc = CKEditor5Field(
+        verbose_name="Короткий опис", config_name="default", max_length=256
+    )
     description = CKEditor5Field(
         verbose_name="Опис", config_name="default", max_length=2048
     )
@@ -173,6 +175,9 @@ class ProductWrapper(models.Model):
     def get_telegram_text(self):
         return f"{self.name}:{self.price}"
 
+    def get_telegram_text_free(self):
+        return f"{self.name}:0₴"
+
     class Meta:
         verbose_name = "Обгортка продукту"
         verbose_name_plural = "Обгортки продуктiв"
@@ -210,11 +215,11 @@ class Promotion(models.Model):
 
 class FreeProductPromotion(Promotion):
     promo_count = models.IntegerField(verbose_name="Кількість товару")
-    promo_product = models.ForeignKey(
-        Product,
-        verbose_name="Безкоштовний товар",
+    promo_category = models.ForeignKey(
+        Category,
+        verbose_name="Безкоштовна категорія",
         blank=True,
-        related_name="free_promo_product",
+        related_name="free_promo_category",
         on_delete=models.CASCADE,
     )
 
@@ -290,11 +295,6 @@ class Order(models.Model):
         max_length=1024,
         default="No promotion",
     )
-    present_text = models.CharField(
-        verbose_name="🎁 Подарунки",
-        max_length=1024,
-        default="No promotion",
-    )
     promocode = models.CharField(verbose_name="Промокод", max_length=16)
 
     class Meta:
@@ -305,10 +305,15 @@ class Order(models.Model):
         order_parts = self.order_items.all()
         parts_text = "\n".join([part.get_telegram_text() for part in order_parts])
 
+        order_parts_present = self.order_items_present.all()
+        parts_text_present = "\n".join(
+            [part.get_telegram_text() for part in order_parts_present]
+        )
+
         promocode_text = f"Промокод: {self.promocode}\n " if self.promocode else ""
         comment_text = f"Коментар: {self.comment}\n" if self.comment else ""
         present_text = (
-            f"🎁 Подарунки:\n{self.present_text}\n\n" if self.present_text else ""
+            f"🎁 Подарунки:\n\n{parts_text_present}\n\n" if parts_text_present else ""
         )
         promotion_text = (
             f"🛍 Застосовані акції та промокоди:\n{self.promotion_text }\n\n"
@@ -359,6 +364,43 @@ class OrderPart(models.Model):
         volume = f"Об'єм: {self.volume.get_telegram_text()};\n" if self.volume else ""
         wrapper = (
             f"Обертка: {self.wrapper.get_telegram_text()};\n" if self.wrapper else ""
+        )
+
+        return f"{self.product.get_telegram_text()}/{self.count}шт.\n{volume}{wrapper}"
+
+
+class OrderPartPresent(models.Model):
+    related_order = models.ForeignKey(
+        verbose_name="Відношення до замовлення",
+        to=Order,
+        on_delete=models.CASCADE,
+        related_name="order_items_present",
+    )
+    product = models.ForeignKey(
+        verbose_name="Товар", to=Product, on_delete=models.SET_NULL, null=True
+    )
+    count = models.IntegerField(verbose_name="Кiлькiсть")
+    volume = models.ForeignKey(
+        verbose_name="Об'ем", to=ProductVolume, on_delete=models.SET_NULL, null=True
+    )
+    wrapper = models.ForeignKey(
+        verbose_name="Обертка", to=ProductWrapper, on_delete=models.SET_NULL, null=True
+    )
+
+    class Meta:
+        verbose_name = "Подарунки🎁"
+        verbose_name_plural = "Подарунки🎁"
+
+    def get_telegram_text(self):
+        """
+        Формує красивий текст для однієї частини замовлення.
+        """
+
+        volume = f"Об'єм: {self.volume.get_telegram_text()};\n" if self.volume else ""
+        wrapper = (
+            f"Обертка: {self.wrapper.get_telegram_text_free()};\n"
+            if self.wrapper
+            else ""
         )
 
         return f"{self.product.get_telegram_text()}/{self.count}шт.\n{volume}{wrapper}"

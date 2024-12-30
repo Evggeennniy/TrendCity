@@ -69,7 +69,7 @@ class ProductReviewAdmin(admin.ModelAdmin):
 
 @admin.register(catalog_models.FreeProductPromotion)
 class FreeProductPromotionAdmin(admin.ModelAdmin):
-    list_display = ("name", "promo_product", "promo_count")
+    list_display = ("name", "promo_category", "promo_count")
     search_fields = ("promo_product__name",)
     list_filter = ("applicable_categories",)
 
@@ -108,10 +108,15 @@ class OrderPartInline(admin.TabularInline):
     extra = 1
 
 
+class OrderPartPresentInline(admin.TabularInline):
+    model = catalog_models.OrderPartPresent
+    extra = 1
+
+
 @admin.register(catalog_models.Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ("datetime", "name", "surname")
-    inlines = [OrderPartInline]
+    inlines = [OrderPartInline, OrderPartPresentInline]
 
 
 @admin.register(catalog_models.Payment)

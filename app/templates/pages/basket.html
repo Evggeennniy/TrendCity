@@ -1,5 +1,4 @@
-{% load static %}
-{% load i18n %}
+{% load static %} {% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +38,9 @@
             <div class="content-wrap">
               <div class="basket">
                 <div class="basket__header gray-border">
-                  <p class="basket__header-title">{% trans "Оформлення замовлення" %}</p>
+                  <p class="basket__header-title">
+                    {% trans "Оформлення замовлення" %}
+                  </p>
                   <button
                     class="basket__header-btn"
                     id="btn-delete-checked"
@@ -141,10 +142,84 @@
                       </div>
                     </div>
                   </template>
+                  <div class="basket__header gray-border"  x-show="summary.presentList && summary.presentList.length > 0">
+                  <p class="basket__header-title">
+                    {% trans "Подарунки" %}🎁
+                  </p>
+                </div>
+                   <template x-for="(item, index) in summary.presentList" :key="index">
+                    <div
+                      class="basket__item gray-border"
+                      @click.stop="window.location.href = '/product/' + item.productId"
+                    >
+                      <div
+                        class="basket__item-general"
+                      >
+                        <img
+                          :src="item.productImg"
+                          alt="product-item"
+                          class="basket__item-img"
+                        />
+                        <div class="basket__item-info">
+                          <p class="basket__item-name">
+                            <span x-text="item.productName"></span>
+                            (<span x-text="item.volume"></span>) -
+                            <span x-text="item.optionName"></span>
+                          </p>
+                          <p class="basket__item-wraptype">
+                            <template x-if="item.wrapperName">
+                              <span>
+                                <span x-text="item.wrapperName"></span> /
+                                <span x-text="item.wrapperPrice + '₴'"></span>
+                              </span>
+                            </template>
+                            <template x-if="!item.wrapperName">
+                              <span>{% trans "Без пакування" %}</span>
+                            </template>
+                          </p>
+                          <div
+                            class="basket__item-quantity quantity_item quantity-panel-cover-mob"
+                          >
+                            <div>
+                              <h3
+                                class="quantity-value-basket"
+                                x-text="item.productQuantity"
+                              ></h3>
+                            </div>
+                          </div>
+                          <div class="gray-line"></div>
+                        </div>
+                      </div>
+                      <div class="price-wrap">
+                        <!-- Знижка -->
+                        <div class="basket__item-price">
+                          <div
+                            class="basket__item-discount"
+                            :style="{ display: item.volumeDiscount == 0 ? 'none' : 'block' }"
+                          >
+                            <span
+                              class="full-price"
+                              x-text="item.volumePrice + '₴'"
+                            ></span>
+                            <span
+                              class="discount-percent"
+                              x-text="'-' + 100 + '%'"
+                            ></span>
+                          </div>
+                          <h3>
+                            <span x-text="0"></span>
+                            <span class="curr-symbol">₴</span>
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
                 </div>
               </div>
               <div class="statistic">
-                <h4 class="statistic__header gray-border">{% trans "ЗАГАЛЬНА СУМА" %}</h4>
+                <h4 class="statistic__header gray-border">
+                  {% trans "ЗАГАЛЬНА СУМА" %}
+                </h4>
                 <div class="statistic__list statistic__content gray-border">
                   <div class="" id="statistic-list-wrap">
                     <div class="statistic__item">
@@ -210,16 +285,6 @@
                   </div>
                 </div>
                 <div class="promo-info gray-border">
-                  <div class="discount_container" x-show="summary.discount">
-                    {% trans "Подарунки" %}🎁:
-                    <template
-                      class="discount-list"
-                      x-for="present in summary.present"
-                      :key="present"
-                    >
-                      <p class="promo-item" x-text="present"></p>
-                    </template>
-                  </div>
                   <div
                     class="discount_container"
                     x-show="summary.discountLabel"
@@ -237,7 +302,8 @@
 
                 <div class="statistic__addinvite gray-border">
                   <p class="statistic__addinvite-title">
-                    {% trans "Потребуете доповнити" %}<br />{% trans "Ваш кошик?" %}
+                    {% trans "Потребуете доповнити" %}<br />
+                    {% trans "Ваш кошик?" %}
                   </p>
                   <a
                     href="{% url 'catalog' %}"
@@ -248,7 +314,7 @@
               </div>
               <div class="order-form">
                 <div class="order-form-wrap">
-                  <form class="order-form__form gray-border"  @submit.prevent="">
+                  <form class="order-form__form gray-border" @submit.prevent="">
                     <div class="order-form__form-wrap">
                       <div class="form__input-wrap form__input-name">
                         <img
@@ -353,9 +419,15 @@
                           <option value="Нова пошта">
                             {% trans "Доставка: Нова пошта" %}
                           </option>
-                          <option value="Укрпошта">{% trans "Доставка: Укрпошта" %}</option>
-                          <option value="Justin">{% trans "Доставка: Justin" %}</option>
-                          <option value="Самовывоз">{% trans "Самовывоз" %}</option>
+                          <option value="Укрпошта">
+                            {% trans "Доставка: Укрпошта" %}
+                          </option>
+                          <option value="Justin">
+                            {% trans "Доставка: Justin" %}
+                          </option>
+                          <option value="Самовывоз">
+                            {% trans "Самовывоз" %}
+                          </option>
                         </select>
                       </div>
                       <div class="form__input-wrap form__input-novaid">
@@ -384,10 +456,7 @@
                         ></textarea>
                       </div>
                       <div class="form__ok-btn">
-                        <button
-                          class="form__button"
-                          @click.prevent="sendOrder"
-                        >
+                        <button class="form__button" @click.prevent="sendOrder">
                           {% trans "Оформлення" %}
                         </button>
                       </div>
@@ -413,7 +482,7 @@
             sumDiscountProduct: 0,
             promoCodeDiscount: 0,
             sumPrice: 0,
-            discount: [],
+            presentList: [],
             discountLabel: [],
             present: [],
           },
@@ -425,8 +494,8 @@
             surname: Alpine.$persist("").as("surname"),
             countryCode: Alpine.$persist("").as("countryCode"),
             number: Alpine.$persist("").as("number"),
-            paymentMethod:  Alpine.$persist("").as("paymentMethod"),
-            postOfficeId:  Alpine.$persist("").as("postOfficeId"),
+            paymentMethod: Alpine.$persist("").as("paymentMethod"),
+            postOfficeId: Alpine.$persist("").as("postOfficeId"),
             comment: Alpine.$persist("").as("comment"),
             postOffice: Alpine.$persist("").as("postOffice"),
             orderId: Alpine.$persist("").as("orderId"),
@@ -435,8 +504,8 @@
             if (this.order.orderId) {
               window.location.href = `/liqpay/${this.order.orderId}/`;
             }
-            if (!this.order.countryCode){
-              this.order.countryCode = "+380"
+            if (!this.order.countryCode) {
+              this.order.countryCode = "+380";
             }
             this.updateBasket();
             this.$watch("items", () => {
@@ -485,32 +554,44 @@
           },
           validateOrder() {
             const arrayMessage = [];
-            if (this.order.name.trim() === '') {
+            if (this.order.name.trim() === "") {
               arrayMessage.push("{% trans 'Ім\'я замовника є обов\'язковим;' %}");
             }
-            if (this.order.surname.trim() === '') {
-              arrayMessage.push("{% trans 'Прізвище замовника є обов\'язковим;' %}");
+            if (this.order.surname.trim() === "") {
+              arrayMessage.push(
+                "{% trans 'Прізвище замовника є обов\'язковим;' %}"
+              );
             }
-            if (this.order.countryCode.trim() === '' || this.order.countryCode.trim() === '+') {
-              arrayMessage.push("{% trans 'Код країни замовника є обов\'язковим;' %}");
+            if (
+              this.order.countryCode.trim() === "" ||
+              this.order.countryCode.trim() === "+"
+            ) {
+              arrayMessage.push(
+                "{% trans 'Код країни замовника є обов\'язковим;' %}"
+              );
             }
-            if (this.order.number.trim() === '') {
-              arrayMessage.push("{% trans 'Номер замовника є обов\'язковим;' %}");
+            if (this.order.number.trim() === "") {
+              arrayMessage.push(
+                "{% trans 'Номер замовника є обов\'язковим;' %}"
+              );
             }
-            if (this.order.paymentMethod.trim() === '') {
+            if (this.order.paymentMethod.trim() === "") {
               arrayMessage.push("{% trans 'Спосіб оплати є обов\'язковим;' %}");
             }
-            if (this.order.postOfficeId.trim() === '') {
-              arrayMessage.push("{% trans 'Відділення пошти є обов\'язковим;' %}");
+            if (this.order.postOfficeId.trim() === "") {
+              arrayMessage.push(
+                "{% trans 'Відділення пошти є обов\'язковим;' %}"
+              );
             }
-            if (this.order.postOffice.trim() === '') {
-              arrayMessage.push("{% trans 'Спосіб доставки є обов\'язковим;' %}");
+            if (this.order.postOffice.trim() === "") {
+              arrayMessage.push(
+                "{% trans 'Спосіб доставки є обов\'язковим;' %}"
+              );
             }
             if (this.summary.sumPrice === 0) {
               arrayMessage.push("{% trans 'Кошик порожній ( ;' %}");
             }
             return arrayMessage.join("\n");
-
           },
           formatedBody() {
             return this.items.map((item) => {
@@ -562,7 +643,7 @@
                 this.summary.sumPrice = data.data.sumPrice;
                 this.summary.discount = data.data.discount || [];
                 this.summary.discountLabel = data.data.discountLabel || [];
-                this.summary.present = data.data.present || [];
+                this.summary.presentList = data.data.presentList || [];
               })
               .catch((error) => {
                 this.promocodeName = "";
@@ -571,7 +652,7 @@
               });
           },
           sendOrder() {
-            const errMess = this.validateOrder()
+            const errMess = this.validateOrder();
             if (errMess) {
               alert(errMess);
               return;
@@ -591,19 +672,18 @@
             })
               .then((response) => response.json())
               .then((data) => {
-                    this.items = [];
-                    this.promocodeName = "";
-                    this.order.promocodeName = "";
-                    this.order.promocodePercent= "";
-                    this.activeItems = [];
-                    this.order.comment = "";
+                this.items = [];
+                this.promocodeName = "";
+                this.order.promocodeName = "";
+                this.order.promocodePercent = "";
+                this.activeItems = [];
+                this.order.comment = "";
                 if (data.is_liqpay) {
-                    this.order.orderId = data.data.orderId;
-                    window.location.href = `/liqpay/${data.data.orderId}/`;
+                  this.order.orderId = data.data.orderId;
+                  window.location.href = `/liqpay/${data.data.orderId}/`;
                 } else {
                   alert('{% trans "Дякуємо за замовлення!" %}');
                 }
-
               })
               .catch((error) => {
                 console.error("Error sending basket:", error);

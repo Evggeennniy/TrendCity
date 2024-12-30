@@ -268,8 +268,8 @@ def order_submit(request):
             data.get("order_list"), data.get("promocodeName")
         )
         order_content = data.get("order_list")
+        order_content_present = result.get("presentList")
         promotion_text = ";\n".join(result["discountLabel"])
-        present_text = ";\n".join(result["present"])
         full_price = result["sumPrice"]
         promocode = (
             f"{promocode_name} / {promocode_percent}₴ / {result['promoCodeCof']} %"
@@ -287,7 +287,6 @@ def order_submit(request):
             comment=comment,
             full_price=full_price,
             promotion_text=promotion_text,
-            present_text=present_text,
             promocode=promocode,
         )
 
@@ -307,6 +306,24 @@ def order_submit(request):
             )
             for item in order_content
         ]
+
+        order_content_present = [
+            catalog_models.OrderPartPresent.objects.create(
+                related_order=order,
+                product=catalog_models.Product.objects.filter(
+                    id=item.get("productId")
+                ).first(),
+                count=item.get("productQuantity"),
+                volume=catalog_models.ProductVolume.objects.filter(
+                    id=item.get("volumeId")
+                ).first(),
+                wrapper=catalog_models.ProductWrapper.objects.filter(
+                    id=item.get("wrapperId")
+                ).first(),
+            )
+            for item in order_content_present
+        ]
+
         is_liqpay = payment_method == "Оплата онлайн картою"
 
         send_telegram_message(order.get_telegram_text())
