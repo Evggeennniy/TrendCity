@@ -215,104 +215,7 @@
                     </div>
                   </template>
                 </div>
-              </div>
-              <div class="statistic">
-                <h4 class="statistic__header gray-border">
-                  {% trans "ЗАГАЛЬНА СУМА" %}
-                </h4>
-                <div class="statistic__list statistic__content gray-border">
-                  <div class="" id="statistic-list-wrap">
-                    <div class="statistic__item">
-                      <h4>{% trans "Товари без знижки" %}</h4>
-                      <h4
-                        id="price-without-discount"
-                        x-text="summary.sumPriceNoDiscount+ '₴'"
-                      ></h4>
-                    </div>
-                    <div class="statistic__item">
-                      <h4>{% trans "Пакування" %}</h4>
-                      <h4
-                        id="wrappers-price"
-                        x-text="summary.wrapperPrice+ '₴'"
-                      ></h4>
-                    </div>
-                    <div class="statistic__item">
-                      <h4>{% trans "Загальна сума знижки" %}</h4>
-                      <h4
-                        id="price-with-discount"
-                        x-text="summary.sumDiscountProduct+ '₴'"
-                      ></h4>
-                    </div>
-                    <template
-                      x-for="discount in summary.discount"
-                      :key="discount.name"
-                    >
-                      <div class="statistic__item">
-                        <h4 x-text="discount.name"></h4>
-                        <h4 x-text="discount.value+ '₴'"></h4>
-                      </div>
-                    </template>
-                  </div>
-                  <div class="statistic__line"></div>
-                  <div class="statistic__item">
-                    <h4>{% trans "Загалом" %}</h4>
-                    <h4
-                      class="statistic__fullprice"
-                      id="current-full-price"
-                      x-text="summary.sumPrice"
-                    ></h4>
-                  </div>
-                  <div class="statistic__promocode" id="statistic-promo">
-                    <div class="title-wrap" id="promo-title">
-                      <img
-                        src="{% static 'arrow-sml-black.svg' %}"
-                        alt="arrow"
-                        class="arrow-sml"
-                      />
-                      <h4>{% trans "У вас є промокод?" %}</h4>
-                    </div>
-                    <div class="panel-wrap" id="promo-panel">
-                      <input
-                        type="text"
-                        placeholder='{% trans "Промокод" %}'
-                        id="promo-input"
-                        x-model="promocodeName"
-                      />
-                      <button id="promo-btn" @click="activeCode">
-                        {% trans "Додати" %}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="promo-info gray-border">
-                  <div
-                    class="discount_container"
-                    x-show="summary.discountLabel"
-                  >
-                    {% trans "Акцій" %}🛒:
-                    <template
-                      id="discount-list"
-                      x-for="label in summary.discountLabel"
-                      :key="label"
-                    >
-                      <p class="promo-item" x-text="label"></p>
-                    </template>
-                  </div>
-                </div>
-
-                <div class="statistic__addinvite gray-border">
-                  <p class="statistic__addinvite-title">
-                    {% trans "Потребуете доповнити" %}<br />
-                    {% trans "Ваш кошик?" %}
-                  </p>
-                  <a
-                    href="{% url 'catalog' %}"
-                    class="statistic__addinvite-link"
-                    >{% trans "Перейти" %}</a
-                  >
-                </div>
-              </div>
-              <div class="order-form">
+                <div class="order-form">
                 <div class="order-form-wrap">
                   <form class="order-form__form gray-border" @submit.prevent="">
                     <div class="order-form__form-wrap">
@@ -464,6 +367,105 @@
                   </form>
                 </div>
               </div>
+              </div>
+
+              <div class="statistic">
+                <h4 class="statistic__header gray-border">
+                  {% trans "ЗАГАЛЬНА СУМА" %}
+                </h4>
+                <div class="statistic__list statistic__content gray-border">
+                  <div class="" id="statistic-list-wrap">
+                    <div class="statistic__item">
+                      <h4>{% trans "Товари без знижки" %}</h4>
+                      <h4
+                        id="price-without-discount"
+                        x-text="summary.sumPriceNoDiscount+ '₴'"
+                      ></h4>
+                    </div>
+                    <div class="statistic__item">
+                      <h4>{% trans "Пакування" %}</h4>
+                      <h4
+                        id="wrappers-price"
+                        x-text="summary.wrapperPrice+ '₴'"
+                      ></h4>
+                    </div>
+                    <div class="statistic__item">
+                      <h4>{% trans "Загальна сума знижки" %}</h4>
+                      <h4
+                        id="price-with-discount"
+                        x-text="summary.sumDiscountProduct+ '₴'"
+                      ></h4>
+                    </div>
+                    <template
+                      x-for="discount in summary.discount"
+                      :key="discount.name"
+                    >
+                      <div class="statistic__item">
+                        <h4 x-text="discount.name"></h4>
+                        <h4 x-text="discount.value+ '₴'"></h4>
+                      </div>
+                    </template>
+                  </div>
+                  <div class="statistic__line"></div>
+                  <div class="statistic__item">
+                    <h4>{% trans "Загалом" %}</h4>
+                    <h4
+                      class="statistic__fullprice"
+                      id="current-full-price"
+                      x-text="summary.sumPrice"
+                    ></h4>
+                  </div>
+                  <div class="statistic__promocode" id="statistic-promo">
+                    <div class="title-wrap" id="promo-title">
+                      <img
+                        src="{% static 'arrow-sml-black.svg' %}"
+                        alt="arrow"
+                        class="arrow-sml"
+                      />
+                      <h4>{% trans "У вас є промокод?" %}</h4>
+                    </div>
+                    <div class="panel-wrap" id="promo-panel">
+                      <input
+                        type="text"
+                        placeholder='{% trans "Промокод" %}'
+                        id="promo-input"
+                        x-model="promocodeName"
+                      />
+                      <button id="promo-btn" @click="activeCode">
+                        {% trans "Додати" %}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="promo-info gray-border">
+                  <div
+                    class="discount_container"
+                    x-show="summary.discountLabel"
+                  >
+                    {% trans "Акцій" %}🛒:
+                    <template
+                      id="discount-list"
+                      x-for="label in summary.discountLabel"
+                      :key="label"
+                    >
+                      <p class="promo-item" x-text="label"></p>
+                    </template>
+                  </div>
+                </div>
+
+                <div class="statistic__addinvite gray-border">
+                  <p class="statistic__addinvite-title">
+                    {% trans "Потребуете доповнити" %}<br />
+                    {% trans "Ваш кошик?" %}
+                  </p>
+                  <a
+                    href="{% url 'catalog' %}"
+                    class="statistic__addinvite-link"
+                    >{% trans "Перейти" %}</a
+                  >
+                </div>
+              </div>
+
             </div>
           </section>
         </div>
