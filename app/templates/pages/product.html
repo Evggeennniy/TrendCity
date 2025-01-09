@@ -1,5 +1,4 @@
-{% load static %}
-{% load i18n %}
+{% load static %} {% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,14 +76,17 @@
                 />
                 {% endfor %}
               </div>
-              <button class="form-btn" type="submit">{% trans "Відправити" %}</button>
+              <button class="form-btn" type="submit">
+                {% trans "Відправити" %}
+              </button>
             </form>
           </div>
         </div>
         <div class="review-popup__sml">
           <h4 class="review-popup__title">{% trans "Дякуємо!" %}</h4>
           <h5 class="review-popup__subtitle">
-            {% trans "Ваші слова надихають нас" %}<br />{% trans "ставати кращими!" %}
+            {% trans "Ваші слова надихають нас" %}<br />{% trans "ставати
+            кращими!" %}
           </h5>
         </div>
       </div>
@@ -159,7 +161,9 @@
               </div>
               <div class="products-list__item-extrainfo">
                 <div class="products-list__item-infopart">
-                  <span class="products-list__item-raiting">{% trans "Рейтинг" %}</span>
+                  <span class="products-list__item-raiting"
+                    >{% trans "Рейтинг" %}</span
+                  >
                   <img
                     src="{% static 'star-icon.svg' %}"
                     alt="star-icon"
@@ -208,7 +212,9 @@
                       alt="icon"
                       class="path-structure__icon"
                     />
-                    <span class="path-structure__title">{% trans "Продукт" %}</span>
+                    <span class="path-structure__title"
+                      >{% trans "Продукт" %}</span
+                    >
                   </div>
                 </div>
               </div>
@@ -267,352 +273,370 @@
                     {% endfor %}
                   </div>
                 </div>
-                <div class="product__name gray-border">
-                  <span class="brand-name">{{ product.brand.name }}</span>
-                  <h3 class="name__title" id="main-product-title">
-                    {{ product.name }}
-                  </h3>
-                  <div class="name__reviews">
-                    <div class="name__reviews-stars">
-                      <img
-                        src="{% static 'star-icon.svg' %}"
-                        alt=""
-                        class="name__reviews-star"
-                      />
-                      {{ product.get_avg_review }}
-                      <p class="name__reviews-comments" id="reviews-link">
-                        {{ active_reviews_count }} {% trans "відгук(а/ів)" %}
-                      </p>
-                    </div>
-                    <div class="name__reviews-sex">
-                      <p>{{ product.get_gender_for_display }}</p>
-                      <img
-                        src="{% static 'sex-icon.svg' %}"
-                        alt="sex-icon"
-                        class="name__reviews-sexicon"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="product__volume gray-border"
-                  id="product-volumes-list"
-                >
-                  <p class="volume-title">
-                  {% if product.volumes.all|length > 1 %}
-                  {% trans "Оберіть об’єм" %}</p>
-                  {% else %}
-                  {% trans "Об’єм" %}</p>
-                  {% endif %}
-                  {% for volume in product.volumes.all %}
-                  <button
-                    class="volume-item"
-                    id="{{ volume.id }}"
-                    volume="{{ volume.value }}"
-                    price="{{ volume.price }}"
-                    discount="{{ volume.discount }}"
-                  >
-                    {{ volume.value }}
-                  </button>
-                  {% endfor %}
-                </div>
-                {% if product.options.all|length > 1 %}
-                <div class="product__variations gray-border">
-                  <div class="variations__header">
-                    <img
-                      src="{% static 'aromadifusori.svg' %}"
-                      alt="icon"
-                      class="variations__header-icon"
-                    />
-                    <p class="variations__header-title">
-                      {% trans "Оберіть аромат" %}
-                    </p>
-                    <img
-                      src="{% static 'arrow-sml-black.svg' %}"
-                      alt="icon"
-                      class="variations__header-icon variations__header-arrow"
-                    />
-                  </div>
-                  <ul class="variations__list">
-                    {% for option in product.options.all %}
-                    <li
-                      class="variations__item"
-                      name="{{ option.name }}"
-                      id="{{ option.id }}"
-                    >
-                      <p>{{ option.name }}</p>
-                      <img
-                        src="{% static 'success-orange-icon.svg' %}"
-                        alt=""
-                      />
-                    </li>
-                    {% endfor %}
-                  </ul>
-                </div>
-                {% endif %}
-                <div class="product__nav gray-border">
-                  <div class="nav__price-wrap">
-                    <div
-                      class="nav__discount"
-                      id="discount-info"
-                      style="display: none"
-                    >
-                      <span class="nav__full-price" id="full-price"></span>
-                      <span class="nav__discount-percent"
-                        >-
-                        <span class="price_value" id="discount-value"></span>
-                        %</span
-                      >
-                    </div>
-                    <h3 class="nav__current-price">
-                      <span id="current-price"></span
-                      ><span class="money-symbol">₴</span>
+                <div class="product__info">
+                  <div class="product__name gray-border">
+                    <span class="brand-name">{{ product.brand.name }}</span>
+                    <h3 class="name__title" id="main-product-title">
+                      {{ product.name }}
                     </h3>
-                  </div>
-                  <div class="nav__panel">
-                    <div
-                      class="nav__quantity quantity_item"
-                      id="general-quantity-nav"
-                    >
-                      <div>
+                    <div class="name__reviews">
+                      <div class="name__reviews-stars">
                         <img
-                          src="{% static 'plus-icon.svg' %}"
-                          alt="plus"
-                          class="plus nav__quantity-icon quantity-btn"
-                          action="plus"
+                          src="{% static 'star-icon.svg' %}"
+                          alt=""
+                          class="name__reviews-star"
                         />
-                        <h3
-                          class="quantity-value"
-                          value="1"
-                          id="product-quantity"
-                        >
-                          1
-                        </h3>
+                        {{ product.get_avg_review }}
+                        <p class="name__reviews-comments" id="reviews-link">
+                          {{ active_reviews_count }} {% trans "відгук(а/ів)" %}
+                        </p>
+                      </div>
+                      <div class="name__reviews-sex">
+                        <p>{{ product.get_gender_for_display }}</p>
                         <img
-                          src="{% static 'minus-icon.svg' %}"
-                          alt="minus"
-                          class="minus nav__quantity-icon quantity-btn"
-                          action="minus"
+                          src="{% static 'sex-icon.svg' %}"
+                          alt="sex-icon"
+                          class="name__reviews-sexicon"
                         />
                       </div>
                     </div>
-                    <button
-                      class="nav__like-btn nav__btn"
-                      id="like-btn"
-                      data-product-id="{{ product.id }}"
-                    >
-                      <img
-                        class="nav__btn-icon"
-                        src="{% static 'heart-orange-icon.svg' %}"
-                        alt="like-icon"
-                      />
-                      <img
-                        class="nav__btn-icon"
-                        src="{% static 'heart-orange-filled-icon.svg' %}"
-                        alt="like-icon"
-                      />
-                    </button>
-                    <button class="nav__buy-btn nav__btn" id="add-product-btn">
-                      <div class="nav__btn-wrap">
-                        <img
-                          class="nav__btn-icon"
-                          src="{% static 'basket-icon.svg' %}"
-                          alt="like-icon"
-                        />
-                        <p class="nav__btn-text">{% trans "Купити" %}</p>
-                      </div>
-                      <div class="nav__btn-wrap">
-                        <img
-                          class="nav__btn-icon"
-                          src="{% static 'success-orange-icon.svg' %}"
-                          alt="like-icon"
-                        />
-                        <p class="nav__btn-text">{% trans "Добавлено" %}</p>
-                      </div>
-                    </button>
                   </div>
-                </div>
-                {% if product.related_category.promos.all %}
-                <div class="product__discount gray-border">
-                  {% for promotion in product.related_category.promos.all %}
-                  <p class="discount-info">🎁 {{ promotion.name }}</p>
-                  {% endfor %}
-                </div>
-                {% endif %}
-                <div class="product__details gray-border">
-                  <p class="details-title font--highlight">
-                    {% trans "Опис та характеристика" %}
-                  </p>
-                  <p class="details-subtitle">{{ product.description|safe }}</p>
-                </div>
-                {% with product.related_accesories.all as product_accesories %}
-                {% if product_accesories %}
-                <div class="product__components">
-                  <p class="components-title">{% trans "Комплектуючі" %}</p>
-                  <div class="components-list-wrap products__list-wrap">
-                    <ul class="components__list" id="components-list">
-                      {% for accesory in product_accesories %}
+                  <div
+                    class="product__volume gray-border"
+                    id="product-volumes-list"
+                  >
+                    <!-- prettier-ignore -->
+                    <p class="volume-title">
+                    {% if product.volumes.all|length >= 1 %}
+                    {% trans "Оберіть опцію " %}
+                    {% else %}
+                    {% trans "Оберіть опцію " %}
+                    {% endif %}</p>
+                    {% for volume in product.volumes.all %}
+                    <button
+                      class="volume-item"
+                      id="{{ volume.id }}"
+                      volume="{{ volume.value }}"
+                      price="{{ volume.price }}"
+                      discount="{{ volume.discount }}"
+                    >
+                      {{ volume.value }}
+                    </button>
+                    {% endfor %}
+                  </div>
+                  {% if product.options.all|length >= 1 %}
+                  <div class="product__variations gray-border">
+                    <div class="variations__header">
+                      <img
+                        src="{% static 'aromadifusori.svg' %}"
+                        alt="icon"
+                        class="variations__header-icon"
+                      />
+                      <p class="variations__header-title">
+                        {% trans "Оберіть" %}
+                      </p>
+                      <img
+                        src="{% static 'arrow-sml-black.svg' %}"
+                        alt="icon"
+                        class="variations__header-icon variations__header-arrow"
+                      />
+                    </div>
+                    <ul class="variations__list">
+                      {% for option in product.options.all %}
                       <li
-                        class="components__item"
-                        id="{{ accesory.id }}"
-                        img="{{ accesory.images.all.0.image.url }}"
-                        name="{{ accesory.name }}"
-                        optionId="{{ accesory.options.all.0.id }}"
-                        option="{{ accesory.options.all.0.name }}"
-                        volumeId="{{ accesory.volumes.all.0.id }}"
-                        volume="{{ accesory.volumes.all.0.value }}"
-                        volumeDiscount="{{ accesory.volumes.all.0.discount }}"
-                        volumePrice="{{ accesory.volumes.all.0.get_curr_price }}"
+                        class="variations__item"
+                        name="{{ option.name }}"
+                        id="{{ option.id }}"
                       >
-                        <!-- prettier-ignore -->
-                        {% for promotion in accesory.related_category.promos.all %}
-                        <p
-                          class="discount-info"
-                          promoinfo="{{ promotion.get_data }}"
-                          style="display: none"
-                        >
-                          🎁 {{ promotion.name }}
-                        </p>
-                        {% endfor %}
-                        <a
-                          href="{% url 'product' accesory.id %}"
-                          class="components__item-link"
-                        >
-                          <div class="components__item-img">
-                            <img
-                              src="{{ accesory.images.all.0.image.url }}"
-                              alt="img"
-                            />
-                          </div>
-                        </a>
-                        <h5 class="components__item-title">
-                          {{ accesory.name }}
-                        </h5>
-                        <div class="components__item-nav">
-                          <h4 class="item-price">
-                            {{ accesory.volumes.all.0.get_curr_price }}<span
-                              class="money-symbol"
-                              >₴</span
-                            >
-                          </h4>
-                          <div class="components__item--quantity quantity_item">
-                            <div>
-                              <img
-                                src="{% static 'plus-icon.svg' %}"
-                                alt="plus"
-                                class="plus components__item--icon quantity-btn"
-                                action="plus"
-                              />
-                              <h3 class="quantity-value" value="1">1</h3>
-                              <img
-                                src="{% static 'minus-icon.svg' %}"
-                                alt="minus"
-                                class="minus components__item--icon quantity-btn"
-                                action="minus"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <button class="components__item-btn add-switch-btn">
-                          <div class="nav__btn-wrap">
-                            <img
-                              class="components__item--icon quantity-btn"
-                              src="{% static 'basket-icon.svg' %}"
-                              alt="icon"
-                            />
-                            <p>{% trans "Доповнити" %}</p>
-                          </div>
-                          <div class="nav__btn-wrap">
-                            <img
-                              class="nav__btn-icon"
-                              src="{% static 'success-orange-icon.svg' %}"
-                              alt="like-icon"
-                            />
-                            <p class="nav__btn-text">{% trans "Добавлено" %}</p>
-                          </div>
-                        </button>
+                        <p>{{ option.name }}</p>
+                        <img
+                          src="{% static 'success-orange-icon.svg' %}"
+                          alt=""
+                        />
                       </li>
                       {% endfor %}
                     </ul>
                   </div>
-                </div>
-                {% endif %} {% endwith %}
-                <div class="product__wrapper">
-                  <p class="wrapper-title">{% trans "Пакування" %}</p>
-                  <ul class="wrapper__list" id="product-wrapper-list">
-                    {% for wrapper in product.wrappers.all %}
-                    <li
-                      class="wrapper__item gray-border"
-                      id="{{ wrapper.id }}"
-                      name="{{ wrapper.name }}"
-                      price="{{ wrapper.price }}"
-                    >
-                      <img
-                        src="{{ wrapper.image.url }}"
-                        alt="wrapper-img"
-                        class="wrapper__item-img"
-                      />
-                      <div class="wrapper__item-content">
-                        <p class="wrapper__item-title">{{ wrapper.name }}</p>
-                        <h4 class="wrapper__item-price">
-                          {{ wrapper.price }}<span class="money-symbol">₴</span>
-                        </h4>
+                  {% endif %}
+                  <div class="product__nav gray-border">
+                    <div class="nav__price-wrap">
+                      <div
+                        class="nav__discount"
+                        id="discount-info"
+                        style="display: none"
+                      >
+                        <span class="nav__full-price" id="full-price"></span>
+                        <span class="nav__discount-percent"
+                          >-
+                          <span class="price_value" id="discount-value"></span>
+                          %</span
+                        >
                       </div>
-                    </li>
-                    {% endfor %}
-                    <li class="wrapper__item gray-border chosen">
-                      <img
-                        src="{% static 'empty-wrapper-img.png' %}"
-                        alt="wrapper-img"
-                        class="wrapper__item-img"
-                      />
-                      <div class="wrapper__item-content">
-                        <p class="wrapper__item-title">{% trans "Без пакування" %}</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="product__reviews" id="product-reviews">
-                  <p class="reviews-title">{% trans "Відгуки до товару" %}</p>
-                  <ul class="reviews__list" id="reviews-list">
-                    <!-- prettier-ignore -->
-                    {% for review in product.reviews.all %} {% if review.active %}
-                    <li
-                      class="reviews__item {% if forloop.counter > 3 %}hidden-review{% endif %}"
-                    >
-                      <div class="reviews__item-content">
-                        <p class="reviews__item-username">{{ review.name }}</p>
-                        <div class="reviews__item-grade">
-                          <div class="reviews__item-line"></div>
-                          <div class="reviews__item-value">
-                            <img
-                              src="{% static 'star-icon.svg' %}"
-                              alt="star-icon"
-                              class="reviews__item-icon"
-                            />
-                            <span>{{ review.rating }}</span>
-                          </div>
+                      <h3 class="nav__current-price">
+                        <span id="current-price"></span
+                        ><span class="money-symbol">₴</span>
+                      </h3>
+                    </div>
+                    <div class="nav__panel">
+                      <div
+                        class="nav__quantity quantity_item"
+                        id="general-quantity-nav"
+                      >
+                        <div>
+                          <img
+                            src="{% static 'plus-icon.svg' %}"
+                            alt="plus"
+                            class="plus nav__quantity-icon quantity-btn"
+                            action="plus"
+                          />
+                          <h3
+                            class="quantity-value"
+                            value="1"
+                            id="product-quantity"
+                          >
+                            1
+                          </h3>
+                          <img
+                            src="{% static 'minus-icon.svg' %}"
+                            alt="minus"
+                            class="minus nav__quantity-icon quantity-btn"
+                            action="minus"
+                          />
                         </div>
                       </div>
-                      <p class="reviews__item-text">{{ review.text }}</p>
-                    </li>
-                    {% endif %} {% empty %}
-                    <p>{% trans "Немає відгуків для цього товару." %}</p>
+                      <button
+                        class="nav__like-btn nav__btn"
+                        id="like-btn"
+                        data-product-id="{{ product.id }}"
+                      >
+                        <img
+                          class="nav__btn-icon"
+                          src="{% static 'heart-orange-icon.svg' %}"
+                          alt="like-icon"
+                        />
+                        <img
+                          class="nav__btn-icon"
+                          src="{% static 'heart-orange-filled-icon.svg' %}"
+                          alt="like-icon"
+                        />
+                      </button>
+                      <button
+                        class="nav__buy-btn nav__btn"
+                        id="add-product-btn"
+                      >
+                        <div class="nav__btn-wrap">
+                          <img
+                            class="nav__btn-icon"
+                            src="{% static 'basket-icon.svg' %}"
+                            alt="like-icon"
+                          />
+                          <p class="nav__btn-text">{% trans "Купити" %}</p>
+                        </div>
+                        <div class="nav__btn-wrap">
+                          <img
+                            class="nav__btn-icon"
+                            src="{% static 'success-orange-icon.svg' %}"
+                            alt="like-icon"
+                          />
+                          <p class="nav__btn-text">{% trans "Добавлено" %}</p>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+                  {% if product.related_category.promos.all %}
+                  <div class="product__discount gray-border">
+                    {% for promotion in product.related_category.promos.all %}
+                    <p class="discount-info">🎁 {{ promotion.name }}</p>
                     {% endfor %}
-                  </ul>
-                  <div class="reviews__nav">
-                    <button
-                      class="reviews__nav-btn reviews__nav-create"
-                      id="create-review-btn"
-                    >
-                      {% trans "Залишити відгук" %}
-                    </button>
-                    <button
-                      class="reviews__nav-btn reviews__nav-more"
-                      id="more-reviews-btn"
-                    >
-                      {% trans "Показати ще" %}
-                    </button>
+                  </div>
+                  {% endif %}
+                  <div class="product__details gray-border">
+                    <p class="details-title font--highlight">
+                      {% trans "Опис та характеристика" %}
+                    </p>
+                    <p class="details-subtitle">
+                      {{ product.description|safe }}
+                    </p>
+                  </div>
+                  <!-- prettier-ignore -->
+                  {% with product.related_accesories.all as product_accesories %} {% if product_accesories %}
+                  <div class="product__components">
+                    <p class="components-title">{% trans "Комплектуючі" %}</p>
+                    <div class="components-list-wrap products__list-wrap">
+                      <ul class="components__list" id="components-list">
+                        {% for accesory in product_accesories %}
+                        <li
+                          class="components__item"
+                          id="{{ accesory.id }}"
+                          img="{{ accesory.images.all.0.image.url }}"
+                          name="{{ accesory.name }}"
+                          optionId="{{ accesory.options.all.0.id }}"
+                          option="{{ accesory.options.all.0.name }}"
+                          volumeId="{{ accesory.volumes.all.0.id }}"
+                          volume="{{ accesory.volumes.all.0.value }}"
+                          volumeDiscount="{{ accesory.volumes.all.0.discount }}"
+                          volumePrice="{{ accesory.volumes.all.0.get_curr_price }}"
+                        >
+                          <!-- prettier-ignore -->
+                          {% for promotion in accesory.related_category.promos.all %}
+                          <p
+                            class="discount-info"
+                            promoinfo="{{ promotion.get_data }}"
+                            style="display: none"
+                          >
+                            🎁 {{ promotion.name }}
+                          </p>
+                          {% endfor %}
+                          <a
+                            href="{% url 'product' accesory.id %}"
+                            class="components__item-link"
+                          >
+                            <div class="components__item-img">
+                              <img
+                                src="{{ accesory.images.all.0.image.url }}"
+                                alt="img"
+                              />
+                            </div>
+                          </a>
+                          <h5 class="components__item-title">
+                            {{ accesory.name }}
+                          </h5>
+                          <div class="components__item-nav">
+                            <h4 class="item-price">
+                              {{ accesory.volumes.all.0.get_curr_price }}<span
+                                class="money-symbol"
+                                >₴</span
+                              >
+                            </h4>
+                            <div
+                              class="components__item--quantity quantity_item"
+                            >
+                              <div>
+                                <img
+                                  src="{% static 'plus-icon.svg' %}"
+                                  alt="plus"
+                                  class="plus components__item--icon quantity-btn"
+                                  action="plus"
+                                />
+                                <h3 class="quantity-value" value="1">1</h3>
+                                <img
+                                  src="{% static 'minus-icon.svg' %}"
+                                  alt="minus"
+                                  class="minus components__item--icon quantity-btn"
+                                  action="minus"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <button class="components__item-btn add-switch-btn">
+                            <div class="nav__btn-wrap">
+                              <img
+                                class="components__item--icon quantity-btn"
+                                src="{% static 'basket-icon.svg' %}"
+                                alt="icon"
+                              />
+                              <p>{% trans "Доповнити" %}</p>
+                            </div>
+                            <div class="nav__btn-wrap">
+                              <img
+                                class="nav__btn-icon"
+                                src="{% static 'success-orange-icon.svg' %}"
+                                alt="like-icon"
+                              />
+                              <p class="nav__btn-text">
+                                {% trans "Добавлено" %}
+                              </p>
+                            </div>
+                          </button>
+                        </li>
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  </div>
+                  {% endif %} {% endwith %}
+                  <div class="product__wrapper">
+                    <p class="wrapper-title">{% trans "Пакування" %}</p>
+                    <ul class="wrapper__list" id="product-wrapper-list">
+                      {% for wrapper in product.wrappers.all %}
+                      <li
+                        class="wrapper__item gray-border"
+                        id="{{ wrapper.id }}"
+                        name="{{ wrapper.name }}"
+                        price="{{ wrapper.price }}"
+                      >
+                        <img
+                          src="{{ wrapper.image.url }}"
+                          alt="wrapper-img"
+                          class="wrapper__item-img"
+                        />
+                        <div class="wrapper__item-content">
+                          <p class="wrapper__item-title">{{ wrapper.name }}</p>
+                          <h4 class="wrapper__item-price">
+                            {{ wrapper.price }}<span class="money-symbol"
+                              >₴</span
+                            >
+                          </h4>
+                        </div>
+                      </li>
+                      {% endfor %}
+                      <li class="wrapper__item gray-border chosen">
+                        <img
+                          src="{% static 'empty-wrapper-img.png' %}"
+                          alt="wrapper-img"
+                          class="wrapper__item-img"
+                        />
+                        <div class="wrapper__item-content">
+                          <p class="wrapper__item-title">
+                            {% trans "Без пакування" %}
+                          </p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="product__reviews" id="product-reviews">
+                    <p class="reviews-title">{% trans "Відгуки до товару" %}</p>
+                    <ul class="reviews__list" id="reviews-list">
+                      <!-- prettier-ignore -->
+                      {% for review in product.reviews.all %} {% if review.active %}
+                      <li
+                        class="reviews__item {% if forloop.counter > 3 %}hidden-review{% endif %}"
+                      >
+                        <div class="reviews__item-content">
+                          <p class="reviews__item-username">
+                            {{ review.name }}
+                          </p>
+                          <div class="reviews__item-grade">
+                            <div class="reviews__item-line"></div>
+                            <div class="reviews__item-value">
+                              <img
+                                src="{% static 'star-icon.svg' %}"
+                                alt="star-icon"
+                                class="reviews__item-icon"
+                              />
+                              <span>{{ review.rating }}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <p class="reviews__item-text">{{ review.text }}</p>
+                      </li>
+                      {% endif %} {% empty %}
+                      <p>{% trans "Немає відгуків для цього товару." %}</p>
+                      {% endfor %}
+                    </ul>
+                    <div class="reviews__nav">
+                      <button
+                        class="reviews__nav-btn reviews__nav-create"
+                        id="create-review-btn"
+                      >
+                        {% trans "Залишити відгук" %}
+                      </button>
+                      <button
+                        class="reviews__nav-btn reviews__nav-more"
+                        id="more-reviews-btn"
+                      >
+                        {% trans "Показати ще" %}
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -703,7 +727,7 @@
                         </div>
                       </div>
                       <div class="products-list__item-desc">
-                        <span>{{ item.short_desc }}</span>
+                        <span>{{ item.short_desc | safe }}</span>
                       </div>
                     </li>
                     {% endfor %}

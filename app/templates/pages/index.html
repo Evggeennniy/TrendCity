@@ -1,5 +1,4 @@
-{% load static %}
-{% load i18n %}
+{% load static %} {% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +76,9 @@
               <div class="products">
                 <div class="products__main-title">
                   <h4 class="products__title">{% trans "ТрендСіті" %}</h4>
-                  <strong class="products__subtitle">{% trans "Акційні товари" %}</strong>
+                  <strong class="products__subtitle"
+                    >{% trans "Акційні товари" %}</strong
+                  >
                   <div class="line"></div>
                 </div>
                 <!-- prettier-ignore -->
@@ -175,7 +176,7 @@
                       </div>
 
                       <div class="products-list__item-desc">
-                        <span>{{ item.short_desc }}</span>
+                        <span>{{ item.short_desc | safe }}</span>
                       </div>
                     </li>
                     {% endfor %}
@@ -277,7 +278,7 @@
                         </div>
                       </div>
                       <div class="products-list__item-desc">
-                        <span>{{ item.short_desc }}</span>
+                        <span>{{ item.short_desc | safe }}</span>
                       </div>
                     </li>
                     {% endfor %}
@@ -298,7 +299,9 @@
                     alt="adventages-icon"
                     class="adventages-icon-1 adventages-icon"
                   />
-                  <span class="adventages-title">{% trans "Широкий вибір товарів" %}</span>
+                  <span class="adventages-title"
+                    >{% trans "Широкий вибір товарів" %}</span
+                  >
                 </div>
                 <div class="adventages-item">
                   <img
@@ -306,7 +309,9 @@
                     alt="adventages-icon"
                     class="adventages-icon-2 adventages-icon"
                   />
-                  <span class="adventages-title">{% trans "Зручний інтерфейс" %}</span>
+                  <span class="adventages-title"
+                    >{% trans "Зручний інтерфейс" %}</span
+                  >
                 </div>
                 <div class="adventages-item">
                   <img
@@ -314,21 +319,24 @@
                     alt="adventages-icon"
                     class="adventages-icon-3 adventages-icon"
                   />
-                  <span class="adventages-title">{% trans "Безпечні транзакції" %}</span>
+                  <span class="adventages-title"
+                    >{% trans "Безпечні транзакції" %}</span
+                  >
                 </div>
               </div>
               <div class="aboutus__info">
                 <div class="aboutus__info-wrap container-sml">
+                  <!-- prettier-ignore -->
                   <h5 class="aboutus__info-title">
                     {% trans "Український Маркетплейс: Вигідні Покупки та Надійні Продавці" %}
                   </h5>
+                  <!-- prettier-ignore -->
                   <h5 class="aboutus__info-subtitle">
-                    {% blocktrans %}
-                    Ми сучасна онлайн-платформа, що об'єднує найкращі товари в
-                    одному місці. Широкий асортимент товарів, вигідні ціни,
-                    зручний інтерфейс та безпечні транзакції роблять покупки
-                    швидкими та комфортними. Підтримуйте вітчизняний бізнес
-                    разом із нашим маркетплейсом.
+                    {% blocktrans %} Ми сучасна онлайн-платформа, що об'єднує
+                    найкращі товари в одному місці. Широкий асортимент товарів,
+                    вигідні ціни, зручний інтерфейс та безпечні транзакції
+                    роблять покупки швидкими та комфортними. Підтримуйте
+                    вітчизняний бізнес разом із нашим маркетплейсом. 
                     {% endblocktrans %}
                   </h5>
                 </div>

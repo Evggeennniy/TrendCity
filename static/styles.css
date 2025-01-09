@@ -2631,7 +2631,7 @@ footer {
 }
 .main__fullcontent.product .product {
   display: grid;
-  grid-template-areas: "photos name" "photos volume" "photos variations" "photos nav" "photos discount" "photos details" ". components" ". wrapper" ". reviews" "recomends recomends";
+  grid-template-areas: "photos product__info" "photos ." "photos ." "photos ." "photos ." "photos ." ". components" ". wrapper" ". reviews" "recomends recomends";
   grid-template-columns: 40% 58%;
   gap: 20px;
   margin-bottom: 100px;
@@ -2639,43 +2639,34 @@ footer {
 .main__fullcontent.product .product__photos {
   grid-area: photos;
 }
+.main__fullcontent.product .product__info {
+  grid-area: product__info;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .main__fullcontent.product .product__name {
-  grid-area: name;
   padding: 20px;
 }
 .main__fullcontent.product .product__volume {
-  grid-area: volume;
   padding: 15px 20px;
 }
 .main__fullcontent.product .product__variations {
-  grid-area: variations;
   padding: 15px 20px;
   cursor: pointer;
 }
 .main__fullcontent.product .product__nav {
-  grid-area: nav;
   padding: 20px;
 }
 .main__fullcontent.product .product__discount {
-  grid-area: discount;
   padding: 15px 20px;
   border: 1px solid #fa6900;
 }
 .main__fullcontent.product .product__details {
-  grid-area: details;
   padding: 20px;
 }
 .main__fullcontent.product .product__details * {
   font: revert;
-}
-.main__fullcontent.product .product__components {
-  grid-area: components;
-}
-.main__fullcontent.product .product__wrapper {
-  grid-area: wrapper;
-}
-.main__fullcontent.product .product__reviews {
-  grid-area: reviews;
 }
 .main__fullcontent.product .photos__general {
   padding: 20px;
@@ -3351,7 +3342,7 @@ footer {
   }
   .main__fullcontent.product .product {
     display: grid;
-    grid-template-areas: "name" "photos" "volume" "variations" "nav" "discount" "details" "components" "wrapper" "reviews";
+    grid-template-areas: "photos" "product__info";
     grid-template-columns: 100%;
     gap: 15px;
     margin-bottom: 30px;

@@ -3154,12 +3154,12 @@ footer {
   .product {
     display: grid;
     grid-template-areas:
-      "photos name"
-      "photos volume"
-      "photos variations"
-      "photos nav"
-      "photos discount"
-      "photos details"
+      "photos product__info"
+      "photos ."
+      "photos ."
+      "photos ."
+      "photos ."
+      "photos ."
       ". components"
       ". wrapper"
       ". reviews"
@@ -3173,52 +3173,41 @@ footer {
     grid-area: photos;
   }
 
+  .product__info {
+    grid-area: product__info;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
   .product__name {
-    grid-area: name;
     padding: 20px;
   }
 
   .product__volume {
-    grid-area: volume;
     padding: 15px 20px;
   }
 
   .product__variations {
-    grid-area: variations;
     padding: 15px 20px;
     cursor: pointer;
   }
 
   .product__nav {
-    grid-area: nav;
     padding: 20px;
   }
 
   .product__discount {
-    grid-area: discount;
     padding: 15px 20px;
     border: 1px solid #fa6900;
   }
 
   .product__details {
-    grid-area: details;
     padding: 20px;
   }
 
   .product__details * {
     font: revert;
-  }
-
-  .product__components {
-    grid-area: components;
-  }
-
-  .product__wrapper {
-    grid-area: wrapper;
-  }
-
-  .product__reviews {
-    grid-area: reviews;
   }
 
   .photos__general {
@@ -4052,16 +4041,8 @@ footer {
     .product {
       display: grid;
       grid-template-areas:
-        "name"
         "photos"
-        "volume"
-        "variations"
-        "nav"
-        "discount"
-        "details"
-        "components"
-        "wrapper"
-        "reviews";
+        "product__info";
       grid-template-columns: 100%;
       gap: 15px;
       margin-bottom: 30px;

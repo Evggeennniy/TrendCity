@@ -1,5 +1,4 @@
 {% load static %}
-{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +9,7 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}" />
     <script src="{% static 'default.js' %}" defer></script>
     <script src="{% static 'catalog.js' %}" defer></script>
-    <title>{% trans "ТрендСіті - Каталог" %}</title>
+    <title>ТрендСіті - Каталог</title>
   </head>
   <body>
     <div class="overlay" id="overlay"></div>
@@ -38,7 +37,7 @@
                       class="path-structure__icon"
                     />
                     <a href="{% url 'index' %}" class="path-structure__title"
-                      >{% trans "Головна" %}</a
+                      >Головна</a
                     >
                     <img
                       src="{% static 'arrow-path-icon.svg' %}"
@@ -52,7 +51,7 @@
                       alt="icon"
                       class="path-structure__icon"
                     />
-                    <span class="path-structure__title">{% trans "Каталог" %}</span>
+                    <span class="path-structure__title">Каталог</span>
                   </div>
                 </div>
               </div>
@@ -73,7 +72,7 @@
                         alt="icon"
                         class="favorite__nav-icon"
                       />
-                      <h5>{% trans "Фільтри" %}</h5>
+                      <h5>Фільтри</h5>
                     </button>
                   </div>
                   <div class="favorite__nav-part">
@@ -89,8 +88,7 @@
                         />
                         <!-- prettier-ignore -->
                         <h5>
-                          {% trans "Виберіть" as choose_label %}
-                          {% trans "Сортування: " %}{{ current_sort_label|default:choose_label }}
+                          Сортування: {{ current_sort_label|default:"Виберіть" }}
                         </h5>
                       </button>
                       <div
@@ -104,7 +102,7 @@
                               href="#"
                               class="sort-option"
                               data-sort="price_asc"
-                              >{% trans "Ціна: за зростанням" %}</a
+                              >Ціна: за зростанням</a
                             >
                           </li>
                           <li>
@@ -112,12 +110,12 @@
                               href="#"
                               class="sort-option"
                               data-sort="price_desc"
-                              >{% trans "Ціна: за спаданням" %}</a
+                              >Ціна: за спаданням</a
                             >
                           </li>
                           <li>
                             <a href="#" class="sort-option" data-sort="name_asc"
-                              >{% trans "Назва: від А до Я" %}</a
+                              >Назва: від А до Я</a
                             >
                           </li>
                           <li>
@@ -125,7 +123,7 @@
                               href="#"
                               class="sort-option"
                               data-sort="name_desc"
-                              >{% trans "Назва: від Я до А" %}</a
+                              >Назва: від Я до А</a
                             >
                           </li>
                         </ul>
@@ -201,7 +199,7 @@
                       <div class="products-list__item-extrainfo">
                         <div class="products-list__item-infopart">
                           <span class="products-list__item-raiting"
-                            >{% trans "Рейтинг" %}</span
+                            >Рейтинг</span
                           >
                           <img
                             src="{% static 'star-icon.svg' %}"
@@ -224,7 +222,7 @@
                         </div>
                       </div>
                       <div class="products-list__item-desc">
-                        <span>{{ item.short_desc }}</span>
+                        <span>{{ item.short_desc | safe }}</span>
                       </div>
                     </li>
                     {% endfor %}

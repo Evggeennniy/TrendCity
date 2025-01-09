@@ -1,5 +1,4 @@
-{% load static %}
-{% load i18n %}
+{% load static %} {% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,20 +44,27 @@
                       alt="icon"
                       class="path-structure__icon"
                     />
-                    <span class="path-structure__title">{% trans "Контакти" %}</span>
+                    <span class="path-structure__title"
+                      >{% trans "Контакти" %}</span
+                    >
                   </div>
                 </div>
               </div>
               <div class="page-wrap">
                 <div class="contacts__intro">
-                  <h4 class="contacts__title">{% trans "Контактна сторінка %}</h4>
+                  <!-- prettier-ignore -->
+                  <h4 class="contacts__title">{% trans "Контактна сторінка" %}</h4>
+                  <!-- prettier-ignore -->
                   <h5 class="contacts__subtitle">
                     {% trans "У Вас з’явились питання? Ми люб’язно" %}<br />{% trans "допоможемо!" %}
                   </h5>
                 </div>
                 <div class="contacts__info contacts__block">
-                  <h3 class="contacts__info-title">{% trans "Ми завжди на зв'язку!" %}</h3>
+                  <h3 class="contacts__info-title">
+                    {% trans "Ми завжди на зв'язку!" %}
+                  </h3>
                   <p class="contacts__info-subtitle">
+                    <!-- prettier-ignore -->
                     {% blocktrans %}
                     Команда TrendCity завжди готова надати підтримку та
                     допомогти вам з будь-яким питанням
@@ -192,7 +198,9 @@
                         <option value="">{% trans "Оберіть тему" %}</option>
                         <option value="Гарантія">{% trans "Гарантія" %}</option>
                         <option value="Оплата">{% trans "Оплата" %}</option>
-                        <option value="Повернення">{% trans "Повернення" %}</option>
+                        <option value="Повернення">
+                          {% trans "Повернення" %}
+                        </option>
                       </select>
                     </div>
                   </form>
