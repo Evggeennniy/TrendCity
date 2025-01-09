@@ -1503,6 +1503,7 @@ footer {
     justify-content: space-between;
     text-decoration: none;
     color: black;
+    position: relative;
   }
 
   .product-link {
@@ -1640,7 +1641,6 @@ footer {
     display: block;
     position: relative;
     left: -22px;
-    bottom: -250px;
     padding: 13px 21px;
     background-color: #fff;
     width: 179px;
@@ -1652,6 +1652,7 @@ footer {
   .products-list__item:hover .products-list__item-desc {
     display: block;
     position: absolute;
+    top: 100%;
   }
 
   .sticker-wrap {
