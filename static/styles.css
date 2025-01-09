@@ -2447,7 +2447,6 @@ footer {
   display: block;
   position: relative;
   left: -22px;
-  bottom: -250px;
   padding: 13px 21px;
   background-color: #fff;
   width: 179px;
@@ -2458,6 +2457,7 @@ footer {
 .main__fullcontent.basket .products-list__item:hover .products-list__item-desc {
   display: block;
   position: absolute;
+  top: 100%;
 }
 .main__fullcontent.basket .sticker-wrap {
   text-wrap: nowrap;
@@ -3300,7 +3300,6 @@ footer {
   display: block;
   position: relative;
   left: -22px;
-  bottom: -250px;
   padding: 13px 21px;
   background-color: #fff;
   width: 179px;
@@ -3311,6 +3310,7 @@ footer {
 .main__fullcontent.product .products-list__item:hover .products-list__item-desc {
   display: block;
   position: absolute;
+  top: 100%;
 }
 .main__fullcontent.product .sticker-wrap {
   text-wrap: nowrap;
@@ -3331,7 +3331,7 @@ footer {
   background: #552aff;
 }
 .main__fullcontent.product .recomends-products {
-  margin-bottom: 70px;
+  margin-bottom: 200px;
   grid-area: recomends;
 }
 @media (max-width: 575px) {
