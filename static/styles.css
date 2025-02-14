@@ -1012,7 +1012,6 @@ footer {
 .main__panel .panel__item-title,
 .slider-menu .panel__item-title {
   font-weight: 500;
-  text-wrap: nowrap;
   font-size: 14px;
 }
 .main__panel .panel__item-icon,
@@ -1432,14 +1431,13 @@ footer {
   font: revert;
 }
 .main__content.index .products-list__item-desc span {
-  border-top: 2px solid #f5f5f5;
   display: block;
   position: relative;
   left: -22px;
-  padding: 13px 21px;
+  padding: 1px 21px;
   background-color: #fff;
   width: 179px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   border-radius: 0 0 5px 5px;
 }
@@ -2443,14 +2441,13 @@ footer {
   font: revert;
 }
 .main__fullcontent.basket .products-list__item-desc span {
-  border-top: 2px solid #f5f5f5;
   display: block;
   position: relative;
   left: -22px;
-  padding: 13px 21px;
+  padding: 1px 21px;
   background-color: #fff;
   width: 179px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   border-radius: 0 0 5px 5px;
 }
@@ -3296,14 +3293,13 @@ footer {
   font: revert;
 }
 .main__fullcontent.product .products-list__item-desc span {
-  border-top: 2px solid #f5f5f5;
   display: block;
   position: relative;
   left: -22px;
-  padding: 13px 21px;
+  padding: 1px 21px;
   background-color: #fff;
   width: 179px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   border-radius: 0 0 5px 5px;
 }
@@ -3840,6 +3836,9 @@ footer {
   display: none;
 }
 @media (max-width: 576px) {
+  .footer {
+    padding: 20px 0 0;
+  }
   .footer .footer-line {
     visibility: hidden;
   }
