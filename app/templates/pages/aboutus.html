@@ -127,6 +127,9 @@
                             id="partners__phone-code"
                             name="partners__phone-code"
                             placeholder="+380"
+                            value="+380"
+                            inputmode="numeric"
+                            maxlength="4"
                             required
                           />
                         </div>
@@ -142,6 +145,9 @@
                             id="partners__phone"
                             name="partners__phone"
                             placeholder='{% trans "Номер телефону" %}'
+                            maxlength="12"
+                            inputmode="numeric"
+                            oninput="formatPhone(this)"
                             required
                           />
                         </div>
