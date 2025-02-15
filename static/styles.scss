@@ -3255,7 +3255,7 @@ footer {
 
   .photos__general-img {
     height: 430px;
-    width: 100%;
+    min-width: 30vw;
     scroll-snap-align: center;
   }
 
@@ -4070,6 +4070,7 @@ footer {
 
     .photos__general-img {
       height: 300px;
+      min-width: 79vw;
     }
 
     .image-container:hover .zoom-lens {

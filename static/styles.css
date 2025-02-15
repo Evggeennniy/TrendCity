@@ -2705,7 +2705,7 @@ footer {
 }
 .main__fullcontent.product .photos__general-img {
   height: 430px;
-  width: 100%;
+  min-width: 30vw;
   scroll-snap-align: center;
 }
 .main__fullcontent.product .photos__general-nav {
@@ -3364,6 +3364,7 @@ footer {
   }
   .main__fullcontent.product .photos__general-img {
     height: 300px;
+    min-width: 79vw;
   }
   .main__fullcontent.product .image-container:hover .zoom-lens {
     display: none;
