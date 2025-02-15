@@ -157,8 +157,10 @@
                           type="text"
                           class="form__input form__input-code"
                           placeholder="+380"
-                          pattern="[0-9]*"
                           name="country_code"
+                          inputmode="numeric"
+                          maxlength="4"
+                          value="+380"
                           required
                         />
                       </div>
@@ -167,7 +169,8 @@
                           type="text"
                           class="form__input"
                           placeholder='{% trans "Номер телефону" %}'
-                          pattern="[0-9 ]*"
+                          maxlength="12"
+                          inputmode="numeric"
                           name="phone_number"
                           oninput="formatPhone(this)"
                           required

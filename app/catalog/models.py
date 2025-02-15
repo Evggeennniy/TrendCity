@@ -6,7 +6,7 @@ from django.utils.translation import gettext as _
 class Category(models.Model):
     icon = models.FileField(verbose_name="Значок", upload_to="icons")
     image = models.FileField(verbose_name="Зображення", upload_to="images")
-    name = models.CharField(verbose_name="Назва", max_length=16)
+    name = models.CharField(verbose_name="Категорiя", max_length=16)
 
     def __str__(self) -> str:
         return self.name

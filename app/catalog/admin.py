@@ -49,7 +49,9 @@ class ProductsAdmin(admin.ModelAdmin):
         ProductWrapperInline,
     ]
 
-    list_display = ("name", "special_sticker")
+    list_display = ("name", "special_sticker", "related_category")
+
+    list_filter = ("related_category__name",)
 
     search_fields = ("id", "name")
 

@@ -14,9 +14,15 @@ class PartnerRequest(models.Model):
     def __str__(self):
         return f"Запит від {self.name} ({self.email})"
 
-    class Meta:
-        verbose_name = "Запит партнера"
-        verbose_name_plural = "Запити партнерів"
+    def get_telegram_text(self):
+        return (
+            f"{self.submitted_at.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
+            f"🤝 Запит на Партнерство №{self.id} від {self.name}\n"
+            f"📞Номер телефону: {self.phone_code}{self.phone.replace(' ','')}\n"
+            f"📬Пошта: {self.email}\n"
+            f"🏙Місто: {self.city}\n"
+            f"{self.description}"
+        )
 
 
 class Feedback(models.Model):
@@ -33,6 +39,15 @@ class Feedback(models.Model):
     class Meta:
         verbose_name = "Запит на зв'язок"
         verbose_name_plural = "Запити на зв'язок"
+
+    def get_telegram_text(self):
+        return (
+            f"❓Запит на зв'язок №{self.id} від {self.username}\n"
+            f"📞Номер телефону: {self.country_code}{self.phone_number.replace(' ','')}\n"
+            f"📬Пошта: {self.email}\n"
+            f"📗Тема: {self.topic}\n"
+            f"{self.message}"
+        )
 
 
 class AboutUsHeader(models.Model):

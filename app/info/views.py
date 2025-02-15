@@ -4,7 +4,7 @@ from catalog.views import PanelView
 from django.contrib import messages
 from info import models as info_models
 from django.http import JsonResponse
-
+from .utils import send_telegram_message
 
 class AboutUsView(PanelView, TemplateView):
     template_name = "aboutus.html"
@@ -59,7 +59,7 @@ def partner_form_view(request):
             messages.error(request, "Будь ласка, заповніть всі поля форми.")
             return redirect('partner_form')
 
-        info_models.PartnerRequest.objects.create(
+        info = info_models.PartnerRequest.objects.create(
             name=name,
             phone_code=phone_code,
             phone=phone,
@@ -67,7 +67,7 @@ def partner_form_view(request):
             city=city,
             description=description,
         )
-
+        send_telegram_message(info.get_telegram_text())
         messages.success(request, "Дякуємо! Ваш запит було успішно відправлено.")
         return redirect('about_us')
 
@@ -84,7 +84,7 @@ def feedback_form_view(request):
         topic = request.POST.get('topic')
 
         # Сохранение данных в базу
-        info_models.Feedback.objects.create(
+        info = info_models.Feedback.objects.create(
             email=email,
             username=username,
             country_code=country_code,
@@ -92,6 +92,8 @@ def feedback_form_view(request):
             message=message,
             topic=topic
         )
+
+        send_telegram_message(info.get_telegram_text())
         return redirect('index')
 
     return render(request, 'feedback_form.html')
