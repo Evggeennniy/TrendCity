@@ -8,3 +8,4 @@ localstatic/
 *.lock
 .vscode/
 .idea/
+app/locale/
