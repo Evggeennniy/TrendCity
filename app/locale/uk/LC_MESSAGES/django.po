@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-29 20:28+0200\n"
+"POT-Creation-Date: 2025-01-09 09:57+0000\n"
 "PO-Revision-Date: 2024-12-29 20:03+0200\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,533 +22,494 @@ msgstr ""
 "(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 "X-Translated-Using: django-rosetta 0.10.1\n"
 
-#: .\catalog\models.py:33
+#: catalog/models.py:33
 msgid "чоловіче"
 msgstr ""
 
-#: .\catalog\models.py:34
+#: catalog/models.py:34
 msgid "жіноче"
 msgstr ""
 
-#: .\catalog\models.py:35
+#: catalog/models.py:35
 msgid "унісекс"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:31
+#: templates/elements/authpopup.html:31
 msgid "Невірна ел. пошта або пароль."
 msgstr ""
 
-#: .\templates\elements\authpopup.html:33
+#: templates/elements/authpopup.html:33
 msgid "Ви успішно увійшли."
 msgstr ""
 
-#: .\templates\elements\authpopup.html:36
+#: templates/elements/authpopup.html:36
 msgid "Увійдіть в акаунт"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:41
-#: .\templates\elements\authpopup.html:162 .\templates\pages\aboutus.html:153
+#: templates/elements/authpopup.html:41 templates/elements/authpopup.html:162
+#: templates/pages/aboutus.html:153
 msgid "Іконка сообщения"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:48
-#: .\templates\elements\authpopup.html:169 .\templates\pages\aboutus.html:160
-#: .\templates\pages\contacts.html:126
+#: templates/elements/authpopup.html:48 templates/elements/authpopup.html:169
+#: templates/pages/aboutus.html:160 templates/pages/contacts.html:132
 msgid "Ел. пошта"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:56
-#: .\templates\elements\authpopup.html:177
+#: templates/elements/authpopup.html:56 templates/elements/authpopup.html:177
 msgid "Іконка пароля"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:63
-#: .\templates\elements\authpopup.html:185
+#: templates/elements/authpopup.html:63 templates/elements/authpopup.html:185
 msgid "Пароль"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:68
-#: .\templates\elements\authpopup.html:85 .\templates\elements\navbar.html:107
+#: templates/elements/authpopup.html:68 templates/elements/authpopup.html:85
+#: templates/elements/navbar.html:112
 msgid "Увійти"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:73
-#: .\templates\elements\authpopup.html:83
+#: templates/elements/authpopup.html:73 templates/elements/authpopup.html:83
 msgid "Вітаємо!"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:75
+#: templates/elements/authpopup.html:75
 msgid "У вас ще немає акаунту?"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:75
+#: templates/elements/authpopup.html:75
 msgid "Зареєструйте його"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:77
-#: .\templates\elements\authpopup.html:190
+#: templates/elements/authpopup.html:77 templates/elements/authpopup.html:190
 msgid "Реєстрація"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:84
+#: templates/elements/authpopup.html:84
 msgid "У вас вже є акаунт?"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:84
+#: templates/elements/authpopup.html:84
 msgid "Увійдіть у нього"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:98
+#: templates/elements/authpopup.html:98
 msgid "Ел. пошта вже використовується."
 msgstr ""
 
-#: .\templates\elements\authpopup.html:100
+#: templates/elements/authpopup.html:100
 msgid "Реєстрація акаунта"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:105
-#: .\templates\elements\authpopup.html:120 .\templates\pages\aboutus.html:111
-#: .\templates\pages\basket.html:257 .\templates\pages\basket.html:272
+#: templates/elements/authpopup.html:105 templates/elements/authpopup.html:120
+#: templates/pages/aboutus.html:111 templates/pages/basket.html:226
+#: templates/pages/basket.html:241
 msgid "Іконка профиля"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:112 .\templates\pages\aboutus.html:118
+#: templates/elements/authpopup.html:112 templates/pages/aboutus.html:118
 msgid "І’мя"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:127
+#: templates/elements/authpopup.html:127
 msgid "Прізвище"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:146
+#: templates/elements/authpopup.html:146
 msgid "Іконка телефона"
 msgstr ""
 
-#: .\templates\elements\authpopup.html:153 .\templates\pages\aboutus.html:144
-#: .\templates\pages\contacts.html:163
+#: templates/elements/authpopup.html:153 templates/pages/aboutus.html:144
+#: templates/pages/contacts.html:169
 msgid "Номер телефону"
 msgstr ""
 
-#: .\templates\elements\footer.html:9 .\templates\elements\navbar.html:7
-#: .\templates\elements\panel_filters.html:8
-#: .\templates\elements\slider_menu.html:8 .\templates\pages\aboutus.html:67
-#: .\templates\pages\aboutus.html:199 .\templates\pages\basket.html:29
-#: .\templates\pages\index.html:12 .\templates\pages\index.html:79
+#: templates/elements/footer.html:8 templates/elements/navbar.html:8
+#: templates/elements/panel_filters.html:9
+#: templates/elements/slider_menu.html:9 templates/pages/aboutus.html:67
+#: templates/pages/aboutus.html:199 templates/pages/basket.html:28
+#: templates/pages/index.html:11 templates/pages/index.html:78
 msgid "ТрендСіті"
 msgstr ""
 
-#: .\templates\elements\footer.html:10 .\templates\elements\footer.html:76
+#: templates/elements/footer.html:10 templates/elements/footer.html:88
 msgid "ТрендСіті, 2024–2025"
 msgstr ""
 
-#: .\templates\elements\footer.html:18
+#: templates/elements/footer.html:19
 msgid "Інформація"
 msgstr ""
 
-#: .\templates\elements\footer.html:19 .\templates\pages\contacts.html:193
+#: templates/elements/footer.html:21 templates/pages/contacts.html:199
 msgid "Гарантія"
 msgstr ""
 
-#: .\templates\elements\footer.html:20
+#: templates/elements/footer.html:24
 msgid "Доставка"
 msgstr ""
 
-#: .\templates\elements\footer.html:21 .\templates\pages\contacts.html:194
+#: templates/elements/footer.html:27 templates/pages/contacts.html:200
 msgid "Оплата"
 msgstr ""
 
-#: .\templates\elements\footer.html:22 .\templates\pages\contacts.html:195
+#: templates/elements/footer.html:30 templates/pages/contacts.html:202
 msgid "Повернення"
 msgstr ""
 
-#: .\templates\elements\footer.html:25
+#: templates/elements/footer.html:34
 msgid "Документація"
 msgstr ""
 
-#: .\templates\elements\footer.html:27
+#: templates/elements/footer.html:36
 msgid "Політика конфеденційності"
 msgstr ""
 
-#: .\templates\elements\footer.html:30
+#: templates/elements/footer.html:39
 msgid "Договір публічної оферти"
 msgstr ""
 
-#: .\templates\elements\footer.html:34 .\templates\elements\panel_info.html:15
-#: .\templates\elements\slider_menu.html:94 .\templates\pages\contacts.html:48
+#: templates/elements/footer.html:43 templates/elements/panel_info.html:15
+#: templates/elements/slider_menu.html:99 templates/pages/contacts.html:48
 msgid "Контакти"
 msgstr ""
 
-#: .\templates\elements\footer.html:35
+#: templates/elements/footer.html:45
 msgid "Телефон +38 (063) 67 591 67"
 msgstr ""
 
-#: .\templates\elements\navbar.html:23 .\templates\elements\slider_menu.html:84
-#: .\templates\pages\catalog.html:55
+#: templates/elements/navbar.html:24 templates/elements/slider_menu.html:89
 msgid "Каталог"
 msgstr "Католог Українською"
 
-#: .\templates\elements\navbar.html:31
+#: templates/elements/navbar.html:32
 msgid "Що вас цікавить?"
 msgstr ""
 
-#: .\templates\elements\navbar.html:45
+#: templates/elements/navbar.html:46
 msgid "О&nbsp;нас"
 msgstr ""
 
-#: .\templates\elements\navbar.html:75
+#: templates/elements/navbar.html:80
 msgid "До обраного"
 msgstr ""
 
-#: .\templates\elements\navbar.html:98 .\templates\elements\slider_menu.html:42
+#: templates/elements/navbar.html:103 templates/elements/slider_menu.html:47
 msgid "Вийти"
 msgstr ""
 
-#: .\templates\elements\panel_categories.html:5
+#: templates/elements/panel_categories.html:5
 msgid "Kатегорії"
 msgstr ""
 
-#: .\templates\elements\panel_filters.html:29
+#: templates/elements/panel_filters.html:34
 msgid "Бренди"
 msgstr ""
 
-#: .\templates\elements\panel_filters.html:48
+#: templates/elements/panel_filters.html:53
 msgid "Пропозиції"
 msgstr ""
 
-#: .\templates\elements\panel_filters.html:61
+#: templates/elements/panel_filters.html:66
 msgid "Новинки"
 msgstr ""
 
-#: .\templates\elements\panel_filters.html:76
-#: .\templates\elements\slider_menu.html:122
+#: templates/elements/panel_filters.html:81
+#: templates/elements/slider_menu.html:127
 msgid "Топ товари"
 msgstr ""
 
-#: .\templates\elements\panel_filters.html:83
+#: templates/elements/panel_filters.html:88
 msgid "Ціна"
 msgstr ""
 
-#: .\templates\elements\panel_filters.html:127
+#: templates/elements/panel_filters.html:132
 msgid "ЗНИЖКА"
 msgstr ""
 
-#: .\templates\elements\panel_filters.html:136
+#: templates/elements/panel_filters.html:141
 msgid "Зі знижкою"
 msgstr ""
 
-#: .\templates\elements\panel_filters.html:146
+#: templates/elements/panel_filters.html:151
 msgid "Без знижки"
 msgstr ""
 
-#: .\templates\elements\panel_filters.html:153
+#: templates/elements/panel_filters.html:158
 msgid "Для кого"
 msgstr ""
 
-#: .\templates\elements\panel_filters.html:160
+#: templates/elements/panel_filters.html:165
 msgid "Чоловіче"
 msgstr ""
 
-#: .\templates\elements\panel_filters.html:171
+#: templates/elements/panel_filters.html:176
 msgid "Жіноче"
 msgstr ""
 
-#: .\templates\elements\panel_filters.html:183
-#: .\templates\pages\favorite.html:124
+#: templates/elements/panel_filters.html:188 templates/pages/favorite.html:124
 msgid "Унісекс"
 msgstr ""
 
-#: .\templates\elements\panel_info.html:5
+#: templates/elements/panel_info.html:5
 msgid "ІНФОРМАЦІЯ"
 msgstr ""
 
-#: .\templates\elements\panel_top.html:5
+#: templates/elements/panel_top.html:5
 msgid "топ товари"
 msgstr ""
 
-#: .\templates\elements\slider_menu.html:50
+#: templates/elements/slider_menu.html:55
 msgid "Увійти/Реєстрація"
 msgstr ""
 
-#: .\templates\elements\slider_menu.html:55
+#: templates/elements/slider_menu.html:60
 msgid "Сторінки"
 msgstr ""
 
-#: .\templates\elements\slider_menu.html:64
+#: templates/elements/slider_menu.html:69
 msgid "Корзина"
 msgstr ""
 
-#: .\templates\elements\slider_menu.html:74
+#: templates/elements/slider_menu.html:79
 msgid "Обранi товари"
 msgstr ""
 
-#: .\templates\elements\slider_menu.html:106
+#: templates/elements/slider_menu.html:111
 msgid "Співпраця"
 msgstr ""
 
-#: .\templates\elements\slider_menu.html:117
+#: templates/elements/slider_menu.html:122
 msgid "Про Трендсіті"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:12
+#: templates/pages/aboutus.html:12
 msgid "ТрендСіті - О нас"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:42 .\templates\pages\catalog.html:41
-#: .\templates\pages\contacts.html:34 .\templates\pages\favorite.html:44
-#: .\templates\pages\info_template.html:42 .\templates\pages\product.html:197
+#: templates/pages/aboutus.html:42 templates/pages/contacts.html:33
+#: templates/pages/favorite.html:44 templates/pages/info_template.html:42
+#: templates/pages/product.html:201
 msgid "Головна"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:57
+#: templates/pages/aboutus.html:57
 msgid "О нас"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:68
+#: templates/pages/aboutus.html:68
 msgid "Для покупців"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:137
+#: templates/pages/aboutus.html:137
 msgid "іконка телефона"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:168
+#: templates/pages/aboutus.html:168
 msgid "Іконка собщения"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:175
+#: templates/pages/aboutus.html:175
 msgid "Місто"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:185
+#: templates/pages/aboutus.html:185
 msgid "Опишіть напрямок вашего бізнесу"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:191
+#: templates/pages/aboutus.html:191
 msgid "Залишити запит"
 msgstr ""
 
-#: .\templates\pages\aboutus.html:200
+#: templates/pages/aboutus.html:200
 msgid "Відгуки"
 msgstr ""
 
-#: .\templates\pages\basket.html:9
+#: templates/pages/basket.html:8
 msgid "Basket Store"
 msgstr ""
 
-#: .\templates\pages\basket.html:42
+#: templates/pages/basket.html:42
 msgid "Оформлення замовлення"
 msgstr ""
 
-#: .\templates\pages\basket.html:52
+#: templates/pages/basket.html:53
 msgid "Видалити обране"
 msgstr ""
 
-#: .\templates\pages\basket.html:90 .\templates\pages\product.html:570
+#: templates/pages/basket.html:91 templates/pages/basket.html:177
+#: templates/pages/product.html:590
 msgid "Без пакування"
 msgstr ""
 
-#: .\templates\pages\basket.html:147
-msgid "ЗАГАЛЬНА СУМА"
-msgstr ""
-
-#: .\templates\pages\basket.html:151
-msgid "Товари без знижки"
-msgstr ""
-
-#: .\templates\pages\basket.html:158 .\templates\pages\product.html:541
-msgid "Пакування"
-msgstr ""
-
-#: .\templates\pages\basket.html:165
-msgid "Загальна сума знижки"
-msgstr ""
-
-#: .\templates\pages\basket.html:183
-msgid "Загалом"
-msgstr ""
-
-#: .\templates\pages\basket.html:197
-msgid "У вас є промокод?"
-msgstr ""
-
-#: .\templates\pages\basket.html:202
-msgid "Промокод"
-msgstr ""
-
-#: .\templates\pages\basket.html:207
-msgid "Додати"
-msgstr ""
-
-#: .\templates\pages\basket.html:214
+#: templates/pages/basket.html:147
 msgid "Подарунки"
 msgstr ""
 
-#: .\templates\pages\basket.html:227
-msgid "Акцій"
-msgstr ""
-
-#: .\templates\pages\basket.html:240
-msgid "Потребуете доповнити"
-msgstr ""
-
-#: .\templates\pages\basket.html:240
-msgid "Ваш кошик?"
-msgstr ""
-
-#: .\templates\pages\basket.html:245
-msgid "Перейти"
-msgstr ""
-
-#: .\templates\pages\basket.html:263
+#: templates/pages/basket.html:232
 msgid "Анатолій"
 msgstr ""
 
-#: .\templates\pages\basket.html:278
+#: templates/pages/basket.html:247
 msgid "Кузьменко"
 msgstr ""
 
-#: .\templates\pages\basket.html:323
+#: templates/pages/basket.html:292
 msgid "Виберіть спосіб оплати"
 msgstr ""
 
-#: .\templates\pages\basket.html:326
+#: templates/pages/basket.html:295
 msgid "Оплата готівкою"
 msgstr ""
 
-#: .\templates\pages\basket.html:329
+#: templates/pages/basket.html:298
 msgid "Оплата картою при отриманні"
 msgstr ""
 
-#: .\templates\pages\basket.html:332
+#: templates/pages/basket.html:301
 msgid "Оплата онлайн картою"
 msgstr ""
 
-#: .\templates\pages\basket.html:335
+#: templates/pages/basket.html:304
 msgid "Банківський переказ"
 msgstr ""
 
-#: .\templates\pages\basket.html:351
+#: templates/pages/basket.html:320
 msgid "Виберіть спосіб доставки"
 msgstr ""
 
-#: .\templates\pages\basket.html:354
+#: templates/pages/basket.html:323
 msgid "Доставка: Нова пошта"
 msgstr ""
 
-#: .\templates\pages\basket.html:356
+#: templates/pages/basket.html:326
 msgid "Доставка: Укрпошта"
 msgstr ""
 
-#: .\templates\pages\basket.html:357
+#: templates/pages/basket.html:329
 msgid "Доставка: Justin"
 msgstr ""
 
-#: .\templates\pages\basket.html:358
+#: templates/pages/basket.html:332
 msgid "Самовывоз"
 msgstr ""
 
-#: .\templates\pages\basket.html:372
+#: templates/pages/basket.html:347
 msgid "Відділення пошти"
 msgstr ""
 
-#: .\templates\pages\basket.html:383
+#: templates/pages/basket.html:358
 msgid "Коментар до замовлення"
 msgstr ""
 
-#: .\templates\pages\basket.html:391
+#: templates/pages/basket.html:363
 msgid "Оформлення"
 msgstr ""
 
-#: .\templates\pages\basket.html:489
+#: templates/pages/basket.html:374
+msgid "ЗАГАЛЬНА СУМА"
+msgstr ""
+
+#: templates/pages/basket.html:379
+msgid "Товари без знижки"
+msgstr ""
+
+#: templates/pages/basket.html:386 templates/pages/product.html:558
+msgid "Пакування"
+msgstr ""
+
+#: templates/pages/basket.html:393
+msgid "Загальна сума знижки"
+msgstr ""
+
+#: templates/pages/basket.html:411
+msgid "Загалом"
+msgstr ""
+
+#: templates/pages/basket.html:425
+msgid "У вас є промокод?"
+msgstr ""
+
+#: templates/pages/basket.html:430
+msgid "Промокод"
+msgstr ""
+
+#: templates/pages/basket.html:435
+msgid "Додати"
+msgstr ""
+
+#: templates/pages/basket.html:445
+msgid "Акцій"
+msgstr ""
+
+#: templates/pages/basket.html:458
+msgid "Потребуете доповнити"
+msgstr ""
+
+#: templates/pages/basket.html:459
+msgid "Ваш кошик?"
+msgstr ""
+
+#: templates/pages/basket.html:464
+msgid "Перейти"
+msgstr ""
+
+#: templates/pages/basket.html:560
 msgid "Ім\\"
 msgstr ""
 
-#: .\templates\pages\basket.html:492
+#: templates/pages/basket.html:564
 msgid "Прізвище замовника є обов\\"
 msgstr ""
 
-#: .\templates\pages\basket.html:495
+#: templates/pages/basket.html:572
 msgid "Код країни замовника є обов\\"
 msgstr ""
 
-#: .\templates\pages\basket.html:498
+#: templates/pages/basket.html:577
 msgid "Номер замовника є обов\\"
 msgstr ""
 
-#: .\templates\pages\basket.html:501
+#: templates/pages/basket.html:581
 msgid "Спосіб оплати є обов\\"
 msgstr ""
 
-#: .\templates\pages\basket.html:504
+#: templates/pages/basket.html:585
 msgid "Відділення пошти є обов\\"
 msgstr ""
 
-#: .\templates\pages\basket.html:507
+#: templates/pages/basket.html:590
 msgid "Спосіб доставки є обов\\"
 msgstr ""
 
-#: .\templates\pages\basket.html:510
+#: templates/pages/basket.html:594
 msgid "Кошик порожній ( ;"
 msgstr ""
 
-#: .\templates\pages\basket.html:604
+#: templates/pages/basket.html:687
 msgid "Дякуємо за замовлення!"
 msgstr ""
 
-#: .\templates\pages\catalog.html:13
-msgid "ТрендСіті - Каталог"
-msgstr "Католог Українською"
-
-#: .\templates\pages\catalog.html:76
-msgid "Фільтри"
-msgstr ""
-
-#: .\templates\pages\catalog.html:92
-msgid "Виберіть"
-msgstr ""
-
-#: .\templates\pages\catalog.html:93
-msgid "Сортування: "
-msgstr ""
-
-#: .\templates\pages\catalog.html:107
-msgid "Ціна: за зростанням"
-msgstr ""
-
-#: .\templates\pages\catalog.html:115
-msgid "Ціна: за спаданням"
-msgstr ""
-
-#: .\templates\pages\catalog.html:120
-msgid "Назва: від А до Я"
-msgstr ""
-
-#: .\templates\pages\catalog.html:128
-msgid "Назва: від Я до А"
-msgstr ""
-
-#: .\templates\pages\catalog.html:204 .\templates\pages\favorite.html:113
-#: .\templates\pages\product.html:162 .\templates\pages\product.html:685
-msgid "Рейтинг"
-msgstr ""
-
-#: .\templates\pages\contacts.html:12
+#: templates/pages/contacts.html:11
 msgid "ТрендСіті - Контакти"
 msgstr ""
 
-#: .\templates\pages\contacts.html:56
+#: templates/pages/contacts.html:56
+msgid "Контактна сторінка"
+msgstr ""
+
+#: templates/pages/contacts.html:59
 msgid "У Вас з’явились питання? Ми люб’язно"
 msgstr ""
 
-#: .\templates\pages\contacts.html:56
+#: templates/pages/contacts.html:59
 msgid "допоможемо!"
 msgstr ""
 
-#: .\templates\pages\contacts.html:60
+#: templates/pages/contacts.html:64
 msgid "Ми завжди на зв'язку!"
 msgstr ""
 
-#: .\templates\pages\contacts.html:62
+#: templates/pages/contacts.html:68
 msgid ""
 "\n"
 "                    Команда TrendCity завжди готова надати підтримку та\n"
@@ -556,39 +517,44 @@ msgid ""
 "                    "
 msgstr ""
 
-#: .\templates\pages\contacts.html:106
+#: templates/pages/contacts.html:112
 msgid "Форма зворотнього зв'язку"
 msgstr ""
 
-#: .\templates\pages\contacts.html:140
+#: templates/pages/contacts.html:146
 msgid "Ваше ім’я"
 msgstr ""
 
-#: .\templates\pages\contacts.html:174
+#: templates/pages/contacts.html:180
 msgid "Ваш лист"
 msgstr ""
 
-#: .\templates\pages\contacts.html:184
+#: templates/pages/contacts.html:190
 msgid "Надіслати"
 msgstr ""
 
-#: .\templates\pages\contacts.html:192
+#: templates/pages/contacts.html:198
 msgid "Оберіть тему"
 msgstr ""
 
-#: .\templates\pages\favorite.html:12
+#: templates/pages/favorite.html:12
 msgid "ТрендСіті - Обрані"
 msgstr ""
 
-#: .\templates\pages\favorite.html:58
+#: templates/pages/favorite.html:58
 msgid "Обрані товари"
 msgstr ""
 
-#: .\templates\pages\favorite.html:88
+#: templates/pages/favorite.html:88
 msgid "Аромадифузор LeMien №5 - Fleur Narcotique"
 msgstr ""
 
-#: .\templates\pages\favorite.html:135
+#: templates/pages/favorite.html:113 templates/pages/product.html:165
+#: templates/pages/product.html:709
+msgid "Рейтинг"
+msgstr ""
+
+#: templates/pages/favorite.html:135
 msgid ""
 "\n"
 "                          >Аромат чистоти, насичений справжньою дерев'яною\n"
@@ -598,139 +564,132 @@ msgid ""
 "                          "
 msgstr ""
 
-#: .\templates\pages\index.html:54
+#: templates/pages/index.html:53
 msgid "ВСІ КАТЕГОРІЇ"
 msgstr ""
 
-#: .\templates\pages\index.html:80
+#: templates/pages/index.html:80
 msgid "Акційні товари"
 msgstr ""
 
-#: .\templates\pages\index.html:301
+#: templates/pages/index.html:303
 msgid "Широкий вибір товарів"
 msgstr ""
 
-#: .\templates\pages\index.html:309
+#: templates/pages/index.html:313
 msgid "Зручний інтерфейс"
 msgstr ""
 
-#: .\templates\pages\index.html:317
+#: templates/pages/index.html:323
 msgid "Безпечні транзакції"
 msgstr ""
 
-#: .\templates\pages\index.html:323
+#: templates/pages/index.html:331
 msgid "Український Маркетплейс: Вигідні Покупки та Надійні Продавці"
 msgstr ""
 
-#: .\templates\pages\index.html:326
+#: templates/pages/index.html:335
 msgid ""
-"\n"
-"                    Ми сучасна онлайн-платформа, що об'єднує найкращі товари "
-"в\n"
-"                    одному місці. Широкий асортимент товарів, вигідні ціни,\n"
-"                    зручний інтерфейс та безпечні транзакції роблять "
-"покупки\n"
-"                    швидкими та комфортними. Підтримуйте вітчизняний бізнес\n"
-"                    разом із нашим маркетплейсом.\n"
+" Ми сучасна онлайн-платформа, що об'єднує\n"
+"                    найкращі товари в одному місці. Широкий асортимент "
+"товарів,\n"
+"                    вигідні ціни, зручний інтерфейс та безпечні транзакції\n"
+"                    роблять покупки швидкими та комфортними. Підтримуйте\n"
+"                    вітчизняний бізнес разом із нашим маркетплейсом. \n"
 "                    "
 msgstr ""
 
-#: .\templates\pages\info_template.html:12
+#: templates/pages/info_template.html:12
 msgid "ТрендСіті - Iнфо"
 msgstr ""
 
-#: .\templates\pages\info_template.html:56
+#: templates/pages/info_template.html:56
 msgid "Iнформацiя"
 msgstr ""
 
-#: .\templates\pages\product.html:13
+#: templates/pages/product.html:12
 msgid "ТрендСіті - Продукт"
 msgstr ""
 
-#: .\templates\pages\product.html:36
+#: templates/pages/product.html:35
 msgid "Написати відгук"
 msgstr ""
 
-#: .\templates\pages\product.html:51
+#: templates/pages/product.html:50
 msgid "Ваш відгук"
 msgstr ""
 
-#: .\templates\pages\product.html:59
+#: templates/pages/product.html:58
 msgid "Оцінка товару"
 msgstr ""
 
-#: .\templates\pages\product.html:80
+#: templates/pages/product.html:80
 msgid "Відправити"
 msgstr ""
 
-#: .\templates\pages\product.html:85
+#: templates/pages/product.html:86
 msgid "Дякуємо!"
 msgstr ""
 
-#: .\templates\pages\product.html:87
+#: templates/pages/product.html:88
 msgid "Ваші слова надихають нас"
 msgstr ""
 
-#: .\templates\pages\product.html:87
-msgid "ставати кращими!"
-msgstr ""
-
-#: .\templates\pages\product.html:211
+#: templates/pages/product.html:216
 msgid "Продукт"
 msgstr ""
 
-#: .\templates\pages\product.html:284
+#: templates/pages/product.html:291
 msgid "відгук(а/ів)"
 msgstr ""
 
-#: .\templates\pages\product.html:303
-msgid "Оберіть об’єм"
+#: templates/pages/product.html:311 templates/pages/product.html:313
+msgid "Оберіть опцію "
 msgstr ""
 
-#: .\templates\pages\product.html:305
-msgid "Об’єм"
+#: templates/pages/product.html:336
+msgid "Оберіть"
 msgstr ""
 
-#: .\templates\pages\product.html:328
-msgid "Оберіть аромат"
-msgstr ""
-
-#: .\templates\pages\product.html:422
+#: templates/pages/product.html:433
 msgid "Купити"
 msgstr ""
 
-#: .\templates\pages\product.html:430 .\templates\pages\product.html:531
+#: templates/pages/product.html:441 templates/pages/product.html:547
 msgid "Добавлено"
 msgstr ""
 
-#: .\templates\pages\product.html:444
+#: templates/pages/product.html:455
 msgid "Опис та характеристика"
 msgstr ""
 
-#: .\templates\pages\product.html:451
+#: templates/pages/product.html:464
 msgid "Комплектуючі"
 msgstr ""
 
-#: .\templates\pages\product.html:523
+#: templates/pages/product.html:538
 msgid "Доповнити"
 msgstr ""
 
-#: .\templates\pages\product.html:576
+#: templates/pages/product.html:597
 msgid "Відгуки до товару"
 msgstr ""
 
-#: .\templates\pages\product.html:600
+#: templates/pages/product.html:623
 msgid "Немає відгуків для цього товару."
 msgstr ""
 
-#: .\templates\pages\product.html:608
+#: templates/pages/product.html:631
 msgid "Залишити відгук"
 msgstr ""
 
-#: .\templates\pages\product.html:614
+#: templates/pages/product.html:637
 msgid "Показати ще"
 msgstr ""
 
-#: .\templates\pages\product.html:622
+#: templates/pages/product.html:646
 msgid "Рекомендовані товари"
 msgstr ""
+
+#~ msgid "ТрендСіті - Каталог"
+#~ msgstr "Католог Українською"
